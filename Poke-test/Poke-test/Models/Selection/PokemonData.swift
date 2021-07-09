@@ -14,3 +14,4 @@ struct PokemonData:Codable{
 struct Sprites: Codable{
     let front_default:String //Image
 }
+
