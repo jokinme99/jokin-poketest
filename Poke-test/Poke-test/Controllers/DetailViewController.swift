@@ -22,7 +22,7 @@ class DetailViewController: UIViewController {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-        pokemonManager.delegate = self
+        pokemonManager.delegate = self 
         selectedPokemonInList()
     }
     
