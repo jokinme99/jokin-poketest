@@ -32,7 +32,7 @@ class DetailViewController: UIViewController {
 extension DetailViewController: PokemonManagerDelegate{
     func didUpdatePokemon(_ pokemonManager: PokemonManager, pokemon: PokemonModel) {
         DispatchQueue.main.async {
-            self.labelPokemonName.text = pokemon.namePokemon.uppercased() // The selected one
+            self.labelPokemonName.text = pokemon.namePokemon.uppercased()// The selected one
             let downloadURL = URL(string: pokemon.imagePokemon)!
             self.imagePokemon.af.setImage(withURL: downloadURL )
         }
