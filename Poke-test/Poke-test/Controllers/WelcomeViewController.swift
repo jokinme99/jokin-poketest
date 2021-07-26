@@ -10,8 +10,8 @@ import CoreData
 class WelcomeViewController:UITableViewController {
     @IBOutlet weak var searchBar: UISearchBar!
     var pokemonListManager = PokemonListManager()
-    var pokemonNames = [String]()//List of pokemon names
-    var filteredPokemonNames: [String] = []//List of pokemon names searched
+    var pokemonNames : [Results] = []//List of pokemon names
+    var filteredPokemonNames: [Results] = []//List of pokemon names searched
     var searchActive : Bool = false
     
     override func viewDidLoad() {
@@ -34,9 +34,9 @@ class WelcomeViewController:UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "PokemonNameCell", for: indexPath)
         if(searchActive){
-            cell.textLabel?.text = filteredPokemonNames.sorted(by: <)[indexPath.row].uppercased()
+            cell.textLabel?.text? = filteredPokemonNames[indexPath.row].name.uppercased()//sorted(by:<) ??
         } else {
-            cell.textLabel?.text = pokemonNames.sorted(by: <)[indexPath.row].uppercased()
+            cell.textLabel?.text = pokemonNames[indexPath.row].name.uppercased()
         }
         return cell
     }
@@ -49,9 +49,9 @@ class WelcomeViewController:UITableViewController {
         let destinationVC = segue.destination as! DetailViewController
         if let indexPath = tableView.indexPathForSelectedRow{
             if (searchActive){
-                destinationVC.selectedPokemon = filteredPokemonNames.sorted(by: <)[indexPath.row]
+                destinationVC.selectedPokemon = filteredPokemonNames[indexPath.row].name
             }else{
-                destinationVC.selectedPokemon = pokemonNames.sorted(by: <)[indexPath.row]//pokemon/row selected
+                destinationVC.selectedPokemon = pokemonNames[indexPath.row].name//pokemon/row selected
                 
             }
         }
@@ -59,9 +59,9 @@ class WelcomeViewController:UITableViewController {
 }
 //MARK: - PokemonListDelegate Methods
 extension WelcomeViewController: PokemonListManagerDelegate{
-    func didUpdatePokemonList(_ pokemonListManager: PokemonListManager, pokemon: PokemonListModel) {
+    func didUpdatePokemonList(_ pokemonListManager: PokemonListManager, pokemon: PokemonListData) {
         DispatchQueue.main.async {
-            for data in pokemon.names{//Save in the array of the pokemon names
+            for data in pokemon.results{//Save in the array of the pokemon names
                 self.pokemonNames.append(data)
             }
             self.tableView.reloadData()
@@ -75,7 +75,7 @@ extension WelcomeViewController: PokemonListManagerDelegate{
 extension WelcomeViewController:UISearchBarDelegate{// This method updates filteredData based on the text in the Search Box
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         filteredPokemonNames = pokemonNames.filter({ (text) -> Bool in
-            let tmp: NSString = text as NSString
+            let tmp: NSString = text.name as NSString
             let range = tmp.range(of: searchText, options: NSString.CompareOptions.caseInsensitive)
             return range.location != NSNotFound
         })
@@ -90,11 +90,6 @@ extension WelcomeViewController:UISearchBarDelegate{// This method updates filte
 //MARK: - Data Manipulation Methods
 extension WelcomeViewController{
     func loadPokemonList(){
-        pokemonListManager.fetchPokemonList()//Make the call
-        //didUpdatePokemonList(pokemonListManager, pokemon: PokemonListModel(names: pokemonNames))//Save the PokemonListManager array into pokemonNames array
-        
-    }
-    func saveSelection(){
-        
+        pokemonListManager.fetchPokemonList()
     }
 }

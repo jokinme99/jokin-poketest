@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -16,10 +16,8 @@
 		FD3172DC2695CF91006810CA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FD3172DA2695CF91006810CA /* LaunchScreen.storyboard */; };
 		FD85C3992696D89E00EAF99F /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD85C3982696D89E00EAF99F /* DetailViewController.swift */; };
 		FD85C3A12696E06D00EAF99F /* PokemonData.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD85C3A02696E06D00EAF99F /* PokemonData.swift */; };
-		FD85C3A32696E07800EAF99F /* PokemonModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD85C3A22696E07800EAF99F /* PokemonModel.swift */; };
 		FD85C3A52696E08800EAF99F /* PokemonManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD85C3A42696E08800EAF99F /* PokemonManager.swift */; };
 		FD85C3A82696EAFC00EAF99F /* PokemonListData.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD85C3A72696EAFC00EAF99F /* PokemonListData.swift */; };
-		FD85C3AA2696EB0B00EAF99F /* PokemonListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD85C3A92696EB0B00EAF99F /* PokemonListModel.swift */; };
 		FD85C3AC2696EB1E00EAF99F /* PokemonListManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD85C3AB2696EB1E00EAF99F /* PokemonListManager.swift */; };
 /* End PBXBuildFile section */
 
@@ -37,10 +35,8 @@
 		FD3172DD2695CF91006810CA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FD85C3982696D89E00EAF99F /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		FD85C3A02696E06D00EAF99F /* PokemonData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonData.swift; sourceTree = "<group>"; };
-		FD85C3A22696E07800EAF99F /* PokemonModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonModel.swift; sourceTree = "<group>"; };
 		FD85C3A42696E08800EAF99F /* PokemonManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonManager.swift; sourceTree = "<group>"; };
 		FD85C3A72696EAFC00EAF99F /* PokemonListData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonListData.swift; sourceTree = "<group>"; };
-		FD85C3A92696EB0B00EAF99F /* PokemonListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonListModel.swift; sourceTree = "<group>"; };
 		FD85C3AB2696EB1E00EAF99F /* PokemonListManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonListManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -70,7 +66,6 @@
 				59AADBB90D195305A7F8BEFE /* Pods-Poke-test.debug.xcconfig */,
 				CCE5A1BEE58EA2B21595147E /* Pods-Poke-test.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -137,7 +132,6 @@
 			isa = PBXGroup;
 			children = (
 				FD85C3A02696E06D00EAF99F /* PokemonData.swift */,
-				FD85C3A22696E07800EAF99F /* PokemonModel.swift */,
 				FD85C3A42696E08800EAF99F /* PokemonManager.swift */,
 			);
 			path = Selection;
@@ -147,7 +141,6 @@
 			isa = PBXGroup;
 			children = (
 				FD85C3A72696EAFC00EAF99F /* PokemonListData.swift */,
-				FD85C3A92696EB0B00EAF99F /* PokemonListModel.swift */,
 				FD85C3AB2696EB1E00EAF99F /* PokemonListManager.swift */,
 			);
 			path = List;
@@ -164,7 +157,7 @@
 				FD3172C82695CF90006810CA /* Sources */,
 				FD3172C92695CF90006810CA /* Frameworks */,
 				FD3172CA2695CF90006810CA /* Resources */,
-				E1B1473B33FA32A13673DF72 /* [CP] Embed Pods Frameworks */,
+				4147056D35AD7DD0195E0610 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -243,7 +236,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		E1B1473B33FA32A13673DF72 /* [CP] Embed Pods Frameworks */ = {
+		4147056D35AD7DD0195E0610 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -267,11 +260,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FD85C3AA2696EB0B00EAF99F /* PokemonListModel.swift in Sources */,
 				FD3172D42695CF90006810CA /* WelcomeViewController.swift in Sources */,
 				FD85C3A52696E08800EAF99F /* PokemonManager.swift in Sources */,
 				FD85C3AC2696EB1E00EAF99F /* PokemonListManager.swift in Sources */,
-				FD85C3A32696E07800EAF99F /* PokemonModel.swift in Sources */,
 				FD3172D02695CF90006810CA /* AppDelegate.swift in Sources */,
 				FD3172D22695CF90006810CA /* SceneDelegate.swift in Sources */,
 				FD85C3992696D89E00EAF99F /* DetailViewController.swift in Sources */,
