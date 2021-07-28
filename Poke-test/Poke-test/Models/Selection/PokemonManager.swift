@@ -24,28 +24,18 @@ struct PokemonManager{
         performRequest(with:urlString)
         
     }
-    
     func performRequest(with urlString:String){
-        AF.request(urlString, method: .get, encoding: URLEncoding.queryString, headers: nil)
+        AF.request(urlString,
+                   method: .get,
+                   encoding: URLEncoding.queryString,
+                   headers: nil)
             .validate()
-            .responseJSON { response in
-                
-                switch (response.result) {
-                
-                case .success( _):
-                        if response.error != nil{
-                            self.delegate?.didFailWithError(error: response.error!)
-                            return
-                        }
-                        if let safeData = response.data{
-                            if let pokemon = parseJSONPokemon(safeData){
-                                self.delegate?.didUpdatePokemon(self, pokemon:pokemon)
-                            }
-                        }
-                    
-                    
+            .responseDecodable { (response: DataResponse<PokemonData, AFError>) in
+                switch response.result {
+                case .success(let data):
+                    self.delegate?.didUpdatePokemon(self, pokemon: data)
                 case .failure(let error):
-                    print("Request error: \(error.localizedDescription)")
+                    self.delegate?.didFailWithError(error: error)
                 }
             }
     }
