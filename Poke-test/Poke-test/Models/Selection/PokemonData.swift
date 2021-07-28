@@ -6,12 +6,15 @@
 //
 
 import UIKit
+import Alamofire
+
 
 struct PokemonData:Codable{
-    let name: String // The one selected from the pokemonList
+    let name: String
     let sprites: Sprites
 }
+
 struct Sprites: Codable{
-    let front_default:String //Image
+    let front_default:String
 }
 

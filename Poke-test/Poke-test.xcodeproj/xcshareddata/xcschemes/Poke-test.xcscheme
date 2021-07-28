@@ -14,10 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "C9778AE8394BE451567650E0B239BA21"
-               BuildableName = "AlamofireImage.framework"
-               BlueprintName = "AlamofireImage"
-               ReferencedContainer = "container:Pods.xcodeproj">
+               BlueprintIdentifier = "FD3172CB2695CF90006810CA"
+               BuildableName = "Poke-test.app"
+               BlueprintName = "Poke-test"
+               ReferencedContainer = "container:Poke-test.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -40,6 +40,16 @@
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES">
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "FD3172CB2695CF90006810CA"
+            BuildableName = "Poke-test.app"
+            BlueprintName = "Poke-test"
+            ReferencedContainer = "container:Poke-test.xcodeproj">
+         </BuildableReference>
+      </BuildableProductRunnable>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"
@@ -47,6 +57,16 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "FD3172CB2695CF90006810CA"
+            BuildableName = "Poke-test.app"
+            BlueprintName = "Poke-test"
+            ReferencedContainer = "container:Poke-test.xcodeproj">
+         </BuildableReference>
+      </BuildableProductRunnable>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">

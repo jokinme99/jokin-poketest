@@ -30,11 +30,17 @@ class DetailViewController: UIViewController {
 }
 //MARK: - PokemonDelegate Methods
 extension DetailViewController: PokemonManagerDelegate{
-    func didUpdatePokemon(_ pokemonManager: PokemonManager, pokemon: PokemonModel) {
+    func didUpdatePokemon(_ pokemonManager: PokemonManager, pokemon: PokemonData) {
         DispatchQueue.main.async {
-            self.labelPokemonName.text = pokemon.namePokemon.uppercased()// The selected one
-            let downloadURL = URL(string: pokemon.imagePokemon)!
-            self.imagePokemon.af.setImage(withURL: downloadURL )
+            self.labelPokemonName.text = pokemon.name.uppercased() // The selected one
+            if let downloadURL = URL(string: pokemon.sprites.front_default){
+                return  self.imagePokemon.af.setImage(withURL: downloadURL )
+            }else {
+                return
+            }
+            
+
+           
         }
     }
     func didFailWithError(error: Error) {
@@ -44,7 +50,12 @@ extension DetailViewController: PokemonManagerDelegate{
 //MARK: - Data Manipulation Method
 extension DetailViewController{
     func selectedPokemonInList(){
-        pokemonManager.fetchPokemon(namePokemon: selectedPokemon!)//enters in the api the pokemon selected in the WelcomeViewController
+        if let namePokemon = selectedPokemon{
+            pokemonManager.fetchPokemon(namePokemon: namePokemon)
+        }else{
+            return
+        }
+        
     }
 }
 

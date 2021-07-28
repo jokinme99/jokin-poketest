@@ -6,12 +6,10 @@
 //
 
 import UIKit
+struct Results: Codable{
+    var name: String?
+}
 
 struct PokemonListData:Codable {
-    let results: [Results]
+    var results: [Results] = []
 }
-struct Results:Codable{
-    let name:String
-}
-
-
