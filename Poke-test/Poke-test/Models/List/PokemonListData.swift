@@ -6,12 +6,17 @@
 //
 
 import UIKit
-
-struct PokemonListData:Codable {
-    let results: [Results]
+//API:
+//"next": null,
+//"previous": null,
+//"results": [
+//{
+//"name": "bulbasaur"
+//MARK: - Results methods
+struct Results: Codable{//results[0].name = Pikachu
+    var name: String?
 }
-struct Results:Codable{
-    let name:String
+//MARK: - PokemonListData methods
+struct PokemonListData:Codable {//results[]
+    var results: [Results] = []
 }
-
-
