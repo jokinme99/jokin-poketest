@@ -32,12 +32,12 @@
 		FD3172D62695CF90006810CA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		FD3172D82695CF91006810CA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FD3172DB2695CF91006810CA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		FD3172DD2695CF91006810CA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FD85C3982696D89E00EAF99F /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		FD85C3A02696E06D00EAF99F /* PokemonData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonData.swift; sourceTree = "<group>"; };
 		FD85C3A42696E08800EAF99F /* PokemonManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonManager.swift; sourceTree = "<group>"; };
 		FD85C3A72696EAFC00EAF99F /* PokemonListData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonListData.swift; sourceTree = "<group>"; };
 		FD85C3AB2696EB1E00EAF99F /* PokemonListManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonListManager.swift; sourceTree = "<group>"; };
+		FDF25E8126B1724F002474BB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,7 +96,7 @@
 				FD85C3962696D78600EAF99F /* Views */,
 				FD3172D82695CF91006810CA /* Assets.xcassets */,
 				FD3172DA2695CF91006810CA /* LaunchScreen.storyboard */,
-				FD3172DD2695CF91006810CA /* Info.plist */,
+				FDF25E8126B1724F002474BB /* Info.plist */,
 				FD85C3A62696E08F00EAF99F /* Models */,
 			);
 			path = "Poke-test";
