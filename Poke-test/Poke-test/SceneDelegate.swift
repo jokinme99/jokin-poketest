@@ -1,9 +1,3 @@
-//
-//  SceneDelegate.swift
-//  Poke-test
-//
-//  Created by Jokin Egia on 7/7/21.
-//
 
 import UIKit
 
