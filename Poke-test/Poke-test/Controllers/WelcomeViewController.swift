@@ -18,6 +18,7 @@ class WelcomeViewController:UITableViewController {
         pokemonListManager.delegate = self
         loadPokemonList()
         searchBar.delegate = self
+        tableView.register(UINib(nibName: "PokemonCell", bundle: nil), forCellReuseIdentifier: "PokemonNameCell")
         
     }
     //MARK: - TableViewDataSource Methods
@@ -26,10 +27,10 @@ class WelcomeViewController:UITableViewController {
         
     }
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "PokemonNameCell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "PokemonNameCell", for: indexPath) as! PokemonCell
         //cell.update(pokemon: filtered[indexPath.row])
-        cell.textLabel?.text = filtered[indexPath.row].name?.capitalized
-        cell.textLabel?.textColor = #colorLiteral(red: 0.8489313722, green: 0.0005120488931, blue: 0, alpha: 1)
+        let pokemonName = filtered[indexPath.row].name?.capitalized
+        cell.updatePokemonName(pokemonName: pokemonName!)
         return cell
     }
     
