@@ -10,9 +10,13 @@ import CoreData
 class WelcomeViewController:UITableViewController {
     @IBOutlet weak var searchBar: UISearchBar!
     var pokemonListManager = PokemonListManager()
-    var pokemonNames : [Results] = []//List of pokemon names
-    var filteredPokemonNames: [Results] = []//List of pokemon names searched
+    var pokemonNames : [Results] = []
+    var filteredPokemonNames: [Results] = []
     var searchActive : Bool = false
+    
+    var pokemon : [Results] = []
+    var filtered : [Results] = []
+    var pokemonSelected: Results?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,52 +24,36 @@ class WelcomeViewController:UITableViewController {
         loadPokemonList()
         searchBar.delegate = self
         
-        
     }
     //MARK: - TableViewDataSource Methods
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
-        if(searchActive) {
-            return filteredPokemonNames.count
-        }
-        return pokemonNames.count;
+        return filtered.count;
         
     }
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "PokemonNameCell", for: indexPath)
-        if(searchActive){
-            cell.textLabel?.text? = filteredPokemonNames[indexPath.row].name.uppercased()//sorted(by:<) ??
-        } else {
-            cell.textLabel?.text = pokemonNames[indexPath.row].name.uppercased()
-        }
+        //cell.update(pokemon: filtered[indexPath.row])
+        cell.textLabel?.text = filtered[indexPath.row].name?.capitalized
+        cell.textLabel?.textColor = #colorLiteral(red: 0.8489313722, green: 0.0005120488931, blue: 0, alpha: 1)
         return cell
     }
     
     //MARK: - TableViewDelegate Methods
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        pokemonSelected = filtered[indexPath.row]
         performSegue(withIdentifier: "goToDetails", sender: self)
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let destinationVC = segue.destination as! DetailViewController
-        if let indexPath = tableView.indexPathForSelectedRow{
-            if (searchActive){
-                destinationVC.selectedPokemon = filteredPokemonNames[indexPath.row].name
-            }else{
-                destinationVC.selectedPokemon = pokemonNames[indexPath.row].name//pokemon/row selected
-                
-            }
-        }
+        destinationVC.selectedPokemon = pokemonSelected?.name
     }
 }
 //MARK: - PokemonListDelegate Methods
 extension WelcomeViewController: PokemonListManagerDelegate{
     func didUpdatePokemonList(_ pokemonListManager: PokemonListManager, pokemon: PokemonListData) {
-        DispatchQueue.main.async {
-            for data in pokemon.results{//Save in the array of the pokemon names
-                self.pokemonNames.append(data)
-            }
-            self.tableView.reloadData()
-        }
+        self.pokemon = pokemon.results.sorted(by: {$0.name ?? "" < $1.name ?? ""})
+        self.filtered = self.pokemon
+        self.tableView.reloadData()
     }
     func didFailWithError(error: Error) {
         print(error)
@@ -74,15 +62,13 @@ extension WelcomeViewController: PokemonListManagerDelegate{
 //MARK: - SearchBarDelegate Methods
 extension WelcomeViewController:UISearchBarDelegate{// This method updates filteredData based on the text in the Search Box
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        filteredPokemonNames = pokemonNames.filter({ (text) -> Bool in
-            let tmp: NSString = text.name as NSString
-            let range = tmp.range(of: searchText, options: NSString.CompareOptions.caseInsensitive)
-            return range.location != NSNotFound
-        })
-        if(filteredPokemonNames.count == 0){
-            searchActive = false;
+        if searchText.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines).isEmpty {
+            self.filtered = self.pokemon
         } else {
-            searchActive = true;
+            self.filtered = self.pokemon.filter({ pokemon in
+                guard let name = pokemon.name else { return false }
+                return name.lowercased().contains(searchText.lowercased())
+            })
         }
         self.tableView.reloadData()
     }

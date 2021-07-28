@@ -33,8 +33,6 @@ struct PokemonManager{
                 switch (response.result) {
                 
                 case .success( _):
-                    
-                    do {
                         if response.error != nil{
                             self.delegate?.didFailWithError(error: response.error!)
                             return
@@ -44,9 +42,7 @@ struct PokemonManager{
                                 self.delegate?.didUpdatePokemon(self, pokemon:pokemon)
                             }
                         }
-                    } catch let error as NSError {
-                        print("Failed to load: \(error.localizedDescription)")
-                    }
+                    
                     
                 case .failure(let error):
                     print("Request error: \(error.localizedDescription)")

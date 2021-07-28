@@ -24,29 +24,39 @@ struct PokemonListManager {
         
     }
     
-    func performRequest(with urlString:String){
-        AF.request(urlString, method: .get, encoding: URLEncoding.queryString, headers: nil).validate().responseJSON { response in
-            switch (response.result) {
-                case .success( _):
-                    do {
-                        if response.error != nil{
-                            self.delegate?.didFailWithError(error: response.error!)
-                            return
-                        }
-                        if let safeData = response.data{
-                            if let pokemon = parseJSONPokemonList(safeData){
-                                self.delegate?.didUpdatePokemonList(self, pokemon:pokemon)
-                            }
-                        }
-                    } catch let error as NSError {
-                        print("Failed to load: \(error.localizedDescription)")
-                    }
-                    
-                case .failure(let error):
-                    print("Request error: \(error.localizedDescription)")
-                }
+func performRequest(with urlString:String){
+    AF.request(urlString,
+               method: .get,
+               encoding: URLEncoding.queryString,
+               headers: nil)
+        .validate()
+        .responseDecodable { (response: DataResponse<PokemonListData, AFError>) in
+            switch response.result {
+            case .success(let data):
+                self.delegate?.didUpdatePokemonList(self, pokemon: data)
+            case .failure(let error):
+                self.delegate?.didFailWithError(error: error)
             }
-    }
+        }
+//        .responseJSON { response in
+//        switch (response.result) {
+//            case .success( _):
+//
+//                    if response.error != nil{
+//                        self.delegate?.didFailWithError(error: response.error!)
+//                        return
+//                    }
+//                    if let safeData = response.data{
+//                        if let pokemon = parseJSONPokemonList(safeData){
+//                            self.delegate?.didUpdatePokemonList(self, pokemon:pokemon)
+//                        }
+//                    }
+//
+//            case .failure(let error):
+//                print("Request error: \(error.localizedDescription)")
+//            }
+//        }
+}
 }
 
 
