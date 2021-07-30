@@ -6,12 +6,13 @@ class PokemonCell: UITableViewCell {
     @IBOutlet weak var pokemonBubble: UIView!
     @IBOutlet weak var pokemonNameLabel: UILabel!
     
-
+    var selectedPokemonList: [Results] = []//All Pokemons List
+    var pokemonsListFromPokemonData: [PokemonData] = []//In the name insert a result and get the types[0].type.name)
+    var pokemonManager = PokemonManager()
     override func awakeFromNib() {
         super.awakeFromNib()
-        pokemonNameLabel.layer.cornerRadius = pokemonNameLabel.frame.size.height/3
-
-
+        pokemonManager.delegate = self
+        selectPokemons()
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -20,61 +21,104 @@ class PokemonCell: UITableViewCell {
         // Configure the view for the selected state
     }
 }
-
+//MARK: - PokemonManagerDelegate methods
+extension PokemonCell: PokemonManagerDelegate{
+    func didUpdatePokemon(_ pokemonManager: PokemonManager, pokemon: PokemonData) {
+        self.pokemonsListFromPokemonData.append(pokemon)//Save the pokemons
+    }
+    
+    func didFailWithError(error: Error) {
+        print(error)
+    }
+    
+    
+}
 //MARK: - Update methods
 extension PokemonCell{
+    func selectPokemons(){
+        for i in 0..<selectedPokemonList.count{
+            pokemonManager.fetchPokemon(namePokemon: pokemonsListFromPokemonData[i].name)
+        }
+    }
     func updatePokemonName(pokemonName: String){
         pokemonNameLabel.text = pokemonName
     }
     
-    func updatePokemonType(pokemonType: String){//If pokemonList.result[?].contains(pokemonData.name){ pokemonType = pokemonData.types[0].type.name
-        //Selected pokemonName -> Check what type is it and then set a color
-        switch pokemonType{
-        case "normal":
-            pokemonBubble.backgroundColor = setPokemonColor(168, 168, 120)
-        case "fight":
-            pokemonBubble.backgroundColor = setPokemonColor(192, 48, 40)
-        case "flying":
-            pokemonBubble.backgroundColor = setPokemonColor(168, 144, 240)
-        case "poison":
-            pokemonBubble.backgroundColor = setPokemonColor(160, 64, 160)
-        case "ground":
-            pokemonBubble.backgroundColor = setPokemonColor(224, 192, 104)
-        case "rock":
-            pokemonBubble.backgroundColor = setPokemonColor(184, 160, 56)
-        case "bug":
-            pokemonBubble.backgroundColor = setPokemonColor(168, 184, 32)
-        case "ghost":
-            pokemonBubble.backgroundColor = setPokemonColor(112, 88, 152)
-        case "steel":
-            pokemonBubble.backgroundColor = setPokemonColor(184, 184, 208)
-        case "fire":
-            pokemonBubble.backgroundColor = setPokemonColor(240, 128, 48)
-        case "water":
-            pokemonBubble.backgroundColor = setPokemonColor(104, 144, 240)
-        case "grass":
-            pokemonBubble.backgroundColor = setPokemonColor(120, 200, 80)
-        case "electric":
-            pokemonBubble.backgroundColor = setPokemonColor(248, 208, 48)
-        case "psychic":
-            pokemonBubble.backgroundColor = setPokemonColor(248, 88, 136)
-        case "ice":
-            pokemonBubble.backgroundColor = setPokemonColor(152, 216, 216)
-        case "dragon":
-            pokemonBubble.backgroundColor = setPokemonColor(112, 56, 248)
-        case "dark":
-            pokemonBubble.backgroundColor = setPokemonColor(112, 88, 72)
-        case "fairy":
-            pokemonBubble.backgroundColor = setPokemonColor(238, 153, 172)
-        case "unknown":
-            pokemonBubble.backgroundColor = setPokemonColor(255, 255, 255)
-        case "shadow":
-            pokemonBubble.backgroundColor = setPokemonColor(124, 110, 187)
-        default:
-            pokemonBubble.backgroundColor = #colorLiteral(red: 0.8454863429, green: 0.8979230523, blue: 0.9188942909, alpha: 1)
+    func updatePokemonType(){//fetch(pokemonListData[1])->type.name if type.name == "normal" -> background to brown
+        for i in 0..<selectedPokemonList.count{//How many pokemons are
+            let type = pokemonsListFromPokemonData[i].types[0].type.name
+            switch type {
+                case TypeName.normal:
+                    setPokemonBackgroundColor(168, 168, 120)
+                    setPokemonTextColor(.white)
+                case TypeName.fight:
+                    setPokemonBackgroundColor(192, 48, 40)
+                    setPokemonTextColor(.white)
+                case TypeName.flying:
+                    setPokemonBackgroundColor(168, 144, 240)
+                    setPokemonTextColor(.white)
+                case TypeName.poison:
+                    setPokemonBackgroundColor(160, 64, 160)
+                    setPokemonTextColor(.white)
+                case TypeName.ground:
+                    setPokemonBackgroundColor(224, 192, 104)
+                    setPokemonTextColor(.black)
+                case TypeName.rock:
+                    setPokemonBackgroundColor(184, 160, 56)
+                    setPokemonTextColor(.black)
+                case TypeName.bug:
+                    setPokemonBackgroundColor(168, 184, 32)
+                    setPokemonTextColor(.white)
+                case TypeName.ghost:
+                    setPokemonBackgroundColor(112, 88, 152)
+                    setPokemonTextColor(.white)
+                case TypeName.steel:
+                    setPokemonBackgroundColor(184, 184, 208)
+                    setPokemonTextColor(.black)
+                case TypeName.fire:
+                    setPokemonBackgroundColor(240, 128, 48)
+                    setPokemonTextColor(.black)
+                case TypeName.water:
+                    setPokemonBackgroundColor(104, 144, 240)
+                    setPokemonTextColor(.white)
+                case TypeName.grass:
+                    setPokemonBackgroundColor(120, 200, 80)
+                    setPokemonTextColor(.white)
+                case TypeName.electric:
+                    setPokemonBackgroundColor(248, 208, 48)
+                    setPokemonTextColor(.black)
+                case TypeName.psychic:
+                    setPokemonBackgroundColor(248, 88, 136)
+                    setPokemonTextColor(.white)
+                case TypeName.ice:
+                    setPokemonBackgroundColor(152, 216, 216)
+                    setPokemonTextColor(.black)
+                case TypeName.dragon:
+                    setPokemonBackgroundColor(112, 56, 248)
+                    setPokemonTextColor(.white)
+                case TypeName.dark:
+                    setPokemonBackgroundColor(112, 88, 72)
+                    setPokemonTextColor(.white)
+                case TypeName.fairy:
+                    setPokemonBackgroundColor(238, 153, 172)
+                    setPokemonTextColor(.black)
+                case TypeName.unknown:
+                    setPokemonBackgroundColor(0, 0, 0)
+                    setPokemonTextColor(.white)
+                case TypeName.shadow:
+                    setPokemonBackgroundColor(124, 110, 187)
+                    setPokemonTextColor(.white)
+                default:
+                    pokemonNameLabel.backgroundColor = #colorLiteral(red: 0.8454863429, green: 0.8979230523, blue: 0.9188942909, alpha: 1)
+                    setPokemonTextColor(.black)
+        }
         }
     }
-    func setPokemonColor(_ red: CGFloat, _ green: CGFloat, _ blue: CGFloat)->UIColor{
-        return .init(red: red, green: green, blue: blue, alpha: 33)
+        func setPokemonBackgroundColor(_ red: CGFloat, _ green: CGFloat, _ blue: CGFloat){
+            pokemonNameLabel.backgroundColor = .init(red: red, green: green, blue: blue, alpha: 33)
+        }
+        func setPokemonTextColor(_ color: UIColor){
+            pokemonNameLabel.textColor = color
+        }
     }
-}
+
