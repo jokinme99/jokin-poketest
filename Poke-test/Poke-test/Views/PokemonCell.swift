@@ -36,8 +36,8 @@ extension PokemonCell: PokemonManagerDelegate{
 //MARK: - Update methods
 extension PokemonCell{
     func selectPokemons(){
-        for i in 0..<selectedPokemonList.count{
-            pokemonManager.fetchPokemon(namePokemon: pokemonsListFromPokemonData[i].name)
+        for pokemon in selectedPokemonList{
+            pokemonManager.fetchPokemon(namePokemon: pokemon.name!)
         }
     }
     func updatePokemonName(pokemonName: String){
@@ -45,8 +45,8 @@ extension PokemonCell{
     }
     
     func updatePokemonType(){//fetch(pokemonListData[1])->type.name if type.name == "normal" -> background to brown
-        for i in 0..<selectedPokemonList.count{//How many pokemons are
-            let type = pokemonsListFromPokemonData[i].types[0].type.name
+        for pokemon in pokemonsListFromPokemonData{//How many pokemons are
+            let type = pokemon.types[0].type.name
             switch type {
                 case TypeName.normal:
                     setPokemonBackgroundColor(168, 168, 120)

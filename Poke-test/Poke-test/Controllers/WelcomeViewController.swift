@@ -26,7 +26,7 @@ class WelcomeViewController:UITableViewController {
         let pokemonName = filtered[indexPath.row].name?.capitalized
         cell.updatePokemonName(pokemonName: pokemonName ?? "")
         cell.selectedPokemonList = filtered
-        //cell.updatePokemonType()
+        cell.updatePokemonType()
         return cell
     }
     
