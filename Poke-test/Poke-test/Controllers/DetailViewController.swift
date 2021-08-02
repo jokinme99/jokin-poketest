@@ -10,6 +10,8 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var labelPokemonName: UILabel!
     @IBOutlet weak var labelPokemonType: UILabel!
     @IBOutlet weak var labelPokemonType2: UILabel!
+    @IBOutlet weak var backgroundView: UIView!
+    @IBOutlet weak var imageAndNameView: UIView!
     var pokemonManager = PokemonManager()
     //var typePokemon: String?
     var selectedPokemon : String? {//Has selected a name
@@ -35,9 +37,14 @@ extension DetailViewController: PokemonManagerDelegate{
                 self.paintType(label: self.labelPokemonType2)
             }else{//If a pokemon has one type
                 self.paintType(label: self.labelPokemonType)
+                self.setBackgroundColor(from: self.labelPokemonType, to: self.backgroundView)
+                self.setBackgroundColor(from: self.labelPokemonType, to: self.imageAndNameView)
+                self.setBackgroundColor(from: self.labelPokemonType, to: self.view)
+                self.imageAndNameView.backgroundColor = self.labelPokemonType.backgroundColor
                 self.labelPokemonType2.isHidden = true
+                
             }
-            if let downloadURL = URL(string: pokemon.sprites.front_default){
+            if let downloadURL = URL(string: pokemon.sprites.front_default ?? ""){
                 return  self.imagePokemon.af.setImage(withURL: downloadURL )
             }else {
                 return
@@ -57,6 +64,7 @@ extension DetailViewController{
             return
         }
     }
+    //MARK: - Coloring methods
     func paintType(label: UILabel){
         switch label.text?.lowercased() {
             case TypeName.normal:
@@ -134,6 +142,9 @@ extension DetailViewController{
             label.textColor = color
             //labelPokemonType2.textColor = color
         
+    }
+    func setBackgroundColor(from: UIView, to: UIView){
+        to.backgroundColor = from.backgroundColor
     }
 }
 

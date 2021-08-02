@@ -2,36 +2,43 @@
 
 import UIKit
 import CoreData
-class WelcomeViewController:UITableViewController {
+class WelcomeViewController: UIViewController {
     @IBOutlet weak var searchBar: UISearchBar!
+    @IBOutlet weak var tableView: UITableView!
+
     var pokemonListManager = PokemonListManager()
     var pokemon : [Results] = []
     var filtered : [Results] = []
     var pokemonSelected: Results?
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         pokemonListManager.delegate = self
         loadPokemonList()
         searchBar.delegate = self
+        tableView.delegate = self
+        tableView.dataSource = self
         tableView.register(UINib(nibName: "PokemonCell", bundle: nil), forCellReuseIdentifier: "PokemonNameCell")
         
     }
+}
+extension WelcomeViewController:UITableViewDelegate, UITableViewDataSource{
     //MARK: - TableViewDataSource Methods
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return filtered.count;
         
     }
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "PokemonNameCell", for: indexPath) as! PokemonCell
-        let pokemonName = filtered[indexPath.row].name?.capitalized
-        cell.updatePokemonName(pokemonName: pokemonName ?? "")
-        cell.selectedPokemonList = filtered
-        cell.updatePokemonType()
+        let pokemon = filtered[indexPath.row]
+        cell.update(pokemon: pokemon)
         return cell
     }
     
     //MARK: - TableViewDelegate Methods
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         pokemonSelected = filtered[indexPath.row]
         performSegue(withIdentifier: "goToDetails", sender: self)
     }
@@ -40,10 +47,11 @@ class WelcomeViewController:UITableViewController {
         destinationVC.selectedPokemon = pokemonSelected?.name
     }
 }
+
 //MARK: - PokemonListDelegate Methods
 extension WelcomeViewController: PokemonListManagerDelegate{
     func didUpdatePokemonList(_ pokemonListManager: PokemonListManager, pokemon: PokemonListData) {
-        self.pokemon = pokemon.results.sorted(by: {$0.name ?? "" < $1.name ?? ""})//Names
+        self.pokemon = pokemon.results //.sorted(by: {$0.name ?? "" < $1.name ?? ""})//Names
         self.filtered = self.pokemon
         self.tableView.reloadData()
     }
@@ -71,5 +79,4 @@ extension WelcomeViewController{
         pokemonListManager.fetchPokemonList()//List of names
     }
 }
-
 

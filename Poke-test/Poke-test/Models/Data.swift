@@ -14,7 +14,7 @@ struct PokemonData: Codable{
     let types: [Types] //types[0].type.name
 }
 struct Sprites: Codable{
-    let front_default:String
+    let front_default:String? //There are a few pokemon that do not have a picture yet
 }
 struct Type: Codable{
     let name: String 
