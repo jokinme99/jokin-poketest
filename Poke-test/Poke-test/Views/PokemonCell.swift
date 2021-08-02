@@ -13,6 +13,7 @@ class PokemonCell: UITableViewCell {
         super.awakeFromNib()
         pokemonManager.delegate = self
         selectPokemons()
+        updatePokemonType()
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -24,7 +25,10 @@ class PokemonCell: UITableViewCell {
 //MARK: - PokemonManagerDelegate methods
 extension PokemonCell: PokemonManagerDelegate{
     func didUpdatePokemon(_ pokemonManager: PokemonManager, pokemon: PokemonData) {
-        self.pokemonsListFromPokemonData.append(pokemon)//Save the pokemons
+        for numberOfPokemonNames in 0..<selectedPokemonList.count{
+            self.pokemonsListFromPokemonData[numberOfPokemonNames] = pokemon
+        }
+        //self.pokemonsListFromPokemonData.append(pokemon)//Save the pokemons
     }
     
     func didFailWithError(error: Error) {
@@ -37,7 +41,7 @@ extension PokemonCell: PokemonManagerDelegate{
 extension PokemonCell{
     func selectPokemons(){
         for pokemon in selectedPokemonList{
-            pokemonManager.fetchPokemon(namePokemon: pokemon.name!)
+            pokemonManager.fetchPokemon(namePokemon: pokemon.name!)//Calls the fetch method a number of times, the number of times called is how many names exist
         }
     }
     func updatePokemonName(pokemonName: String){
@@ -115,7 +119,7 @@ extension PokemonCell{
         }
     }
         func setPokemonBackgroundColor(_ red: CGFloat, _ green: CGFloat, _ blue: CGFloat){
-            pokemonNameLabel.backgroundColor = .init(red: red, green: green, blue: blue, alpha: 33)
+            pokemonNameLabel.backgroundColor = .init(red: red/255, green: green/255, blue: blue/255, alpha: 1)
         }
         func setPokemonTextColor(_ color: UIColor){
             pokemonNameLabel.textColor = color

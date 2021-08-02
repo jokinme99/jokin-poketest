@@ -28,15 +28,15 @@ extension DetailViewController: PokemonManagerDelegate{
     func didUpdatePokemon(_ pokemonManager: PokemonManager, pokemon: PokemonData) {
         DispatchQueue.main.async {
             self.labelPokemonName.text = pokemon.name.uppercased() // The selected one
-        
-            if pokemon.types.count > 1{
-                self.labelPokemonType.text = pokemon.types[0].type.name.uppercased()
+            self.labelPokemonType.text = pokemon.types[0].type.name.uppercased()
+            if pokemon.types.count >= 2{// If a pokemon has two or more types
                 self.labelPokemonType2.text = pokemon.types[1].type.name.uppercased()
-            }else{
-                self.labelPokemonType.text = pokemon.types[0].type.name.uppercased()
+                self.paintType(label: self.labelPokemonType)
+                self.paintType(label: self.labelPokemonType2)
+            }else{//If a pokemon has one type
+                self.paintType(label: self.labelPokemonType)
                 self.labelPokemonType2.isHidden = true
             }
-            self.paintType(type: self.labelPokemonType.text!)
             if let downloadURL = URL(string: pokemon.sprites.front_default){
                 return  self.imagePokemon.af.setImage(withURL: downloadURL )
             }else {
@@ -57,89 +57,83 @@ extension DetailViewController{
             return
         }
     }
-    func paintType(type: String){
-        switch type {
+    func paintType(label: UILabel){
+        switch label.text?.lowercased() {
             case TypeName.normal:
-                setPokemonBackgroundColor(168, 168, 120)
-                setPokemonTextColor(.white)
+                setPokemonBackgroundColor(168, 168, 120, label)
+                setPokemonTextColor(.white, label)
             case TypeName.fight:
-                setPokemonBackgroundColor(192, 48, 40)
-                setPokemonTextColor(.white)
+                setPokemonBackgroundColor(192, 48, 40, label)
+                setPokemonTextColor(.white, label)
             case TypeName.flying:
-                setPokemonBackgroundColor(168, 144, 240)
-                setPokemonTextColor(.white)
+                setPokemonBackgroundColor(168, 144, 240, label)
+                setPokemonTextColor(.white, label)
             case TypeName.poison:
-                setPokemonBackgroundColor(160, 64, 160)
-                setPokemonTextColor(.white)
+                setPokemonBackgroundColor(160, 64, 160, label)
+                setPokemonTextColor(.white, label)
             case TypeName.ground:
-                setPokemonBackgroundColor(224, 192, 104)
-                setPokemonTextColor(.black)
+                setPokemonBackgroundColor(224, 192, 104, label)
+                setPokemonTextColor(.black, label)
             case TypeName.rock:
-                setPokemonBackgroundColor(184, 160, 56)
-                setPokemonTextColor(.black)
+                setPokemonBackgroundColor(184, 160, 56, label)
+                setPokemonTextColor(.black, label)
             case TypeName.bug:
-                setPokemonBackgroundColor(168, 184, 32)
-                setPokemonTextColor(.white)
+                setPokemonBackgroundColor(168, 184, 32, label)
+                setPokemonTextColor(.white, label)
             case TypeName.ghost:
-                setPokemonBackgroundColor(112, 88, 152)
-                setPokemonTextColor(.white)
+                setPokemonBackgroundColor(112, 88, 152, label)
+                setPokemonTextColor(.white, label)
             case TypeName.steel:
-                setPokemonBackgroundColor(184, 184, 208)
-                setPokemonTextColor(.black)
+                setPokemonBackgroundColor(184, 184, 208, label)
+                setPokemonTextColor(.black, label)
             case TypeName.fire:
-                setPokemonBackgroundColor(240, 128, 48)
-                setPokemonTextColor(.black)
+                setPokemonBackgroundColor(240, 128, 48, label)
+                setPokemonTextColor(.black, label)
             case TypeName.water:
-                setPokemonBackgroundColor(104, 144, 240)
-                setPokemonTextColor(.white)
+                setPokemonBackgroundColor(104, 144, 240, label)
+                setPokemonTextColor(.white, label)
             case TypeName.grass:
-                setPokemonBackgroundColor(120, 200, 80)
-                setPokemonTextColor(.white)
+                setPokemonBackgroundColor(120, 200, 80, label)
+                setPokemonTextColor(.white, label)
             case TypeName.electric:
-                setPokemonBackgroundColor(248, 208, 48)
-                setPokemonTextColor(.black)
+                setPokemonBackgroundColor(248, 208, 48, label)
+                setPokemonTextColor(.black, label)
             case TypeName.psychic:
-                setPokemonBackgroundColor(248, 88, 136)
-                setPokemonTextColor(.white)
+                setPokemonBackgroundColor(248, 88, 136, label)
+                setPokemonTextColor(.white, label)
             case TypeName.ice:
-                setPokemonBackgroundColor(152, 216, 216)
-                setPokemonTextColor(.black)
+                setPokemonBackgroundColor(152, 216, 216, label)
+                setPokemonTextColor(.black, label)
+                break
             case TypeName.dragon:
-                setPokemonBackgroundColor(112, 56, 248)
-                setPokemonTextColor(.white)
+                setPokemonBackgroundColor(112, 56, 248, label)
+                setPokemonTextColor(.white, label)
             case TypeName.dark:
-                setPokemonBackgroundColor(112, 88, 72)
-                setPokemonTextColor(.white)
+                setPokemonBackgroundColor(112, 88, 72, label)
+                setPokemonTextColor(.white, label)
             case TypeName.fairy:
-                setPokemonBackgroundColor(238, 153, 172)
-                setPokemonTextColor(.black)
+                setPokemonBackgroundColor(238, 153, 172, label)
+                setPokemonTextColor(.black, label)
             case TypeName.unknown:
-                setPokemonBackgroundColor(0, 0, 0)
-                setPokemonTextColor(.white)
+                setPokemonBackgroundColor(0, 0, 0, label)
+                setPokemonTextColor(.white, label)
             case TypeName.shadow:
-                setPokemonBackgroundColor(124, 110, 187)
-                setPokemonTextColor(.white)
+                setPokemonBackgroundColor(124, 110, 187, label)
+                setPokemonTextColor(.white, label)
             default:
-                labelPokemonType.backgroundColor = #colorLiteral(red: 0.8454863429, green: 0.8979230523, blue: 0.9188942909, alpha: 1)
-                setPokemonTextColor(.black)
+                setPokemonBackgroundColor(216, 229, 234, label)
+                setPokemonTextColor(.black, label)
     }
     }
-    func setPokemonBackgroundColor(_ red: CGFloat, _ green: CGFloat, _ blue: CGFloat){
-        if labelPokemonType2.isHidden == false{
-            labelPokemonType.backgroundColor = .init(red: red, green: green, blue: blue, alpha: 33)
-            labelPokemonType2.backgroundColor = .init(red: red, green: green, blue: blue, alpha: 33)
-        }else{
-            labelPokemonType.backgroundColor = .init(red: red, green: green, blue: blue, alpha: 33)
-        }
+    func setPokemonBackgroundColor(_ red: CGFloat, _ green: CGFloat, _ blue: CGFloat, _ label: UILabel){
+            label.backgroundColor = .init(red: red/255, green: green/255, blue: blue/255, alpha: 1)
+            //labelPokemonType2.backgroundColor = .init(red: red/255, green: green/255, blue: blue/255, alpha: 1)
+       }
 
-    }
-    func setPokemonTextColor(_ color: UIColor){
-        if labelPokemonType2.isHidden == false{
-            labelPokemonType.textColor = color
-            labelPokemonType2.textColor = color
-        }else{
-            labelPokemonType.textColor = color
-        }
+    func setPokemonTextColor(_ color: UIColor, _ label: UILabel){
+            label.textColor = color
+            //labelPokemonType2.textColor = color
+        
     }
 }
 
