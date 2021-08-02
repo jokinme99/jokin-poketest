@@ -147,8 +147,18 @@
                             <constraint firstAttribute="bottom" secondItem="qmo-yY-Ute" secondAttribute="bottom" id="dKA-hw-4To"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="POKETEST" id="RZ3-bq-MWP"/>
+                    <navigationItem key="navigationItem" title="POKETEST" id="RZ3-bq-MWP">
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="gnp-1S-h6M">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="WLV-Uq-Ah7">
+                                <rect key="frame" x="313" y="7" width="95" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-BoldItalic" family="Helvetica Neue" pointSize="14"/>
+                                <state key="normal" title="Order by Name"/>
+                            </button>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
+                        <outlet property="orderByButton" destination="WLV-Uq-Ah7" id="em3-D3-sRG"/>
                         <outlet property="searchBar" destination="uA0-6b-jnp" id="eEZ-R5-Ygk"/>
                         <outlet property="tableView" destination="SMM-ZR-26O" id="gBn-yX-tfy"/>
                         <segue destination="CPa-N4-sB3" kind="show" identifier="goToDetails" id="haq-1O-Axr"/>
