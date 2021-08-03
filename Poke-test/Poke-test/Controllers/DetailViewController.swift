@@ -35,6 +35,7 @@ extension DetailViewController: PokemonManagerDelegate{
                 self.labelPokemonType2.text = pokemon.types[1].type.name.uppercased()
                 self.paintType(label: self.labelPokemonType)
                 self.paintType(label: self.labelPokemonType2)
+                self.labelPokemonName.textColor = .black
             }else{//If a pokemon has one type
                 self.paintType(label: self.labelPokemonType)
                 self.setBackgroundColor(from: self.labelPokemonType, to: self.backgroundView)
@@ -42,7 +43,6 @@ extension DetailViewController: PokemonManagerDelegate{
                 self.setBackgroundColor(from: self.labelPokemonType, to: self.view)
                 self.imageAndNameView.backgroundColor = self.labelPokemonType.backgroundColor
                 self.labelPokemonType2.isHidden = true
-                
             }
             if let downloadURL = URL(string: pokemon.sprites.front_default ?? ""){
                 return  self.imagePokemon.af.setImage(withURL: downloadURL )
