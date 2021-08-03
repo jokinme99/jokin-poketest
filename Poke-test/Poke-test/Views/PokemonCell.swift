@@ -6,9 +6,6 @@ class PokemonCell: UITableViewCell {
     @IBOutlet weak var pokemonBubble: UIView!
     @IBOutlet weak var pokemonNameLabel: UILabel!
     //@IBOutlet weak var colorLabel: UILabel!
-    
-    var selectedPokemonList: [Results] = []//All Pokemons List
-    var pokemonsListFromPokemonData: [PokemonData] = []//In the name insert a result and get the types[0].type.name)
     var pokemonManager = PokemonManager()
     var pokemon: Results?
     

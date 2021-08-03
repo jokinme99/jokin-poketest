@@ -9,7 +9,7 @@ import Foundation
 
 struct TypeName{
     static let normal = "normal"
-    static let fight = "fight"
+    static let fight = "fighting"
     static let flying = "flying"
     static let poison = "poison"
     static let ground = "ground"

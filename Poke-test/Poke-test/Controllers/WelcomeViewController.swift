@@ -9,6 +9,7 @@ class WelcomeViewController: UIViewController {
     var pokemonListManager = PokemonListManager()
     var pokemon : [Results] = []
     var filtered : [Results] = []
+    var savefilteredOrder : [Results] = []
     var pokemonSelected: Results?
     
     
@@ -55,6 +56,7 @@ extension WelcomeViewController: PokemonListManagerDelegate{
     func didUpdatePokemonList(_ pokemonListManager: PokemonListManager, pokemon: PokemonListData) {
         self.pokemon = pokemon.results //.sorted(by: {$0.name ?? "" < $1.name ?? ""})//Names
         self.filtered = self.pokemon
+        self.savefilteredOrder = self.pokemon
         self.tableView.reloadData()
     }
     func didFailWithError(error: Error) {
@@ -66,8 +68,13 @@ extension WelcomeViewController:UISearchBarDelegate{// This method updates filte
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         if searchText.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines).isEmpty {
             self.filtered = self.pokemon
+            self.savefilteredOrder = self.pokemon
         } else {
             self.filtered = self.pokemon.filter({ pokemon in
+                guard let name = pokemon.name else { return false }
+                return name.lowercased().contains(searchText.lowercased())
+            })
+            self.savefilteredOrder = self.pokemon.filter({ pokemon in //For when searching a pokemon have the possibility to order the list
                 guard let name = pokemon.name else { return false }
                 return name.lowercased().contains(searchText.lowercased())
             })
@@ -85,16 +92,15 @@ extension WelcomeViewController{
 extension WelcomeViewController{
     @objc func pressed(_ sender: UIButton!) {
         if orderByButton.titleLabel?.text == "Order by Name"{
-            orderByButton.setTitle("Order by Type", for: UIControl.State.normal)
+            orderByButton.setTitle("Order by Id", for: UIControl.State.normal)
             self.filtered = filtered.sorted(by: {$0.name ?? "" < $1.name ?? ""})
             self.tableView.reloadData()
         }
-        if orderByButton.titleLabel?.text == "Order by Type"{
+        if orderByButton.titleLabel?.text == "Order by Id"{
             orderByButton.setTitle("Order by Name", for: UIControl.State.normal)
             //Todo: sort pokemons by type
-//            self.filtered = filtered.sorted(by: { (lhs: Results, rhs: Results) -> Bool in
-//                return lhs.name! > rhs.name!
-//            })
+            self.filtered = self.savefilteredOrder
+            
             self.tableView.reloadData()
         }
         
