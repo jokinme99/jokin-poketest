@@ -6,12 +6,12 @@ class WelcomeViewController: UIViewController {
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var orderByButton: UIButton!
+    
     var pokemonListManager = PokemonListManager()
     var pokemon : [Results] = []
     var filtered : [Results] = []
     var savefilteredOrder : [Results] = []
     var pokemonSelected: Results?
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,7 +23,6 @@ class WelcomeViewController: UIViewController {
         tableView.dataSource = self
         tableView.register(UINib(nibName: "PokemonCell", bundle: nil), forCellReuseIdentifier: "PokemonNameCell")
         orderByButton.addTarget(self, action: #selector(pressed), for: .touchUpInside)
-        //self.view.addSubview(orderByButton)
         
     }
 }
@@ -54,7 +53,7 @@ extension WelcomeViewController:UITableViewDelegate, UITableViewDataSource{
 //MARK: - PokemonListDelegate Methods
 extension WelcomeViewController: PokemonListManagerDelegate{
     func didUpdatePokemonList(_ pokemonListManager: PokemonListManager, pokemon: PokemonListData) {
-        self.pokemon = pokemon.results //.sorted(by: {$0.name ?? "" < $1.name ?? ""})//Names
+        self.pokemon = pokemon.results
         self.filtered = self.pokemon
         self.savefilteredOrder = self.pokemon
         self.tableView.reloadData()
@@ -92,13 +91,12 @@ extension WelcomeViewController{
 extension WelcomeViewController{
     @objc func pressed(_ sender: UIButton!) {
         if orderByButton.titleLabel?.text == "Order by Name"{
-            orderByButton.setTitle("Order by Id", for: UIControl.State.normal)
+            orderByButton.setTitle("Order by Id", for: .normal)
             self.filtered = filtered.sorted(by: {$0.name ?? "" < $1.name ?? ""})
             self.tableView.reloadData()
         }
         if orderByButton.titleLabel?.text == "Order by Id"{
-            orderByButton.setTitle("Order by Name", for: UIControl.State.normal)
-            //Todo: sort pokemons by type
+            orderByButton.setTitle("Order by Name", for: .normal)
             self.filtered = self.savefilteredOrder
             
             self.tableView.reloadData()

@@ -1,9 +1,3 @@
-//
-//  PokemonTypeList.swift
-//  Poke-test
-//
-//  Created by Jokin Egia on 30/7/21.
-//
 
 import Foundation
 

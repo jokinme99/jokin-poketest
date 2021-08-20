@@ -5,9 +5,15 @@ class PokemonCell: UITableViewCell {
     
     @IBOutlet weak var pokemonBubble: UIView!
     @IBOutlet weak var pokemonNameLabel: UILabel!
-    //@IBOutlet weak var colorLabel: UILabel!
+    @IBOutlet weak var favouriteImage: UIImageView!
+    
     var pokemonManager = PokemonManager()
     var pokemon: Results?
+    var favourite : UIImage?{
+        didSet{
+            selectedFavourite()
+        }
+    }
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -18,6 +24,7 @@ class PokemonCell: UITableViewCell {
         super.prepareForReuse()
         backgroundColor = .white
         pokemonNameLabel.text = nil
+        favouriteImage.isHidden = true
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -32,7 +39,6 @@ extension PokemonCell: PokemonManagerDelegate{
     func didUpdatePokemon(_ pokemonManager: PokemonManager, pokemon: PokemonData) {
         self.updatePokemonType(pokemonData: pokemon)
         
-        //self.pokemonsListFromPokemonData.append(pokemon)//Save the pokemons
     }
     
     func didFailWithError(error: Error) {
@@ -56,19 +62,11 @@ extension PokemonCell{
         pokemonNameLabel.text = pokemon.name?.capitalized
     }
     
-    func updatePokemonType(pokemonData: PokemonData){//fetch(pokemonListData[1])->type.name if type.name == "normal" -> background to brown
-//        if pokemonData.types.count >= 2{
-//            let type1 = pokemonData.types[0].type.name
-//            let type2 = pokemonData.types[1].type.name
-//            setColor(type1, pokemonNameLabel)
-//            setColor(type2, colorLabel)
-//        }else{
-            //colorLabel.isHidden = true
-            let type = pokemonData.types[0].type.name
-            setColor(type, pokemonNameLabel)
-//        }
-    
-
+    func updatePokemonType(pokemonData: PokemonData){
+        let type = pokemonData.types[0].type.name
+        setColor(type, pokemonNameLabel)
+        
+        
     }
 }
 //MARK: - Painting methods
@@ -148,3 +146,10 @@ extension PokemonCell{
     }
 }
 
+//MARK: - Favourite methods
+extension PokemonCell{
+    //In pokemon details page there is a favourite button
+    //If that button is selected the star will not be hidden
+    func selectedFavourite(){
+    }
+}

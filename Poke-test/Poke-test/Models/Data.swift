@@ -11,25 +11,14 @@ struct PokemonListData:Codable {
 struct PokemonData: Codable{
     let name: String
     let sprites: Sprites
-    let types: [Types] //types[0].type.name
+    let types: [Types]
 }
 struct Sprites: Codable{
-    let front_default:String? //There are a few pokemon that do not have a picture yet
+    let front_default:String?
 }
 struct Type: Codable{
     let name: String 
 }
 struct Types: Codable{
-    let type: Type //type.name
+    let type: Type
 }
-
-//struct PokemonTypeData:Codable {
-//    let pokemon: [Pokemon]//pokemon[0].pokemon.name
-//    
-//}
-//struct Pokemon:Codable {
-//    let pokemon: Name
-//}
-//struct Name:Codable {
-//    let name: String
-//}
