@@ -6,25 +6,30 @@ class PokemonCell: UITableViewCell {
     @IBOutlet weak var pokemonBubble: UIView!
     @IBOutlet weak var pokemonNameLabel: UILabel!
     @IBOutlet weak var favouriteImage: UIImageView!
+    @IBOutlet weak var idLabel: UILabel!
     
     var pokemonManager = PokemonManager()
     var pokemon: Results?
-    var favourite : UIImage?{
-        didSet{
-            selectedFavourite()
-        }
-    }
+    var favourites: [Results] = []
     
     override func awakeFromNib() {
         super.awakeFromNib()
         pokemonManager.delegate = self
+        favouriteImage.isHidden = true
+        prepareForReuse()
+//        if favourites.contains(pokemon!) == true{
+//            favouriteImage.isHidden = false
+//        }
     }
     
-    override func prepareForReuse() {
+    override func prepareForReuse() {//Every time a cell is called with this method it will be a blank white cell
         super.prepareForReuse()
         backgroundColor = .white
         pokemonNameLabel.text = nil
-        favouriteImage.isHidden = true
+        favouriteImage.image = nil
+        idLabel.text = nil
+       
+        
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -37,7 +42,8 @@ class PokemonCell: UITableViewCell {
 //MARK: - PokemonManagerDelegate methods
 extension PokemonCell: PokemonManagerDelegate{
     func didUpdatePokemon(_ pokemonManager: PokemonManager, pokemon: PokemonData) {
-        self.updatePokemonType(pokemonData: pokemon)
+        self.updatePokemon(pokemonData: pokemon)
+
         
     }
     
@@ -52,9 +58,6 @@ extension PokemonCell{
     func selectPokemons(){//Calls the fetch method a number of times, the number of times called is how many names exist
         pokemonManager.fetchPokemon(namePokemon: self.pokemon!.name!)
     }
-    func updatePokemonName(pokemonName: String){
-        pokemonNameLabel.text = pokemonName
-    }
     
     func update(pokemon: Results){
         self.pokemon = pokemon
@@ -62,10 +65,12 @@ extension PokemonCell{
         pokemonNameLabel.text = pokemon.name?.capitalized
     }
     
-    func updatePokemonType(pokemonData: PokemonData){
+    func updatePokemon(pokemonData: PokemonData){
         let type = pokemonData.types[0].type.name
         setColor(type, pokemonNameLabel)
-        
+        let id = pokemonData.id
+        idLabel.text = "#\(id)"
+        setColor(type, idLabel)
         
     }
 }
@@ -77,6 +82,7 @@ extension PokemonCell{
     func setPokemonTextColor(_ color: UIColor){
         pokemonNameLabel.textColor = color
     }
+    
     func setColor(_ type: String, _ label: UILabel){
         switch type {
         case TypeName.normal:
@@ -146,10 +152,3 @@ extension PokemonCell{
     }
 }
 
-//MARK: - Favourite methods
-extension PokemonCell{
-    //In pokemon details page there is a favourite button
-    //If that button is selected the star will not be hidden
-    func selectedFavourite(){
-    }
-}

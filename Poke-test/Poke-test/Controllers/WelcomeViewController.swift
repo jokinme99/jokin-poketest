@@ -1,7 +1,7 @@
 
-
 import UIKit
-import CoreData
+import RealmSwift
+
 class WelcomeViewController: UIViewController {
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var tableView: UITableView!
@@ -12,7 +12,7 @@ class WelcomeViewController: UIViewController {
     var filtered : [Results] = []
     var savefilteredOrder : [Results] = []
     var pokemonSelected: Results?
-    
+    let realm = try! Realm()//Todo: Save, load and remove favourites
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -46,14 +46,14 @@ extension WelcomeViewController:UITableViewDelegate, UITableViewDataSource{
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let destinationVC = segue.destination as! DetailViewController
-        destinationVC.selectedPokemon = pokemonSelected?.name
+        destinationVC.selectedPokemon = pokemonSelected
     }
 }
 
 //MARK: - PokemonListDelegate Methods
 extension WelcomeViewController: PokemonListManagerDelegate{
     func didUpdatePokemonList(_ pokemonListManager: PokemonListManager, pokemon: PokemonListData) {
-        self.pokemon = pokemon.results
+        self.pokemon = Array(pokemon.results)//Expects an array and due to using @objc whe need to use List<>, so we cast it
         self.filtered = self.pokemon
         self.savefilteredOrder = self.pokemon
         self.tableView.reloadData()

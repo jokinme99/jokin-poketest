@@ -1,5 +1,4 @@
 
-
 import UIKit
 import Alamofire
 import AlamofireImage
@@ -15,10 +14,11 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var favouritesButton: UIButton!
     @IBOutlet weak var favouritesView: UIView!
     @IBOutlet weak var favouritesImage: UIImageView!
+    @IBOutlet weak var labelPokemonId: UILabel!
     
-    var selectedFavourite: UIImage? //Save favourite
     var pokemonManager = PokemonManager()
-    var selectedPokemon : String? {
+    var favourites : [Results] = []
+    var selectedPokemon : Results? {
         didSet{
             selectedPokemonInList()
         }
@@ -30,6 +30,10 @@ class DetailViewController: UIViewController {
         selectedPokemonInList()
         favouritesButton.addTarget(self, action: #selector(pressed), for: .touchUpInside)
         self.favouritesView.layer.cornerRadius = 10
+//        if favourites.contains(selectedPokemon!) == true{
+//            favouritesButton.setTitle("Eliminar de favoritos", for: .normal)
+//            favouritesImage.image = UIImage(systemName: "star")
+//        }
     }
 }
 //MARK: - PokemonDelegate Methods
@@ -38,6 +42,7 @@ extension DetailViewController: PokemonManagerDelegate{
         DispatchQueue.main.async {
             self.labelPokemonName.text = pokemon.name.uppercased()
             self.labelPokemonType.text = pokemon.types[0].type.name.uppercased()
+            self.labelPokemonId.text = "# \(pokemon.id)" 
             if pokemon.types.count >= 2{// If a pokemon has two or more types
                 self.labelPokemonType2.text = pokemon.types[1].type.name.uppercased()
                 self.paintType(label: self.labelPokemonType)
@@ -65,7 +70,7 @@ extension DetailViewController: PokemonManagerDelegate{
 //MARK: - Data Manipulation Method
 extension DetailViewController{
     func selectedPokemonInList(){
-        if let namePokemon = selectedPokemon{
+        if let namePokemon = selectedPokemon?.name{
             pokemonManager.fetchPokemon(namePokemon: namePokemon)
         }else{
             return
@@ -161,14 +166,22 @@ extension DetailViewController{
         if favouritesButton.titleLabel?.text == "Añadir a favoritos"{
             favouritesButton.setTitle("Eliminar de favoritos", for: .normal)
             favouritesImage.image = UIImage(systemName: "star")
+            favourites.append(selectedPokemon!)
+            for pok in favourites{
+                print("\(pok.name ?? "default")")
+            }
         }
+        
         if favouritesButton.titleLabel?.text == "Eliminar de favoritos"{
             favouritesButton.setTitle("Añadir a favoritos", for: .normal)
             favouritesImage.image = UIImage(systemName: "star.fill")
-            selectedFavourite = favouritesImage.image
-            //Pass the value of the image to the cell
+            
+            
         }
+        //let vc = PokemonCell()
+        //vc.favourites = favourites
     }
+    
 }
 
 
