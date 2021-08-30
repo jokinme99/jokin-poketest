@@ -1,7 +1,11 @@
 
 import UIKit
-
-class PokemonCell: UITableViewCell {
+import RealmSwift
+//MARK: - CellManagerDelegate
+protocol CellManagerDelegate{ // Protocol needed to update the tableView after adding/removing favourites
+    func updateTableView()
+}
+class PokemonCell: UITableViewCell { // Class in charge of the cell
     
     @IBOutlet weak var pokemonBubble: UIView!
     @IBOutlet weak var pokemonNameLabel: UILabel!
@@ -9,17 +13,22 @@ class PokemonCell: UITableViewCell {
     @IBOutlet weak var idLabel: UILabel!
     
     var pokemonManager = PokemonManager()
+    var allPokemonNames: [Results] = []
     var pokemon: Results?
-    var favourites: [Results] = []
-    
+    //FAVOURITES
+    var realm = try! Realm()//favourites
+    var favourites:RealmSwift.Results<Results>!
+    var arrayOfFavouritePokemonNames: [String] = []
+    var cellManagerDelegate: CellManagerDelegate?
     override func awakeFromNib() {
         super.awakeFromNib()
+        
         pokemonManager.delegate = self
-        favouriteImage.isHidden = true
-        prepareForReuse()
-//        if favourites.contains(pokemon!) == true{
-//            favouriteImage.isHidden = false
-//        }
+        loadFavourites()
+        for favouritePokemon in favourites{
+            arrayOfFavouritePokemonNames.append(favouritePokemon.name!)
+        }
+        
     }
     
     override func prepareForReuse() {//Every time a cell is called with this method it will be a blank white cell
@@ -28,9 +37,8 @@ class PokemonCell: UITableViewCell {
         pokemonNameLabel.text = nil
         favouriteImage.image = nil
         idLabel.text = nil
-       
-        
     }
+    
     
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
@@ -39,11 +47,11 @@ class PokemonCell: UITableViewCell {
     }
     
 }
+
 //MARK: - PokemonManagerDelegate methods
-extension PokemonCell: PokemonManagerDelegate{
+extension PokemonCell: PokemonManagerDelegate{ // Methods in charge of the PokemonManagerDelegate protocol
     func didUpdatePokemon(_ pokemonManager: PokemonManager, pokemon: PokemonData) {
         self.updatePokemon(pokemonData: pokemon)
-
         
     }
     
@@ -53,16 +61,21 @@ extension PokemonCell: PokemonManagerDelegate{
     
     
 }
+
 //MARK: - Update methods
-extension PokemonCell{
-    func selectPokemons(){//Calls the fetch method a number of times, the number of times called is how many names exist
+extension PokemonCell{ // Methods in charge of updating the cell
+    func selectPokemons(){
         pokemonManager.fetchPokemon(namePokemon: self.pokemon!.name!)
+
+        
     }
     
     func update(pokemon: Results){
         self.pokemon = pokemon
         selectPokemons()
         pokemonNameLabel.text = pokemon.name?.capitalized
+     
+
     }
     
     func updatePokemon(pokemonData: PokemonData){
@@ -71,11 +84,28 @@ extension PokemonCell{
         let id = pokemonData.id
         idLabel.text = "#\(id)"
         setColor(type, idLabel)
-        
+        setFavouriteIcon(pokemonData.name)
+    }
+
+}
+
+//MARK: - Favourites methods
+extension PokemonCell{ // Methods in charge of fetching the favourites
+    func loadFavourites(){
+        favourites = realm.objects(Results.self)
+    }
+    func setFavouriteIcon(_ name: String){//Checks if it's a favourite or not
+        if arrayOfFavouritePokemonNames.contains(name){
+            favouriteImage.image = UIImage(systemName: "star.fill")
+            cellManagerDelegate?.updateTableView()
+        }else{
+            return
+        }
     }
 }
+
 //MARK: - Painting methods
-extension PokemonCell{
+extension PokemonCell{ // Methods in charge of colouring the cell
     func setPokemonBackgroundColor(_ red: CGFloat, _ green: CGFloat, _ blue: CGFloat, _ label: UILabel){
         label.backgroundColor = .init(red: red/255, green: green/255, blue: blue/255, alpha: 1)
     }
@@ -151,4 +181,3 @@ extension PokemonCell{
         }
     }
 }
-

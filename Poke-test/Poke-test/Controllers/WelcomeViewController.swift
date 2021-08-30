@@ -1,8 +1,7 @@
 
 import UIKit
-import RealmSwift
 
-class WelcomeViewController: UIViewController {
+class WelcomeViewController: UIViewController { // Class with an UITableViewController containing all the pokemon names
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var orderByButton: UIButton!
@@ -12,7 +11,7 @@ class WelcomeViewController: UIViewController {
     var filtered : [Results] = []
     var savefilteredOrder : [Results] = []
     var pokemonSelected: Results?
-    let realm = try! Realm()//Todo: Save, load and remove favourites
+    var cell = PokemonCell()
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -22,24 +21,25 @@ class WelcomeViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(UINib(nibName: "PokemonCell", bundle: nil), forCellReuseIdentifier: "PokemonNameCell")
+        cell.cellManagerDelegate = self
         orderByButton.addTarget(self, action: #selector(pressed), for: .touchUpInside)
-        
+    
     }
 }
-extension WelcomeViewController:UITableViewDelegate, UITableViewDataSource{
-    //MARK: - TableViewDataSource Methods
+
+//MARK: - TableView Methods
+extension WelcomeViewController:UITableViewDelegate, UITableViewDataSource{ // Methods in charge of the UITableViewDelegate methods and the UITableViewDataSource methods
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return filtered.count;
         
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "PokemonNameCell", for: indexPath) as! PokemonCell
+        cell = tableView.dequeueReusableCell(withIdentifier: "PokemonNameCell", for: indexPath) as! PokemonCell
         let pokemon = filtered[indexPath.row]
         cell.update(pokemon: pokemon)
+        cell.setFavouriteIcon(pokemon.name!)
         return cell
     }
-    
-    //MARK: - TableViewDelegate Methods
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         pokemonSelected = filtered[indexPath.row]
         performSegue(withIdentifier: "goToDetails", sender: self)
@@ -51,7 +51,7 @@ extension WelcomeViewController:UITableViewDelegate, UITableViewDataSource{
 }
 
 //MARK: - PokemonListDelegate Methods
-extension WelcomeViewController: PokemonListManagerDelegate{
+extension WelcomeViewController: PokemonListManagerDelegate{ // Method in charge of the PokemonListDelegate protocol
     func didUpdatePokemonList(_ pokemonListManager: PokemonListManager, pokemon: PokemonListData) {
         self.pokemon = Array(pokemon.results)//Expects an array and due to using @objc whe need to use List<>, so we cast it
         self.filtered = self.pokemon
@@ -62,8 +62,9 @@ extension WelcomeViewController: PokemonListManagerDelegate{
         print(error)
     }
 }
+
 //MARK: - SearchBarDelegate Methods
-extension WelcomeViewController:UISearchBarDelegate{// This method updates filteredData based on the text in the Search Box
+extension WelcomeViewController:UISearchBarDelegate{ // Method in charge of updating filteredData based on the text in the Search Box
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         if searchText.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines).isEmpty {
             self.filtered = self.pokemon
@@ -81,14 +82,16 @@ extension WelcomeViewController:UISearchBarDelegate{// This method updates filte
         self.tableView.reloadData()
     }
 }
+
 //MARK: - Data Manipulation Methods
-extension WelcomeViewController{
+extension WelcomeViewController{ //Method in charge of fetching the list of pokemon names
     func loadPokemonList(){
         pokemonListManager.fetchPokemonList()//List of names
     }
 }
-//MARK: - Button Handling Methods
-extension WelcomeViewController{
+
+//MARK: - Favourites Handling Methods
+extension WelcomeViewController{ // Methods in charge of the orderBy buttons
     @objc func pressed(_ sender: UIButton!) {
         if orderByButton.titleLabel?.text == "Order by Name"{
             orderByButton.setTitle("Order by Id", for: .normal)
@@ -103,4 +106,12 @@ extension WelcomeViewController{
         }
         
     }
+}
+
+//MARK: - Favourites Methods
+extension WelcomeViewController: CellManagerDelegate{ // Method in charge of the CellManagerDelegate protocol
+    func updateTableView() {
+        tableView.reloadData()
+    }
+    
 }

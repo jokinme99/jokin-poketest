@@ -2,12 +2,12 @@
 import Foundation
 import Alamofire
 
-protocol PokemonListManagerDelegate {
+//MARK: - PokemonListManager
+protocol PokemonListManagerDelegate { //Protocols needed to fetch the pokemon list
     func didUpdatePokemonList(_ pokemonListManager: PokemonListManager, pokemon: PokemonListData)
     func didFailWithError(error:Error)
 }
-
-struct PokemonListManager {
+struct PokemonListManager { //Struct that manages the fetching of the pokemon list
     let pokemonListURL = "https://pokeapi.co/api/v2/pokemon/?limit=1118"
     var delegate: PokemonListManagerDelegate?
     
@@ -27,16 +27,18 @@ struct PokemonListManager {
                     self.delegate?.didUpdatePokemonList(self, pokemon: data)
                 case .failure(let error):
                     self.delegate?.didFailWithError(error: error)
+                    
                 }
             }
     }
 }
-protocol  PokemonManagerDelegate {
+
+//MARK: - PokemonManager
+protocol  PokemonManagerDelegate { //Protocols needed to fetch the pokemon details list
     func didUpdatePokemon(_ pokemonManager: PokemonManager, pokemon: PokemonData)
     func didFailWithError(error:Error)
 }
-
-struct PokemonManager{
+struct PokemonManager{ //Struct that manages the fetching of the details of a specified pokemon
     
     let pokemonDetailsURL = "https://pokeapi.co/api/v2/pokemon/"
     

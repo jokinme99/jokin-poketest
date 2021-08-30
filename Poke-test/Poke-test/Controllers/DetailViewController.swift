@@ -2,8 +2,9 @@
 import UIKit
 import Alamofire
 import AlamofireImage
+import RealmSwift
 
-class DetailViewController: UIViewController {
+class DetailViewController: UIViewController { // Class in charge of the details of a specified pokemon
     
     @IBOutlet weak var imagePokemon: UIImageView!
     @IBOutlet weak var labelPokemonName: UILabel!
@@ -15,47 +16,39 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var favouritesView: UIView!
     @IBOutlet weak var favouritesImage: UIImageView!
     @IBOutlet weak var labelPokemonId: UILabel!
-    
+   
+    let vc = PokemonCell()
     var pokemonManager = PokemonManager()
-    var favourites : [Results] = []
     var selectedPokemon : Results? {
         didSet{
             selectedPokemonInList()
         }
     }
+    var realm = try! Realm()//favourites
+    var favourites:RealmSwift.Results<Results>!
+    var arrayOfFavouritePokemonNames: [String] = []
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        pokemonManager.delegate = self 
+        print(Realm.Configuration.defaultConfiguration.fileURL!)
+        pokemonManager.delegate = self
         selectedPokemonInList()
+        loadFavourites()
         favouritesButton.addTarget(self, action: #selector(pressed), for: .touchUpInside)
         self.favouritesView.layer.cornerRadius = 10
-//        if favourites.contains(selectedPokemon!) == true{
-//            favouritesButton.setTitle("Eliminar de favoritos", for: .normal)
-//            favouritesImage.image = UIImage(systemName: "star")
-//        }
+        
     }
 }
+
 //MARK: - PokemonDelegate Methods
-extension DetailViewController: PokemonManagerDelegate{
+extension DetailViewController: PokemonManagerDelegate{ // Method in charge of the methods inside the PokemonManagerDelegate protocol
     func didUpdatePokemon(_ pokemonManager: PokemonManager, pokemon: PokemonData) {
         DispatchQueue.main.async {
             self.labelPokemonName.text = pokemon.name.uppercased()
             self.labelPokemonType.text = pokemon.types[0].type.name.uppercased()
-            self.labelPokemonId.text = "# \(pokemon.id)" 
-            if pokemon.types.count >= 2{// If a pokemon has two or more types
-                self.labelPokemonType2.text = pokemon.types[1].type.name.uppercased()
-                self.paintType(label: self.labelPokemonType)
-                self.paintType(label: self.labelPokemonType2)
-                self.labelPokemonName.textColor = .black
-            }else{//If a pokemon has one type
-                self.paintType(label: self.labelPokemonType)
-                self.setBackgroundColor(from: self.labelPokemonType, to: self.backgroundView)
-                self.setBackgroundColor(from: self.labelPokemonType, to: self.imageAndNameView)
-                self.setBackgroundColor(from: self.labelPokemonType, to: self.view)
-                self.imageAndNameView.backgroundColor = self.labelPokemonType.backgroundColor
-                self.labelPokemonType2.isHidden = true
-            }
+            self.labelPokemonId.text = "# \(pokemon.id)"
+            self.paintLabel(pokemon: pokemon)
             if let downloadURL = URL(string: pokemon.sprites.front_default ?? ""){
                 return  self.imagePokemon.af.setImage(withURL: downloadURL )
             }else {
@@ -67,8 +60,9 @@ extension DetailViewController: PokemonManagerDelegate{
         print(error)
     }
 }
+
 //MARK: - Data Manipulation Method
-extension DetailViewController{
+extension DetailViewController{ //Method in charge of fetching the details of the specified pokemon
     func selectedPokemonInList(){
         if let namePokemon = selectedPokemon?.name{
             pokemonManager.fetchPokemon(namePokemon: namePokemon)
@@ -78,8 +72,94 @@ extension DetailViewController{
     }
 }
 
+//MARK: - Favourites method
+extension DetailViewController{ //Methods in charge of the favourites button
+    @objc func pressed(_ sender: UIButton!) {
+        switch favouritesButton.titleLabel?.text {
+        case "Añadir a favoritos":
+            favouritesButton.setTitle("Eliminar de favoritos", for: .normal)
+            favouritesImage.image = UIImage(systemName: "star")
+            saveToFavourites(selectedPokemon!)
+        case "Eliminar de favoritos":
+            favouritesButton.setTitle("Añadir a favoritos", for: .normal)
+            favouritesImage.image = UIImage(systemName: "star.fill")
+            removeFavourite(selectedPokemon!)
+        default:
+            favouritesButton.setTitle("Añadir a favoritos", for: .normal)
+            favouritesImage.image = UIImage(systemName: "star.fill")
+        }
+        
+    }
+    func loadFavourites(){
+        favourites = realm.objects(Results.self)
+        for favouritesFiltered in favourites{
+            arrayOfFavouritePokemonNames.append(favouritesFiltered.name!)
+            if favouritesFiltered.name == selectedPokemon?.name{
+                favouritesButton.setTitle("Eliminar de favoritos", for: .normal)
+                favouritesImage.image = UIImage(systemName: "star")
+            }
+        }
+    }
+    
+    func saveToFavourites(_ pokemon: Results) { //ToDo: When adding favourite the star must appear
+        do{
+            if arrayOfFavouritePokemonNames.contains(pokemon.name!) != true{
+                try realm.write{
+                    realm.add(pokemon)
+                    
+                    
+                }
+                vc.setFavouriteIcon(pokemon.name!)
+            }else{
+                print("Pokemon already added to favourites")
+            }
+            loadFavourites()
+            
+        }catch{
+            print("Error saving pokemon into favourites")
+        }
+        
+    }
+    
+    func removeFavourite(_ pokemon: Results){//Not working
+        do{
+            if arrayOfFavouritePokemonNames.contains(pokemon.name!) == true{
+                let pokemonSelected = favourites.filter("name = %@", pokemon.name!).first
+                try realm.write{
+                    if let pokemonToDelete = pokemonSelected{
+                        realm.delete(pokemonToDelete)
+                    }
+                }
+                vc.setFavouriteIcon(pokemon.name!)
+                
+            }else{
+                print("Not added to favourites")
+            }
+            loadFavourites()
+        }catch{
+            print("Error deleating favourite")
+        }
+    }
+
+}
+
 //MARK: - Coloring methods
-extension DetailViewController{
+extension DetailViewController{ // Methods in charge of the colouring of the UIViewController
+    func paintLabel(pokemon: PokemonData){
+        if pokemon.types.count >= 2{
+            self.labelPokemonType2.text = pokemon.types[1].type.name.uppercased()
+            self.paintType(label: self.labelPokemonType)
+            self.paintType(label: self.labelPokemonType2)
+            self.labelPokemonName.textColor = .black
+        }else{
+            self.paintType(label: self.labelPokemonType)
+            self.setBackgroundColor(from: self.labelPokemonType, to: self.backgroundView)
+            self.setBackgroundColor(from: self.labelPokemonType, to: self.imageAndNameView)
+            self.setBackgroundColor(from: self.labelPokemonType, to: self.view)
+            self.imageAndNameView.backgroundColor = self.labelPokemonType.backgroundColor
+            self.labelPokemonType2.isHidden = true
+        }
+    }
     func paintType(label: UILabel){
         switch label.text?.lowercased() {
         case TypeName.normal:
@@ -159,29 +239,3 @@ extension DetailViewController{
         to.backgroundColor = from.backgroundColor
     }
 }
-
-//MARK: - Favourite method
-extension DetailViewController{
-    @objc func pressed(_ sender: UIButton!) {
-        if favouritesButton.titleLabel?.text == "Añadir a favoritos"{
-            favouritesButton.setTitle("Eliminar de favoritos", for: .normal)
-            favouritesImage.image = UIImage(systemName: "star")
-            favourites.append(selectedPokemon!)
-            for pok in favourites{
-                print("\(pok.name ?? "default")")
-            }
-        }
-        
-        if favouritesButton.titleLabel?.text == "Eliminar de favoritos"{
-            favouritesButton.setTitle("Añadir a favoritos", for: .normal)
-            favouritesImage.image = UIImage(systemName: "star.fill")
-            
-            
-        }
-        //let vc = PokemonCell()
-        //vc.favourites = favourites
-    }
-    
-}
-
-
