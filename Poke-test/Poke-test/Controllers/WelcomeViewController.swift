@@ -12,18 +12,19 @@ class WelcomeViewController: UIViewController { // Class with an UITableViewCont
     var savefilteredOrder : [Results] = []
     var pokemonSelected: Results?
     var cell = PokemonCell()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        pokemonListManager.delegate = self
+        loadDelegates()
         loadPokemonList()
-        searchBar.delegate = self
-        tableView.delegate = self
-        tableView.dataSource = self
         tableView.register(UINib(nibName: "PokemonCell", bundle: nil), forCellReuseIdentifier: "PokemonNameCell")
-        cell.cellManagerDelegate = self
         orderByButton.addTarget(self, action: #selector(pressed), for: .touchUpInside)
-    
+
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        DispatchQueue.main.async {
+            self.updateTableView()
+        }
     }
 }
 
@@ -37,7 +38,7 @@ extension WelcomeViewController:UITableViewDelegate, UITableViewDataSource{ // M
         cell = tableView.dequeueReusableCell(withIdentifier: "PokemonNameCell", for: indexPath) as! PokemonCell
         let pokemon = filtered[indexPath.row]
         cell.update(pokemon: pokemon)
-        cell.setFavouriteIcon(pokemon.name!)
+        cell.checkFavourite(pokemon.name!)
         return cell
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -84,9 +85,16 @@ extension WelcomeViewController:UISearchBarDelegate{ // Method in charge of upda
 }
 
 //MARK: - Data Manipulation Methods
-extension WelcomeViewController{ //Method in charge of fetching the list of pokemon names
+extension WelcomeViewController{ //Method in charge of fetching the list of pokemon and the needed delegates
     func loadPokemonList(){
-        pokemonListManager.fetchPokemonList()//List of names
+        pokemonListManager.fetchPokemonList()
+    }
+    func loadDelegates(){
+        pokemonListManager.delegate = self
+        searchBar.delegate = self
+        tableView.delegate = self
+        tableView.dataSource = self
+        cell.cellManagerDelegate = self
     }
 }
 

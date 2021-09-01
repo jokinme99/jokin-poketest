@@ -17,27 +17,21 @@ class DetailViewController: UIViewController { // Class in charge of the details
     @IBOutlet weak var favouritesImage: UIImageView!
     @IBOutlet weak var labelPokemonId: UILabel!
    
-    let vc = PokemonCell()
     var pokemonManager = PokemonManager()
     var selectedPokemon : Results? {
         didSet{
             selectedPokemonInList()
         }
     }
-    var realm = try! Realm()//favourites
     var favourites:RealmSwift.Results<Results>!
-    var arrayOfFavouritePokemonNames: [String] = []
-    
+    var favouritesManager : DDBBManagerDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print(Realm.Configuration.defaultConfiguration.fileURL!)
         pokemonManager.delegate = self
+        favourites = DDBBManager.shared.loadFavourites()
         selectedPokemonInList()
-        loadFavourites()
-        favouritesButton.addTarget(self, action: #selector(pressed), for: .touchUpInside)
-        self.favouritesView.layer.cornerRadius = 10
-        
+        loadFavouritesSettings()
     }
 }
 
@@ -72,75 +66,67 @@ extension DetailViewController{ //Method in charge of fetching the details of th
     }
 }
 
-//MARK: - Favourites method
+//MARK: - Favourites button method
 extension DetailViewController{ //Methods in charge of the favourites button
     @objc func pressed(_ sender: UIButton!) {
         switch favouritesButton.titleLabel?.text {
         case "Añadir a favoritos":
             favouritesButton.setTitle("Eliminar de favoritos", for: .normal)
             favouritesImage.image = UIImage(systemName: "star")
-            saveToFavourites(selectedPokemon!)
+            editFavourite(selectedPokemon!)
         case "Eliminar de favoritos":
             favouritesButton.setTitle("Añadir a favoritos", for: .normal)
             favouritesImage.image = UIImage(systemName: "star.fill")
-            removeFavourite(selectedPokemon!)
+            editFavourite(selectedPokemon!)
         default:
             favouritesButton.setTitle("Añadir a favoritos", for: .normal)
             favouritesImage.image = UIImage(systemName: "star.fill")
         }
         
     }
-    func loadFavourites(){
-        favourites = realm.objects(Results.self)
+    func checkFavourite() {
         for favouritesFiltered in favourites{
-            arrayOfFavouritePokemonNames.append(favouritesFiltered.name!)
             if favouritesFiltered.name == selectedPokemon?.name{
                 favouritesButton.setTitle("Eliminar de favoritos", for: .normal)
                 favouritesImage.image = UIImage(systemName: "star")
             }
         }
     }
-    
-    func saveToFavourites(_ pokemon: Results) { //ToDo: When adding favourite the star must appear
-        do{
-            if arrayOfFavouritePokemonNames.contains(pokemon.name!) != true{
-                try realm.write{
-                    realm.add(pokemon)
-                    
-                    
-                }
-                vc.setFavouriteIcon(pokemon.name!)
-            }else{
-                print("Pokemon already added to favourites")
-            }
-            loadFavourites()
-            
-        }catch{
-            print("Error saving pokemon into favourites")
-        }
-        
-    }
-    
-    func removeFavourite(_ pokemon: Results){//Not working
-        do{
-            if arrayOfFavouritePokemonNames.contains(pokemon.name!) == true{
-                let pokemonSelected = favourites.filter("name = %@", pokemon.name!).first
-                try realm.write{
-                    if let pokemonToDelete = pokemonSelected{
-                        realm.delete(pokemonToDelete)
-                    }
-                }
-                vc.setFavouriteIcon(pokemon.name!)
-                
-            }else{
-                print("Not added to favourites")
-            }
-            loadFavourites()
-        }catch{
-            print("Error deleating favourite")
-        }
+    func loadFavouritesSettings(){
+        checkFavourite()
+        favouritesButton.addTarget(self, action: #selector(pressed), for: .touchUpInside)
+        self.favouritesView.layer.cornerRadius = 10
     }
 
+}
+
+//MARK: - Edit Favourites methods
+extension DetailViewController{ // Methods in charge of editing favourites
+    func editFavourite(_ favourite: Results){
+        let isSaved = isSavedFavourite(favourite)
+        if !isSaved.isSaved{ // If it doesn't exist,  it is added
+            let saved = Results()
+            saved.name = favourite.name
+            DDBBManager.shared.save(saved) { (error) in
+                self.favouritesManager?.didSaveFavouriteWithError(error: error)
+            }
+        }else{
+            if let saved = isSaved.saved{//If it exists,  it is deleted
+                DDBBManager.shared.delete(saved){ (error) in
+                    self.favouritesManager?.didDeleteFavouriteWithError(error: error)
+                }
+            }
+        }
+    }
+    func isSaved(favourite: Results){ // Method that checks if favourite is saved already
+        let saved = isSavedFavourite(favourite)
+        favouritesManager?.didIsSaved(saved: saved.isSaved)
+    }
+    private func isSavedFavourite(_ favourite: Results) ->(isSaved: Bool, saved: Results?){ //Method that returns the first object with the searched data
+        let filter = "name == '\(favourite.name!)'"
+        let saved = DDBBManager.shared.get(Results.self, filter: filter)
+        return (saved.count > 0, saved.first)
+    }
 }
 
 //MARK: - Coloring methods
