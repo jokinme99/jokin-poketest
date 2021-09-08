@@ -1,16 +1,26 @@
 
 import Foundation
 import Alamofire
+protocol PokemonListManagerDelegate { //Protocol needed to fetch the pokemon list
+    func didUpdatePokemonList(_ pokemonManager: PokemonManager, pokemon: PokemonListData)
+    func didFailWithError(error:Error)
+}
 
-//MARK: - PokemonListManager
-struct PokemonListManager { //Struct that manages the fetching of the pokemon list
+protocol PokemonManagerDelegate { //Protocol needed to fetch the pokemon details list
+    func didUpdatePokemon(_ pokemonManager: PokemonManager, pokemon: PokemonData)
+    func didFailWithError(error:Error)
+}
+
+struct PokemonManager{
+    static var shared = PokemonManager() //Singleton
+    //MARK: - Pokemons list
     let pokemonListURL = "https://pokeapi.co/api/v2/pokemon/?limit=1118"
-    var delegate: PokemonListManagerDelegate?
+    var listDelegate: PokemonListManagerDelegate?
     
     func fetchPokemonList(){
-        performRequest(with: pokemonListURL)
+        performListRequest(with: pokemonListURL)
     }
-    func performRequest(with urlString:String){
+    func performListRequest(with urlString:String){
         AF.request(urlString,
                    method: .get,
                    encoding: URLEncoding.queryString,
@@ -19,17 +29,13 @@ struct PokemonListManager { //Struct that manages the fetching of the pokemon li
             .responseDecodable { (response: DataResponse<PokemonListData, AFError>) in
                 switch response.result {
                 case .success(let data):
-                    self.delegate?.didUpdatePokemonList(self, pokemon: data)
+                    self.listDelegate?.didUpdatePokemonList(self, pokemon: data)
                 case .failure(let error):
                     self.delegate?.didFailWithError(error: error)
                 }
             }
     }
-}
-
-//MARK: - PokemonManager
-struct PokemonManager{ //Struct that manages the fetching of the details of a specified pokemon
-    
+    //MARK: - Pokemon details
     let pokemonDetailsURL = "https://pokeapi.co/api/v2/pokemon/"
     var delegate: PokemonManagerDelegate?
     

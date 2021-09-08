@@ -17,7 +17,6 @@ class DetailViewController: UIViewController { // Class in charge of the details
     @IBOutlet weak var favouritesImage: UIImageView!
     @IBOutlet weak var labelPokemonId: UILabel!
    
-    var pokemonManager = PokemonManager()
     var selectedPokemon : Results? {
         didSet{
             selectedPokemonInList()
@@ -28,7 +27,7 @@ class DetailViewController: UIViewController { // Class in charge of the details
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        pokemonManager.delegate = self
+        PokemonManager.shared.delegate = self
         favourites = DDBBManager.shared.loadFavourites()
         selectedPokemonInList()
         loadFavouritesSettings()
@@ -59,7 +58,7 @@ extension DetailViewController: PokemonManagerDelegate{ // Method in charge of t
 extension DetailViewController{ //Method in charge of fetching the details of the specified pokemon
     func selectedPokemonInList(){
         if let namePokemon = selectedPokemon?.name{
-            pokemonManager.fetchPokemon(namePokemon: namePokemon)
+            PokemonManager.shared.fetchPokemon(namePokemon: namePokemon)
         }else{
             return
         }

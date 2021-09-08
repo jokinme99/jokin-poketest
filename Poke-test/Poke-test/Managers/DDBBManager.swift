@@ -2,6 +2,12 @@
 import UIKit
 import RealmSwift
 
+protocol DDBBManagerDelegate:AnyObject{ //Protocol needed to stablish changes in the realm database
+    func didSaveFavouriteWithError(error: Error?)
+    func didIsSaved(saved: Bool)
+    func didDeleteFavouriteWithError(error: Error?)
+}
+
 class DDBBManager {
     static let shared = DDBBManager() //Singleton
     private let configuration: Realm.Configuration!

@@ -2,6 +2,11 @@
 import UIKit
 import RealmSwift
 
+protocol CellManagerDelegate{ // Protocol needed to update the tableView after adding/removing favourites
+    func updateTableView()
+}
+
+
 class PokemonCell: UITableViewCell { // Class in charge of the cell
     
     @IBOutlet weak var pokemonBubble: UIView!

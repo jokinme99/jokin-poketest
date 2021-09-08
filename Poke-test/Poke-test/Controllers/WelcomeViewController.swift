@@ -6,7 +6,7 @@ class WelcomeViewController: UIViewController { // Class with an UITableViewCont
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var orderByButton: UIButton!
     
-    var pokemonListManager = PokemonListManager()
+
     var pokemon : [Results] = []
     var filtered : [Results] = []
     var savefilteredOrder : [Results] = []
@@ -53,7 +53,7 @@ extension WelcomeViewController:UITableViewDelegate, UITableViewDataSource{ // M
 
 //MARK: - PokemonListDelegate Methods
 extension WelcomeViewController: PokemonListManagerDelegate{ // Method in charge of the PokemonListDelegate protocol
-    func didUpdatePokemonList(_ pokemonListManager: PokemonListManager, pokemon: PokemonListData) {
+    func didUpdatePokemonList(_ pokemonManager: PokemonManager, pokemon: PokemonListData) {
         self.pokemon = Array(pokemon.results)//Expects an array and due to using @objc whe need to use List<>, so we cast it
         self.filtered = self.pokemon
         self.savefilteredOrder = self.pokemon
@@ -87,10 +87,10 @@ extension WelcomeViewController:UISearchBarDelegate{ // Method in charge of upda
 //MARK: - Data Manipulation Methods
 extension WelcomeViewController{ //Method in charge of fetching the list of pokemon and the needed delegates
     func loadPokemonList(){
-        pokemonListManager.fetchPokemonList()
+        PokemonManager.shared.fetchPokemonList()
     }
     func loadDelegates(){
-        pokemonListManager.delegate = self
+        PokemonManager.shared.listDelegate = self
         searchBar.delegate = self
         tableView.delegate = self
         tableView.dataSource = self
