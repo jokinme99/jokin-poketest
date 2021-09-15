@@ -8,15 +8,18 @@
 import UIKit
 
 class PokemonDetailsWireframe : PokemonDetailsWireframeDelegate {
-
+    
     var viewController: UIViewController?
 
-    static func createPokemonDetailsModule() -> UIViewController {
+    static func createPokemonDetailsModule(with pokemon: Results) -> UIViewController {
         let presenter = PokemonDetailsPresenter()
         let view = PokemonDetailsViewController()
         let wireframe = PokemonDetailsWireframe()
         let interactor = PokemonDetailsInteractor()
-
+        
+        
+        presenter.didGetSelectedPokemon(with: pokemon)
+        view.selectedPokemon = pokemon // ??
         view.presenter = presenter
         presenter.view = view
         presenter.wireframe = wireframe

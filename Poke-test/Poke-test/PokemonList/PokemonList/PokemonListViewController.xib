@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_5" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PokemonListViewController" customModule="Poke_test" customModuleProvider="target">
+            <connections>
+                <outlet property="orderByButton" destination="ndr-2v-Wth" id="FY5-Pv-Qwo"/>
+                <outlet property="searchBar" destination="6nn-tD-4rl" id="790-KO-VuJ"/>
+                <outlet property="tableView" destination="sCN-8t-2jl" id="NLs-vp-7Fu"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="i5M-Pr-FkT" userLabel="PokemonListViewController">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <stackView opaque="NO" contentMode="scaleToFill" spacing="13" translatesAutoresizingMaskIntoConstraints="NO" id="SWG-M4-bhb">
+                    <rect key="frame" x="0.0" y="44" width="404" height="51"/>
+                    <subviews>
+                        <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="6nn-tD-4rl">
+                            <rect key="frame" x="0.0" y="0.0" width="286" height="51"/>
+                            <textInputTraits key="textInputTraits"/>
+                        </searchBar>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ndr-2v-Wth">
+                            <rect key="frame" x="299" y="0.0" width="105" height="51"/>
+                            <state key="normal" title="Order by Name"/>
+                        </button>
+                    </subviews>
+                    <constraints>
+                        <constraint firstItem="ndr-2v-Wth" firstAttribute="top" secondItem="SWG-M4-bhb" secondAttribute="top" id="0fK-df-AWs"/>
+                        <constraint firstAttribute="bottom" secondItem="ndr-2v-Wth" secondAttribute="bottom" id="8lI-uk-Baj"/>
+                        <constraint firstItem="6nn-tD-4rl" firstAttribute="top" secondItem="SWG-M4-bhb" secondAttribute="top" id="F5B-iA-9gS"/>
+                        <constraint firstItem="6nn-tD-4rl" firstAttribute="leading" secondItem="SWG-M4-bhb" secondAttribute="leading" id="WB6-nd-2Ok"/>
+                        <constraint firstAttribute="bottom" secondItem="6nn-tD-4rl" secondAttribute="bottom" id="jCp-aS-5Hk"/>
+                    </constraints>
+                </stackView>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="sCN-8t-2jl">
+                    <rect key="frame" x="0.0" y="103" width="414" height="759"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <color key="separatorColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                </tableView>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="LtH-DL-IHf"/>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="sCN-8t-2jl" firstAttribute="top" secondItem="SWG-M4-bhb" secondAttribute="bottom" constant="8" symbolic="YES" id="2MR-ny-glL"/>
+                <constraint firstItem="LtH-DL-IHf" firstAttribute="trailing" secondItem="SWG-M4-bhb" secondAttribute="trailing" constant="10" id="8Zu-1H-tFA"/>
+                <constraint firstItem="SWG-M4-bhb" firstAttribute="top" secondItem="LtH-DL-IHf" secondAttribute="top" id="C6t-Jw-RjJ"/>
+                <constraint firstItem="sCN-8t-2jl" firstAttribute="bottom" secondItem="LtH-DL-IHf" secondAttribute="bottom" id="CHz-Rs-pRL"/>
+                <constraint firstItem="SWG-M4-bhb" firstAttribute="leading" secondItem="LtH-DL-IHf" secondAttribute="leading" id="JG9-YO-97x"/>
+                <constraint firstItem="sCN-8t-2jl" firstAttribute="trailing" secondItem="LtH-DL-IHf" secondAttribute="trailing" id="boL-aG-bsD"/>
+                <constraint firstItem="sCN-8t-2jl" firstAttribute="top" secondItem="SWG-M4-bhb" secondAttribute="bottom" constant="8" symbolic="YES" id="clc-8N-Dhs"/>
+                <constraint firstItem="sCN-8t-2jl" firstAttribute="leading" secondItem="LtH-DL-IHf" secondAttribute="leading" id="ljM-z3-ZqK"/>
+            </constraints>
+            <point key="canvasLocation" x="86.956521739130437" y="-116.51785714285714"/>
+        </view>
+    </objects>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

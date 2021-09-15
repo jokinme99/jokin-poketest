@@ -1,64 +1,78 @@
+//
+//  PokemonDetailsViewController.swift
+//  Poke-test
+//
+//  Created by Jokin Egia on 8/9/21.
+//
 
 import UIKit
 import Alamofire
 import AlamofireImage
 import RealmSwift
 
-class DetailViewController: UIViewController { // Class in charge of the details of a specified pokemon
-    
+class PokemonDetailsViewController: UIViewController {
+
+    @IBOutlet weak var backgroundView: UIView!
+    @IBOutlet weak var labelPokemonType2: UILabel!
+    @IBOutlet weak var imageAndNameView: UIView!
+    @IBOutlet weak var labelPokemonType: UILabel!
+    @IBOutlet weak var favouritesView: UIView!
     @IBOutlet weak var imagePokemon: UIImageView!
     @IBOutlet weak var labelPokemonName: UILabel!
-    @IBOutlet weak var labelPokemonType: UILabel!
-    @IBOutlet weak var labelPokemonType2: UILabel!
-    @IBOutlet weak var backgroundView: UIView!
-    @IBOutlet weak var imageAndNameView: UIView!
-    @IBOutlet weak var favouritesButton: UIButton!
-    @IBOutlet weak var favouritesView: UIView!
-    @IBOutlet weak var favouritesImage: UIImageView!
     @IBOutlet weak var labelPokemonId: UILabel!
-   
-    var selectedPokemon : Results? {
-        didSet{
-            selectedPokemonInList()
-        }
-    }
-    var favourites:RealmSwift.Results<Results>!
+    @IBOutlet weak var favouritesButton: UIButton!
+    @IBOutlet weak var favouritesImage: UIImageView!
+    
+    var presenter: PokemonDetailsPresenterDelegate?
+    var selectedPokemon : Results?
+    // Unnecesary: {didSet{selectedPokemonInList()}}
+    var favouritesList: [Results] = []
     var favouritesManager : DDBBManagerDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        PokemonManager.shared.delegate = self
-        favourites = DDBBManager.shared.loadFavourites()
+        //print(Realm.Configuration.defaultConfiguration.fileURL!)
         selectedPokemonInList()
-        loadFavouritesSettings()
+        presenter?.fetchFavourites()
+        checkFavourite()
+        favouritesButton.addTarget(self, action: #selector(pressed), for: .touchUpInside)
+        self.favouritesView.layer.cornerRadius = 10
     }
 }
 
-//MARK: - PokemonDelegate Methods
-extension DetailViewController: PokemonManagerDelegate{ // Method in charge of the methods inside the PokemonManagerDelegate protocol
-    func didUpdatePokemon(_ pokemonManager: PokemonManager, pokemon: PokemonData) {
-        DispatchQueue.main.async {
-            self.labelPokemonName.text = pokemon.name.uppercased()
-            self.labelPokemonType.text = pokemon.types[0].type.name.uppercased()
-            self.labelPokemonId.text = "# \(pokemon.id)"
-            self.paintLabel(pokemon: pokemon)
-            if let downloadURL = URL(string: pokemon.sprites.front_default ?? ""){
-                return  self.imagePokemon.af.setImage(withURL: downloadURL )
-            }else {
-                return
-            }
+extension PokemonDetailsViewController: PokemonDetailsViewDelegate {
+    func getSelectedPokemon(with pokemon: Results) {
+        selectedPokemon = pokemon
+    }
+    
+    func updateDetailsViewFavourites(favourites: [Results]) {
+        self.favouritesList = favourites
+    }
+    
+    func updateDetailsView(pokemon: PokemonData) {
+        self.labelPokemonName.text = pokemon.name.uppercased()
+        self.labelPokemonType.text = pokemon.types[0].type.name.uppercased()
+        self.labelPokemonId.text = "# \(pokemon.id)"
+        self.paintLabel(pokemon: pokemon)
+        if let downloadURL = URL(string: pokemon.sprites.front_default ?? ""){
+            return  self.imagePokemon.af.setImage(withURL: downloadURL )
+        }else {
+            return
         }
     }
-    func didFailWithError(error: Error) {
-        print(error)
-    }
-}
+    
+    
+    func editFavourites(pokemon: Results) {//???
 
+    }
+    
+
+}
 //MARK: - Data Manipulation Method
-extension DetailViewController{ //Method in charge of fetching the details of the specified pokemon
+extension PokemonDetailsViewController{ //Method in charge of fetching the details of the specified pokemon
     func selectedPokemonInList(){
-        if let namePokemon = selectedPokemon?.name{
-            PokemonManager.shared.fetchPokemon(namePokemon: namePokemon)
+        if let pokemonToFetch = selectedPokemon{
+            presenter?.fetchPokemon(pokemon: pokemonToFetch)
         }else{
             return
         }
@@ -66,70 +80,40 @@ extension DetailViewController{ //Method in charge of fetching the details of th
 }
 
 //MARK: - Favourites button method
-extension DetailViewController{ //Methods in charge of the favourites button
+extension PokemonDetailsViewController{ //Methods in charge of the favourites button
     @objc func pressed(_ sender: UIButton!) {
         switch favouritesButton.titleLabel?.text {
         case "Añadir a favoritos":
             favouritesButton.setTitle("Eliminar de favoritos", for: .normal)
             favouritesImage.image = UIImage(systemName: "star")
-            editFavourite(selectedPokemon!)
+            editFavourites(pokemon: selectedPokemon!)
         case "Eliminar de favoritos":
             favouritesButton.setTitle("Añadir a favoritos", for: .normal)
             favouritesImage.image = UIImage(systemName: "star.fill")
-            editFavourite(selectedPokemon!)
+            editFavourites(pokemon: selectedPokemon!)
         default:
             favouritesButton.setTitle("Añadir a favoritos", for: .normal)
             favouritesImage.image = UIImage(systemName: "star.fill")
         }
         
     }
-    func checkFavourite() {
-        for favouritesFiltered in favourites{
+    func checkFavourite() { // It works
+        for favouritesFiltered in favouritesList{
             if favouritesFiltered.name == selectedPokemon?.name{
                 favouritesButton.setTitle("Eliminar de favoritos", for: .normal)
                 favouritesImage.image = UIImage(systemName: "star")
             }
         }
-    }
-    func loadFavouritesSettings(){
-        checkFavourite()
-        favouritesButton.addTarget(self, action: #selector(pressed), for: .touchUpInside)
-        self.favouritesView.layer.cornerRadius = 10
+//        if favouritesList.contains(selectedPokemon!){
+//            favouritesButton.setTitle("Eliminar de favoritos", for: .normal)
+//            favouritesImage.image = UIImage(systemName:  "star")
+//        }
     }
 
-}
-
-//MARK: - Edit Favourites methods
-extension DetailViewController{ // Methods in charge of editing favourites
-    func editFavourite(_ favourite: Results){
-        let isSaved = isSavedFavourite(favourite)
-        if !isSaved.isSaved{ // If it doesn't exist,  it is added
-            let saved = Results()
-            saved.name = favourite.name
-            DDBBManager.shared.save(saved) { (error) in
-                self.favouritesManager?.didSaveFavouriteWithError(error: error)
-            }
-        }else{
-            if let saved = isSaved.saved{//If it exists,  it is deleted
-                DDBBManager.shared.delete(saved){ (error) in
-                    self.favouritesManager?.didDeleteFavouriteWithError(error: error)
-                }
-            }
-        }
-    }
-    func isSaved(favourite: Results){ // Method that checks if favourite is saved already
-        let saved = isSavedFavourite(favourite)
-        favouritesManager?.didIsSaved(saved: saved.isSaved)
-    }
-    private func isSavedFavourite(_ favourite: Results) ->(isSaved: Bool, saved: Results?){ //Method that returns the first object with the searched data
-        let filter = "name == '\(favourite.name!)'"
-        let saved = DDBBManager.shared.get(Results.self, filter: filter)
-        return (saved.count > 0, saved.first)
-    }
 }
 
 //MARK: - Coloring methods
-extension DetailViewController{ // Methods in charge of the colouring of the UIViewController
+extension PokemonDetailsViewController{ // Methods in charge of the colouring of the UIViewController
     func paintLabel(pokemon: PokemonData){
         if pokemon.types.count >= 2{
             self.labelPokemonType2.text = pokemon.types[1].type.name.uppercased()
@@ -224,3 +208,25 @@ extension DetailViewController{ // Methods in charge of the colouring of the UIV
         to.backgroundColor = from.backgroundColor
     }
 }
+
+//MARK: - PokemonDelegate Methods
+//extension PokemonDetailsViewController: PokemonDetailsManagerDelegate{ // Method in charge of the methods inside the PokemonManagerDelegate protocol
+//    func didUpdatePokemonDetails(_ pokemonManager: PokemonManager, pokemon: PokemonData) {
+//        DispatchQueue.main.async {
+//            self.labelPokemonName.text = pokemon.name.uppercased()
+//            self.labelPokemonType.text = pokemon.types[0].type.name.uppercased()
+//            self.labelPokemonId.text = "# \(pokemon.id)"
+//            self.paintLabel(pokemon: pokemon)
+//            if let downloadURL = URL(string: pokemon.sprites.front_default ?? ""){
+//                return  self.imagePokemon.af.setImage(withURL: downloadURL )
+//            }else {
+//                return
+//            }
+//        }
+//    }
+//    func didFailWithError(error: Error) {
+//        print(error)
+//    }
+//}
+
+

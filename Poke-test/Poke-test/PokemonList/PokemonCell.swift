@@ -2,10 +2,6 @@
 import UIKit
 import RealmSwift
 
-protocol CellManagerDelegate{ // Protocol needed to update the tableView after adding/removing favourites
-    func updateTableView()
-}
-
 
 class PokemonCell: UITableViewCell { // Class in charge of the cell
     
@@ -14,15 +10,24 @@ class PokemonCell: UITableViewCell { // Class in charge of the cell
     @IBOutlet weak var favouriteImage: UIImageView!
     @IBOutlet weak var idLabel: UILabel!
     
-    var pokemonManager = PokemonManager()
+    //ToDo: Arreglar fetch de pokemon(nombre) para pintar las celdas
+    //ToDo: Arreglar fetch de favoritos y anyadir/eliminar favoritos
+    
+    
     var pokemon: Results?
-    var favourites:RealmSwift.Results<Results>!
-    var cellManagerDelegate: CellManagerDelegate?
+    var favouritesList: [Results] = []
+    var view: PokemonListViewDelegate?
+    var presenter: PokemonListPresenterDelegate?
+    var detailsPresenter: PokemonDetailsPresenterDelegate?
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        pokemonManager.delegate = self
-        favourites = DDBBManager.shared.loadFavourites()
+//        detailsPresenter?.fetchPokemon(pokemon: pokemon!)
+        presenter?.fetchFavourites()//ToDo
+        //let asd = DDBBManager.shared.get(Results.self)
+        //print(asd[0].name!)
+        //print(asd[2].name!)
+        
     }
     
     override func prepareForReuse() {//Every time a cell is called with this method it will be a blank white cell
@@ -33,54 +38,31 @@ class PokemonCell: UITableViewCell { // Class in charge of the cell
         idLabel.text = nil
     }
     
-    
-//    override func setSelected(_ selected: Bool, animated: Bool) {
-//        super.setSelected(selected, animated: animated)
-//
-//        // Configure the view for the selected state
-//    }
-    
 }
 
-//MARK: - PokemonManagerDelegate methods
-extension PokemonCell: PokemonManagerDelegate{ // Methods in charge of the PokemonManagerDelegate protocol
-    func didUpdatePokemon(_ pokemonManager: PokemonManager, pokemon: PokemonData) {
-        self.updateCell(pokemonData: pokemon)
+extension PokemonCell: PokemonListCellDelegate{
+    func updatePokemonInCell(pokemonToFetch: Results) { //It works
+        self.pokemon = pokemonToFetch
+        self.detailsPresenter?.fetchPokemon(pokemon: pokemonToFetch)
+        self.pokemonNameLabel.text = pokemonToFetch.name?.capitalized
     }
-    func didFailWithError(error: Error) {
-        print(error)
-    }
-}
-
-//MARK: - Update methods
-extension PokemonCell{ // Methods in charge of updating the cell
-    func selectPokemons(){
-        pokemonManager.fetchPokemon(namePokemon: self.pokemon!.name!)
-    }
-    func update(pokemon: Results){
-        self.pokemon = pokemon
-        selectPokemons()
-        pokemonNameLabel.text = pokemon.name?.capitalized
+    func updatePokemonCellData(pokemon: PokemonData) {
+        let type = pokemon.types[0].type.name
+        self.setColor(type, pokemonNameLabel)
+        let id = pokemon.id
+        self.idLabel.text = "#\(id)"
+        self.setColor(type, idLabel)
+        self.checkIfFavouritePokemon(pokemonName: pokemon.name)
     }
     
-    func updateCell(pokemonData: PokemonData){
-        let type = pokemonData.types[0].type.name
-        setColor(type, pokemonNameLabel)
-        let id = pokemonData.id
-        idLabel.text = "#\(id)"
-        setColor(type, idLabel)
-        checkFavourite(pokemonData.name)
+    func updateCellFavourites(favourites: [Results]) {
+        self.favouritesList = favourites
     }
-
-}
-
-//MARK: - Favourites methods
-extension PokemonCell{ // Methods in charge of fetching the favourites
-    func checkFavourite(_ name: String){
-        for favourite in favourites{
-            if favourite.name == name{
-                favouriteImage.image = UIImage(systemName: "star.fill")
-                cellManagerDelegate?.updateTableView()
+    func checkIfFavouritePokemon(pokemonName: String){
+        for favourite in favouritesList{
+            if favourite.name == pokemonName{
+                self.favouriteImage.image = UIImage(systemName: "star.fill")
+                self.view?.updateTableViewFavourites()
             }
         }
     }
@@ -162,3 +144,4 @@ extension PokemonCell{ // Methods in charge of colouring the cell
         }
     }
 }
+

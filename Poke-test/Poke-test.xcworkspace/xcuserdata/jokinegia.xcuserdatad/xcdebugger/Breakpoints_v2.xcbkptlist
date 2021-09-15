@@ -3,4 +3,242 @@
    uuid = "333F1800-56D3-4E73-AF7A-77FF8E2741D0"
    type = "0"
    version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "22E8B663-9E25-434E-8211-C59AEE0D1DBF"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Poke-test/AppDelegate.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "11"
+            endingLineNumber = "11"
+            landmarkName = "application(_:didFinishLaunchingWithOptions:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "BF240BEF-6411-46FB-A560-66E47796F6FC"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Poke-test/AppDelegate.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "17"
+            endingLineNumber = "17"
+            landmarkName = "application(_:didFinishLaunchingWithOptions:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "8326FE90-16CA-4EF2-92B2-10BF957E95B0"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Poke-test/PokemonDetails/PokemonDetailsViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "44"
+            endingLineNumber = "44"
+            landmarkName = "getSelectedPokemon(with:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "A52DF08D-DEFE-45D0-B87E-CB3EF881DA7C"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Poke-test/PokemonDetails/PokemonDetailsViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "45"
+            endingLineNumber = "45"
+            landmarkName = "getSelectedPokemon(with:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "E951D811-BF30-42C6-96B9-9334F3690499"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Poke-test/PokemonList/PokemonList/PokemonListViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "39"
+            endingLineNumber = "39"
+            landmarkName = "updateTableView(pokemons:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "D2A018B7-69AC-4334-BD57-B34B63AB5876"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Poke-test/PokemonList/PokemonList/PokemonListViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "60"
+            endingLineNumber = "60"
+            landmarkName = "tableView(_:didSelectRowAt:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "5C81260D-2290-4100-9C90-58D0BA834A88"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Poke-test/PokemonDetails/PokemonDetailsViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "27"
+            endingLineNumber = "27"
+            landmarkName = "PokemonDetailsViewController"
+            landmarkType = "3">
+            <Locations>
+               <Location
+                  uuid = "5C81260D-2290-4100-9C90-58D0BA834A88 - 1c423ab1a761dab6"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Poke_test.PokemonDetailsViewController.selectedPokemon.getter : Swift.Optional&lt;Poke_test.Results&gt;"
+                  moduleName = "Poke-test"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/jokinegia/Desktop/git/jokin-poketest/Poke-test/Poke-test/PokemonDetails/PokemonDetailsViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "27"
+                  endingLineNumber = "27"
+                  offsetFromSymbolStart = "126">
+               </Location>
+               <Location
+                  uuid = "5C81260D-2290-4100-9C90-58D0BA834A88 - ac0e237f951a7aea"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Poke_test.PokemonDetailsViewController.selectedPokemon.setter : Swift.Optional&lt;Poke_test.Results&gt;"
+                  moduleName = "Poke-test"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/jokinegia/Desktop/git/jokin-poketest/Poke-test/Poke-test/PokemonDetails/PokemonDetailsViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "27"
+                  endingLineNumber = "27"
+                  offsetFromSymbolStart = "175">
+               </Location>
+               <Location
+                  uuid = "5C81260D-2290-4100-9C90-58D0BA834A88 - c8a4e77a929da722"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Poke_test.PokemonDetailsViewController.selectedPokemon.modify : Swift.Optional&lt;Poke_test.Results&gt;"
+                  moduleName = "Poke-test"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/jokinegia/Desktop/git/jokin-poketest/Poke-test/Poke-test/PokemonDetails/PokemonDetailsViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "18">
+               </Location>
+               <Location
+                  uuid = "5C81260D-2290-4100-9C90-58D0BA834A88 - 92dc0ad6805a219b"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Poke_test.PokemonDetailsViewController.selectedPokemon.modify : Swift.Optional&lt;Poke_test.Results&gt; with unmangled suffix &quot;.resume.0&quot;"
+                  moduleName = "Poke-test"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/jokinegia/Desktop/git/jokin-poketest/Poke-test/Poke-test/PokemonDetails/PokemonDetailsViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "27"
+                  endingLineNumber = "27"
+                  offsetFromSymbolStart = "10">
+               </Location>
+               <Location
+                  uuid = "5C81260D-2290-4100-9C90-58D0BA834A88 - 7578010ccb839f52"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Poke_test.PokemonDetailsViewController.init(nibName: Swift.Optional&lt;Swift.String&gt;, bundle: Swift.Optional&lt;__C.NSBundle&gt;) -&gt; Poke_test.PokemonDetailsViewController"
+                  moduleName = "Poke-test"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/jokinegia/Desktop/git/jokin-poketest/Poke-test/Poke-test/PokemonDetails/PokemonDetailsViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "27"
+                  endingLineNumber = "27"
+                  offsetFromSymbolStart = "1026">
+               </Location>
+               <Location
+                  uuid = "5C81260D-2290-4100-9C90-58D0BA834A88 - ce5bdf28e39d5c30"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Poke_test.PokemonDetailsViewController.init(coder: __C.NSCoder) -&gt; Swift.Optional&lt;Poke_test.PokemonDetailsViewController&gt;"
+                  moduleName = "Poke-test"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/jokinegia/Desktop/git/jokin-poketest/Poke-test/Poke-test/PokemonDetails/PokemonDetailsViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "27"
+                  endingLineNumber = "27"
+                  offsetFromSymbolStart = "970">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "AB5983C3-DDC3-4525-BCD2-D299147AE8CD"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Poke-test/PokemonList/PokemonList/PokemonListViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "61"
+            endingLineNumber = "61"
+            landmarkName = "tableView(_:didSelectRowAt:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "0CFB1F1D-ABEC-4304-9727-EA4C1947FEB0"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Poke-test/PokemonList/PokemonCell.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "45"
+            endingLineNumber = "45"
+            landmarkName = "updatePokemonInCell(pokemonToFetch:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
 </Bucket>

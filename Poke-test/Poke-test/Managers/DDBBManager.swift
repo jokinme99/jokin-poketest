@@ -29,7 +29,6 @@ class DDBBManager {
                                             shouldCompactOnLaunch: nil,
                                             objectTypes: nil)
     }
-    
     func loadFavourites() -> RealmSwift.Results<Results>{
             let realm = try! Realm(configuration: self.configuration)
             let favourites: RealmSwift.Results<Results> = realm.objects(Results.self)

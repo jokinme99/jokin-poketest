@@ -5,23 +5,17 @@ protocol PokemonListManagerDelegate { //Protocol needed to fetch the pokemon lis
     func didUpdatePokemonList(_ pokemonManager: PokemonManager, pokemon: PokemonListData)
     func didFailWithError(error:Error)
 }
-
-protocol PokemonManagerDelegate { //Protocol needed to fetch the pokemon details list
-    func didUpdatePokemon(_ pokemonManager: PokemonManager, pokemon: PokemonData)
-    func didFailWithError(error:Error)
+protocol PokemonDetailsManagerDelegate { //Protocol needed to fetch the pokemon details list
+    func didUpdatePokemonDetails(_ pokemonManager: PokemonManager, pokemon: PokemonData)
+    func didFailWithError(error: Error)
 }
 
 struct PokemonManager{
     static var shared = PokemonManager() //Singleton
-    //MARK: - Pokemons list
-    let pokemonListURL = "https://pokeapi.co/api/v2/pokemon/?limit=1118"
-    var listDelegate: PokemonListManagerDelegate?
     
-    func fetchPokemonList(){
-        performListRequest(with: pokemonListURL)
-    }
-    func performListRequest(with urlString:String){
-        AF.request(urlString,
+    func fetchList( _ completion:  @escaping  (PokemonListData?, Error?) -> Void){
+        let pokemonListURL = "https://pokeapi.co/api/v2/pokemon/?limit=1118"
+        AF.request(pokemonListURL,
                    method: .get,
                    encoding: URLEncoding.queryString,
                    headers: nil)
@@ -29,22 +23,15 @@ struct PokemonManager{
             .responseDecodable { (response: DataResponse<PokemonListData, AFError>) in
                 switch response.result {
                 case .success(let data):
-                    self.listDelegate?.didUpdatePokemonList(self, pokemon: data)
+                    completion(data, nil)
                 case .failure(let error):
-                    self.delegate?.didFailWithError(error: error)
+                    completion(nil, error)
                 }
             }
     }
-    //MARK: - Pokemon details
-    let pokemonDetailsURL = "https://pokeapi.co/api/v2/pokemon/"
-    var delegate: PokemonManagerDelegate?
-    
-    func fetchPokemon(namePokemon: String){
-        let urlString = "\(pokemonDetailsURL)\(namePokemon)"
-        performRequest(with:urlString)
-    }
-    func performRequest(with urlString:String){
-        AF.request(urlString,
+    func fetchPokemon(pokemonSelectedName: String, _ completion:  @escaping  (PokemonData?, Error?) -> Void){
+        let pokemonDetailsURL = "https://pokeapi.co/api/v2/pokemon/\(pokemonSelectedName)"
+        AF.request(pokemonDetailsURL,
                    method: .get,
                    encoding: URLEncoding.queryString,
                    headers: nil)
@@ -52,9 +39,9 @@ struct PokemonManager{
             .responseDecodable { (response: DataResponse<PokemonData, AFError>) in
                 switch response.result {
                 case .success(let data):
-                    self.delegate?.didUpdatePokemon(self, pokemon: data)
+                    completion(data, nil)
                 case .failure(let error):
-                    self.delegate?.didFailWithError(error: error)
+                    completion(nil, error)
                 }
             }
     }

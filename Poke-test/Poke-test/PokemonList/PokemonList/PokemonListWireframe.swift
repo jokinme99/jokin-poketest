@@ -8,7 +8,8 @@
 import UIKit
 
 class PokemonListWireframe : PokemonListWireframeDelegate {
-
+ 
+    
     var viewController: UIViewController?
 
     static func createPokemonListModule() -> UIViewController {
@@ -27,4 +28,9 @@ class PokemonListWireframe : PokemonListWireframeDelegate {
 
         return view
     }
+    func openPokemonDetailsWindow(with pokemon: Results) {
+        let detailModule = PokemonDetailsWireframe.createPokemonDetailsModule(with: pokemon)
+        viewController?.navigationController?.pushViewController(detailModule, animated: true)
+    }
+
 }
