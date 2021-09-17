@@ -14,7 +14,7 @@ class PokemonListPresenter : PokemonListPresenterDelegate {
     func fetchPokemonList() { 
         interactor?.fetchPokemonList()
     }
-    func fetchFavourites(){
+    func fetchFavourites(){ //It works but not in the cell!
         interactor?.fetchFavouritePokemons()
     }
     func openPokemonDetail(with selectedPokemon: Results) {
@@ -24,8 +24,8 @@ class PokemonListPresenter : PokemonListPresenterDelegate {
 
 extension PokemonListPresenter: PokemonListInteractorOutputDelegate {
     func didFetchFavourites(favourites: [Results]) {
-        cell?.updateCellFavourites(favourites: favourites) // It works
-        view?.updateTableViewFavourites() // To reload after editing
+        cell?.updateCellFavourites(favourites: favourites)
+        view?.updateTableViewFavourites()
     }
     
     func didFailWith(error: Error) {

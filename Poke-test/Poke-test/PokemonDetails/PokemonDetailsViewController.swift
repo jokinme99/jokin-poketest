@@ -27,7 +27,7 @@ class PokemonDetailsViewController: UIViewController {
     var selectedPokemon : Results?
     // Unnecesary: {didSet{selectedPokemonInList()}}
     var favouritesList: [Results] = []
-    var favouritesManager : DDBBManagerDelegate?
+    var cell: PokemonListCellDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -104,10 +104,7 @@ extension PokemonDetailsViewController{ //Methods in charge of the favourites bu
                 favouritesImage.image = UIImage(systemName: "star")
             }
         }
-//        if favouritesList.contains(selectedPokemon!){
-//            favouritesButton.setTitle("Eliminar de favoritos", for: .normal)
-//            favouritesImage.image = UIImage(systemName:  "star")
-//        }
+
     }
 
 }

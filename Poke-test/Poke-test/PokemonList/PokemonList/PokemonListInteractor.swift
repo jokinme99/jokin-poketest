@@ -23,8 +23,8 @@ class PokemonListInteractor : PokemonListInteractorDelegate{
     }
     //DDBBManager.shared.get(Results.self) = DDBBManager.shared.loadFavourites()
     func fetchFavouritePokemons(){//It does work!
-        self.presenter?.didFetchFavourites(favourites: DDBBManager.shared.get(Results.self))
-        
+        let favourites = DDBBManager.shared.get(Results.self)
+        self.presenter?.didFetchFavourites(favourites: favourites)
     }
     
     

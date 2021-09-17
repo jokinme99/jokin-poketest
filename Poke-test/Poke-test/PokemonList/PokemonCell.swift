@@ -10,8 +10,7 @@ class PokemonCell: UITableViewCell { // Class in charge of the cell
     @IBOutlet weak var favouriteImage: UIImageView!
     @IBOutlet weak var idLabel: UILabel!
     
-    //ToDo: Arreglar fetch de pokemon(nombre) para pintar las celdas
-    //ToDo: Arreglar fetch de favoritos y anyadir/eliminar favoritos
+    //ToDo: Fetch de favoritos y detalles del pokemon solo no funcionan en la cell!
     
     
     var pokemon: Results?
@@ -22,11 +21,9 @@ class PokemonCell: UITableViewCell { // Class in charge of the cell
     
     override func awakeFromNib() {
         super.awakeFromNib()
-       detailsPresenter?.fetchPokemon(pokemon: pokemon!)
         presenter?.fetchFavourites()//ToDo
-        //let asd = DDBBManager.shared.get(Results.self)
-        //print(asd[0].name!)
-        //print(asd[2].name!)
+        //favouritesList = DDBBManager.shared.get(Results.self)
+        
         
     }
     
@@ -43,8 +40,9 @@ class PokemonCell: UITableViewCell { // Class in charge of the cell
 extension PokemonCell: PokemonListCellDelegate{
     func updatePokemonInCell(pokemonToFetch: Results) { //It works
         self.pokemon = pokemonToFetch
-        self.detailsPresenter?.fetchPokemon(pokemon: pokemonToFetch)
+        self.detailsPresenter?.fetchPokemon(pokemon: pokemonToFetch)//For each row(pokemon in tableView)
         self.pokemonNameLabel.text = pokemonToFetch.name?.capitalized
+        self.checkIfFavouritePokemon(pokemonName: pokemonToFetch.name!)
     }
     func updatePokemonCellData(pokemon: PokemonData) {
         let type = pokemon.types[0].type.name
@@ -67,6 +65,7 @@ extension PokemonCell: PokemonListCellDelegate{
         }
     }
 }
+
 
 //MARK: - Painting methods
 extension PokemonCell{ // Methods in charge of colouring the cell

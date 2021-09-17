@@ -60,6 +60,4 @@ extension PokemonDetailsPresenter: PokemonDetailsInteractorOutputDelegate {
     func didIsSaved(saved: Bool) {
         print(saved)
     }
-    
-
 }

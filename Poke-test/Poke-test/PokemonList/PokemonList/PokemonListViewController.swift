@@ -25,6 +25,7 @@ class PokemonListViewController: UIViewController { //SearchBar must be instead 
         super.viewDidLoad()
         loadDelegates()
         presenter?.fetchPokemonList()
+        presenter?.fetchFavourites()
         tableView.register(UINib(nibName: "PokemonCell", bundle: nil), forCellReuseIdentifier: "PokemonNameCell")
         orderByButton.addTarget(self, action: #selector(pressed), for: .touchUpInside)
     }
@@ -52,7 +53,6 @@ extension PokemonListViewController:UITableViewDelegate, UITableViewDataSource{ 
         cell = tableView.dequeueReusableCell(withIdentifier: "PokemonNameCell", for: indexPath) as! PokemonCell
         let pokemonInCell = filtered[indexPath.row]
         cell.updatePokemonInCell(pokemonToFetch: pokemonInCell)//Saves correctly
-        //cell.checkIfFavouritePokemon(pokemonName: pokemonInCell.name!)//Doesn't work
         
         return cell
     }

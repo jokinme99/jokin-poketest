@@ -17,9 +17,10 @@ class PokemonDetailsInteractor : PokemonDetailsInteractorDelegate {
             }else{
                 self.presenter?.didFetchPokemon(pokemon: pokemonData!)
             }
-            
+
         })
     }
+
     
     func fetchFavouritePokemons() {
         presenter?.didFetchFavourites(DDBBManager.shared.get(Results.self))

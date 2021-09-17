@@ -83,6 +83,7 @@ class DDBBManager {
             let objects = realm.objects(object)
             if let filter = filter{
                 result = Array(objects.filter(filter))
+                
             }else{
                 result = Array(objects)
             }
