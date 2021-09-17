@@ -31,7 +31,7 @@ class PokemonDetailsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //print(Realm.Configuration.defaultConfiguration.fileURL!)
+        print(Realm.Configuration.defaultConfiguration.fileURL!)
         selectedPokemonInList()
         presenter?.fetchFavourites()
         checkFavourite()
@@ -41,6 +41,18 @@ class PokemonDetailsViewController: UIViewController {
 }
 
 extension PokemonDetailsViewController: PokemonDetailsViewDelegate {
+    func addFavourite(pokemon: Results) {//It works
+        presenter?.addFavourite(pokemon: pokemon)
+        favouritesButton.setTitle("Eliminar de favoritos", for: .normal)
+        favouritesImage.image = UIImage(systemName: "star")
+    }
+    
+    func deleteFavourite(pokemon: Results) {//It doesn't work
+        presenter?.deleteFavourite(pokemon: pokemon)
+        favouritesButton.setTitle("Añadir a favoritos", for: .normal)
+        favouritesImage.image = UIImage(systemName: "star.fill")
+    }
+    
     func getSelectedPokemon(with pokemon: Results) {
         selectedPokemon = pokemon
     }
@@ -62,10 +74,6 @@ extension PokemonDetailsViewController: PokemonDetailsViewDelegate {
     }
     
     
-    func editFavourites(pokemon: Results) {//???
-
-    }
-    
 
 }
 //MARK: - Data Manipulation Method
@@ -82,18 +90,10 @@ extension PokemonDetailsViewController{ //Method in charge of fetching the detai
 //MARK: - Favourites button method
 extension PokemonDetailsViewController{ //Methods in charge of the favourites button
     @objc func pressed(_ sender: UIButton!) {
-        switch favouritesButton.titleLabel?.text {
-        case "Añadir a favoritos":
-            favouritesButton.setTitle("Eliminar de favoritos", for: .normal)
-            favouritesImage.image = UIImage(systemName: "star")
-            editFavourites(pokemon: selectedPokemon!)
-        case "Eliminar de favoritos":
-            favouritesButton.setTitle("Añadir a favoritos", for: .normal)
-            favouritesImage.image = UIImage(systemName: "star.fill")
-            editFavourites(pokemon: selectedPokemon!)
-        default:
-            favouritesButton.setTitle("Añadir a favoritos", for: .normal)
-            favouritesImage.image = UIImage(systemName: "star.fill")
+        if favouritesButton.titleLabel?.text == "Añadir a favoritos"{
+            addFavourite(pokemon: selectedPokemon!)
+        } else if favouritesButton.titleLabel?.text == "Eliminar de favoritos"{
+            deleteFavourite(pokemon: selectedPokemon!)
         }
         
     }

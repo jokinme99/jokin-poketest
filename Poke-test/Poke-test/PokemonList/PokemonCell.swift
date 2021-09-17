@@ -22,7 +22,7 @@ class PokemonCell: UITableViewCell { // Class in charge of the cell
     
     override func awakeFromNib() {
         super.awakeFromNib()
-//        detailsPresenter?.fetchPokemon(pokemon: pokemon!)
+       detailsPresenter?.fetchPokemon(pokemon: pokemon!)
         presenter?.fetchFavourites()//ToDo
         //let asd = DDBBManager.shared.get(Results.self)
         //print(asd[0].name!)

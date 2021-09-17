@@ -9,7 +9,7 @@ import RealmSwift
 class PokemonDetailsInteractor : PokemonDetailsInteractorDelegate {
     
     var presenter: PokemonDetailsInteractorOutputDelegate?
-    var delegate: DDBBManagerDelegate?
+    var dataBaseDelegate: DDBBManagerDelegate?
     func fetchPokemon(pokemon: Results) {
         PokemonManager.shared.fetchPokemon(pokemonSelectedName: pokemon.name!, { pokemonData, error in
             if let error = error{
@@ -25,36 +25,43 @@ class PokemonDetailsInteractor : PokemonDetailsInteractorDelegate {
         presenter?.didFetchFavourites(DDBBManager.shared.get(Results.self))
     }
     
-    func editFavourites(pokemon: Results) {
+    func addFavourite(pokemon: Results) {
         let isSaved = isSavedFavourite(pokemon)
         if !isSaved.isSaved{
             let saved = Results()
             saved.name = pokemon.name
             DDBBManager.shared.save(saved){ (error) in
-                self.delegate?.didSaveFavouriteWithError(error: error)
+                self.dataBaseDelegate?.didSaveFavouriteWithError(error: error)
                 
             }
-        }else{
+        }
+    }
+    
+    func deleteFavourite(pokemon: Results) {
+        let isSaved = isSavedFavourite(pokemon)
+        if isSaved.isSaved{
             if let saved = isSaved.saved{
                 DDBBManager.shared.delete(saved){ (error) in
-                    self.delegate?.didDeleteFavouriteWithError(error: error)
+                    self.dataBaseDelegate?.didDeleteFavouriteWithError(error: error)
                 }
             }
         }
     }
+    
     func isSaved(favourite: Results){
         let saved = isSavedFavourite(favourite)
-        delegate?.didIsSaved(saved: saved.isSaved)
+        dataBaseDelegate?.didIsSaved(saved: saved.isSaved)
     }
     private func isSavedFavourite(_ favourite: Results)-> (isSaved: Bool, saved: Results?){
-        let filter = "name == ' \(favourite.name!)'"
+        let filter = "name == '\(favourite.name!)'"
         let saved = DDBBManager.shared.get(Results.self, filter: filter)
-        return (saved.capacity > 0, saved.first)
+        return (saved.count > 0, saved.first)
     }
+   
 }
 extension PokemonDetailsInteractor: DDBBManagerDelegate{
     func didSaveFavouriteWithError(error: Error?) {
-        presenter?.didSaveFavouriteWithError(error: error)
+        presenter?.didAddFavouriteWithError(error: error)
     }
     
     func didIsSaved(saved: Bool) {

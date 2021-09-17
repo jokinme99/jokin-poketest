@@ -25,7 +25,6 @@ class PokemonListViewController: UIViewController { //SearchBar must be instead 
         super.viewDidLoad()
         loadDelegates()
         presenter?.fetchPokemonList()
-        presenter?.fetchFavourites()
         tableView.register(UINib(nibName: "PokemonCell", bundle: nil), forCellReuseIdentifier: "PokemonNameCell")
         orderByButton.addTarget(self, action: #selector(pressed), for: .touchUpInside)
     }

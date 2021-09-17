@@ -12,7 +12,8 @@ protocol PokemonDetailsViewDelegate: AnyObject {
     var presenter: PokemonDetailsPresenterDelegate? {get set}
     func updateDetailsView(pokemon: PokemonData)
     func updateDetailsViewFavourites(favourites: [Results])//When fetching favourites
-    func editFavourites(pokemon: Results)
+    func addFavourite(pokemon: Results)
+    func deleteFavourite(pokemon: Results)
     func getSelectedPokemon(with pokemon: Results)
 }
 
@@ -26,23 +27,27 @@ protocol PokemonDetailsPresenterDelegate: AnyObject {
     var wireframe: PokemonDetailsWireframeDelegate? {get set}
     func fetchPokemon(pokemon: Results)
     func fetchFavourites()//Check if the pokemon is in the fetched favourites
-    func editFavourites(pokemon: Results)
+    func addFavourite(pokemon: Results)
+    func deleteFavourite(pokemon: Results)
 }
 
 protocol PokemonDetailsInteractorDelegate: AnyObject {
     var presenter: PokemonDetailsInteractorOutputDelegate? {get set}
+    var dataBaseDelegate: DDBBManagerDelegate? {get set}
     func fetchPokemon(pokemon: Results)
     func fetchFavouritePokemons()
-    func editFavourites(pokemon: Results)
+    func addFavourite(pokemon: Results)
+    func deleteFavourite(pokemon: Results)
 }
 
 protocol PokemonDetailsInteractorOutputDelegate: AnyObject {
     func didFetchPokemon(pokemon: PokemonData)
     func didFailWithError(error: Error)
     func didFetchFavourites(_ favourites: [Results])
-    func didEditFavourites(pokemon: Results)
-    func didSaveFavouriteWithError(error: Error?)
-    func didIsSaved(saved: Bool)
+    func didAddFavourite(pokemon: Results)
+    func didAddFavouriteWithError(error: Error?)
+    func didDeleteFavourite(pokemon: Results)
     func didDeleteFavouriteWithError(error: Error?)
+    func didIsSaved(saved: Bool)
     func didGetSelectedPokemon(with pokemon: Results)
 }
