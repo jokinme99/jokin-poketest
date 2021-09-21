@@ -13,6 +13,7 @@ class PokemonDetailsPresenter : PokemonDetailsPresenterDelegate {
     var interactor: PokemonDetailsInteractorDelegate?
     var wireframe: PokemonDetailsWireframeDelegate?
     var cell: PokemonListCellDelegate?
+    var tableView: PokemonListViewDelegate?
     func fetchPokemon(pokemon: Results) {
         interactor?.fetchPokemon(pokemon: pokemon)
     }
@@ -32,7 +33,6 @@ extension PokemonDetailsPresenter: PokemonDetailsInteractorOutputDelegate {
     
     func didFetchPokemon(pokemon: PokemonData) {
         view?.updateDetailsView(pokemon: pokemon)
-        cell?.updatePokemonCellData(pokemon: pokemon)
     }
     func didFailWithError(error: Error) {
         print(error)

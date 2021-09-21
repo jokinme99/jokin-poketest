@@ -17,14 +17,10 @@ class PokemonCell: UITableViewCell { // Class in charge of the cell
     var favouritesList: [Results] = []
     var view: PokemonListViewDelegate?
     var presenter: PokemonListPresenterDelegate?
-    var detailsPresenter: PokemonDetailsPresenterDelegate?
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        presenter?.fetchFavourites()//ToDo
-        //favouritesList = DDBBManager.shared.get(Results.self)
-        
-        
+        //paintCell()
     }
     
     override func prepareForReuse() {//Every time a cell is called with this method it will be a blank white cell
@@ -40,35 +36,30 @@ class PokemonCell: UITableViewCell { // Class in charge of the cell
 extension PokemonCell: PokemonListCellDelegate{
     func updatePokemonInCell(pokemonToFetch: Results) { //It works
         self.pokemon = pokemonToFetch
-        self.detailsPresenter?.fetchPokemon(pokemon: pokemonToFetch)//For each row(pokemon in tableView)
+        //presenter?.fetchPokemonDetails(pokemon: pokemonToFetch)
         self.pokemonNameLabel.text = pokemonToFetch.name?.capitalized
         self.checkIfFavouritePokemon(pokemonName: pokemonToFetch.name!)
-    }
-    func updatePokemonCellData(pokemon: PokemonData) {
-        let type = pokemon.types[0].type.name
-        self.setColor(type, pokemonNameLabel)
-        let id = pokemon.id
-        self.idLabel.text = "#\(id)"
-        self.setColor(type, idLabel)
-        self.checkIfFavouritePokemon(pokemonName: pokemon.name)
-    }
-    
-    func updateCellFavourites(favourites: [Results]) {
-        self.favouritesList = favourites
     }
     func checkIfFavouritePokemon(pokemonName: String){
         for favourite in favouritesList{
             if favourite.name == pokemonName{
                 self.favouriteImage.image = UIImage(systemName: "star.fill")
-                self.view?.updateTableViewFavourites()
             }
         }
+        self.view?.updateTableViewFavourites()
+
     }
 }
 
 
 //MARK: - Painting methods
 extension PokemonCell{ // Methods in charge of colouring the cell
+    func paintCell(type: String, id: Int){
+        setColor(type, pokemonNameLabel)
+        idLabel.text = "#\(id)"
+        setColor(type, idLabel)
+        //view?.updateTableViewFavourites()
+    }
     func setPokemonBackgroundColor(_ red: CGFloat, _ green: CGFloat, _ blue: CGFloat, _ label: UILabel){
         label.backgroundColor = .init(red: red/255, green: green/255, blue: blue/255, alpha: 1)
     }

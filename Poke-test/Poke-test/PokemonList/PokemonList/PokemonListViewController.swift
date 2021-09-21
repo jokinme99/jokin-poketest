@@ -19,19 +19,36 @@ class PokemonListViewController: UIViewController { //SearchBar must be instead 
     var pokemonSelected: Results?
     var cell = PokemonCell()
     var presenter: PokemonListPresenterDelegate?
-    var cellPresenter: PokemonListCellDelegate?
+    var detailsPresenter: PokemonDetailsPresenterDelegate?
+    var favouritesList: [Results] = []
+    var type: String?
+    var id: Int?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         loadDelegates()
         presenter?.fetchPokemonList()
-        presenter?.fetchFavourites()
         tableView.register(UINib(nibName: "PokemonCell", bundle: nil), forCellReuseIdentifier: "PokemonNameCell")
         orderByButton.addTarget(self, action: #selector(pressed), for: .touchUpInside)
+        presenter?.fetchFavourites()
+    }
+    override func viewWillAppear(_ animated: Bool) { //When adding/deleting a pokemon the favourites list & the tableView have to load again
+        presenter?.fetchFavourites()
+        self.tableView.reloadData()
     }
 }
 
 extension PokemonListViewController: PokemonListViewDelegate {
+    func updateFavouritesFetchInCell(favourites: [Results]) {
+        self.favouritesList = favourites
+    }
+    
+    func updateDetailsFetchInCell(pokemon: PokemonData) {
+        type = pokemon.types[0].type.name
+        id = pokemon.id
+        cell.paintCell(type: type!, id: id!)
+    }
+    
     func updateTableViewFavourites() {
         self.tableView.reloadData()
     }
@@ -52,8 +69,9 @@ extension PokemonListViewController:UITableViewDelegate, UITableViewDataSource{ 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         cell = tableView.dequeueReusableCell(withIdentifier: "PokemonNameCell", for: indexPath) as! PokemonCell
         let pokemonInCell = filtered[indexPath.row]
-        cell.updatePokemonInCell(pokemonToFetch: pokemonInCell)//Saves correctly
-        
+        cell.favouritesList = favouritesList
+        cell.updatePokemonInCell(pokemonToFetch: pokemonInCell)
+        presenter?.fetchPokemonDetails(pokemon: pokemonInCell)
         return cell
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

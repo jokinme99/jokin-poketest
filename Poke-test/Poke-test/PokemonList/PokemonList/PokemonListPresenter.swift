@@ -20,12 +20,16 @@ class PokemonListPresenter : PokemonListPresenterDelegate {
     func openPokemonDetail(with selectedPokemon: Results) {
         wireframe?.openPokemonDetailsWindow(with: selectedPokemon)
     }
+    func fetchPokemonDetails(pokemon: Results) {
+        interactor?.fetchPokemonDetails(pokemon: pokemon)
+    }
 }
 
 extension PokemonListPresenter: PokemonListInteractorOutputDelegate {
     func didFetchFavourites(favourites: [Results]) {
-        cell?.updateCellFavourites(favourites: favourites)
         view?.updateTableViewFavourites()
+        view?.updateFavouritesFetchInCell(favourites: favourites)
+        
     }
     
     func didFailWith(error: Error) {
@@ -34,5 +38,10 @@ extension PokemonListPresenter: PokemonListInteractorOutputDelegate {
     
     func didFetchPokemonList(pokemon: PokemonListData) {
         view?.updateTableView(pokemons: pokemon)
+    }
+    func didFetchPokemonDetails(pokemon: PokemonData) {
+        view?.updateDetailsFetchInCell(pokemon: pokemon)
+        //cell?.updatePokemonCellData(pokemon: pokemon) //It works!
+
     }
 }

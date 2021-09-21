@@ -9,7 +9,6 @@ import RealmSwift
 
 class PokemonListInteractor : PokemonListInteractorDelegate{
     
-    
     var presenter: PokemonListInteractorOutputDelegate?
     
     func fetchPokemonList() {
@@ -27,6 +26,16 @@ class PokemonListInteractor : PokemonListInteractorDelegate{
         self.presenter?.didFetchFavourites(favourites: favourites)
     }
     
+    func fetchPokemonDetails(pokemon: Results) {
+        PokemonManager.shared.fetchPokemon(pokemonSelectedName: pokemon.name!, { pokemonData, error in
+            if let error = error{
+                self.presenter?.didFailWith(error: error)
+            }else{
+                self.presenter?.didFetchPokemonDetails(pokemon: pokemonData!)
+            }
+
+        })
+    }
     
 }
 
