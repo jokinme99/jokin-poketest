@@ -11,8 +11,9 @@ import RealmSwift
 
 protocol PokemonListCellDelegate: AnyObject{ // TableView cell
     var presenter: PokemonListPresenterDelegate? {get set}
-    func checkIfFavouritePokemon(pokemonName: String)// Checks if it's a favourite
+    func checkIfFavouritePokemon(pokemonToCheck: Results)// Checks if it's a favourite
     func updatePokemonInCell(pokemonToFetch: Results) //Update pokemon in cell
+    func paintCell(pokemonToPaint: PokemonData)
     //func updatePokemonCellData(pokemon: PokemonData) //Update pokemons's type and id
 
 }
@@ -22,7 +23,7 @@ protocol PokemonListViewDelegate: AnyObject { // What will appear in the screen
     func updateTableView(pokemons: PokemonListData) // Update tableView after fetching pokemon list
     func updateTableViewFavourites() // Update tableView after fetching favourites list(When added or deleted a star is highlighted in the cell-> to be able to see the star, the table needs to be reloaded)
     func updateFavouritesFetchInCell(favourites: [Results])
-    func updateDetailsFetchInCell(pokemon: PokemonData)
+    func updateDetailsFetchInCell(pokemonToPaint: PokemonData)
 }
 
 protocol PokemonListWireframeDelegate: AnyObject { // Connection with the other .xib

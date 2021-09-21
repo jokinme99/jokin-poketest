@@ -19,10 +19,7 @@ class PokemonListViewController: UIViewController { //SearchBar must be instead 
     var pokemonSelected: Results?
     var cell = PokemonCell()
     var presenter: PokemonListPresenterDelegate?
-    var detailsPresenter: PokemonDetailsPresenterDelegate?
     var favouritesList: [Results] = []
-    var type: String?
-    var id: Int?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,10 +40,8 @@ extension PokemonListViewController: PokemonListViewDelegate {
         self.favouritesList = favourites
     }
     
-    func updateDetailsFetchInCell(pokemon: PokemonData) {
-        type = pokemon.types[0].type.name
-        id = pokemon.id
-        cell.paintCell(type: type!, id: id!)
+    func updateDetailsFetchInCell(pokemonToPaint: PokemonData) {
+            cell.paintCell(pokemonToPaint: pokemonToPaint)
     }
     
     func updateTableViewFavourites() {

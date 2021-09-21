@@ -40,7 +40,7 @@ extension PokemonListPresenter: PokemonListInteractorOutputDelegate {
         view?.updateTableView(pokemons: pokemon)
     }
     func didFetchPokemonDetails(pokemon: PokemonData) {
-        view?.updateDetailsFetchInCell(pokemon: pokemon)
+        view?.updateDetailsFetchInCell(pokemonToPaint: pokemon)
         //cell?.updatePokemonCellData(pokemon: pokemon) //It works!
 
     }

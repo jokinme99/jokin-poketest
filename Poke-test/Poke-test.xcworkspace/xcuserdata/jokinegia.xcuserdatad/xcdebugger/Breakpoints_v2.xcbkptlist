@@ -78,8 +78,8 @@
             filePath = "Poke-test/PokemonList/PokemonList/PokemonListViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "56"
-            endingLineNumber = "56"
+            startingLineNumber = "51"
+            endingLineNumber = "51"
             landmarkName = "updateTableView(pokemons:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -94,8 +94,8 @@
             filePath = "Poke-test/PokemonList/PokemonList/PokemonListViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "77"
-            endingLineNumber = "77"
+            startingLineNumber = "72"
+            endingLineNumber = "72"
             landmarkName = "tableView(_:didSelectRowAt:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -218,8 +218,8 @@
             filePath = "Poke-test/PokemonList/PokemonList/PokemonListViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "78"
-            endingLineNumber = "78"
+            startingLineNumber = "73"
+            endingLineNumber = "73"
             landmarkName = "tableView(_:didSelectRowAt:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -234,8 +234,8 @@
             filePath = "Poke-test/PokemonList/PokemonCell.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "38"
-            endingLineNumber = "38"
+            startingLineNumber = "39"
+            endingLineNumber = "39"
             landmarkName = "updatePokemonInCell(pokemonToFetch:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -298,9 +298,9 @@
             filePath = "Poke-test/PokemonList/PokemonCell.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "45"
-            endingLineNumber = "45"
-            landmarkName = "checkIfFavouritePokemon(pokemonName:)"
+            startingLineNumber = "46"
+            endingLineNumber = "46"
+            landmarkName = "checkIfFavouritePokemon(pokemonToCheck:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -314,9 +314,9 @@
             filePath = "Poke-test/PokemonList/PokemonCell.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "43"
-            endingLineNumber = "43"
-            landmarkName = "checkIfFavouritePokemon(pokemonName:)"
+            startingLineNumber = "44"
+            endingLineNumber = "44"
+            landmarkName = "checkIfFavouritePokemon(pokemonToCheck:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -330,8 +330,8 @@
             filePath = "Poke-test/PokemonList/PokemonList/PokemonListViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "55"
-            endingLineNumber = "55"
+            startingLineNumber = "50"
+            endingLineNumber = "50"
             landmarkName = "updateTableView(pokemons:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -346,9 +346,9 @@
             filePath = "Poke-test/PokemonList/PokemonList/PokemonListViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "46"
-            endingLineNumber = "46"
-            landmarkName = "updateDetailsFetchInCell(pokemon:)"
+            startingLineNumber = "43"
+            endingLineNumber = "43"
+            landmarkName = "updateDetailsFetchInCell(pokemonToPaint:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -362,9 +362,25 @@
             filePath = "Poke-test/PokemonList/PokemonList/PokemonListViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "72"
-            endingLineNumber = "72"
+            startingLineNumber = "67"
+            endingLineNumber = "67"
             landmarkName = "tableView(_:cellForRowAt:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "0009D556-4059-445A-89D5-E3A2B916BDDB"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Poke-test/PokemonList/PokemonList/PokemonListViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "44"
+            endingLineNumber = "44"
+            landmarkName = "updateDetailsFetchInCell(pokemonToPaint:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
