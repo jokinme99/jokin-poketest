@@ -10,13 +10,14 @@ import RealmSwift
 class PokemonListInteractor : PokemonListInteractorDelegate{
     
     var presenter: PokemonListInteractorOutputDelegate?
-    
+    var view: PokemonListViewDelegate?
     func fetchPokemonList() {
         PokemonManager.shared.fetchList { pokemonList, error in
             if let error = error {
                 self.presenter?.didFailWith(error: error)
             } else {
                 self.presenter?.didFetchPokemonList(pokemon: pokemonList!)
+                
             }
         }
     }

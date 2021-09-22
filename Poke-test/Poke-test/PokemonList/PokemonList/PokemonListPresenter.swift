@@ -29,7 +29,6 @@ extension PokemonListPresenter: PokemonListInteractorOutputDelegate {
     func didFetchFavourites(favourites: [Results]) {
         view?.updateTableViewFavourites()
         view?.updateFavouritesFetchInCell(favourites: favourites)
-        
     }
     
     func didFailWith(error: Error) {
@@ -39,9 +38,8 @@ extension PokemonListPresenter: PokemonListInteractorOutputDelegate {
     func didFetchPokemonList(pokemon: PokemonListData) {
         view?.updateTableView(pokemons: pokemon)
     }
-    func didFetchPokemonDetails(pokemon: PokemonData) {
+    func didFetchPokemonDetails(pokemon: PokemonData) {//When doing this method calls the method of the view
         view?.updateDetailsFetchInCell(pokemonToPaint: pokemon)
-        //cell?.updatePokemonCellData(pokemon: pokemon) //It works!
-
+        //cell?.paintCell(pokemonToPaint: pokemon)
     }
 }

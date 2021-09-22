@@ -14,7 +14,6 @@ protocol PokemonListCellDelegate: AnyObject{ // TableView cell
     func checkIfFavouritePokemon(pokemonToCheck: Results)// Checks if it's a favourite
     func updatePokemonInCell(pokemonToFetch: Results) //Update pokemon in cell
     func paintCell(pokemonToPaint: PokemonData)
-    //func updatePokemonCellData(pokemon: PokemonData) //Update pokemons's type and id
 
 }
 

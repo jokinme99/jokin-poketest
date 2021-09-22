@@ -10,7 +10,7 @@ class PokemonCell: UITableViewCell { // Class in charge of the cell
     @IBOutlet weak var favouriteImage: UIImageView!
     @IBOutlet weak var idLabel: UILabel!
     
-    //ToDo: Fetch de favoritos y detalles del pokemon solo no funcionan en la cell!
+    //ToDo: Fetch de detalles del pokemon solo no funcionan en la cell!
     
     
     var pokemon: Results?
@@ -36,13 +36,13 @@ class PokemonCell: UITableViewCell { // Class in charge of the cell
 extension PokemonCell: PokemonListCellDelegate{
     
     func updatePokemonInCell(pokemonToFetch: Results) { //It works
-        self.pokemon = pokemonToFetch
-        //presenter?.fetchPokemonDetails(pokemon: pokemonToFetch)
+        //self.pokemon = pokemonToFetch
+        presenter?.fetchPokemonDetails(pokemon: pokemonToFetch)
         self.pokemonNameLabel.text = pokemonToFetch.name?.capitalized
         self.checkIfFavouritePokemon(pokemonToCheck: pokemonToFetch)
     }
     func checkIfFavouritePokemon(pokemonToCheck: Results){
-        for favourite in favouritesList{
+        for favourite in self.favouritesList{
             if favourite.name == pokemonToCheck.name{
                 self.favouriteImage.image = UIImage(systemName: "star.fill")
             }
@@ -50,17 +50,18 @@ extension PokemonCell: PokemonListCellDelegate{
         self.view?.updateTableViewFavourites()
     }
     func paintCell(pokemonToPaint: PokemonData){
-        setColor(pokemonToPaint.types[0].type.name, pokemonNameLabel)
-        idLabel.text = "#\(pokemonToPaint.id)"
-        setColor(pokemonToPaint.types[0].type.name, idLabel)
-        //view?.updateTableViewFavourites()
+        print("PokemonToPaint passed by method: \(pokemonToPaint.name)") //OK!
+        self.setColor((pokemonToPaint.types[0].type.name), pokemonNameLabel)
+        self.idLabel.text = "#\(pokemonToPaint.id)"
+        self.setColor((pokemonToPaint.types[0].type.name), idLabel)
+        
     }
 }
 
 
 //MARK: - Painting methods
 extension PokemonCell{ // Methods in charge of colouring the cell
- 
+    
     func setPokemonBackgroundColor(_ red: CGFloat, _ green: CGFloat, _ blue: CGFloat, _ label: UILabel){
         label.backgroundColor = .init(red: red/255, green: green/255, blue: blue/255, alpha: 1)
     }

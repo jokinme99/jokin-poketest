@@ -18,8 +18,10 @@ class PokemonListViewController: UIViewController { //SearchBar must be instead 
     var savefilteredOrder : [Results] = []
     var pokemonSelected: Results?
     var cell = PokemonCell()
+    var cellDelegate: PokemonListCellDelegate?
     var presenter: PokemonListPresenterDelegate?
     var favouritesList: [Results] = []
+    var pokemonInCell: Results?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,20 +30,27 @@ class PokemonListViewController: UIViewController { //SearchBar must be instead 
         tableView.register(UINib(nibName: "PokemonCell", bundle: nil), forCellReuseIdentifier: "PokemonNameCell")
         orderByButton.addTarget(self, action: #selector(pressed), for: .touchUpInside)
         presenter?.fetchFavourites()
+        
     }
     override func viewWillAppear(_ animated: Bool) { //When adding/deleting a pokemon the favourites list & the tableView have to load again
         presenter?.fetchFavourites()
-        self.tableView.reloadData()
+        //self.tableView.reloadData()
     }
 }
 
 extension PokemonListViewController: PokemonListViewDelegate {
     func updateFavouritesFetchInCell(favourites: [Results]) {
         self.favouritesList = favourites
+        
     }
     
-    func updateDetailsFetchInCell(pokemonToPaint: PokemonData) {
-            cell.paintCell(pokemonToPaint: pokemonToPaint)
+    func updateDetailsFetchInCell(pokemonToPaint: PokemonData) { //2nd step
+        //Solo pinta el ultimo pokemon
+        //Al hacer scroll se pintan bien
+        //Por cada vez que se fetchee se debe pintar la celda
+        self.cell.paintCell(pokemonToPaint: pokemonToPaint)
+       //Si contiene el valor del nombre del pokemon a pintar pinta la celda
+        
     }
     
     func updateTableViewFavourites() {
@@ -58,22 +67,27 @@ extension PokemonListViewController: PokemonListViewDelegate {
 //MARK: - TableView Methods
 extension PokemonListViewController:UITableViewDelegate, UITableViewDataSource{ // Methods in charge of the UITableViewDelegate methods and the UITableViewDataSource methods
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return filtered.count;
+        return filtered.count; //Row count
         
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         cell = tableView.dequeueReusableCell(withIdentifier: "PokemonNameCell", for: indexPath) as! PokemonCell
-        let pokemonInCell = filtered[indexPath.row]
+        pokemonInCell = filtered[indexPath.row]//It works!
         cell.favouritesList = favouritesList
-        cell.updatePokemonInCell(pokemonToFetch: pokemonInCell)
-        presenter?.fetchPokemonDetails(pokemon: pokemonInCell)
+        cell.updatePokemonInCell(pokemonToFetch: pokemonInCell!)//OK!!!
+        presenter?.fetchPokemonDetails(pokemon: pokemonInCell!)//FIX
+        print("Pokemon in row: \(pokemonInCell?.name ?? "")")
         return cell
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         pokemonSelected = filtered[indexPath.row]
         presenter?.openPokemonDetail(with: pokemonSelected!)//It works
     }
-
+    
+}
+//MARK: - FetchPokemonDetails method definition
+extension PokemonListViewController{
+    //The first row calls this method-> This fetchs the introduced pokemon and returns the result of the fetching in a method called didFetchPokemonDetails(In the interactor)->This method returns the value of the func didFetchPokemonDetails in to another func called updateDetailsFetchInCell(In the presenter)->This method takes the value received and sends it to the cell with a func called paintCell(In the view)-> This method comes up with the data (PokemonData defined in the Models: The pokemons's types, name and id) received of the before mentioned methods and what it does is the next: Sets introduced pokemon's Id and depending of the first(mayor) type paints the cell of one colour.
 }
 //MARK: - SearchBar Delegate methods
 extension PokemonListViewController:UISearchBarDelegate{ // Method in charge of updating filteredData based on the text in the Search Box
@@ -94,6 +108,7 @@ extension PokemonListViewController:UISearchBarDelegate{ // Method in charge of 
         self.tableView.reloadData()
     }
 }
+//MARK: - OrderBy Buttons methods
 extension PokemonListViewController{ // Methods in charge of the orderBy buttons
     @objc func pressed(_ sender: UIButton!) {
         if orderByButton.titleLabel?.text == "Order by Name"{
