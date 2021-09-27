@@ -1,20 +1,17 @@
 
 import Foundation
 import Alamofire
-protocol PokemonListManagerDelegate { //Protocol needed to fetch the pokemon list
-    func didUpdatePokemonList(_ pokemonManager: PokemonManager, pokemon: PokemonListData)
-    func didFailWithError(error:Error)
-}
-protocol PokemonDetailsManagerDelegate { //Protocol needed to fetch the pokemon details list
-    func didUpdatePokemonDetails(_ pokemonManager: PokemonManager, pokemon: PokemonData)
-    func didFailWithError(error: Error)
-}
+
 
 struct PokemonManager{
     static var shared = PokemonManager() //Singleton
     
     func fetchList( _ completion:  @escaping  (PokemonListData?, Error?) -> Void){
+#if DEBUG
         let pokemonListURL = "https://pokeapi.co/api/v2/pokemon/?limit=1118" //1118
+#else
+        let pokemonListURL = "https://pokeapi.co/api/v2/pokemon/?limit=1118" //1118
+#endif
         AF.request(pokemonListURL,
                    method: .get,
                    encoding: URLEncoding.queryString,
@@ -45,5 +42,6 @@ struct PokemonManager{
                 }
             }
     }
+
 }
 

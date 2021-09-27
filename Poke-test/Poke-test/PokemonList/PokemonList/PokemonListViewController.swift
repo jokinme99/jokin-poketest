@@ -43,15 +43,6 @@ extension PokemonListViewController: PokemonListViewDelegate {
         
     }
     
-    func updateDetailsFetchInCell(pokemonToPaint: PokemonData) { //2nd step
-        //Solo pinta el ultimo pokemon
-        //Al hacer scroll se pintan bien
-        //Por cada vez que se fetchee se debe pintar la celda
-        self.cell.paintCell(pokemonToPaint: pokemonToPaint)
-       //Si contiene el valor del nombre del pokemon a pintar pinta la celda
-        
-    }
-    
     func updateTableViewFavourites() {
         self.tableView.reloadData()
     }
@@ -71,11 +62,9 @@ extension PokemonListViewController:UITableViewDelegate, UITableViewDataSource{ 
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         cell = tableView.dequeueReusableCell(withIdentifier: "PokemonNameCell", for: indexPath) as! PokemonCell
-        pokemonInCell = filtered[indexPath.row]//It works!
+        pokemonInCell = filtered[indexPath.row]
         cell.favouritesList = favouritesList
-        cell.updatePokemonInCell(pokemonToFetch: pokemonInCell!)//OK!!!
-        presenter?.fetchPokemonDetails(pokemon: pokemonInCell!)//FIX
-        print("Pokemon in row: \(pokemonInCell?.name ?? "")")
+        cell.updatePokemonInCell(pokemonToFetch: pokemonInCell!)
         return cell
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -83,10 +72,6 @@ extension PokemonListViewController:UITableViewDelegate, UITableViewDataSource{ 
         presenter?.openPokemonDetail(with: pokemonSelected!)//It works
     }
     
-}
-//MARK: - FetchPokemonDetails method definition
-extension PokemonListViewController{
-    //The first row calls this method-> This fetchs the introduced pokemon and returns the result of the fetching in a method called didFetchPokemonDetails(In the interactor)->This method returns the value of the func didFetchPokemonDetails in to another func called updateDetailsFetchInCell(In the presenter)->This method takes the value received and sends it to the cell with a func called paintCell(In the view)-> This method comes up with the data (PokemonData defined in the Models: The pokemons's types, name and id) received of the before mentioned methods and what it does is the next: Sets introduced pokemon's Id and depending of the first(mayor) type paints the cell of one colour.
 }
 //MARK: - SearchBar Delegate methods
 extension PokemonListViewController:UISearchBarDelegate{ // Method in charge of updating filteredData based on the text in the Search Box

@@ -14,14 +14,11 @@ class PokemonListPresenter : PokemonListPresenterDelegate {
     func fetchPokemonList() { 
         interactor?.fetchPokemonList()
     }
-    func fetchFavourites(){ //It works but not in the cell!
+    func fetchFavourites(){ 
         interactor?.fetchFavouritePokemons()
     }
     func openPokemonDetail(with selectedPokemon: Results) {
         wireframe?.openPokemonDetailsWindow(with: selectedPokemon)
-    }
-    func fetchPokemonDetails(pokemon: Results) {
-        interactor?.fetchPokemonDetails(pokemon: pokemon)
     }
 }
 
@@ -38,8 +35,5 @@ extension PokemonListPresenter: PokemonListInteractorOutputDelegate {
     func didFetchPokemonList(pokemon: PokemonListData) {
         view?.updateTableView(pokemons: pokemon)
     }
-    func didFetchPokemonDetails(pokemon: PokemonData) {//When doing this method calls the method of the view
-        view?.updateDetailsFetchInCell(pokemonToPaint: pokemon)
-        //cell?.paintCell(pokemonToPaint: pokemon)
-    }
+
 }

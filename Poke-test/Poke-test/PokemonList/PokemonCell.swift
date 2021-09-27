@@ -37,25 +37,28 @@ extension PokemonCell: PokemonListCellDelegate{
     
     func updatePokemonInCell(pokemonToFetch: Results) { //It works
         self.pokemon = pokemonToFetch
-        presenter?.fetchPokemonDetails(pokemon: pokemonToFetch)
+        PokemonManager.shared.fetchPokemon(pokemonSelectedName: pokemonToFetch.name!,{ pokemonData, error in
+            if let error = error {
+                print(error)
+            }else{
+                self.setColor((pokemonData!.types[0].type.name), self.pokemonNameLabel)
+                self.idLabel.text = "#\(pokemonData?.id ?? 0)"
+                self.setColor((pokemonData!.types[0].type.name), self.idLabel)
+                self.view?.updateTableViewFavourites()
+            }
+
+        })
+                                           
         self.pokemonNameLabel.text = pokemonToFetch.name?.capitalized
         self.checkIfFavouritePokemon(pokemonToCheck: pokemonToFetch)
     }
     func checkIfFavouritePokemon(pokemonToCheck: Results){
         for favourite in self.favouritesList{
             if favourite.name == pokemonToCheck.name{
-                //self.favouriteImage.image = UIImage(named: "fullStar")
                 self.favouriteImage.image = imageWithImage(image: UIImage(named: "fullStar")!, scaledToSize: CGSize(width: 20, height: 20))
             }
         }
         self.view?.updateTableViewFavourites()
-    }
-    func paintCell(pokemonToPaint: PokemonData){
-        print("PokemonToPaint passed by method: \(pokemonToPaint.name)") //OK!
-        self.setColor((pokemonToPaint.types[0].type.name), pokemonNameLabel)
-        self.idLabel.text = "#\(pokemonToPaint.id)"
-        self.setColor((pokemonToPaint.types[0].type.name), idLabel)
-        
     }
 }
 
