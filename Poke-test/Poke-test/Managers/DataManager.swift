@@ -4,8 +4,9 @@ import Alamofire
 
 
 struct PokemonManager{
-    static var shared = PokemonManager() //Singleton
+    static var shared = PokemonManager() 
     
+    //MARK: - Fetch Pokemon List
     func fetchList( _ completion:  @escaping  (PokemonListData?, Error?) -> Void){
 #if DEBUG
         let pokemonListURL = "https://pokeapi.co/api/v2/pokemon/?limit=1118" //1118
@@ -26,6 +27,7 @@ struct PokemonManager{
                 }
             }
     }
+    //MARK: - Fetch Pokemon Details
     func fetchPokemon(pokemonSelectedName: String, _ completion:  @escaping  (PokemonData?, Error?) -> Void){
         let pokemonDetailsURL = "https://pokeapi.co/api/v2/pokemon/\(pokemonSelectedName)"
         AF.request(pokemonDetailsURL,
@@ -42,6 +44,6 @@ struct PokemonManager{
                 }
             }
     }
-
+    
 }
 

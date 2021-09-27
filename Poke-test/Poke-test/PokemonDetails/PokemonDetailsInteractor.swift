@@ -1,15 +1,10 @@
-//
-//  PokemonDetailsInteractor.swift
-//  Poke-test
-//
-//  Created by Jokin Egia on 8/9/21.
-//
 
 import RealmSwift
 class PokemonDetailsInteractor : PokemonDetailsInteractorDelegate {
     
     var presenter: PokemonDetailsInteractorOutputDelegate?
     var dataBaseDelegate: DDBBManagerDelegate?
+    //MARK: - Methods that do the functionality
     func fetchPokemon(pokemon: Results) {
         PokemonManager.shared.fetchPokemon(pokemonSelectedName: pokemon.name!, { pokemonData, error in
             if let error = error{

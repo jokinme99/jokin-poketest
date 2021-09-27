@@ -2,19 +2,18 @@
 import UIKit
 import RealmSwift
 
-protocol DDBBManagerDelegate:AnyObject{ //Protocol needed to stablish changes in the realm database
+protocol DDBBManagerDelegate:AnyObject{
     func didSaveFavouriteWithError(error: Error?)
     func didIsSaved(saved: Bool)
     func didDeleteFavouriteWithError(error: Error?)
 }
 
 class DDBBManager {
-    static let shared = DDBBManager() //Singleton
+    static let shared = DDBBManager()
     private let configuration: Realm.Configuration!
-    
     private init() {
         let url = FileManager.default.urls(for: .documentDirectory,
-                                           in: .userDomainMask)
+                                              in: .userDomainMask)
             .last?
             .appendingPathComponent("pokedexapp_v1.realm")
         
@@ -29,6 +28,8 @@ class DDBBManager {
                                             shouldCompactOnLaunch: nil,
                                             objectTypes: nil)
     }
+    
+    //MARK: - Removes all data in Realm's DB
     func removeAll(){
         do{
             let realm = try Realm(configuration: self.configuration)
@@ -41,6 +42,8 @@ class DDBBManager {
             
         }
     }
+    
+    //MARK: - Writes data into Realm's DB
     func write(_ block:()-> Void, finish: ((Error?)-> Void)? = nil){
         do{
             let realm = try Realm(configuration: self.configuration)
@@ -51,6 +54,8 @@ class DDBBManager {
             finish?(error)
         }
     }
+    
+    //MARK: - Saves data into Realm's DB
     func save <T: Object>(_ object: T, _ block: ((Error?) -> Void)?) {
         do{
             let realm = try Realm(configuration: self.configuration)
@@ -64,6 +69,8 @@ class DDBBManager {
             
         }
     }
+    
+    //MARK: - Deletes data from Realms's DB
     func delete <T: Object>(_ object: T, _ block: ((Error?)-> Void)?){
         do{
             let realm = try Realm(configuration: self.configuration)
@@ -76,6 +83,8 @@ class DDBBManager {
             block?(error)
         }
     }
+    
+    //MARK: - Gets data from Realm's DB
     func get <T: Object>(_ object: T.Type, filter: String? = nil)-> [T]{
         var result: [T] = [T]()
         do{

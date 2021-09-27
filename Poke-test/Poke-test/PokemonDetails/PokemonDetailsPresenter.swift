@@ -1,9 +1,3 @@
-//
-//  PokemonDetailsPresenter.swift
-//  Poke-test
-//
-//  Created by Jokin Egia on 8/9/21.
-//
 
 import RealmSwift
 
@@ -14,6 +8,9 @@ class PokemonDetailsPresenter : PokemonDetailsPresenterDelegate {
     var wireframe: PokemonDetailsWireframeDelegate?
     var cell: PokemonListCellDelegate?
     var tableView: PokemonListViewDelegate?
+    
+    //MARK: - These methods call the method that do the functionality
+    
     func fetchPokemon(pokemon: Results) {
         interactor?.fetchPokemon(pokemon: pokemon)
     }
@@ -30,7 +27,7 @@ class PokemonDetailsPresenter : PokemonDetailsPresenterDelegate {
 }
 
 extension PokemonDetailsPresenter: PokemonDetailsInteractorOutputDelegate {
-    
+    //MARK: - Methods that return the results from the functionality methods
     func didFetchPokemon(pokemon: PokemonData) {
         view?.updateDetailsView(pokemon: pokemon)
     }

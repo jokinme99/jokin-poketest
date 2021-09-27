@@ -1,50 +1,48 @@
-//
-//  PokemonListProtocols.swift
-//  Poke-test
-//
-//  Created by Jokin Egia on 8/9/21.
-//
 
 import UIKit
 import RealmSwift
 
-
-protocol PokemonListCellDelegate: AnyObject{ // TableView cell
+//MARK: - CellDelegate methods
+protocol PokemonListCellDelegate: AnyObject{
     var presenter: PokemonListPresenterDelegate? {get set}
-    func checkIfFavouritePokemon(pokemonToCheck: Results)// Checks if it's a favourite
-    func updatePokemonInCell(pokemonToFetch: Results) //Update pokemon in cell
+    func checkIfFavouritePokemon(pokemonToCheck: Results)
+    func updatePokemonInCell(pokemonToFetch: Results)
 }
 
-protocol PokemonListViewDelegate: AnyObject { // What will appear in the screen
+//MARK: - ViewControllerDelegate methods
+protocol PokemonListViewDelegate: AnyObject {
     var presenter: PokemonListPresenterDelegate? {get set}
-    func updateTableView(pokemons: PokemonListData) // Update tableView after fetching pokemon list
-    func updateTableViewFavourites() // Update tableView after fetching favourites list(When added or deleted a star is highlighted in the cell-> to be able to see the star, the table needs to be reloaded)
+    func updateTableView(pokemons: PokemonListData)
+    func updateTableViewFavourites()
     func updateFavouritesFetchInCell(favourites: [Results])
 }
 
-protocol PokemonListWireframeDelegate: AnyObject { // Connection with the other .xib
-    static func createPokemonListModule() -> UIViewController // To create the window
-    func openPokemonDetailsWindow(with pokemon: Results) // Needs a pokemon to open the details page of the selected pokemon
+//MARK: - SceneController methods: Connections between .xib
+protocol PokemonListWireframeDelegate: AnyObject {
+    static func createPokemonListModule() -> UIViewController
+    func openPokemonDetailsWindow(with pokemon: Results)
 }
 
-protocol PokemonListPresenterDelegate: AnyObject { // Connection between everything(interactor, view and wireframe)
+//MARK: - PresenterDelegate methods: Connection between methods
+protocol PokemonListPresenterDelegate: AnyObject {
     var cell: PokemonListCellDelegate? {get set}
     var view: PokemonListViewDelegate? {get set}
     var interactor: PokemonListInteractorDelegate? {get set}
     var wireframe: PokemonListWireframeDelegate? {get set}
-    func fetchPokemonList() // Connect the fetching of the pokemon list to the view
-    func fetchFavourites() // Connect the fetching of the favourites list to the cell
-    func openPokemonDetail(with selectedPokemon: Results) // Send the selected pokemon/cell to the wireframe
+    func fetchPokemonList()
+    func fetchFavourites()
+    func openPokemonDetail(with selectedPokemon: Results)
 }
 
-//Interactor makes all the fetchings
-protocol PokemonListInteractorDelegate: AnyObject { // Methods sent FROM the presenter to make the fetching
+//MARK: - InteractorDelegate methods: Methods that do the functionality
+protocol PokemonListInteractorDelegate: AnyObject {
     var presenter: PokemonListInteractorOutputDelegate? {get set}
-    func fetchPokemonList() //Fetch the pokemon list
-    func fetchFavouritePokemons() //Fetch the favourites list
+    func fetchPokemonList()
+    func fetchFavouritePokemons()
 }
 
-protocol PokemonListInteractorOutputDelegate: AnyObject { // Methods sent TO the presenter with the results of the fetching
+//MARK: - InteractorOutPutDelegate methods: Methods that send the data received from the InteractorDelegate methods
+protocol PokemonListInteractorOutputDelegate: AnyObject {
     func didFetchPokemonList(pokemon: PokemonListData)
     func didFailWith(error: Error)
     func didFetchFavourites(favourites: [Results])

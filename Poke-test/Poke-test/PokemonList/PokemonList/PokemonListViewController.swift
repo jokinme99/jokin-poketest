@@ -1,13 +1,7 @@
-//
-//  PokemonListViewController.swift
-//  Poke-test
-//
-//  Created by Jokin Egia on 8/9/21.
-//
 
 import UIKit
 
-class PokemonListViewController: UIViewController { //SearchBar must be instead of searchController!!
+class PokemonListViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var orderByButton: UIButton!
@@ -31,21 +25,27 @@ class PokemonListViewController: UIViewController { //SearchBar must be instead 
         orderByButton.addTarget(self, action: #selector(pressed), for: .touchUpInside)
         presenter?.fetchFavourites()
     }
-    override func viewWillAppear(_ animated: Bool) { //When adding/deleting a pokemon the favourites list & the tableView have to load again
+    override func viewWillAppear(_ animated: Bool) {
+        //When adding/deleting a pokemon the favourites list & the tableView have to load again
         presenter?.fetchFavourites()
-        //self.tableView.reloadData()
     }
 }
 
+//MARK: - ViewControllerDelegate methods
 extension PokemonListViewController: PokemonListViewDelegate {
+    
+    //MARK: - Updates the favourite list after the fetching
     func updateFavouritesFetchInCell(favourites: [Results]) {
         self.favouritesList = favourites
         
     }
     
+    //MARK: - Updates tableView after adding/deleting favourites
     func updateTableViewFavourites() {
         self.tableView.reloadData()
     }
+    
+    //MARK: - Updates tableView after fetching pokemon list
     func updateTableView(pokemons: PokemonListData) {
         self.pokemon = Array(pokemons.results)
         self.filtered = self.pokemon
@@ -54,8 +54,9 @@ extension PokemonListViewController: PokemonListViewDelegate {
     }
 }
 
+
 //MARK: - TableView Methods
-extension PokemonListViewController:UITableViewDelegate, UITableViewDataSource{ // Methods in charge of the UITableViewDelegate methods and the UITableViewDataSource methods
+extension PokemonListViewController:UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return filtered.count; //Row count
         
@@ -74,7 +75,7 @@ extension PokemonListViewController:UITableViewDelegate, UITableViewDataSource{ 
     
 }
 //MARK: - SearchBar Delegate methods
-extension PokemonListViewController:UISearchBarDelegate{ // Method in charge of updating filteredData based on the text in the Search Box
+extension PokemonListViewController:UISearchBarDelegate{
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         if searchText.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines).isEmpty {
             self.filtered = self.pokemon
@@ -84,7 +85,7 @@ extension PokemonListViewController:UISearchBarDelegate{ // Method in charge of 
                 guard let name = pokemon.name else { return false }
                 return name.lowercased().contains(searchText.lowercased())
             })
-            self.savefilteredOrder = self.pokemon.filter({ pokemon in //For when searching a pokemon have the possibility to order the list
+            self.savefilteredOrder = self.pokemon.filter({ pokemon in
                 guard let name = pokemon.name else { return false }
                 return name.lowercased().contains(searchText.lowercased())
             })
@@ -93,7 +94,7 @@ extension PokemonListViewController:UISearchBarDelegate{ // Method in charge of 
     }
 }
 //MARK: - OrderBy Buttons methods
-extension PokemonListViewController{ // Methods in charge of the orderBy buttons
+extension PokemonListViewController{
     @objc func pressed(_ sender: UIButton!) {
         if orderByButton.titleLabel?.text == "Order by Name"{
             orderByButton.setTitle("Order by Id", for: .normal)
@@ -110,7 +111,7 @@ extension PokemonListViewController{ // Methods in charge of the orderBy buttons
 }
 
 //MARK: - Data Manipulation Methods
-extension PokemonListViewController{ //Method in charge of the list of needed delegates
+extension PokemonListViewController{
     func loadDelegates(){
         searchBar.delegate = self
         tableView.delegate = self

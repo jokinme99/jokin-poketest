@@ -1,9 +1,3 @@
-//
-//  PokemonListInteractor.swift
-//  Poke-test
-//
-//  Created by Jokin Egia on 8/9/21.
-//
 
 import RealmSwift
 
@@ -11,6 +5,9 @@ class PokemonListInteractor : PokemonListInteractorDelegate{
     
     var presenter: PokemonListInteractorOutputDelegate?
     var view: PokemonListViewDelegate?
+    //MARK: - Methods that do the functionality
+    
+    
     func fetchPokemonList() {
         PokemonManager.shared.fetchList { pokemonList, error in
             if let error = error {
@@ -21,11 +18,10 @@ class PokemonListInteractor : PokemonListInteractorDelegate{
             }
         }
     }
-    //DDBBManager.shared.get(Results.self) = DDBBManager.shared.loadFavourites()
-    func fetchFavouritePokemons(){//It does work!
+    
+    func fetchFavouritePokemons(){
         let favourites = DDBBManager.shared.get(Results.self)
         self.presenter?.didFetchFavourites(favourites: favourites)
     }
-
 }
 

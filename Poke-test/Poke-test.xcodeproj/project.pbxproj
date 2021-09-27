@@ -139,10 +139,10 @@
 		FDA34F0126E8955B00AE2143 /* PokemonDetails */ = {
 			isa = PBXGroup;
 			children = (
-				FDA34EF526E8954D00AE2143 /* PokemonDetailsPresenter.swift */,
-				FDA34EF626E8954D00AE2143 /* PokemonDetailsViewController.swift */,
-				FDA34EF726E8954D00AE2143 /* PokemonDetailsProtocols.swift */,
 				FDA34EF826E8954D00AE2143 /* PokemonDetailsInteractor.swift */,
+				FDA34EF526E8954D00AE2143 /* PokemonDetailsPresenter.swift */,
+				FDA34EF726E8954D00AE2143 /* PokemonDetailsProtocols.swift */,
+				FDA34EF626E8954D00AE2143 /* PokemonDetailsViewController.swift */,
 				FDA34EF926E8954D00AE2143 /* PokemonDetailsViewController.xib */,
 				FDA34EFA26E8954D00AE2143 /* PokemonDetailsWireframe.swift */,
 			);

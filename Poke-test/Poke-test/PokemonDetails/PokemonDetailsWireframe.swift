@@ -1,9 +1,3 @@
-//
-//  PokemonDetailsWireframe.swift
-//  Poke-test
-//
-//  Created by Jokin Egia on 8/9/21.
-//
 
 import UIKit
 
@@ -11,7 +5,7 @@ import UIKit
 class PokemonDetailsWireframe : PokemonDetailsWireframeDelegate {
     
     var viewController: UIViewController?
-
+    //MARK: - Method that makes the window(.xib)
     static func createPokemonDetailsModule(with pokemon: Results) -> UIViewController {
         let presenter = PokemonDetailsPresenter()
         let view = PokemonDetailsViewController()
@@ -19,7 +13,7 @@ class PokemonDetailsWireframe : PokemonDetailsWireframeDelegate {
         let interactor = PokemonDetailsInteractor()
         
         
-        presenter.didGetSelectedPokemon(with: pokemon)
+        //presenter.didGetSelectedPokemon(with: pokemon)
         view.selectedPokemon = pokemon // ??
         view.presenter = presenter
         presenter.view = view

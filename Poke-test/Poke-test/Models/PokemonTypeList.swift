@@ -1,8 +1,7 @@
 
 import Foundation
 
-//MARK: - Pokemon Types
-struct TypeName{ //All the types of pokemon
+struct TypeName{
     static let normal = "normal"
     static let fight = "fighting"
     static let flying = "flying"

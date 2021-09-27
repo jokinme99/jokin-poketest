@@ -3,15 +3,12 @@ import UIKit
 import RealmSwift
 
 
-class PokemonCell: UITableViewCell { // Class in charge of the cell
+class PokemonCell: UITableViewCell {
     
     @IBOutlet weak var pokemonBubble: UIView!
     @IBOutlet weak var pokemonNameLabel: UILabel!
     @IBOutlet weak var favouriteImage: UIImageView!
     @IBOutlet weak var idLabel: UILabel!
-    
-    //ToDo: Fetch de detalles del pokemon solo no funcionan en la cell!
-    
     
     var pokemon: Results?
     var favouritesList: [Results] = []
@@ -22,8 +19,8 @@ class PokemonCell: UITableViewCell { // Class in charge of the cell
         super.awakeFromNib()
         
     }
-    
-    override func prepareForReuse() {//Every time a cell is called with this method it will be a blank white cell
+    override func prepareForReuse() {
+        //Every time a cell is called with this method it will be a blank white cell
         super.prepareForReuse()
         backgroundColor = .white
         pokemonNameLabel.text = nil
@@ -33,9 +30,11 @@ class PokemonCell: UITableViewCell { // Class in charge of the cell
     
 }
 
+//MARK: - CellDelegate methods
 extension PokemonCell: PokemonListCellDelegate{
     
-    func updatePokemonInCell(pokemonToFetch: Results) { //It works
+    //MARK: - Sets each pokemon cell
+    func updatePokemonInCell(pokemonToFetch: Results) {
         self.pokemon = pokemonToFetch
         PokemonManager.shared.fetchPokemon(pokemonSelectedName: pokemonToFetch.name!,{ pokemonData, error in
             if let error = error {
@@ -46,12 +45,14 @@ extension PokemonCell: PokemonListCellDelegate{
                 self.setColor((pokemonData!.types[0].type.name), self.idLabel)
                 self.view?.updateTableViewFavourites()
             }
-
+            
         })
-                                           
+        
         self.pokemonNameLabel.text = pokemonToFetch.name?.capitalized
         self.checkIfFavouritePokemon(pokemonToCheck: pokemonToFetch)
     }
+    
+    //MARK: - Checks favourite pokemons
     func checkIfFavouritePokemon(pokemonToCheck: Results){
         for favourite in self.favouritesList{
             if favourite.name == pokemonToCheck.name{
@@ -62,11 +63,10 @@ extension PokemonCell: PokemonListCellDelegate{
     }
 }
 
-
 //MARK: - Painting methods
-extension PokemonCell{ // Methods in charge of colouring the cell
+extension PokemonCell{
     
-    //Func that sets an image size
+    //MARK: - Sets an image size
     func imageWithImage(image: UIImage, scaledToSize newSize: CGSize) -> UIImage {
         UIGraphicsBeginImageContext(newSize)
         image.draw(in: CGRect(x: 0 ,y: 0 ,width: newSize.width ,height: newSize.height))
@@ -75,12 +75,17 @@ extension PokemonCell{ // Methods in charge of colouring the cell
         return newImage!.withRenderingMode(.alwaysOriginal)
     }
     
+    //MARK: - Paints cell background
     func setPokemonBackgroundColor(_ red: CGFloat, _ green: CGFloat, _ blue: CGFloat, _ label: UILabel){
         label.backgroundColor = .init(red: red/255, green: green/255, blue: blue/255, alpha: 1) 
     }
+    
+    //MARK: - Paints cell text color
     func setPokemonTextColor(_ color: UIColor){
         pokemonNameLabel.textColor = color
     }
+    
+    //MARK: - Paints cell combining the background color and the text color
     func setColor(_ type: String, _ label: UILabel){
         switch type {
         case TypeName.normal:

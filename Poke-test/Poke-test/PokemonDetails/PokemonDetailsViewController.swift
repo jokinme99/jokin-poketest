@@ -1,9 +1,3 @@
-//
-//  PokemonDetailsViewController.swift
-//  Poke-test
-//
-//  Created by Jokin Egia on 8/9/21.
-//
 
 import UIKit
 import Alamofire
@@ -12,7 +6,7 @@ import RealmSwift
 
 
 class PokemonDetailsViewController: UIViewController {
-
+    
     @IBOutlet weak var backgroundView: UIView!
     @IBOutlet weak var labelPokemonType2: UILabel!
     @IBOutlet weak var imageAndNameView: UIView!
@@ -40,30 +34,32 @@ class PokemonDetailsViewController: UIViewController {
     }
 }
 
-
+//MARK: - ViewControllerDelegate methods
 extension PokemonDetailsViewController: PokemonDetailsViewDelegate {
-    func addFavourite(pokemon: Results) {//It works
+    
+    //MARK: - Sets the add/delete label wether it's a favourite or not
+    func addFavourite(pokemon: Results) {
         presenter?.addFavourite(pokemon: pokemon)
         favouritesButton.setTitle("Eliminar de favoritos", for: .normal)
         favouritesImage.image = UIImage(named: "emptyStar")
-        //favouritesImage.image = UIImage(systemName: "star")
     }
-    
-    func deleteFavourite(pokemon: Results) {//It doesn't work
+    func deleteFavourite(pokemon: Results) {
         presenter?.deleteFavourite(pokemon: pokemon)
         favouritesButton.setTitle("Añadir a favoritos", for: .normal)
         favouritesImage.image = UIImage(named: "fullStar")
-        //favouritesImage.image = UIImage(systemName: "star.fill")
     }
     
+    //MARK: - Gets the selected pokemon from the tableView
     func getSelectedPokemon(with pokemon: Results) {
         selectedPokemon = pokemon
     }
     
+    //MARK: - Gets the favourite list after the fetching
     func updateDetailsViewFavourites(favourites: [Results]) {
         self.favouritesList = favourites
     }
     
+    //MARK: - Updates view after fetching the details of the selected pokemon
     func updateDetailsView(pokemon: PokemonData) {
         self.labelPokemonName.text = pokemon.name.uppercased()
         self.labelPokemonType.text = pokemon.types[0].type.name.uppercased()
@@ -75,13 +71,9 @@ extension PokemonDetailsViewController: PokemonDetailsViewDelegate {
             return
         }
     }
-    
-    
-
 }
 //MARK: - Data Manipulation Method
-
-extension PokemonDetailsViewController{ //Method in charge of fetching the details of the specified pokemon
+extension PokemonDetailsViewController{
     func selectedPokemonInList(){
         if let pokemonToFetch = selectedPokemon{
             presenter?.fetchPokemon(pokemon: pokemonToFetch)
@@ -92,8 +84,7 @@ extension PokemonDetailsViewController{ //Method in charge of fetching the detai
 }
 
 //MARK: - Favourites button method
-
-extension PokemonDetailsViewController{ //Methods in charge of the favourites button
+extension PokemonDetailsViewController{
     @objc func pressed(_ sender: UIButton!) {
         if favouritesButton.titleLabel?.text == "Añadir a favoritos"{
             addFavourite(pokemon: selectedPokemon!)
@@ -102,21 +93,21 @@ extension PokemonDetailsViewController{ //Methods in charge of the favourites bu
         }
         
     }
-    func checkFavourite() { // It works
+    
+    func checkFavourite() {
         for favouritesFiltered in favouritesList{
             if favouritesFiltered.name == selectedPokemon?.name{
                 favouritesButton.setTitle("Eliminar de favoritos", for: .normal)
                 favouritesImage.image = UIImage(named: "emptyStar")
             }
         }
-
+        
     }
-
+    
 }
 
 //MARK: - Coloring methods
-
-extension PokemonDetailsViewController{ // Methods in charge of the colouring of the UIViewController
+extension PokemonDetailsViewController{ 
     func paintLabel(pokemon: PokemonData){
         if pokemon.types.count >= 2{
             self.labelPokemonType2.text = pokemon.types[1].type.name.uppercased()
@@ -212,24 +203,6 @@ extension PokemonDetailsViewController{ // Methods in charge of the colouring of
     }
 }
 
-//MARK: - PokemonDelegate Methods
-//extension PokemonDetailsViewController: PokemonDetailsManagerDelegate{ // Method in charge of the methods inside the PokemonManagerDelegate protocol
-//    func didUpdatePokemonDetails(_ pokemonManager: PokemonManager, pokemon: PokemonData) {
-//        DispatchQueue.main.async {
-//            self.labelPokemonName.text = pokemon.name.uppercased()
-//            self.labelPokemonType.text = pokemon.types[0].type.name.uppercased()
-//            self.labelPokemonId.text = "# \(pokemon.id)"
-//            self.paintLabel(pokemon: pokemon)
-//            if let downloadURL = URL(string: pokemon.sprites.front_default ?? ""){
-//                return  self.imagePokemon.af.setImage(withURL: downloadURL )
-//            }else {
-//                return
-//            }
-//        }
-//    }
-//    func didFailWithError(error: Error) {
-//        print(error)
-//    }
-//}
+
 
 

@@ -1,9 +1,4 @@
-//
-//  PokemonListPresenter.swift
-//  Poke-test
-//
-//  Created by Jokin Egia on 8/9/21.
-//
+
 import RealmSwift
 
 class PokemonListPresenter : PokemonListPresenterDelegate {
@@ -11,6 +6,9 @@ class PokemonListPresenter : PokemonListPresenterDelegate {
     var interactor: PokemonListInteractorDelegate?
     var wireframe: PokemonListWireframeDelegate?
     var cell: PokemonListCellDelegate?
+    
+    //MARK: - These methods call the method that do the functionality
+    
     func fetchPokemonList() { 
         interactor?.fetchPokemonList()
     }
@@ -22,7 +20,10 @@ class PokemonListPresenter : PokemonListPresenterDelegate {
     }
 }
 
+
 extension PokemonListPresenter: PokemonListInteractorOutputDelegate {
+    //MARK: - Methods that return the results from the functionality methods
+    
     func didFetchFavourites(favourites: [Results]) {
         view?.updateTableViewFavourites()
         view?.updateFavouritesFetchInCell(favourites: favourites)
@@ -35,5 +36,5 @@ extension PokemonListPresenter: PokemonListInteractorOutputDelegate {
     func didFetchPokemonList(pokemon: PokemonListData) {
         view?.updateTableView(pokemons: pokemon)
     }
-
+    
 }
