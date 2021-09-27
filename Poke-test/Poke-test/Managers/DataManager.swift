@@ -14,7 +14,7 @@ struct PokemonManager{
     static var shared = PokemonManager() //Singleton
     
     func fetchList( _ completion:  @escaping  (PokemonListData?, Error?) -> Void){
-        let pokemonListURL = "https://pokeapi.co/api/v2/pokemon/?limit=10" //1118
+        let pokemonListURL = "https://pokeapi.co/api/v2/pokemon/?limit=1118" //1118
         AF.request(pokemonListURL,
                    method: .get,
                    encoding: URLEncoding.queryString,

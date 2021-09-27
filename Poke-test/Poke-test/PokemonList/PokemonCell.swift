@@ -36,7 +36,7 @@ class PokemonCell: UITableViewCell { // Class in charge of the cell
 extension PokemonCell: PokemonListCellDelegate{
     
     func updatePokemonInCell(pokemonToFetch: Results) { //It works
-        //self.pokemon = pokemonToFetch
+        self.pokemon = pokemonToFetch
         presenter?.fetchPokemonDetails(pokemon: pokemonToFetch)
         self.pokemonNameLabel.text = pokemonToFetch.name?.capitalized
         self.checkIfFavouritePokemon(pokemonToCheck: pokemonToFetch)
@@ -44,7 +44,8 @@ extension PokemonCell: PokemonListCellDelegate{
     func checkIfFavouritePokemon(pokemonToCheck: Results){
         for favourite in self.favouritesList{
             if favourite.name == pokemonToCheck.name{
-                self.favouriteImage.image = UIImage(systemName: "star.fill")
+                //self.favouriteImage.image = UIImage(named: "fullStar")
+                self.favouriteImage.image = imageWithImage(image: UIImage(named: "fullStar")!, scaledToSize: CGSize(width: 20, height: 20))
             }
         }
         self.view?.updateTableViewFavourites()
@@ -62,8 +63,17 @@ extension PokemonCell: PokemonListCellDelegate{
 //MARK: - Painting methods
 extension PokemonCell{ // Methods in charge of colouring the cell
     
+    //Func that sets an image size
+    func imageWithImage(image: UIImage, scaledToSize newSize: CGSize) -> UIImage {
+        UIGraphicsBeginImageContext(newSize)
+        image.draw(in: CGRect(x: 0 ,y: 0 ,width: newSize.width ,height: newSize.height))
+        let newImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return newImage!.withRenderingMode(.alwaysOriginal)
+    }
+    
     func setPokemonBackgroundColor(_ red: CGFloat, _ green: CGFloat, _ blue: CGFloat, _ label: UILabel){
-        label.backgroundColor = .init(red: red/255, green: green/255, blue: blue/255, alpha: 1)
+        label.backgroundColor = .init(red: red/255, green: green/255, blue: blue/255, alpha: 1) 
     }
     func setPokemonTextColor(_ color: UIColor){
         pokemonNameLabel.textColor = color

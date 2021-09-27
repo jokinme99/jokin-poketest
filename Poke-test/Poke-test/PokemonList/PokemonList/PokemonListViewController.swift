@@ -30,7 +30,6 @@ class PokemonListViewController: UIViewController { //SearchBar must be instead 
         tableView.register(UINib(nibName: "PokemonCell", bundle: nil), forCellReuseIdentifier: "PokemonNameCell")
         orderByButton.addTarget(self, action: #selector(pressed), for: .touchUpInside)
         presenter?.fetchFavourites()
-        
     }
     override func viewWillAppear(_ animated: Bool) { //When adding/deleting a pokemon the favourites list & the tableView have to load again
         presenter?.fetchFavourites()

@@ -10,6 +10,7 @@ import Alamofire
 import AlamofireImage
 import RealmSwift
 
+
 class PokemonDetailsViewController: UIViewController {
 
     @IBOutlet weak var backgroundView: UIView!
@@ -39,17 +40,20 @@ class PokemonDetailsViewController: UIViewController {
     }
 }
 
+
 extension PokemonDetailsViewController: PokemonDetailsViewDelegate {
     func addFavourite(pokemon: Results) {//It works
         presenter?.addFavourite(pokemon: pokemon)
         favouritesButton.setTitle("Eliminar de favoritos", for: .normal)
-        favouritesImage.image = UIImage(systemName: "star")
+        favouritesImage.image = UIImage(named: "emptyStar")
+        //favouritesImage.image = UIImage(systemName: "star")
     }
     
     func deleteFavourite(pokemon: Results) {//It doesn't work
         presenter?.deleteFavourite(pokemon: pokemon)
         favouritesButton.setTitle("Añadir a favoritos", for: .normal)
-        favouritesImage.image = UIImage(systemName: "star.fill")
+        favouritesImage.image = UIImage(named: "fullStar")
+        //favouritesImage.image = UIImage(systemName: "star.fill")
     }
     
     func getSelectedPokemon(with pokemon: Results) {
@@ -76,6 +80,7 @@ extension PokemonDetailsViewController: PokemonDetailsViewDelegate {
 
 }
 //MARK: - Data Manipulation Method
+
 extension PokemonDetailsViewController{ //Method in charge of fetching the details of the specified pokemon
     func selectedPokemonInList(){
         if let pokemonToFetch = selectedPokemon{
@@ -87,6 +92,7 @@ extension PokemonDetailsViewController{ //Method in charge of fetching the detai
 }
 
 //MARK: - Favourites button method
+
 extension PokemonDetailsViewController{ //Methods in charge of the favourites button
     @objc func pressed(_ sender: UIButton!) {
         if favouritesButton.titleLabel?.text == "Añadir a favoritos"{
@@ -100,7 +106,7 @@ extension PokemonDetailsViewController{ //Methods in charge of the favourites bu
         for favouritesFiltered in favouritesList{
             if favouritesFiltered.name == selectedPokemon?.name{
                 favouritesButton.setTitle("Eliminar de favoritos", for: .normal)
-                favouritesImage.image = UIImage(systemName: "star")
+                favouritesImage.image = UIImage(named: "emptyStar")
             }
         }
 
@@ -109,6 +115,7 @@ extension PokemonDetailsViewController{ //Methods in charge of the favourites bu
 }
 
 //MARK: - Coloring methods
+
 extension PokemonDetailsViewController{ // Methods in charge of the colouring of the UIViewController
     func paintLabel(pokemon: PokemonData){
         if pokemon.types.count >= 2{
