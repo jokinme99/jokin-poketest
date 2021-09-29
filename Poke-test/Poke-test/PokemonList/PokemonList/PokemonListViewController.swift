@@ -17,6 +17,7 @@ class PokemonListViewController: UIViewController {
     var favouritesList: [Results] = []
     var pokemonInCell: Results?
     
+   
     override func viewDidLoad() {
         super.viewDidLoad()
         loadDelegates()
@@ -66,6 +67,7 @@ extension PokemonListViewController:UITableViewDelegate, UITableViewDataSource{
         pokemonInCell = filtered[indexPath.row]
         cell.favouritesList = favouritesList
         cell.updatePokemonInCell(pokemonToFetch: pokemonInCell!)
+        
         return cell
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

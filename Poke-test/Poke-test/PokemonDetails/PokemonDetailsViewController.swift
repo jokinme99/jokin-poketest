@@ -40,12 +40,12 @@ extension PokemonDetailsViewController: PokemonDetailsViewDelegate {
     //MARK: - Sets the add/delete label wether it's a favourite or not
     func addFavourite(pokemon: Results) {
         presenter?.addFavourite(pokemon: pokemon)
-        favouritesButton.setTitle("Eliminar de favoritos", for: .normal)
+        favouritesButton.setTitle("Delete from favourites", for: .normal)
         favouritesImage.image = UIImage(named: "emptyStar")
     }
     func deleteFavourite(pokemon: Results) {
         presenter?.deleteFavourite(pokemon: pokemon)
-        favouritesButton.setTitle("Añadir a favoritos", for: .normal)
+        favouritesButton.setTitle("Add to favourites", for: .normal)
         favouritesImage.image = UIImage(named: "fullStar")
     }
     
@@ -86,9 +86,9 @@ extension PokemonDetailsViewController{
 //MARK: - Favourites button method
 extension PokemonDetailsViewController{
     @objc func pressed(_ sender: UIButton!) {
-        if favouritesButton.titleLabel?.text == "Añadir a favoritos"{
+        if favouritesButton.titleLabel?.text == "Add to favourites"{
             addFavourite(pokemon: selectedPokemon!)
-        } else if favouritesButton.titleLabel?.text == "Eliminar de favoritos"{
+        } else if favouritesButton.titleLabel?.text == "Delete from favourites"{
             deleteFavourite(pokemon: selectedPokemon!)
         }
         
@@ -97,7 +97,7 @@ extension PokemonDetailsViewController{
     func checkFavourite() {
         for favouritesFiltered in favouritesList{
             if favouritesFiltered.name == selectedPokemon?.name{
-                favouritesButton.setTitle("Eliminar de favoritos", for: .normal)
+                favouritesButton.setTitle("Delete from favourites", for: .normal)
                 favouritesImage.image = UIImage(named: "emptyStar")
             }
         }

@@ -37,7 +37,7 @@
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RUY-Ka-3bP" userLabel="Favourites Button">
                                     <rect key="frame" x="86" y="0.0" width="246" height="67.333333333333329"/>
                                     <fontDescription key="fontDescription" name="Futura-Bold" family="Futura" pointSize="20"/>
-                                    <state key="normal" title="Añadir a favoritos">
+                                    <state key="normal" title="AÃ±adir a favoritos">
                                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </state>
                                 </button>

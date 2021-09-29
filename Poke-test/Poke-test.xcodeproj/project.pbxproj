@@ -209,7 +209,7 @@
 		FD3172C42695CF90006810CA /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1250;
+				LastSwiftUpdateCheck = 1300;
 				LastUpgradeCheck = 1250;
 				TargetAttributes = {
 					FD3172CB2695CF90006810CA = {
