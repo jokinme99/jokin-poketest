@@ -26,15 +26,27 @@ class PokemonData: Codable{
     let sprites: Sprites
     let types: [Types]
     let id: Int
+    let height: Int
+    let weight: Int
+    let stats: [Stats]
+    let abilities: [Abilities]
 }
 class Sprites: Codable{
     let front_default:String?
 }
 class Type:  Codable{
-    let name: String
+    let name: String //types[0].type.name
 }
 class Types: Codable{
     let type: Type
 }
-
+class Stats: Codable{
+    let base_stat: Int //Valor de la estadistica
+}
+class Abilities: Codable{
+    let ability: Ability
+}
+class Ability: Codable{
+    let name: String //abilities[0].ability.name
+}
 

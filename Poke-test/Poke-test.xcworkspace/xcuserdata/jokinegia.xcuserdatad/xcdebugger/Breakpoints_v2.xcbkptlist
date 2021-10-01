@@ -46,10 +46,10 @@
             filePath = "Poke-test/PokemonDetails/PokemonDetailsViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "22"
-            endingLineNumber = "22"
-            landmarkName = "PokemonDetailsViewController"
-            landmarkType = "3">
+            startingLineNumber = "37"
+            endingLineNumber = "37"
+            landmarkName = "favouritesList"
+            landmarkType = "24">
             <Locations>
                <Location
                   uuid = "5C81260D-2290-4100-9C90-58D0BA834A88 - 1c423ab1a761dab6"

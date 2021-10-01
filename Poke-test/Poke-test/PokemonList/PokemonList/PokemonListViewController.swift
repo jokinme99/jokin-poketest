@@ -16,7 +16,6 @@ class PokemonListViewController: UIViewController {
     var presenter: PokemonListPresenterDelegate?
     var favouritesList: [Results] = []
     var pokemonInCell: Results?
-    
    
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,6 +24,7 @@ class PokemonListViewController: UIViewController {
         tableView.register(UINib(nibName: "PokemonCell", bundle: nil), forCellReuseIdentifier: "PokemonNameCell")
         orderByButton.addTarget(self, action: #selector(pressed), for: .touchUpInside)
         presenter?.fetchFavourites()
+        navigationItem.title = "Pokedex"
     }
     override func viewWillAppear(_ animated: Bool) {
         //When adding/deleting a pokemon the favourites list & the tableView have to load again
@@ -76,7 +76,7 @@ extension PokemonListViewController:UITableViewDelegate, UITableViewDataSource{
     }
     
 }
-//MARK: - SearchBar Delegate methods
+//MARK: - SearchBar Delegate & scopeBar buttons methods
 extension PokemonListViewController:UISearchBarDelegate{
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         if searchText.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines).isEmpty {
@@ -94,6 +94,12 @@ extension PokemonListViewController:UISearchBarDelegate{
         }
         self.tableView.reloadData()
     }
+   
+//    func searchBar(_ searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int) {
+//        <#code#>
+//    }
+    //scopeb
+
 }
 //MARK: - OrderBy Buttons methods
 extension PokemonListViewController{
@@ -118,5 +124,7 @@ extension PokemonListViewController{
         searchBar.delegate = self
         tableView.delegate = self
         tableView.dataSource = self
+        searchBar.showsScopeBar=true
+        searchBar.scopeButtonTitles = ["All", TypeName.normal.capitalized, TypeName.fight.capitalized, TypeName.fight.capitalized, TypeName.flying.capitalized, TypeName.poison.capitalized, TypeName.ground.capitalized, TypeName.rock.capitalized, TypeName.bug.capitalized, TypeName.ghost.capitalized, TypeName.steel.capitalized, TypeName.fire.capitalized, TypeName.water.capitalized, TypeName.grass.capitalized, TypeName.electric.capitalized, TypeName.psychic.capitalized, TypeName.ice.capitalized, TypeName.ground.capitalized, TypeName.dragon.capitalized, TypeName.dark.capitalized, TypeName.fairy.capitalized, TypeName.unknown.capitalized, TypeName.shadow.capitalized]
     }
 }
