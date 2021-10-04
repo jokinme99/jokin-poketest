@@ -391,9 +391,9 @@
                     </subviews>
                     <color key="backgroundColor" red="0.84548634290000002" green="0.89792305230000002" blue="0.91889429089999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
-                        <constraint firstItem="g96-ad-g4j" firstAttribute="trailing" secondItem="owx-LB-qXE" secondAttribute="trailing" constant="3" id="9BI-CJ-SVt"/>
+                        <constraint firstItem="g96-ad-g4j" firstAttribute="trailing" secondItem="owx-LB-qXE" secondAttribute="trailing" id="9BI-CJ-SVt"/>
                         <constraint firstItem="g96-ad-g4j" firstAttribute="leading" secondItem="owx-LB-qXE" secondAttribute="leading" id="Bm7-If-iEn"/>
-                        <constraint firstItem="g96-ad-g4j" firstAttribute="width" relation="greaterThanOrEqual" secondItem="owx-LB-qXE" secondAttribute="width" multiplier="1.00937" id="eDh-vO-qIi"/>
+                        <constraint firstItem="g96-ad-g4j" firstAttribute="width" relation="greaterThanOrEqual" secondItem="owx-LB-qXE" secondAttribute="width" id="eDh-vO-qIi"/>
                         <constraint firstItem="g96-ad-g4j" firstAttribute="height" relation="greaterThanOrEqual" secondItem="owx-LB-qXE" secondAttribute="height" id="jL8-5e-7We"/>
                         <constraint firstItem="g96-ad-g4j" firstAttribute="top" secondItem="owx-LB-qXE" secondAttribute="top" id="ski-RR-vlA"/>
                         <constraint firstItem="g96-ad-g4j" firstAttribute="bottom" secondItem="owx-LB-qXE" secondAttribute="bottom" id="voz-Vq-NZU"/>

@@ -23,5 +23,16 @@ class PokemonListInteractor : PokemonListInteractorDelegate{
         let favourites = DDBBManager.shared.get(Results.self)
         self.presenter?.didFetchFavourites(favourites: favourites)
     }
+    
+    func fetchPokemonType(type: String) {
+        PokemonManager.shared.fetchPokemonTypes(pokemonType: type, { pokemonFilterListData, error in
+            if let error = error {
+                self.presenter?.didFailWith(error: error)
+            }else{
+                self.presenter?.didFetchType(pokemons: pokemonFilterListData!)
+            }
+            
+        })
+    }
 }
 

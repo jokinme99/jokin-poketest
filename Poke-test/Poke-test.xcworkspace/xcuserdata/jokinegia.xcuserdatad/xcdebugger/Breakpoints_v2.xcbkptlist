@@ -46,10 +46,10 @@
             filePath = "Poke-test/PokemonDetails/PokemonDetailsViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "37"
-            endingLineNumber = "37"
-            landmarkName = "favouritesList"
-            landmarkType = "24">
+            startingLineNumber = "39"
+            endingLineNumber = "39"
+            landmarkName = "PokemonDetailsViewController"
+            landmarkType = "3">
             <Locations>
                <Location
                   uuid = "5C81260D-2290-4100-9C90-58D0BA834A88 - 1c423ab1a761dab6"
@@ -154,8 +154,8 @@
             filePath = "Poke-test/PokemonList/PokemonList/PokemonListPresenter.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "36"
-            endingLineNumber = "36"
+            startingLineNumber = "39"
+            endingLineNumber = "39"
             landmarkName = "didFetchPokemonList(pokemon:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -170,8 +170,8 @@
             filePath = "Poke-test/PokemonList/PokemonList/PokemonListPresenter.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "27"
-            endingLineNumber = "27"
+            startingLineNumber = "30"
+            endingLineNumber = "30"
             landmarkName = "didFetchFavourites(favourites:)"
             landmarkType = "7">
          </BreakpointContent>

@@ -40,10 +40,10 @@ extension PokemonCell: PokemonListCellDelegate{
             if let error = error {
                 print(error)
             }else{
-                self.setColor((pokemonData!.types[0].type.name), self.pokemonNameLabel)
-                self.idLabel.text = "#\(pokemonData?.id ?? 0)"
-                self.setColor((pokemonData!.types[0].type.name), self.idLabel)
-                self.view?.updateTableViewFavourites()
+                    self.setColor((pokemonData!.types[0].type.name), self.pokemonNameLabel)
+                    self.idLabel.text = "#\(pokemonData?.id ?? 0)"
+                    self.setColor((pokemonData!.types[0].type.name), self.idLabel)
+                    self.view?.updateTableViewFavourites()
             }
             
         })

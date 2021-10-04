@@ -6,6 +6,8 @@ import RealmSwift
 
 
 class PokemonDetailsViewController: UIViewController {
+    //ToDo: Make ButtonsList with scroll
+
     
     @IBOutlet weak var backgroundView: UIView!
     @IBOutlet weak var typesView: UIView!

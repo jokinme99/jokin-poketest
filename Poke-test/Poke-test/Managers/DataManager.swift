@@ -44,6 +44,22 @@ struct PokemonManager{
                 }
             }
     }
+    func fetchPokemonTypes(pokemonType: String, _ completion: @escaping(PokemonFilterListData?, Error?)-> Void){
+        let pokemonFilterURL = "https://pokeapi.co/api/v2/type/\(pokemonType)"
+        AF.request(pokemonFilterURL,
+                   method: .get,
+                   encoding: URLEncoding.queryString,
+                   headers: nil)
+            .validate()
+            .responseDecodable{ (response: DataResponse<PokemonFilterListData, AFError>) in
+                switch response.result{
+                case .success(let data):
+                    completion(data,nil)
+                case .failure(let error):
+                    completion(nil, error)
+                }
+            }
+    }
     
 }
 

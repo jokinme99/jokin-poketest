@@ -8,6 +8,10 @@ class Results: Object, Codable{
     override class func primaryKey() -> String? {
         return "name"
     }
+    convenience init(name: String) {
+        self.init()
+        self.name = name
+    }
 }
 class PokemonListData:Object, Codable{
     let results = List<Results>()
@@ -48,5 +52,16 @@ class Abilities: Codable{
 }
 class Ability: Codable{
     let name: String //abilities[0].ability.name
+}
+
+//pokemon[0].pokemon.name
+class PokemonFilterListData: Codable{
+    let pokemon: [Pokemons]
+}
+class Pokemons: Codable{
+    let pokemon: Pokemon
+}
+class Pokemon: Codable{
+    let name: String
 }
 

@@ -18,6 +18,9 @@ class PokemonListPresenter : PokemonListPresenterDelegate {
     func openPokemonDetail(with selectedPokemon: Results) {
         wireframe?.openPokemonDetailsWindow(with: selectedPokemon)
     }
+    func fetchPokemonType(type: String) {
+        interactor?.fetchPokemonType(type: type)
+    }
 }
 
 
@@ -35,6 +38,9 @@ extension PokemonListPresenter: PokemonListInteractorOutputDelegate {
     
     func didFetchPokemonList(pokemon: PokemonListData) {
         view?.updateTableView(pokemons: pokemon)
+    }
+    func didFetchType(pokemons: PokemonFilterListData) {
+        view?.updateFiltersTableView(pokemons: pokemons)
     }
     
 }
