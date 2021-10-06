@@ -6,9 +6,6 @@ import RealmSwift
 
 
 class PokemonDetailsViewController: UIViewController {
-    //ToDo: Make ButtonsList with scroll
-
-    
     @IBOutlet weak var backgroundView: UIView!
     @IBOutlet weak var typesView: UIView!
     @IBOutlet weak var pokemonType1Label: UILabel!
@@ -34,9 +31,15 @@ class PokemonDetailsViewController: UIViewController {
     @IBOutlet weak var favouritesImage: UIImageView!
     @IBOutlet weak var favouritesView: UIView!
     @IBOutlet weak var checkFavouriteImage: UIImageView!
+    @IBOutlet weak var nextOrPreviewView: UIView!
+    @IBOutlet weak var previewButton: UIButton!
+    @IBOutlet weak var nextButton: UIButton!
     
     var presenter: PokemonDetailsPresenterDelegate?
+    var listPresenter: PokemonListPresenterDelegate?
     var selectedPokemon : Results?
+    var previousPokemon: Results?
+    var nextPokemon: Results?
     var favouritesList: [Results] = []
     var cell: PokemonListCellDelegate?
     
@@ -45,10 +48,8 @@ class PokemonDetailsViewController: UIViewController {
         //print(Realm.Configuration.defaultConfiguration.fileURL!)
         selectedPokemonInList()
         presenter?.fetchFavourites()
-        checkFavouriteImage.isHidden = true
-        checkFavourite()
-        favouritesButton.addTarget(self, action: #selector(pressed), for: .touchUpInside)
-        self.favouritesView.layer.cornerRadius = 10
+        loadMethods()
+        
         
     }
 }
@@ -102,7 +103,7 @@ extension PokemonDetailsViewController: PokemonDetailsViewDelegate {
         }
     }
 }
-//MARK: - Data Manipulation Method
+//MARK: - ViewDidLoad needed methods
 extension PokemonDetailsViewController{
     func selectedPokemonInList(){
         if let pokemonToFetch = selectedPokemon{
@@ -111,6 +112,18 @@ extension PokemonDetailsViewController{
             return
         }
     }
+    
+    func loadMethods(){
+        checkFavouriteImage.isHidden = true
+        checkFavourite()
+        favouritesButton.addTarget(self, action: #selector(pressed), for: .touchUpInside)
+        self.favouritesView.layer.cornerRadius = 10
+        self.previewButton.addTarget(self, action: #selector(nextPokemonButtonAction), for: .touchUpInside)
+        self.nextButton.addTarget(self, action: #selector(previousPokemonButtonAction), for: .touchUpInside)
+        self.nextButton.setTitle(self.nextPokemon?.name?.capitalized, for: .normal)
+        self.previewButton.setTitle(self.previousPokemon?.name?.capitalized, for: .normal)
+    }
+    
 }
 
 //MARK: - Favourites button method
@@ -137,6 +150,19 @@ extension PokemonDetailsViewController{
     
 }
 
+//Todo: funcionalidad botones y editar para dejarlos bonitos
+//MARK: - Next or Preview Pokemon
+extension PokemonDetailsViewController{
+    @objc func nextPokemonButtonAction(_ sender: UIButton!){
+        //Delete all the data in the window and reload it
+       
+    }
+    @objc func previousPokemonButtonAction(_ sender: UIButton!){
+        //presenter?.fetchPokemon(pokemon: previousPokemon)
+        
+    }
+}
+
 //MARK: - Coloring methods
 extension PokemonDetailsViewController{ 
     func paintLabel(pokemon: PokemonData){
@@ -146,10 +172,11 @@ extension PokemonDetailsViewController{
             self.paintType(label: self.pokemonType2Label)
             self.pokemonNameLabel.textColor = .black
             self.statsView.backgroundColor = .white
-            //self.pokemonDescriptionView.backgroundColor = .white
             self.ability1Label.textColor = pokemonType1Label.backgroundColor
             self.heightAndViewLabel.backgroundColor = .white
             self.statsLabel.backgroundColor = .white
+            self.nextButton.titleLabel?.textColor = .black
+            self.previewButton.titleLabel?.textColor = .black
             if pokemon.abilities.count >= 2{
                 self.ability2Label.text = pokemon.abilities[1].ability.name.uppercased() //Save the 2nd ability
                 self.ability1Label.textColor = pokemonType1Label.backgroundColor
@@ -168,6 +195,9 @@ extension PokemonDetailsViewController{
             self.setBackgroundColor(from: self.pokemonType1Label, to: self.specialAttackLabel)
             self.setBackgroundColor(from: self.pokemonType1Label, to: self.specialDefenseLabel)
             self.setBackgroundColor(from: self.pokemonType1Label, to: self.speedLabel)
+            self.setBackgroundColor(from: self.pokemonType1Label, to: self.nextOrPreviewView)
+            self.nextButton.titleLabel?.textColor = pokemonType1Label.textColor
+            self.previewButton.titleLabel?.textColor = pokemonType1Label.textColor
             self.ability1Label.textColor = pokemonType1Label.backgroundColor
             self.pokemonType2Label.isHidden = true
             if pokemon.abilities.count >= 2{

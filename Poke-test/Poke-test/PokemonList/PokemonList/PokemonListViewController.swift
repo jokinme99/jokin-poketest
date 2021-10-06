@@ -16,7 +16,8 @@ class PokemonListViewController: UIViewController {
     var presenter: PokemonListPresenterDelegate?
     var favouritesList: [Results] = []
     var pokemonInCell: Results?
-    
+    var nextPokemon: Results?
+    var previousPokemon: Results?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -91,7 +92,17 @@ extension PokemonListViewController:UITableViewDelegate, UITableViewDataSource{
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         pokemonSelected = filtered[indexPath.row]
-        presenter?.openPokemonDetail(with: pokemonSelected!)//It works
+        if indexPath.row == 0{
+            nextPokemon = filtered[indexPath.row + 1]
+            previousPokemon = filtered.last
+        }else if indexPath.row == indexPath.last{
+            previousPokemon = filtered[indexPath.row - 1]
+            nextPokemon = filtered.first
+        }else{
+            previousPokemon = filtered[indexPath.row - 1]
+            nextPokemon = filtered[indexPath.row + 1]
+        }
+        presenter?.openPokemonDetail(pokemon: pokemonSelected!, nextPokemon: nextPokemon!, previousPokemon: previousPokemon!)
     }
     
 }

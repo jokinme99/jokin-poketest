@@ -15,7 +15,7 @@ protocol PokemonDetailsViewDelegate: AnyObject {
 
 //MARK: - SceneController methods: Connections between .xib
 protocol PokemonDetailsWireframeDelegate: AnyObject {
-    static func createPokemonDetailsModule(with pokemon: Results) -> UIViewController
+    static func createPokemonDetailsModule(pokemon: Results, nextPokemon: Results, previousPokemon: Results) -> UIViewController
 }
 
 //MARK: - PresenterDelegate methods: Connection between methods

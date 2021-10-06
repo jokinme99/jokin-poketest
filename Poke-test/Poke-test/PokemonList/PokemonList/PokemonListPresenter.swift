@@ -15,8 +15,8 @@ class PokemonListPresenter : PokemonListPresenterDelegate {
     func fetchFavourites(){ 
         interactor?.fetchFavouritePokemons()
     }
-    func openPokemonDetail(with selectedPokemon: Results) {
-        wireframe?.openPokemonDetailsWindow(with: selectedPokemon)
+    func openPokemonDetail(pokemon: Results, nextPokemon: Results, previousPokemon: Results) {
+        wireframe?.openPokemonDetailsWindow(pokemon: pokemon, nextPokemon: nextPokemon, previousPokemon: previousPokemon)
     }
     func fetchPokemonType(type: String) {
         interactor?.fetchPokemonType(type: type)
