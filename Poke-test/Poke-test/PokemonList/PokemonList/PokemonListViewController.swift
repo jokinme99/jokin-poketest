@@ -95,7 +95,7 @@ extension PokemonListViewController:UITableViewDelegate, UITableViewDataSource{
     }
     
 }
-//MARK: - SearchBar Delegate & scopeBar buttons methods
+//MARK: - SearchBar Delegate & bookmark buttons methods
 extension PokemonListViewController:UISearchBarDelegate{
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         if searchText.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines).isEmpty {
@@ -112,6 +112,15 @@ extension PokemonListViewController:UISearchBarDelegate{
             })
         }
         self.tableView.reloadData()
+    }
+    func searchBarBookmarkButtonClicked(_ searchBar: UISearchBar) {
+        if filtered != favouritesList{
+            self.filtered = favouritesList
+            self.tableView.reloadData()
+        }else{
+            presenter?.fetchPokemonList()
+        }
+        
     }
     
     
@@ -132,7 +141,7 @@ extension PokemonListViewController{//Order by buttons when pressing order by no
             }else{
                 self.filtered = self.savefilteredOrder
             }
-            
+             
             self.tableView.reloadData()
         }
         
@@ -224,6 +233,7 @@ extension PokemonListViewController{
 extension PokemonListViewController{
     func loadDelegates(){
         searchBar.delegate = self
+        searchBar.showsBookmarkButton = true
         tableView.delegate = self
         tableView.dataSource = self
     }

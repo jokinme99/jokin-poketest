@@ -393,8 +393,6 @@
                     <constraints>
                         <constraint firstItem="g96-ad-g4j" firstAttribute="trailing" secondItem="owx-LB-qXE" secondAttribute="trailing" id="9BI-CJ-SVt"/>
                         <constraint firstItem="g96-ad-g4j" firstAttribute="leading" secondItem="owx-LB-qXE" secondAttribute="leading" id="Bm7-If-iEn"/>
-                        <constraint firstItem="g96-ad-g4j" firstAttribute="width" relation="greaterThanOrEqual" secondItem="owx-LB-qXE" secondAttribute="width" id="eDh-vO-qIi"/>
-                        <constraint firstItem="g96-ad-g4j" firstAttribute="height" relation="greaterThanOrEqual" secondItem="owx-LB-qXE" secondAttribute="height" id="jL8-5e-7We"/>
                         <constraint firstItem="g96-ad-g4j" firstAttribute="top" secondItem="owx-LB-qXE" secondAttribute="top" id="ski-RR-vlA"/>
                         <constraint firstItem="g96-ad-g4j" firstAttribute="bottom" secondItem="owx-LB-qXE" secondAttribute="bottom" id="voz-Vq-NZU"/>
                     </constraints>
