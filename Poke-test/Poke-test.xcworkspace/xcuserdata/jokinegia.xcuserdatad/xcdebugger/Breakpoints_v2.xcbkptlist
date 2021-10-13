@@ -142,8 +142,8 @@
             filePath = "Poke-test/PokemonDetails/PokemonDetailsViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "174"
-            endingLineNumber = "174"
+            startingLineNumber = "157"
+            endingLineNumber = "157"
             landmarkName = "nextPokemonButtonAction(_:)"
             landmarkType = "7">
          </BreakpointContent>

@@ -27,6 +27,8 @@ class PokemonListViewController: UIViewController {
         presenter?.fetchFavourites()
         navigationItem.title = "Pokedex"
         loadButtons()
+        let imageBookmark = imageWithImage(image: UIImage(named: "redStar")!, scaledToSize: CGSize(width: 20, height: 20))
+        self.searchBar.setImage(imageBookmark, for: .bookmark, state: .normal)
     }
     override func viewWillAppear(_ animated: Bool) {
         //When adding/deleting a pokemon the favourites list & the tableView have to load again
@@ -36,7 +38,8 @@ class PokemonListViewController: UIViewController {
 
 //MARK: - ViewControllerDelegate methods
 extension PokemonListViewController: PokemonListViewDelegate {
-    func updateFiltersTableView(pokemons: PokemonFilterListData) {//WORKS
+    //MARK: - Updates filters
+    func updateFiltersTableView(pokemons: PokemonFilterListData) {
         self.pokemon.removeAll()
         self.filtered.removeAll()
         for pokemonType in pokemons.pokemon{
@@ -63,7 +66,8 @@ extension PokemonListViewController: PokemonListViewDelegate {
             self.filtered = self.pokemon
             self.savefilteredOrder = self.pokemon
             self.tableView.reloadData()
-        }else{
+        }
+        else{
             pokemon.removeAll()
             filtered.removeAll()
             self.pokemon = Array(pokemons.results)
@@ -139,6 +143,13 @@ extension PokemonListViewController:UISearchBarDelegate{
             presenter?.fetchPokemonList()
         }
         
+    }
+    func imageWithImage(image: UIImage, scaledToSize newSize: CGSize) -> UIImage {
+        UIGraphicsBeginImageContext(newSize)
+        image.draw(in: CGRect(x: 0 ,y: 0 ,width: newSize.width ,height: newSize.height))
+        let newImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return newImage!.withRenderingMode(.alwaysOriginal)
     }
     
     

@@ -14,6 +14,7 @@ class PokemonCell: UITableViewCell {
     var favouritesList: [Results] = []
     var view: PokemonListViewDelegate?
     var presenter: PokemonListPresenterDelegate?
+    var vc: PokemonDetailsViewController?
     
     override func awakeFromNib() {
         super.awakeFromNib()
