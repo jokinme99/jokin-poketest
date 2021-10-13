@@ -15,8 +15,8 @@
                 <outlet property="ability2Label" destination="H81-AI-qQa" id="SjS-2O-2QK"/>
                 <outlet property="attackLabel" destination="eGT-Mq-lqh" id="PUm-sk-aTW"/>
                 <outlet property="backgroundView" destination="g96-ad-g4j" id="xHY-Ud-QY1"/>
-                <outlet property="checkFavouriteImage" destination="Ez2-Wg-qUL" id="QA0-aM-ZID"/>
                 <outlet property="defenseLabel" destination="fcK-nW-oLY" id="Ah1-Ok-9jS"/>
+                <outlet property="favouriteConfirmationImage" destination="Ez2-Wg-qUL" id="QA0-aM-ZID"/>
                 <outlet property="favouritesButton" destination="RUY-Ka-3bP" id="B1Y-FU-CCb"/>
                 <outlet property="favouritesImage" destination="3oS-Rc-aAJ" id="mL4-1a-EIG"/>
                 <outlet property="favouritesView" destination="fwK-ON-dnY" id="Mzz-st-2RO"/>
@@ -94,24 +94,24 @@
                                     <rect key="frame" x="0.0" y="128" width="320" height="59"/>
                                     <subviews>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ffe-y6-q24" userLabel="Preview">
-                                            <rect key="frame" x="0.0" y="14" width="120" height="31"/>
+                                            <rect key="frame" x="5" y="14" width="120" height="31"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="120" id="OCi-M3-bH1"/>
                                                 <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="31" id="jOi-cN-94r"/>
                                             </constraints>
-                                            <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="14"/>
+                                            <fontDescription key="fontDescription" name="Arial-BoldItalicMT" family="Arial" pointSize="14"/>
                                             <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                             <state key="normal" title="Preview">
                                                 <color key="titleColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                             </state>
                                         </button>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DLa-TF-LzI" userLabel="Next">
-                                            <rect key="frame" x="200" y="14" width="120" height="31"/>
+                                            <rect key="frame" x="195" y="14" width="120" height="31"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="31" id="1mn-Q8-s2c"/>
                                                 <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="120" id="DsB-ET-gsU"/>
                                             </constraints>
-                                            <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="14"/>
+                                            <fontDescription key="fontDescription" name="Arial-BoldItalicMT" family="Arial" pointSize="14"/>
                                             <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                             <state key="normal" title="Next">
                                                 <color key="titleColor" red="0.098082549869999994" green="0.26281177999999999" blue="0.28423666949999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -121,12 +121,12 @@
                                     <color key="backgroundColor" red="0.84548634290000002" green="0.89792305230000002" blue="0.91889429089999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <constraints>
                                         <constraint firstItem="ffe-y6-q24" firstAttribute="bottom" secondItem="f6n-Fa-t9T" secondAttribute="bottom" constant="-14" id="8tJ-t5-NOz"/>
-                                        <constraint firstItem="DLa-TF-LzI" firstAttribute="trailing" secondItem="f6n-Fa-t9T" secondAttribute="trailing" id="9Gw-Uo-uP6"/>
+                                        <constraint firstItem="DLa-TF-LzI" firstAttribute="trailing" secondItem="f6n-Fa-t9T" secondAttribute="trailing" constant="-5" id="9Gw-Uo-uP6"/>
                                         <constraint firstItem="ffe-y6-q24" firstAttribute="top" secondItem="f6n-Fa-t9T" secondAttribute="top" constant="14" id="UAR-id-cpj"/>
                                         <constraint firstItem="DLa-TF-LzI" firstAttribute="top" secondItem="f6n-Fa-t9T" secondAttribute="top" constant="14" id="UUa-jh-liu"/>
                                         <constraint firstItem="DLa-TF-LzI" firstAttribute="bottom" secondItem="f6n-Fa-t9T" secondAttribute="bottom" constant="-14" id="ejX-UK-gXe"/>
-                                        <constraint firstItem="ffe-y6-q24" firstAttribute="leading" secondItem="f6n-Fa-t9T" secondAttribute="leading" id="jM2-QI-jmU"/>
-                                        <constraint firstItem="DLa-TF-LzI" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="ffe-y6-q24" secondAttribute="trailing" constant="80" id="jSp-us-IVu"/>
+                                        <constraint firstItem="ffe-y6-q24" firstAttribute="leading" secondItem="f6n-Fa-t9T" secondAttribute="leading" constant="5" id="jM2-QI-jmU"/>
+                                        <constraint firstItem="DLa-TF-LzI" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="ffe-y6-q24" secondAttribute="trailing" constant="70" id="jSp-us-IVu"/>
                                     </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PMw-y5-wA4" userLabel="Pokemon Description View">
@@ -270,7 +270,7 @@
                                                         <constraint firstItem="0Vx-Cc-RxZ" firstAttribute="leading" secondItem="u7c-dt-yxk" secondAttribute="leading" id="OxK-BB-yhG"/>
                                                         <constraint firstItem="0Vx-Cc-RxZ" firstAttribute="bottom" secondItem="u7c-dt-yxk" secondAttribute="bottom" id="QAE-2O-KwC"/>
                                                         <constraint firstItem="Lem-Ix-sXN" firstAttribute="bottom" secondItem="u7c-dt-yxk" secondAttribute="bottom" id="T7y-4o-1RJ"/>
-                                                        <constraint firstItem="0Vx-Cc-RxZ" firstAttribute="trailing" secondItem="Lem-Ix-sXN" secondAttribute="leading" constant="-17" id="USA-0n-h4w"/>
+                                                        <constraint firstItem="Lem-Ix-sXN" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="0Vx-Cc-RxZ" secondAttribute="trailing" constant="17" id="USA-0n-h4w"/>
                                                         <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="304" id="wTS-gg-BRS"/>
                                                         <constraint firstItem="Lem-Ix-sXN" firstAttribute="trailing" secondItem="u7c-dt-yxk" secondAttribute="trailing" constant="-5" id="zq0-Zc-8Td"/>
                                                     </constraints>

@@ -24,8 +24,8 @@ class PokemonListWireframe : PokemonListWireframeDelegate {
         return view
     }
     //MARK: - Method that opens the detailsViewController .xib
-    func openPokemonDetailsWindow(pokemon: Results, nextPokemon: Results, previousPokemon: Results) {
-        let detailModule = PokemonDetailsWireframe.createPokemonDetailsModule(pokemon: pokemon, nextPokemon: nextPokemon, previousPokemon: previousPokemon)
+    func openPokemonDetailsWindow(pokemon: Results, nextPokemon: Results, previousPokemon: Results, filtered: [Results]) {
+        let detailModule = PokemonDetailsWireframe.createPokemonDetailsModule(pokemon: pokemon, nextPokemon: nextPokemon, previousPokemon: previousPokemon, filtered: filtered)
         viewController?.navigationController?.pushViewController(detailModule, animated: true)
     }
     

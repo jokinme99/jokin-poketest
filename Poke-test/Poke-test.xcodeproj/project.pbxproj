@@ -123,17 +123,13 @@
 			path = "Poke-test";
 			sourceTree = "<group>";
 		};
-		FDA34EF426E8953600AE2143 /* PokemonList */ = {
+		FD7FD3582716F275008E0448 /* Pokemon Cell */ = {
 			isa = PBXGroup;
 			children = (
-				FDA34EEB26E8952900AE2143 /* PokemonListInteractor.swift */,
-				FDA34EE826E8952900AE2143 /* PokemonListPresenter.swift */,
-				FDA34EEA26E8952900AE2143 /* PokemonListProtocols.swift */,
-				FDA34EE926E8952900AE2143 /* PokemonListViewController.swift */,
-				FDA34EEC26E8952900AE2143 /* PokemonListViewController.xib */,
-				FDA34EED26E8952900AE2143 /* PokemonListWireframe.swift */,
+				FDF25E8226B17600002474BB /* PokemonCell.swift */,
+				FDF25E8326B17600002474BB /* PokemonCell.xib */,
 			);
-			path = PokemonList;
+			path = "Pokemon Cell";
 			sourceTree = "<group>";
 		};
 		FDA34F0126E8955B00AE2143 /* PokemonDetails */ = {
@@ -161,9 +157,13 @@
 		FDA34F0326E8A2BD00AE2143 /* PokemonList */ = {
 			isa = PBXGroup;
 			children = (
-				FDF25E8226B17600002474BB /* PokemonCell.swift */,
-				FDF25E8326B17600002474BB /* PokemonCell.xib */,
-				FDA34EF426E8953600AE2143 /* PokemonList */,
+				FD7FD3582716F275008E0448 /* Pokemon Cell */,
+				FDA34EEB26E8952900AE2143 /* PokemonListInteractor.swift */,
+				FDA34EE826E8952900AE2143 /* PokemonListPresenter.swift */,
+				FDA34EEA26E8952900AE2143 /* PokemonListProtocols.swift */,
+				FDA34EE926E8952900AE2143 /* PokemonListViewController.swift */,
+				FDA34EEC26E8952900AE2143 /* PokemonListViewController.xib */,
+				FDA34EED26E8952900AE2143 /* PokemonListWireframe.swift */,
 			);
 			path = PokemonList;
 			sourceTree = "<group>";

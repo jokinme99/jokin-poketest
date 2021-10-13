@@ -21,7 +21,7 @@ protocol PokemonListViewDelegate: AnyObject {
 //MARK: - SceneController methods: Connections between .xib
 protocol PokemonListWireframeDelegate: AnyObject {
     static func createPokemonListModule() -> UIViewController
-    func openPokemonDetailsWindow(pokemon: Results, nextPokemon: Results, previousPokemon: Results)
+    func openPokemonDetailsWindow(pokemon: Results, nextPokemon: Results, previousPokemon: Results, filtered: [Results])
 }
 
 //MARK: - PresenterDelegate methods: Connection between methods
@@ -32,7 +32,7 @@ protocol PokemonListPresenterDelegate: AnyObject {
     var wireframe: PokemonListWireframeDelegate? {get set}
     func fetchPokemonList()
     func fetchFavourites()
-    func openPokemonDetail(pokemon: Results, nextPokemon: Results, previousPokemon: Results)
+    func openPokemonDetail(pokemon: Results, nextPokemon: Results, previousPokemon: Results, filtered: [Results])
     func fetchPokemonType(type: String)
 }
 

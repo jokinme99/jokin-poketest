@@ -91,21 +91,28 @@ extension PokemonListViewController:UITableViewDelegate, UITableViewDataSource{
         return cell
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        pokemonSelected = filtered[indexPath.row]
-        if indexPath.row == 0{
-            nextPokemon = filtered[indexPath.row + 1]
+        let row = indexPath.row
+        let previousRow = row - 1
+        let nextRow = row + 1
+        if row == 0{
+            pokemonSelected = filtered[row]
+            nextPokemon = filtered[nextRow]
             previousPokemon = filtered.last
-        }else if indexPath.row == indexPath.last{
-            previousPokemon = filtered[indexPath.row - 1]
+        }else if row == filtered.count - 1{ //-1 -> the 0 position is the first row
+            pokemonSelected = filtered[row]
+            previousPokemon = filtered[previousRow]
             nextPokemon = filtered.first
         }else{
-            previousPokemon = filtered[indexPath.row - 1]
-            nextPokemon = filtered[indexPath.row + 1]
+            nextPokemon = filtered[nextRow] 
+            pokemonSelected = filtered[row]
+            previousPokemon = filtered[previousRow]
         }
-        presenter?.openPokemonDetail(pokemon: pokemonSelected!, nextPokemon: nextPokemon!, previousPokemon: previousPokemon!)
+        presenter?.openPokemonDetail(pokemon: pokemonSelected!, nextPokemon: nextPokemon!, previousPokemon: previousPokemon!, filtered: filtered)
+        
     }
     
 }
+
 //MARK: - SearchBar Delegate & bookmark buttons methods
 extension PokemonListViewController:UISearchBarDelegate{
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
@@ -136,6 +143,7 @@ extension PokemonListViewController:UISearchBarDelegate{
     
     
 }
+
 //MARK: - OrderBy Buttons methods
 extension PokemonListViewController{//Order by buttons when pressing order by not working
     
@@ -257,8 +265,8 @@ extension PokemonListViewController{
         
     }
 }
-//MARK: - Painting Methods
 
+//MARK: - Painting Methods
 extension PokemonListViewController{
     func setPokemonTextColor(_ color: UIColor, _ button: UIButton){
         button.titleLabel?.textColor = color
