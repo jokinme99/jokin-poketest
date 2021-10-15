@@ -16,7 +16,8 @@ class PokemonListViewController: UIViewController {
     var presenter: PokemonListPresenterDelegate?
     var favouritesList: [Results] = []
     var pokemonInCell: Results?
-    
+    var nextPokemon: Results?
+    var previousPokemon: Results?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,6 +27,8 @@ class PokemonListViewController: UIViewController {
         presenter?.fetchFavourites()
         navigationItem.title = "Pokedex"
         loadButtons()
+        let imageBookmark = imageWithImage(image: UIImage(named: "redStar")!, scaledToSize: CGSize(width: 20, height: 20))
+        self.searchBar.setImage(imageBookmark, for: .bookmark, state: .normal)
     }
     override func viewWillAppear(_ animated: Bool) {
         //When adding/deleting a pokemon the favourites list & the tableView have to load again
@@ -35,7 +38,8 @@ class PokemonListViewController: UIViewController {
 
 //MARK: - ViewControllerDelegate methods
 extension PokemonListViewController: PokemonListViewDelegate {
-    func updateFiltersTableView(pokemons: PokemonFilterListData) {//WORKS
+    //MARK: - Updates filters
+    func updateFiltersTableView(pokemons: PokemonFilterListData) {
         self.pokemon.removeAll()
         self.filtered.removeAll()
         for pokemonType in pokemons.pokemon{
@@ -62,7 +66,8 @@ extension PokemonListViewController: PokemonListViewDelegate {
             self.filtered = self.pokemon
             self.savefilteredOrder = self.pokemon
             self.tableView.reloadData()
-        }else{
+        }
+        else{
             pokemon.removeAll()
             filtered.removeAll()
             self.pokemon = Array(pokemons.results)
@@ -90,12 +95,29 @@ extension PokemonListViewController:UITableViewDelegate, UITableViewDataSource{
         return cell
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        pokemonSelected = filtered[indexPath.row]
-        presenter?.openPokemonDetail(with: pokemonSelected!)//It works
+        let row = indexPath.row
+        let previousRow = row - 1
+        let nextRow = row + 1
+        if row == 0{
+            pokemonSelected = filtered[row]
+            nextPokemon = filtered[nextRow]
+            previousPokemon = filtered.last
+        }else if row == filtered.count - 1{ //-1 -> the 0 position is the first row
+            pokemonSelected = filtered[row]
+            previousPokemon = filtered[previousRow]
+            nextPokemon = filtered.first
+        }else{
+            nextPokemon = filtered[nextRow] 
+            pokemonSelected = filtered[row]
+            previousPokemon = filtered[previousRow]
+        }
+        presenter?.openPokemonDetail(pokemon: pokemonSelected!, nextPokemon: nextPokemon!, previousPokemon: previousPokemon!, filtered: filtered)
+        
     }
     
 }
-//MARK: - SearchBar Delegate & scopeBar buttons methods
+
+//MARK: - SearchBar Delegate & bookmark buttons methods
 extension PokemonListViewController:UISearchBarDelegate{
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         if searchText.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines).isEmpty {
@@ -113,9 +135,26 @@ extension PokemonListViewController:UISearchBarDelegate{
         }
         self.tableView.reloadData()
     }
+    func searchBarBookmarkButtonClicked(_ searchBar: UISearchBar) {
+        if filtered != favouritesList{
+            self.filtered = favouritesList
+            self.tableView.reloadData()
+        }else{
+            presenter?.fetchPokemonList()
+        }
+        
+    }
+    func imageWithImage(image: UIImage, scaledToSize newSize: CGSize) -> UIImage {
+        UIGraphicsBeginImageContext(newSize)
+        image.draw(in: CGRect(x: 0 ,y: 0 ,width: newSize.width ,height: newSize.height))
+        let newImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return newImage!.withRenderingMode(.alwaysOriginal)
+    }
     
     
 }
+
 //MARK: - OrderBy Buttons methods
 extension PokemonListViewController{//Order by buttons when pressing order by not working
     
@@ -132,7 +171,7 @@ extension PokemonListViewController{//Order by buttons when pressing order by no
             }else{
                 self.filtered = self.savefilteredOrder
             }
-            
+             
             self.tableView.reloadData()
         }
         
@@ -224,6 +263,7 @@ extension PokemonListViewController{
 extension PokemonListViewController{
     func loadDelegates(){
         searchBar.delegate = self
+        searchBar.showsBookmarkButton = true
         tableView.delegate = self
         tableView.dataSource = self
     }
@@ -236,8 +276,8 @@ extension PokemonListViewController{
         
     }
 }
-//MARK: - Painting Methods
 
+//MARK: - Painting Methods
 extension PokemonListViewController{
     func setPokemonTextColor(_ color: UIColor, _ button: UIButton){
         button.titleLabel?.textColor = color
