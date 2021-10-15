@@ -18,7 +18,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="launchScreenImage" translatesAutoresizingMaskIntoConstraints="NO" id="FCE-DE-a2D">
-                                <rect key="frame" x="0.0" y="92" width="320" height="368"/>
+                                <rect key="frame" x="0.0" y="92" width="320" height="408"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="320" id="BFF-UU-5kS"/>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="339" id="QW3-Au-idD"/>
@@ -38,9 +38,9 @@
                         <viewLayoutGuide key="safeArea" id="Bcu-3y-fUS"/>
                         <color key="backgroundColor" red="0.84548634290000002" green="0.89792305230000002" blue="0.91889429089999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="GJd-Yh-RWb" firstAttribute="top" relation="greaterThanOrEqual" secondItem="Bcu-3y-fUS" secondAttribute="top" constant="-20" id="4EO-zx-Ejm"/>
-                            <constraint firstItem="FCE-DE-a2D" firstAttribute="top" relation="greaterThanOrEqual" secondItem="GJd-Yh-RWb" secondAttribute="bottom" constant="8" id="OfQ-48-Rle"/>
-                            <constraint firstItem="FCE-DE-a2D" firstAttribute="bottom" secondItem="Bcu-3y-fUS" secondAttribute="bottom" constant="-20" id="VnG-K6-yOS"/>
+                            <constraint firstItem="GJd-Yh-RWb" firstAttribute="top" secondItem="Bcu-3y-fUS" secondAttribute="top" constant="-20" id="4EO-zx-Ejm"/>
+                            <constraint firstItem="FCE-DE-a2D" firstAttribute="top" secondItem="GJd-Yh-RWb" secondAttribute="bottom" constant="8" id="OfQ-48-Rle"/>
+                            <constraint firstItem="FCE-DE-a2D" firstAttribute="bottom" secondItem="Bcu-3y-fUS" secondAttribute="bottom" constant="20" id="VnG-K6-yOS"/>
                             <constraint firstItem="FCE-DE-a2D" firstAttribute="leading" secondItem="GJd-Yh-RWb" secondAttribute="leading" id="czO-gP-IPr"/>
                             <constraint firstItem="GJd-Yh-RWb" firstAttribute="leading" secondItem="Bcu-3y-fUS" secondAttribute="leading" id="dHS-k3-KzV"/>
                             <constraint firstItem="GJd-Yh-RWb" firstAttribute="trailing" secondItem="Bcu-3y-fUS" secondAttribute="trailing" id="i5E-s7-0SY"/>
