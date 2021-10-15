@@ -143,7 +143,6 @@ extension PokemonDetailsViewController: PokemonDetailsViewDelegate {
     }
 }
 
-//Todo: scrollbar + button takes you to top
 //MARK: - Buttons methods
 extension PokemonDetailsViewController{ //Works!! Painting to be fixed
     @objc func pressed(_ sender: UIButton!) {

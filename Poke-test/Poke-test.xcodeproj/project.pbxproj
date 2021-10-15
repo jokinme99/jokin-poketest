@@ -10,6 +10,7 @@
 		52E96436D3664A73002DBC5D /* Pods_Poke_test.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA37C33EACA622F7C18E2B13 /* Pods_Poke_test.framework */; };
 		FD3172D02695CF90006810CA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD3172CF2695CF90006810CA /* AppDelegate.swift */; };
 		FD61B42326B4046800EDBF8C /* PokemonTypeList.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD61B42226B4046800EDBF8C /* PokemonTypeList.swift */; };
+		FD7D316E27198B110031AB92 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FD7D316D27198B100031AB92 /* Launch Screen.storyboard */; };
 		FD85C3A82696EAFC00EAF99F /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD85C3A72696EAFC00EAF99F /* Data.swift */; };
 		FD85C3AC2696EB1E00EAF99F /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD85C3AB2696EB1E00EAF99F /* DataManager.swift */; };
 		FD86C1522701A33C00DB4B8F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FD86C1512701A33C00DB4B8F /* Assets.xcassets */; };
@@ -39,6 +40,7 @@
 		FD3172CC2695CF90006810CA /* Poke-test.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Poke-test.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FD3172CF2695CF90006810CA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FD61B42226B4046800EDBF8C /* PokemonTypeList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonTypeList.swift; sourceTree = "<group>"; };
+		FD7D316D27198B100031AB92 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		FD85C3A72696EAFC00EAF99F /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
 		FD85C3AB2696EB1E00EAF99F /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		FD86C1512701A33C00DB4B8F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -119,6 +121,7 @@
 				FDA34F0326E8A2BD00AE2143 /* PokemonList */,
 				FDA34F0126E8955B00AE2143 /* PokemonDetails */,
 				FDF25E8126B1724F002474BB /* Info.plist */,
+				FD7D316D27198B100031AB92 /* Launch Screen.storyboard */,
 			);
 			path = "Poke-test";
 			sourceTree = "<group>";
@@ -246,6 +249,7 @@
 				FDA34EFF26E8954D00AE2143 /* PokemonDetailsViewController.xib in Resources */,
 				FD86C1522701A33C00DB4B8F /* Assets.xcassets in Resources */,
 				FDF25E8526B17600002474BB /* PokemonCell.xib in Resources */,
+				FD7D316E27198B110031AB92 /* Launch Screen.storyboard in Resources */,
 				FDA34EF226E8952900AE2143 /* PokemonListViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
