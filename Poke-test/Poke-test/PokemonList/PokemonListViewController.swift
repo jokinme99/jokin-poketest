@@ -34,6 +34,7 @@ class PokemonListViewController: UIViewController {
         //When adding/deleting a pokemon the favourites list & the tableView have to load again
         presenter?.fetchFavourites()
     }
+    
 }
 
 //MARK: - ViewControllerDelegate methods
