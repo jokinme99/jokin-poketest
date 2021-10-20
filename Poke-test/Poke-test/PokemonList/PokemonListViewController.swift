@@ -1,7 +1,11 @@
 
 import UIKit
 
-class PokemonListViewController: UIViewController {
+//ToDo: IN FAVS WHEN DELETING APP BREAKS
+//Todo: IN ORDERBY IT HAS TO BE ORDERED BY ID
+//Orders the list as the pokemon are added/fetched if #12 is added to favs before #1 favourites[0] is #12 and not #1
+
+class PokemonListViewController: UIViewController {//PIN iPhone: 281106
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var orderByButton: UIButton!
@@ -18,6 +22,7 @@ class PokemonListViewController: UIViewController {
     var pokemonInCell: Results?
     var nextPokemon: Results?
     var previousPokemon: Results?
+    //var pokemonIdAndNames: [Int : String]?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,14 +32,34 @@ class PokemonListViewController: UIViewController {
         presenter?.fetchFavourites()
         navigationItem.title = "Pokedex"
         loadButtons()
-        let imageBookmark = imageWithImage(image: UIImage(named: "redStar")!, scaledToSize: CGSize(width: 20, height: 20))
-        self.searchBar.setImage(imageBookmark, for: .bookmark, state: .normal)
+        loadSearchBarAndKeyboard()
     }
     override func viewWillAppear(_ animated: Bool) {
-        //When adding/deleting a pokemon the favourites list & the tableView have to load again
         presenter?.fetchFavourites()
     }
     
+}
+
+//MARK: - ViewDidLoad Methods
+extension PokemonListViewController{
+    func loadDelegates(){
+        searchBar.delegate = self
+        searchBar.showsBookmarkButton = true
+        tableView.delegate = self
+        tableView.dataSource = self
+    }
+    func loadButtons(){
+        orderByButton.addTarget(self, action: #selector(pressedOrderBy), for: .touchUpInside)
+        for button in buttonList{
+            button.addTarget(self, action: #selector(pressedFilterButton), for: .touchUpInside)
+            paintButton(button)
+        }
+    }
+    func loadSearchBarAndKeyboard(){
+        let imageBookmark = imageWithImage(image: UIImage(named: "redStar")!, scaledToSize: CGSize(width: 20, height: 20))
+        self.searchBar.setImage(imageBookmark, for: .bookmark, state: .normal)
+        searchBar.addDoneButtonOnKeyboard()
+    }
 }
 
 //MARK: - ViewControllerDelegate methods
@@ -79,7 +104,6 @@ extension PokemonListViewController: PokemonListViewDelegate {
         
     }
 }
-
 
 //MARK: - TableView Methods
 extension PokemonListViewController:UITableViewDelegate, UITableViewDataSource{
@@ -139,10 +163,13 @@ extension PokemonListViewController:UISearchBarDelegate{
     func searchBarBookmarkButtonClicked(_ searchBar: UISearchBar) {
         if filtered != favouritesList{
             self.filtered = favouritesList
+            self.savefilteredOrder = favouritesList
+            self.pokemon = favouritesList
             self.tableView.reloadData()
         }else{
             presenter?.fetchPokemonList()
         }
+        
         
     }
     func imageWithImage(image: UIImage, scaledToSize newSize: CGSize) -> UIImage {
@@ -155,14 +182,49 @@ extension PokemonListViewController:UISearchBarDelegate{
     
     
 }
+//MARK: - Done button in keyboard methods
+extension UISearchBar{
+
+      @IBInspectable var doneAccessory: Bool{
+          get{
+              return self.doneAccessory
+          }
+          set (hasDone) {
+              if hasDone{
+                  addDoneButtonOnKeyboard()
+              }
+          }
+      }
+
+      func addDoneButtonOnKeyboard()
+      {
+          let doneToolbar: UIToolbar = UIToolbar(frame: CGRect.init(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 50))
+          doneToolbar.barStyle = .default
+
+          let flexSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+          let done: UIBarButtonItem = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(self.doneButtonAction))
+
+          let items = [flexSpace, done]
+          doneToolbar.items = items
+          doneToolbar.sizeToFit()
+
+          self.inputAccessoryView = doneToolbar
+      }
+
+      @objc func doneButtonAction() {
+          self.resignFirstResponder()
+      }
+
+  }
 
 //MARK: - OrderBy Buttons methods
-extension PokemonListViewController{//Order by buttons when pressing order by not working
+extension PokemonListViewController{
     
     @objc func pressedOrderBy(_ sender: UIButton!) {
         if orderByButton.titleLabel?.text == "Order by Name"{
             orderByButton.setTitle("Order by Id", for: .normal)
             self.filtered = filtered.sorted(by: {$0.name ?? "" < $1.name ?? ""})
+
             self.tableView.reloadData()
         }
         else{
@@ -258,24 +320,6 @@ extension PokemonListViewController{
         }
     }
     
-}
-
-//MARK: - Data Manipulation Methods
-extension PokemonListViewController{
-    func loadDelegates(){
-        searchBar.delegate = self
-        searchBar.showsBookmarkButton = true
-        tableView.delegate = self
-        tableView.dataSource = self
-    }
-    func loadButtons(){
-        orderByButton.addTarget(self, action: #selector(pressedOrderBy), for: .touchUpInside)
-        for button in buttonList{
-            button.addTarget(self, action: #selector(pressedFilterButton), for: .touchUpInside)
-            paintButton(button)
-        }
-        
-    }
 }
 
 //MARK: - Painting Methods

@@ -14,7 +14,8 @@ class PokemonCell: UITableViewCell {
     var favouritesList: [Results] = []
     var view: PokemonListViewDelegate?
     var presenter: PokemonListPresenterDelegate?
-    var vc: PokemonDetailsViewController?
+    //var dictionary: [Int:String]?
+    //var vc: PokemonListViewController?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -41,10 +42,11 @@ extension PokemonCell: PokemonListCellDelegate{
             if let error = error {
                 print(error)
             }else{
-                    self.setColor((pokemonData!.types[0].type.name), self.pokemonNameLabel)
-                    self.idLabel.text = "#\(pokemonData?.id ?? 0)"
-                    self.setColor((pokemonData!.types[0].type.name), self.idLabel)
-                    self.view?.updateTableViewFavourites()
+                guard let pokemonData = pokemonData else {return}
+                //self.dictionary = [pokemonData.id : pokemonData.name]
+                self.setColor((pokemonData.types[0].type.name), self.pokemonNameLabel)
+                self.idLabel.text = "#\(pokemonData.id)"
+                self.setColor((pokemonData.types[0].type.name), self.idLabel)
             }
             
         })
@@ -60,7 +62,9 @@ extension PokemonCell: PokemonListCellDelegate{
                 self.favouriteImage.image = imageWithImage(image: UIImage(named: "fullStar")!, scaledToSize: CGSize(width: 20, height: 20))
             }
         }
-        self.view?.updateTableViewFavourites()
+        //guard let dictionary = dictionary else{return}
+        //self.vc?.pokemonIdAndNames = dictionary
+        //self.view?.updateTableViewFavourites()
     }
 }
 
@@ -78,7 +82,7 @@ extension PokemonCell{
     
     //MARK: - Paints cell background
     func setPokemonBackgroundColor(_ red: CGFloat, _ green: CGFloat, _ blue: CGFloat, _ label: UILabel){
-        label.backgroundColor = .init(red: red/255, green: green/255, blue: blue/255, alpha: 1) 
+        label.backgroundColor = .init(red: red/255, green: green/255, blue: blue/255, alpha: 1)
     }
     
     //MARK: - Paints cell text color

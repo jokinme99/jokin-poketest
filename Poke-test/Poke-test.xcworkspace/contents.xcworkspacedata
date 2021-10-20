@@ -2,7 +2,7 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:Poke-test.xcodeproj">
+      location = "group:/Users/jokinegia/Desktop/git/jokin-poketest/Poke-test/Poke-test.xcodeproj">
    </FileRef>
    <FileRef
       location = "group:Pods/Pods.xcodeproj">

@@ -44,6 +44,7 @@ class PokemonDetailsViewController: UIViewController {
     var cell: PokemonListCellDelegate?
     var filtered: [Results]?
     var row : Int?
+    var vc: PokemonListViewController?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -66,12 +67,18 @@ extension PokemonDetailsViewController{
     }
     func loadMethods(){
         self.loadButtonsStyle()
-        self.favouriteConfirmationImage.isHidden = true
         self.favouritesButton.addTarget(self, action: #selector(pressed), for: .touchUpInside)
         self.previewButton.addTarget(self, action: #selector(previousPokemonButtonAction), for: .touchUpInside)
         self.nextButton.addTarget(self, action: #selector(nextPokemonButtonAction), for: .touchUpInside)
-        self.nextButton.setTitle(self.nextPokemon?.name?.capitalized, for: .normal)
-        self.previewButton.setTitle(self.previousPokemon?.name?.capitalized, for: .normal)
+        guard let filtered = filtered else{return}
+        if filtered.count < 3{
+            nextButton.isHidden = true
+            previewButton.isHidden = true
+        }else{
+            self.nextButton.setTitle(self.nextPokemon?.name?.capitalized, for: .normal)
+            self.previewButton.setTitle(self.previousPokemon?.name?.capitalized, for: .normal)
+        }
+       
         
     }
     func loadButtonsStyle(){
@@ -90,16 +97,20 @@ extension PokemonDetailsViewController: PokemonDetailsViewDelegate {
     
     //MARK: - Sets the add/delete label wether it's a favourite or not
     func addFavourite(pokemon: Results) {
+        presenter?.fetchFavourites()
         presenter?.addFavourite(pokemon: pokemon)
         favouritesButton.setTitle("Delete from favourites", for: .normal)
         favouritesImage.image = UIImage(named: "emptyStar")
         favouriteConfirmationImage.isHidden = false
+        presenter?.fetchFavourites()
     }
     func deleteFavourite(pokemon: Results) {
         presenter?.deleteFavourite(pokemon: pokemon)
         favouritesButton.setTitle("Add to favourites", for: .normal)
         favouritesImage.image = UIImage(named: "fullStar")
         favouriteConfirmationImage.isHidden = true
+        presenter?.fetchFavourites()
+        
     }
     
     //MARK: - Gets the selected pokemon from the tableView
@@ -115,13 +126,7 @@ extension PokemonDetailsViewController: PokemonDetailsViewDelegate {
     //MARK: - Updates view after fetching the details of the selected pokemon
     func updateDetailsView(pokemon: PokemonData) {
         favouriteConfirmationImage.isHidden = true
-        for favouritesFiltered in favouritesList{
-            if favouritesFiltered.name == pokemon.name{
-                favouritesButton.setTitle("Delete from favourites", for: .normal)
-                favouritesImage.image = UIImage(named: "emptyStar")
-                favouriteConfirmationImage.isHidden = false
-            }
-        }
+        checkFavouriteConfirmationImage(pokemon.name)
         self.pokemonNameLabel.text = pokemon.name.uppercased()
         self.pokemonType1Label.text = pokemon.types[0].type.name.uppercased()
         self.pokemonIdLabel.text = "# \(pokemon.id)"
@@ -141,10 +146,19 @@ extension PokemonDetailsViewController: PokemonDetailsViewDelegate {
             return
         }
     }
+    func checkFavouriteConfirmationImage(_ name: String){
+        for favouritesFiltered in favouritesList{
+            if favouritesFiltered.name == name{
+                favouritesButton.setTitle("Delete from favourites", for: .normal)
+                favouritesImage.image = UIImage(named: "emptyStar")
+                favouriteConfirmationImage.isHidden = false
+            }
+        }
+    }
 }
 
 //MARK: - Buttons methods
-extension PokemonDetailsViewController{ //Works!! Painting to be fixed
+extension PokemonDetailsViewController{
     @objc func pressed(_ sender: UIButton!) {
         if favouritesButton.titleLabel?.text == "Add to favourites"{
             addFavourite(pokemon: selectedPokemon!)
@@ -154,40 +168,52 @@ extension PokemonDetailsViewController{ //Works!! Painting to be fixed
     }
     @objc func nextPokemonButtonAction(_ sender: UIButton!){
         presenter?.fetchPokemon(pokemon: nextPokemon!)
-        if row == filtered!.count - 1{ // if we're in the last row, and we press next actualRow will be the first
+        guard let filtered = filtered else{return}
+        if row == filtered.count - 1{ // if we're in the last row, and we press next actualRow will be the first
             row = 0
         }else{
-            row! += 1
+            row = row! + 1 // if we do guard let row = row or row ?? 0 doesn't work
         }
         nextOrPrevious()
+        
         
     }
     @objc func previousPokemonButtonAction(_ sender: UIButton!){
         presenter?.fetchPokemon(pokemon: previousPokemon!)
+        guard let filtered = filtered else{return}
         if row == 0{ // if we're in the first row, and we press previous actualRow will be the last
-            row = filtered!.count - 1
+            row = filtered.count - 1
         }else{
-            row! -= 1
+            row = row!  - 1 // if we do guard let row = row or row ?? 0 doesn't work
         }
         nextOrPrevious()
+        checkFavouriteConfirmationImage(nextPokemon?.name ?? "")
         
     }
     func nextOrPrevious(){
-        if row == 0{
-            self.selectedPokemon = filtered![row!]
-            self.nextPokemon = filtered![row!+1]
-            self.previousPokemon = filtered!.last
-        }else if row == filtered!.count - 1{ //-1 -> the 0 position is the first row
-            self.selectedPokemon = filtered![row!]
-            self.previousPokemon = filtered![row!-1]
-            self.nextPokemon = filtered!.first
+        presenter?.fetchFavourites()//FIXES ERROR: When adding fav and pressing next/previous doesn't save the star
+        guard let filtered = filtered, let row = row else { return }
+        if filtered.count < 3{
+            nextButton.isHidden = true
+            previewButton.isHidden = true
         }else{
-            self.nextPokemon = filtered![row!+1]
-            self.selectedPokemon = filtered![row!]
-            self.previousPokemon = filtered![row!-1]
+        if row == 0{
+            self.selectedPokemon = filtered[row]
+            self.nextPokemon = filtered[row + 1]
+            self.previousPokemon = filtered.last
+        }else if row == filtered.count - 1{ //-1 -> the 0 position is the first row
+            self.selectedPokemon = filtered[row]
+            self.previousPokemon = filtered[row - 1]
+            self.nextPokemon = filtered.first
+        }else{
+            self.nextPokemon = filtered[row  + 1]
+            self.selectedPokemon = filtered[row]
+            self.previousPokemon = filtered[row - 1]
         }
-        self.nextButton.setTitle(self.nextPokemon?.name?.capitalized, for: .normal)
-        self.previewButton.setTitle(self.previousPokemon?.name?.capitalized, for: .normal)
+            self.nextButton.setTitle(self.nextPokemon?.name?.capitalized, for: .normal)
+            self.previewButton.setTitle(self.previousPokemon?.name?.capitalized, for: .normal)
+            
+        }
     }
 }
 
@@ -199,7 +225,7 @@ extension PokemonDetailsViewController{
             self.pokemonType2Label.text = pokemon.types[1].type.name.uppercased() //Saved the 2nd type
             self.paintType(label: self.pokemonType1Label)
             self.paintType(label: self.pokemonType2Label)
-            self.pokemonDescriptionView.backgroundColor = #colorLiteral(red: 0.8454863429, green: 0.8979230523, blue: 0.9188942909, alpha: 1)
+            self.pokemonDescriptionView.backgroundColor = UIColor(named: "grayColor")
             self.setBackgroundColor(from: self.pokemonDescriptionView, to: self.typesView)
             self.setBackgroundColor(from: self.pokemonDescriptionView, to: self.backgroundView)
             self.setBackgroundColor(from: self.pokemonDescriptionView, to: self.hpLabel)
@@ -210,6 +236,8 @@ extension PokemonDetailsViewController{
             self.setBackgroundColor(from: self.pokemonDescriptionView, to: self.speedLabel)
             self.setBackgroundColor(from: self.pokemonDescriptionView, to: self.nextOrPreviewView)
             self.pokemonNameLabel.textColor = .black
+            self.heightLabel.textColor = .black
+            self.weightLabel.textColor = .black
             self.statsView.backgroundColor = .white
             self.ability1Label.textColor = pokemonType1Label.backgroundColor
             self.heightAndViewLabel.backgroundColor = .white
