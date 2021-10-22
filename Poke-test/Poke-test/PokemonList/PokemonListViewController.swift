@@ -1,8 +1,7 @@
 
 import UIKit
-import IQKeyboardManagerSwift
+import NotificationCenter
 
-//ToDo: IN FAVS WHEN DELETING APP BREAKS
 //Todo: IN ORDERBY IT HAS TO BE ORDERED BY ID
 //ToDo: WHEN OFFLINE APP DOESN'T WORK
 
@@ -26,9 +25,7 @@ class PokemonListViewController: UIViewController {//PIN iPhone: 281106
     var nextPokemon: Results?
     var previousPokemon: Results?
     var vc: PokemonDetailsViewController?
-    var searchController: UISearchController?
     //var pokemonIdAndNames: [Int : String]?
-    @IBOutlet weak var searchBarAndOrderByView: UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,13 +36,12 @@ class PokemonListViewController: UIViewController {//PIN iPhone: 281106
         navigationItem.title = "Pokedex"
         loadButtons()
         loadSearchBar()
-        searchBar.shouldHideToolbarPlaceholder = true
-        searchBarAndOrderByView.addSubview(searchController!.searchBar)
     }
-    override func viewWillAppear(_ animated: Bool) {                                                                        
-        presenter?.fetchFavourites()
+    override func viewWillAppear(_ animated: Bool) {
+            presenter?.fetchFavourites()
     }
-    
+ 
+ 
 }
 
 //MARK: - ViewDidLoad Methods
@@ -66,6 +62,9 @@ extension PokemonListViewController{
     func loadSearchBar(){
         let imageBookmark = imageWithImage(image: UIImage(named: "redStar")!, scaledToSize: CGSize(width: 20, height: 20))
         self.searchBar.setImage(imageBookmark, for: .bookmark, state: .normal)
+        self.searchBar.addDoneButtonOnKeyboard()
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
 }
 
@@ -186,9 +185,64 @@ extension PokemonListViewController:UISearchBarDelegate{
         UIGraphicsEndImageContext()
         return newImage!.withRenderingMode(.alwaysOriginal)
     }
-    
+    @objc private func keyboardWillShow(notification: NSNotification) {
+        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+            tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: keyboardSize.height, right: 0)
+            
+        }
+    }
+
+    @objc private func keyboardWillHide(notification: NSNotification) {
+        if ((notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue) != nil {//If it has value
+            tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+            }
+    }
     
 }
+
+extension UISearchBar{
+    @IBInspectable var doneAccessory: Bool{
+        get{
+            return self.doneAccessory
+        }
+        set (hasDone) {
+            if hasDone{
+                addDoneButtonOnKeyboard()
+            }
+        }
+    }
+
+    func addDoneButtonOnKeyboard()
+    {
+        let doneToolbar: UIToolbar = UIToolbar(frame: CGRect.init(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 50))
+        doneToolbar.barStyle = .default
+
+        let flexSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        let done: UIBarButtonItem = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(self.doneButtonAction))
+        /* let goUp: UIBarButtonItem = UIBarButtonItem(image: UIImage(named: "arrowUp"), style: .done, target: self, action: #selector(self.goUpButtonAction))
+        let goDown: UIBarButtonItem = UIBarButtonItem(image: UIImage(named: "arrowDown"), style: .done, target: self, action: #selector(self.goDownButtonAction)) */
+
+        let items = [ /* goUp, goDown, */ flexSpace, done]
+        doneToolbar.items = items
+        doneToolbar.sizeToFit()
+
+        self.inputAccessoryView = doneToolbar
+    }
+
+    @objc func doneButtonAction()
+    {
+        self.resignFirstResponder()
+    }
+    /*
+    @objc func goDownButtonAction(){
+        
+    }
+    @objc func goUpButtonAction(){
+
+    } */
+
+}
+
 
 //MARK: - OrderBy Buttons methods
 extension PokemonListViewController{

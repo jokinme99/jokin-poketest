@@ -3,8 +3,7 @@ import UIKit
 import AlamofireImage
 
 //ToDo: IN FAVS WHEN DELETING APP BREAKS
-
-
+//Check favourites fixed
 class PokemonDetailsViewController: UIViewController {
     @IBOutlet weak var backgroundView: UIView!
     @IBOutlet weak var typesView: UIView!
@@ -53,6 +52,7 @@ class PokemonDetailsViewController: UIViewController {
         presenter?.fetchFavourites()
         loadMethods()
         row = (filtered?.firstIndex(of: selectedPokemon!)) // row 4 (first row is 0) charizard(4th row, position 3)
+        
     }
 }
 
@@ -67,6 +67,8 @@ extension PokemonDetailsViewController{
     }
     func loadMethods(){
         self.loadButtonsStyle()
+        self.presenter?.fetchFavourites()
+        self.favouriteConfirmationImage.isHidden = false
         self.favouritesButton.addTarget(self, action: #selector(pressed), for: .touchUpInside)
         self.previewButton.addTarget(self, action: #selector(previousPokemonButtonAction), for: .touchUpInside)
         self.nextButton.addTarget(self, action: #selector(nextPokemonButtonAction), for: .touchUpInside)
@@ -99,13 +101,36 @@ extension PokemonDetailsViewController: PokemonDetailsViewDelegate {
         presenter?.addFavourite(pokemon: pokemon)
         favouritesButton.setTitle("Delete from favourites", for: .normal)
         favouritesImage.image = UIImage(named: "emptyStar")
-        favouriteConfirmationImage.isHidden = false
     }
     func deleteFavourite(pokemon: Results) {
-        presenter?.deleteFavourite(pokemon: pokemon)
-        favouritesButton.setTitle("Add to favourites", for: .normal)
-        favouritesImage.image = UIImage(named: "fullStar")
-        favouriteConfirmationImage.isHidden = true
+        if filtered == favouritesList{
+            favouritesButton.setTitle("Add to favourites", for: .normal)
+            favouritesImage.image = UIImage(named: "fullStar")
+            favouriteConfirmationImage.isHidden = true
+            presenter?.deleteFavourite(pokemon: pokemon)
+            let a = favouritesList
+            let b = filtered
+            
+            let index = filtered?.firstIndex(of: pokemon)
+            filtered?.remove(at: index!)
+            presenter?.fetchFavourites()//When we remove the favourite, the list has to be updated in tableview also
+            let c = favouritesList
+            let d = filtered
+            let e = vc?.filtered
+            vc?.presenter?.fetchFavourites()
+            vc?.filtered = filtered!
+            
+        }else{
+            //if you don't select the favourites only
+            presenter?.deleteFavourite(pokemon: pokemon)
+            favouritesButton.setTitle("Add to favourites", for: .normal)
+            favouritesImage.image = UIImage(named: "fullStar")
+            favouriteConfirmationImage.isHidden = true
+            presenter?.fetchFavourites()
+            
+            
+        }
+        
     }
     
     //MARK: - Gets the selected pokemon from the tableView
@@ -119,20 +144,21 @@ extension PokemonDetailsViewController: PokemonDetailsViewDelegate {
     }
     
     //MARK: - Updates view after fetching the details of the selected pokemon
-    func updateDetailsView(pokemon: PokemonData) {//When deleting, delete it from filtered (if filtered=favouriteList)
+    func updateDetailsView(pokemon: PokemonData) {
         favouriteConfirmationImage.isHidden = true
-        if favouritesList.isEmpty == false { //Not the 1st time is called
-            favouritesList.removeAll()
-            presenter?.fetchFavourites()
-            paintWindow(pokemon)
-            checkFavourite(pokemon)
-        }else{
-            paintWindow(pokemon)
-            checkFavourite(pokemon)
-        }
-        
         presenter?.fetchFavourites()
-        checkFavourite(pokemon)
+        for favouritesFiltered in favouritesList{
+            if favouritesFiltered.name == pokemon.name{
+                favouritesButton.setTitle("Delete from favourites", for: .normal)
+                favouritesImage.image = UIImage(named: "emptyStar")
+                favouriteConfirmationImage.isHidden = false
+                break
+            }else{
+                favouritesButton.setTitle("Add to favourites", for: .normal)
+                favouritesImage.image = UIImage(named: "fullStar")
+                favouriteConfirmationImage.isHidden = true
+            }
+        }
         paintWindow(pokemon)
     }
     func paintWindow(_ pokemon: PokemonData){
@@ -153,15 +179,6 @@ extension PokemonDetailsViewController: PokemonDetailsViewDelegate {
             return  self.pokemonImage.af.setImage(withURL: downloadURL )
         }else {
             return
-        }
-    }
-    func checkFavourite(_ pokemon: PokemonData){
-        for favouritesFiltered in favouritesList{
-            if favouritesFiltered.name == pokemon.name{
-                favouritesButton.setTitle("Delete from favourites", for: .normal)
-                favouritesImage.image = UIImage(named: "emptyStar")
-                favouriteConfirmationImage.isHidden = false
-            }
         }
     }
 }
@@ -223,6 +240,7 @@ extension PokemonDetailsViewController{
         }
             self.nextButton.setTitle(self.nextPokemon?.name?.capitalized, for: .normal)
             self.previewButton.setTitle(self.previousPokemon?.name?.capitalized, for: .normal)
+            presenter?.fetchFavourites()
             
             
         }

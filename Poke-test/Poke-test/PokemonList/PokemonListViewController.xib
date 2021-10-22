@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina3_5" orientation="portrait" appearance="light"/>
+    <device id="retina3_5" orientation="portrait" appearance="dark"/>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
@@ -14,7 +14,6 @@
             <connections>
                 <outlet property="orderByButton" destination="znT-Ly-tdf" id="Rel-DZ-ALe"/>
                 <outlet property="searchBar" destination="hWD-k5-lMP" id="ogA-59-UoD"/>
-                <outlet property="searchBarAndOrderByView" destination="PZB-lK-XCW" id="nLZ-9u-nfr"/>
                 <outlet property="tableView" destination="sCN-8t-2jl" id="NLs-vp-7Fu"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
                 <outletCollection property="buttonList" destination="qcE-Gc-bwa" collectionClass="NSMutableArray" id="3Cw-Cq-wse"/>
@@ -45,10 +44,10 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PZB-lK-XCW">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PZB-lK-XCW" customClass="IQPreviousNextView" customModule="IQKeyboardManagerSwift">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="51"/>
                     <subviews>
-                        <searchBar contentMode="redraw" placeholder="Search pokemon..." translatesAutoresizingMaskIntoConstraints="NO" id="hWD-k5-lMP">
+                        <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="hWD-k5-lMP">
                             <rect key="frame" x="0.0" y="0.0" width="205" height="51"/>
                             <constraints>
                                 <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="205" id="c0j-eD-OYf"/>
@@ -76,7 +75,7 @@
                         <constraint firstItem="hWD-k5-lMP" firstAttribute="leading" secondItem="PZB-lK-XCW" secondAttribute="leading" id="ve3-fK-ggY"/>
                     </constraints>
                 </view>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="sCN-8t-2jl">
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="interactive" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="sCN-8t-2jl">
                     <rect key="frame" x="0.0" y="87" width="320" height="393"/>
                     <color key="backgroundColor" systemColor="systemGray5Color"/>
                     <color key="separatorColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

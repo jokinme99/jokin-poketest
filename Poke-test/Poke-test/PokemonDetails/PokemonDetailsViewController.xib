@@ -340,7 +340,7 @@
                                                 <constraint firstItem="H81-AI-qQa" firstAttribute="trailing" secondItem="l2c-JA-CQ8" secondAttribute="trailing" id="yOR-WL-9AG"/>
                                             </constraints>
                                         </view>
-                                        <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="fwK-ON-dnY" userLabel="Image Pokemon">
+                                        <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="down" translatesAutoresizingMaskIntoConstraints="NO" id="fwK-ON-dnY" userLabel="Image Pokemon">
                                             <rect key="frame" x="66" y="71" width="183" height="217"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="183" id="aoP-AV-nJh"/>
@@ -474,10 +474,11 @@
         </view>
     </objects>
     <resources>
+        <image name="down" width="128" height="128"/>
         <image name="fullStar" width="43" height="44"/>
         <image name="redStar" width="43" height="44"/>
         <namedColor name="grayColor">
-            <color red="0.84548634290000002" green="0.89792305230000002" blue="0.91889429089999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.84500002861022949" green="0.89800000190734863" blue="0.91900002956390381" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="tertiarySystemGroupedBackgroundColor">
             <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

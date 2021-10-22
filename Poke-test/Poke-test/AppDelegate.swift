@@ -3,22 +3,23 @@ import UIKit
 import Firebase
 import FirebaseMessaging
 import UserNotifications
-import IQKeyboardManagerSwift
+//import IQKeyboardManagerSwift
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate, UNUserNotificationCenterDelegate {
     var window: UIWindow?
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-//        FirebaseApp.configure()
-//        Messaging.messaging().delegate = self
-//        UNUserNotificationCenter.current().delegate = self
-//        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) { success , _ in
-//            guard success else {return}
-//            application.registerForRemoteNotifications()
-//            print("Success in APN registry")
-//        }
-        IQKeyboardManager.shared.enable = true
+        FirebaseApp.configure()
+        Messaging.messaging().delegate = self
+        UNUserNotificationCenter.current().delegate = self
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) { success , _ in
+            guard success else {return}
+            print("Success in APN registry")
+        }
+        application.registerForRemoteNotifications()
+        //IQKeyboardManager.shared.enable = true //Not working well with searchBar, in Pods IQKeyboardManagerSwift, IQUIView+Hierarchy file line 260 comment textFieldSearchBar() == nil
+        //IQKeyboardManager.shared.enableAutoToolbar = true
         
         setWindow()
         return true
