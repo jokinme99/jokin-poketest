@@ -1,6 +1,4 @@
 
-import RealmSwift
-
 class PokemonDetailsPresenter : PokemonDetailsPresenterDelegate {
     
     var view: PokemonDetailsViewDelegate?
@@ -10,7 +8,6 @@ class PokemonDetailsPresenter : PokemonDetailsPresenterDelegate {
     var tableView: PokemonListViewDelegate?
     
     //MARK: - These methods call the method that do the functionality
-    
     func fetchPokemon(pokemon: Results) {
         interactor?.fetchPokemon(pokemon: pokemon)
     }
@@ -20,14 +17,13 @@ class PokemonDetailsPresenter : PokemonDetailsPresenterDelegate {
     func addFavourite(pokemon: Results) {
         interactor?.addFavourite(pokemon: pokemon)
     }
-    
     func deleteFavourite(pokemon: Results) {
         interactor?.deleteFavourite(pokemon: pokemon)
     }
 }
 
+//MARK: - Methods that return the results from the functionality methods
 extension PokemonDetailsPresenter: PokemonDetailsInteractorOutputDelegate {
-    //MARK: - Methods that return the results from the functionality methods
     func didFetchPokemon(pokemon: PokemonData) {
         view?.updateDetailsView(pokemon: pokemon)
     }
@@ -37,7 +33,6 @@ extension PokemonDetailsPresenter: PokemonDetailsInteractorOutputDelegate {
     func didGetSelectedPokemon(with pokemon: Results) {
         view?.getSelectedPokemon(with: pokemon)//It works
     }
-    
     func didFetchFavourites(_ favourites: [Results]) {
         view?.updateDetailsViewFavourites(favourites: favourites)
     }
@@ -53,7 +48,6 @@ extension PokemonDetailsPresenter: PokemonDetailsInteractorOutputDelegate {
     func didDeleteFavouriteWithError(error: Error?) {
         print(error!)
     }
-    
     func didIsSaved(saved: Bool) {
         print(saved)
     }

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina3_5" orientation="portrait" appearance="dark"/>
+    <device id="retina3_5" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
@@ -14,6 +14,7 @@
             <connections>
                 <outlet property="orderByButton" destination="znT-Ly-tdf" id="Rel-DZ-ALe"/>
                 <outlet property="searchBar" destination="hWD-k5-lMP" id="ogA-59-UoD"/>
+                <outlet property="searchBarAndOrderByView" destination="PZB-lK-XCW" id="nLZ-9u-nfr"/>
                 <outlet property="tableView" destination="sCN-8t-2jl" id="NLs-vp-7Fu"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
                 <outletCollection property="buttonList" destination="qcE-Gc-bwa" collectionClass="NSMutableArray" id="3Cw-Cq-wse"/>
@@ -354,7 +355,7 @@
     </objects>
     <resources>
         <namedColor name="grayColor">
-            <color red="0.84548634290000002" green="0.89792305230000002" blue="0.91889429089999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.84500002861022949" green="0.89800000190734863" blue="0.91900002956390381" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

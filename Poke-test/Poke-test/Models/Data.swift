@@ -2,7 +2,7 @@
 import UIKit
 import RealmSwift
 
-//MARK: - PokemonList
+//MARK: - Pokemons
 class Results: Object, Codable{
     @objc dynamic var name: String?
     override class func primaryKey() -> String? {
@@ -24,7 +24,7 @@ class PokemonListData:Object, Codable{
     }
 }
 
-//MARK: - Pokemon details
+//MARK: - Pokemons' details
 class PokemonData: Codable{
     let name: String
     let sprites: Sprites
@@ -54,7 +54,7 @@ class Ability: Codable{
     let name: String //abilities[0].ability.name
 }
 
-//pokemon[0].pokemon.name
+//MARK: - Pokemons' types
 class PokemonFilterListData: Codable{
     let pokemon: [Pokemons]
 }

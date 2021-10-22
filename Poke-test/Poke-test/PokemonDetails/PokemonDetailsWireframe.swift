@@ -1,20 +1,18 @@
 
 import UIKit
 
-
 class PokemonDetailsWireframe : PokemonDetailsWireframeDelegate {
     
     var viewController: UIViewController?
-    //MARK: - Method that makes the window(.xib)
+    
+    //MARK: - Method that make the window(.xib)
     static func createPokemonDetailsModule(pokemon: Results, nextPokemon: Results, previousPokemon: Results, filtered: [Results]) -> UIViewController {
         let presenter = PokemonDetailsPresenter()
         let view = PokemonDetailsViewController()
         let wireframe = PokemonDetailsWireframe()
         let interactor = PokemonDetailsInteractor()
         
-        
-        //presenter.didGetSelectedPokemon(with: pokemon)
-        view.selectedPokemon = pokemon // ??
+        view.selectedPokemon = pokemon
         view.nextPokemon = nextPokemon
         view.previousPokemon = previousPokemon
         view.filtered = filtered

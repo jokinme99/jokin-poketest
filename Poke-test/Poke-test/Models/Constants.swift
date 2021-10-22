@@ -1,6 +1,4 @@
 
-import Foundation
-
 struct TypeName{
     static let normal = "normal"
     static let fight = "fighting"

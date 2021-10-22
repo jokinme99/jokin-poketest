@@ -1,6 +1,4 @@
-
 import UIKit
-import RealmSwift
 
 //MARK: - CellDelegate methods
 protocol PokemonListCellDelegate: AnyObject{

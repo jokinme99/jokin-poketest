@@ -9,11 +9,12 @@
 /* Begin PBXBuildFile section */
 		52E96436D3664A73002DBC5D /* Pods_Poke_test.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA37C33EACA622F7C18E2B13 /* Pods_Poke_test.framework */; };
 		FD3172D02695CF90006810CA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD3172CF2695CF90006810CA /* AppDelegate.swift */; };
-		FD61B42326B4046800EDBF8C /* PokemonTypeList.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD61B42226B4046800EDBF8C /* PokemonTypeList.swift */; };
+		FD61B42326B4046800EDBF8C /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD61B42226B4046800EDBF8C /* Constants.swift */; };
 		FD7D316E27198B110031AB92 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FD7D316D27198B100031AB92 /* LaunchScreen.storyboard */; };
 		FD85C3A82696EAFC00EAF99F /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD85C3A72696EAFC00EAF99F /* Data.swift */; };
 		FD85C3AC2696EB1E00EAF99F /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD85C3AB2696EB1E00EAF99F /* DataManager.swift */; };
 		FD86C1522701A33C00DB4B8F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FD86C1512701A33C00DB4B8F /* Assets.xcassets */; };
+		FD87CCB227213A7A00FB45FA /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FD87CCB127213A7A00FB45FA /* GoogleService-Info.plist */; };
 		FD88DF3F26DE076E0094858B /* DDBBManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD88DF3E26DE076E0094858B /* DDBBManager.swift */; };
 		FD9B9A8426D627BC000322D3 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = FD9B9A8326D627BC000322D3 /* Realm */; };
 		FD9B9A8626D627BC000322D3 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = FD9B9A8526D627BC000322D3 /* RealmSwift */; };
@@ -39,12 +40,13 @@
 		DA37C33EACA622F7C18E2B13 /* Pods_Poke_test.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Poke_test.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FD3172CC2695CF90006810CA /* Poke-test.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Poke-test.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FD3172CF2695CF90006810CA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		FD61B42226B4046800EDBF8C /* PokemonTypeList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonTypeList.swift; sourceTree = "<group>"; };
+		FD61B42226B4046800EDBF8C /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		FD64D039271D53E200473D88 /* Poke-test.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Poke-test.entitlements"; sourceTree = "<group>"; };
 		FD7D316D27198B100031AB92 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FD85C3A72696EAFC00EAF99F /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
 		FD85C3AB2696EB1E00EAF99F /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		FD86C1512701A33C00DB4B8F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		FD87CCB127213A7A00FB45FA /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		FD88DF3E26DE076E0094858B /* DDBBManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DDBBManager.swift; sourceTree = "<group>"; };
 		FDA34EE826E8952900AE2143 /* PokemonListPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonListPresenter.swift; sourceTree = "<group>"; };
 		FDA34EE926E8952900AE2143 /* PokemonListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonListViewController.swift; sourceTree = "<group>"; };
@@ -118,6 +120,7 @@
 			children = (
 				FD64D039271D53E200473D88 /* Poke-test.entitlements */,
 				FD3172CF2695CF90006810CA /* AppDelegate.swift */,
+				FD87CCB127213A7A00FB45FA /* GoogleService-Info.plist */,
 				FDA34F0226E8957400AE2143 /* Managers */,
 				FDA34F0426E8A2DF00AE2143 /* Models */,
 				FDA34F0326E8A2BD00AE2143 /* PokemonList */,
@@ -177,7 +180,7 @@
 			isa = PBXGroup;
 			children = (
 				FD85C3A72696EAFC00EAF99F /* Data.swift */,
-				FD61B42226B4046800EDBF8C /* PokemonTypeList.swift */,
+				FD61B42226B4046800EDBF8C /* Constants.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -253,6 +256,7 @@
 				FDF25E8526B17600002474BB /* PokemonCell.xib in Resources */,
 				FD7D316E27198B110031AB92 /* LaunchScreen.storyboard in Resources */,
 				FDA34EF226E8952900AE2143 /* PokemonListViewController.xib in Resources */,
+				FD87CCB227213A7A00FB45FA /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -317,7 +321,7 @@
 				FD85C3A82696EAFC00EAF99F /* Data.swift in Sources */,
 				FDF25E8426B17600002474BB /* PokemonCell.swift in Sources */,
 				FDA34EFD26E8954D00AE2143 /* PokemonDetailsProtocols.swift in Sources */,
-				FD61B42326B4046800EDBF8C /* PokemonTypeList.swift in Sources */,
+				FD61B42326B4046800EDBF8C /* Constants.swift in Sources */,
 				FDA34EF326E8952900AE2143 /* PokemonListWireframe.swift in Sources */,
 				FDA34EEF26E8952900AE2143 /* PokemonListViewController.swift in Sources */,
 				FDA34EFE26E8954D00AE2143 /* PokemonDetailsInteractor.swift in Sources */,
@@ -452,8 +456,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "Poke-test/Poke-test.entitlements";
-				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = WV4ELQGDQE;
 				INFOPLIST_FILE = "Poke-test/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -461,9 +465,9 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.1.7;
-				PRODUCT_BUNDLE_IDENTIFIER = "jEgia-baturamobile.com.Poke-test";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.baturamobile.jokin-poketest";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE_SPECIFIER = "Poke Test Jonkin - Debug";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -475,8 +479,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "Poke-test/Poke-test.entitlements";
-				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = WV4ELQGDQE;
 				INFOPLIST_FILE = "Poke-test/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -484,9 +488,9 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.1.7;
-				PRODUCT_BUNDLE_IDENTIFIER = "jEgia-baturamobile.com.Poke-test";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.baturamobile.jokin-poketest";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE_SPECIFIER = "Jokin Poke API - Release";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

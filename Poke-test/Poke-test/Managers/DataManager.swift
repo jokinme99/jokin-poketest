@@ -1,7 +1,5 @@
 
-import Foundation
 import Alamofire
-
 
 struct PokemonManager{
     static var shared = PokemonManager() 
@@ -27,6 +25,7 @@ struct PokemonManager{
                 }
             }
     }
+    
     //MARK: - Fetch Pokemon Details
     func fetchPokemon(pokemonSelectedName: String, _ completion:  @escaping  (PokemonData?, Error?) -> Void){
         let pokemonDetailsURL = "https://pokeapi.co/api/v2/pokemon/\(pokemonSelectedName)"
@@ -44,6 +43,8 @@ struct PokemonManager{
                 }
             }
     }
+    
+    //MARK: - Fetch Pokemon Types
     func fetchPokemonTypes(pokemonType: String, _ completion: @escaping(PokemonFilterListData?, Error?)-> Void){
         let pokemonFilterURL = "https://pokeapi.co/api/v2/type/\(pokemonType)"
         AF.request(pokemonFilterURL,

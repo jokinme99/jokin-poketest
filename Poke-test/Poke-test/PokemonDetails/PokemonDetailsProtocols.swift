@@ -1,7 +1,5 @@
 
-
 import UIKit
-import RealmSwift
 
 //MARK: - ViewControllerDelegate methods
 protocol PokemonDetailsViewDelegate: AnyObject {

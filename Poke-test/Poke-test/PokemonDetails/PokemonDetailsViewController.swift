@@ -1,8 +1,8 @@
 
 import UIKit
-import Alamofire
 import AlamofireImage
-import RealmSwift
+
+//ToDo: IN FAVS WHEN DELETING APP BREAKS
 
 
 class PokemonDetailsViewController: UIViewController {
@@ -89,7 +89,6 @@ extension PokemonDetailsViewController{
         self.nextButton.layer.borderWidth = 2
         self.nextButton.layer.borderColor = UIColor.black.cgColor
     }
-    
 }
 
 //MARK: - ViewControllerDelegate methods
@@ -97,20 +96,16 @@ extension PokemonDetailsViewController: PokemonDetailsViewDelegate {
     
     //MARK: - Sets the add/delete label wether it's a favourite or not
     func addFavourite(pokemon: Results) {
-        presenter?.fetchFavourites()
         presenter?.addFavourite(pokemon: pokemon)
         favouritesButton.setTitle("Delete from favourites", for: .normal)
         favouritesImage.image = UIImage(named: "emptyStar")
         favouriteConfirmationImage.isHidden = false
-        presenter?.fetchFavourites()
     }
     func deleteFavourite(pokemon: Results) {
         presenter?.deleteFavourite(pokemon: pokemon)
         favouritesButton.setTitle("Add to favourites", for: .normal)
         favouritesImage.image = UIImage(named: "fullStar")
         favouriteConfirmationImage.isHidden = true
-        presenter?.fetchFavourites()
-        
     }
     
     //MARK: - Gets the selected pokemon from the tableView
@@ -124,9 +119,23 @@ extension PokemonDetailsViewController: PokemonDetailsViewDelegate {
     }
     
     //MARK: - Updates view after fetching the details of the selected pokemon
-    func updateDetailsView(pokemon: PokemonData) {
+    func updateDetailsView(pokemon: PokemonData) {//When deleting, delete it from filtered (if filtered=favouriteList)
         favouriteConfirmationImage.isHidden = true
-        checkFavouriteConfirmationImage(pokemon.name)
+        if favouritesList.isEmpty == false { //Not the 1st time is called
+            favouritesList.removeAll()
+            presenter?.fetchFavourites()
+            paintWindow(pokemon)
+            checkFavourite(pokemon)
+        }else{
+            paintWindow(pokemon)
+            checkFavourite(pokemon)
+        }
+        
+        presenter?.fetchFavourites()
+        checkFavourite(pokemon)
+        paintWindow(pokemon)
+    }
+    func paintWindow(_ pokemon: PokemonData){
         self.pokemonNameLabel.text = pokemon.name.uppercased()
         self.pokemonType1Label.text = pokemon.types[0].type.name.uppercased()
         self.pokemonIdLabel.text = "# \(pokemon.id)"
@@ -146,9 +155,9 @@ extension PokemonDetailsViewController: PokemonDetailsViewDelegate {
             return
         }
     }
-    func checkFavouriteConfirmationImage(_ name: String){
+    func checkFavourite(_ pokemon: PokemonData){
         for favouritesFiltered in favouritesList{
-            if favouritesFiltered.name == name{
+            if favouritesFiltered.name == pokemon.name{
                 favouritesButton.setTitle("Delete from favourites", for: .normal)
                 favouritesImage.image = UIImage(named: "emptyStar")
                 favouriteConfirmationImage.isHidden = false
@@ -167,7 +176,8 @@ extension PokemonDetailsViewController{
         }
     }
     @objc func nextPokemonButtonAction(_ sender: UIButton!){
-        presenter?.fetchPokemon(pokemon: nextPokemon!)
+        guard let nextPokemon = nextPokemon else{return}
+        presenter?.fetchPokemon(pokemon: nextPokemon)
         guard let filtered = filtered else{return}
         if row == filtered.count - 1{ // if we're in the last row, and we press next actualRow will be the first
             row = 0
@@ -179,7 +189,8 @@ extension PokemonDetailsViewController{
         
     }
     @objc func previousPokemonButtonAction(_ sender: UIButton!){
-        presenter?.fetchPokemon(pokemon: previousPokemon!)
+        guard let previousPokemon = previousPokemon else{return}
+        presenter?.fetchPokemon(pokemon: previousPokemon)
         guard let filtered = filtered else{return}
         if row == 0{ // if we're in the first row, and we press previous actualRow will be the last
             row = filtered.count - 1
@@ -187,11 +198,11 @@ extension PokemonDetailsViewController{
             row = row!  - 1 // if we do guard let row = row or row ?? 0 doesn't work
         }
         nextOrPrevious()
-        checkFavouriteConfirmationImage(nextPokemon?.name ?? "")
         
     }
+    //OFFLINE NOT WORKING, FIX DELETING IN FAVOURITES ONLY VIEW
+    //WHEN ADDED TO FAV AND PRESSING NEXT/PREVIOUS POKEMON FAVOURITES BUTTON FAILS
     func nextOrPrevious(){
-        presenter?.fetchFavourites()//FIXES ERROR: When adding fav and pressing next/previous doesn't save the star
         guard let filtered = filtered, let row = row else { return }
         if filtered.count < 3{
             nextButton.isHidden = true
@@ -212,6 +223,7 @@ extension PokemonDetailsViewController{
         }
             self.nextButton.setTitle(self.nextPokemon?.name?.capitalized, for: .normal)
             self.previewButton.setTitle(self.previousPokemon?.name?.capitalized, for: .normal)
+            
             
         }
     }

@@ -1,5 +1,4 @@
 
-import RealmSwift
 class PokemonDetailsInteractor : PokemonDetailsInteractorDelegate {
     
     var presenter: PokemonDetailsInteractorOutputDelegate?
@@ -15,12 +14,9 @@ class PokemonDetailsInteractor : PokemonDetailsInteractorDelegate {
 
         })
     }
-
-    
     func fetchFavouritePokemons() {
         presenter?.didFetchFavourites(DDBBManager.shared.get(Results.self))
     }
-    
     func addFavourite(pokemon: Results) {
         let isSaved = isSavedFavourite(pokemon)
         if !isSaved.isSaved{
@@ -32,7 +28,6 @@ class PokemonDetailsInteractor : PokemonDetailsInteractorDelegate {
             }
         }
     }
-    
     func deleteFavourite(pokemon: Results) {
         let isSaved = isSavedFavourite(pokemon)
         if isSaved.isSaved{
@@ -43,7 +38,6 @@ class PokemonDetailsInteractor : PokemonDetailsInteractorDelegate {
             }
         }
     }
-    
     func isSaved(favourite: Results){
         let saved = isSavedFavourite(favourite)
         dataBaseDelegate?.didIsSaved(saved: saved.isSaved)
@@ -53,17 +47,15 @@ class PokemonDetailsInteractor : PokemonDetailsInteractorDelegate {
         let saved = DDBBManager.shared.get(Results.self, filter: filter)
         return (saved.count > 0, saved.first)
     }
-   
 }
+//MARK: - DDBBManagerDelegate methods
 extension PokemonDetailsInteractor: DDBBManagerDelegate{
     func didSaveFavouriteWithError(error: Error?) {
         presenter?.didAddFavouriteWithError(error: error)
     }
-    
     func didIsSaved(saved: Bool) {
         presenter?.didIsSaved(saved: saved)
     }
-    
     func didDeleteFavouriteWithError(error: Error?) {
         presenter?.didDeleteFavouriteWithError(error: error)
     }

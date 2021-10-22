@@ -1,7 +1,5 @@
 
 import UIKit
-import RealmSwift
-
 
 class PokemonCell: UITableViewCell {
     

@@ -1,8 +1,11 @@
 
 import UIKit
+import IQKeyboardManagerSwift
 
 //ToDo: IN FAVS WHEN DELETING APP BREAKS
 //Todo: IN ORDERBY IT HAS TO BE ORDERED BY ID
+//ToDo: WHEN OFFLINE APP DOESN'T WORK
+
 //Orders the list as the pokemon are added/fetched if #12 is added to favs before #1 favourites[0] is #12 and not #1
 
 class PokemonListViewController: UIViewController {//PIN iPhone: 281106
@@ -22,7 +25,10 @@ class PokemonListViewController: UIViewController {//PIN iPhone: 281106
     var pokemonInCell: Results?
     var nextPokemon: Results?
     var previousPokemon: Results?
+    var vc: PokemonDetailsViewController?
+    var searchController: UISearchController?
     //var pokemonIdAndNames: [Int : String]?
+    @IBOutlet weak var searchBarAndOrderByView: UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,9 +38,11 @@ class PokemonListViewController: UIViewController {//PIN iPhone: 281106
         presenter?.fetchFavourites()
         navigationItem.title = "Pokedex"
         loadButtons()
-        loadSearchBarAndKeyboard()
+        loadSearchBar()
+        searchBar.shouldHideToolbarPlaceholder = true
+        searchBarAndOrderByView.addSubview(searchController!.searchBar)
     }
-    override func viewWillAppear(_ animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {                                                                        
         presenter?.fetchFavourites()
     }
     
@@ -55,10 +63,9 @@ extension PokemonListViewController{
             paintButton(button)
         }
     }
-    func loadSearchBarAndKeyboard(){
+    func loadSearchBar(){
         let imageBookmark = imageWithImage(image: UIImage(named: "redStar")!, scaledToSize: CGSize(width: 20, height: 20))
         self.searchBar.setImage(imageBookmark, for: .bookmark, state: .normal)
-        searchBar.addDoneButtonOnKeyboard()
     }
 }
 
@@ -132,7 +139,7 @@ extension PokemonListViewController:UITableViewDelegate, UITableViewDataSource{
             previousPokemon = filtered[previousRow]
             nextPokemon = filtered.first
         }else{
-            nextPokemon = filtered[nextRow] 
+            nextPokemon = filtered[nextRow]
             pokemonSelected = filtered[row]
             previousPokemon = filtered[previousRow]
         }
@@ -182,40 +189,6 @@ extension PokemonListViewController:UISearchBarDelegate{
     
     
 }
-//MARK: - Done button in keyboard methods
-extension UISearchBar{
-
-      @IBInspectable var doneAccessory: Bool{
-          get{
-              return self.doneAccessory
-          }
-          set (hasDone) {
-              if hasDone{
-                  addDoneButtonOnKeyboard()
-              }
-          }
-      }
-
-      func addDoneButtonOnKeyboard()
-      {
-          let doneToolbar: UIToolbar = UIToolbar(frame: CGRect.init(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 50))
-          doneToolbar.barStyle = .default
-
-          let flexSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
-          let done: UIBarButtonItem = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(self.doneButtonAction))
-
-          let items = [flexSpace, done]
-          doneToolbar.items = items
-          doneToolbar.sizeToFit()
-
-          self.inputAccessoryView = doneToolbar
-      }
-
-      @objc func doneButtonAction() {
-          self.resignFirstResponder()
-      }
-
-  }
 
 //MARK: - OrderBy Buttons methods
 extension PokemonListViewController{
@@ -224,7 +197,7 @@ extension PokemonListViewController{
         if orderByButton.titleLabel?.text == "Order by Name"{
             orderByButton.setTitle("Order by Id", for: .normal)
             self.filtered = filtered.sorted(by: {$0.name ?? "" < $1.name ?? ""})
-
+            
             self.tableView.reloadData()
         }
         else{
@@ -234,7 +207,7 @@ extension PokemonListViewController{
             }else{
                 self.filtered = self.savefilteredOrder
             }
-             
+            
             self.tableView.reloadData()
         }
         

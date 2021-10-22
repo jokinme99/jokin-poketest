@@ -1,51 +1,58 @@
 
 import UIKit
-import RealmSwift
+import Firebase
+import FirebaseMessaging
 import UserNotifications
+import IQKeyboardManagerSwift
 
-@UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+@main
+class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate, UNUserNotificationCenterDelegate {
     var window: UIWindow?
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+//        FirebaseApp.configure()
+//        Messaging.messaging().delegate = self
+//        UNUserNotificationCenter.current().delegate = self
+//        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) { success , _ in
+//            guard success else {return}
+//            application.registerForRemoteNotifications()
+//            print("Success in APN registry")
+//        }
+        IQKeyboardManager.shared.enable = true
         
-        registerNotifications()
-
+        setWindow()
+        return true
+    }
+    
+    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+        Messaging.messaging().apnsToken = deviceToken
+    }
+    
+    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        //completionHandler([.sound, .badge, .alert]) what will show(sound yes or no badge or alert) 
+    }
+    
+    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+        //
+    }
+    
+    
+    func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String?) {
+        messaging.token { token, _ in
+            guard let token = token else{return}
+            print("Token: \(token)")
+        }
+    }
+    
+    func setWindow(){
         let frame = UIScreen.main.bounds
         self.window = UIWindow(frame: frame)
         let mainViewController = PokemonListWireframe.createPokemonListModule()
         let navController = UINavigationController(rootViewController: mainViewController)
         self.window?.rootViewController = navController
         self.window?.makeKeyAndVisible()
-        return true
-    }
-    func registerNotifications(){
-        UNUserNotificationCenter.current()
-          .requestAuthorization(
-            options: [.alert, .sound, .badge]) { [weak self] granted, _ in
-            print("Permission granted: \(granted)")
-            guard granted else { return }
-            self?.getNotificationSettings()
-          }
-    }
-    func getNotificationSettings() {//If the user declines the permissions
-      UNUserNotificationCenter.current().getNotificationSettings { settings in
-        print("Notification settings: \(settings)")
-      }
     }
     
-    func applicationDidEnterBackground(_ application: UIApplication) {
-        makeNotification(title: "POKEDEX", body: "App has entered in background", timeInterval: 10)
-    }
-    func makeNotification(title: String, body: String, timeInterval: Double){
-        let content = UNMutableNotificationContent()
-        content.title = title
-        content.body = body
-        content.sound = UNNotificationSound.default
-
-        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: timeInterval, repeats: false)
-        let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
-        UNUserNotificationCenter.current().add(request)
-    }
+    
 }
 
