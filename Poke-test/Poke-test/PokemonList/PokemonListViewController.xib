@@ -13,6 +13,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PokemonListViewController" customModule="Poke_test" customModuleProvider="target">
             <connections>
                 <outlet property="orderByButton" destination="znT-Ly-tdf" id="Rel-DZ-ALe"/>
+                <outlet property="orderBySearchView" destination="PZB-lK-XCW" id="FV8-M9-Pw7"/>
                 <outlet property="searchBar" destination="hWD-k5-lMP" id="ogA-59-UoD"/>
                 <outlet property="tableView" destination="sCN-8t-2jl" id="NLs-vp-7Fu"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -44,7 +45,7 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PZB-lK-XCW" customClass="IQPreviousNextView" customModule="IQKeyboardManagerSwift">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PZB-lK-XCW" userLabel="Order By Search View">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="51"/>
                     <subviews>
                         <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="hWD-k5-lMP">

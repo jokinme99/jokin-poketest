@@ -12,8 +12,6 @@ class PokemonCell: UITableViewCell {
     var favouritesList: [Results] = []
     var view: PokemonListViewDelegate?
     var presenter: PokemonListPresenterDelegate?
-    //var dictionary: [Int:String]?
-    //var vc: PokemonListViewController?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -41,10 +39,10 @@ extension PokemonCell: PokemonListCellDelegate{
                 print(error)
             }else{
                 guard let pokemonData = pokemonData else {return}
-                //self.dictionary = [pokemonData.id : pokemonData.name]
                 self.setColor((pokemonData.types[0].type.name), self.pokemonNameLabel)
                 self.idLabel.text = "#\(pokemonData.id)"
                 self.setColor((pokemonData.types[0].type.name), self.idLabel)
+                
             }
             
         })

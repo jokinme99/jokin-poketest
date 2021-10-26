@@ -3,6 +3,7 @@ class PokemonDetailsInteractor : PokemonDetailsInteractorDelegate {
     
     var presenter: PokemonDetailsInteractorOutputDelegate?
     var dataBaseDelegate: DDBBManagerDelegate?
+    var tableView: PokemonListViewDelegate?
     //MARK: - Methods that do the functionality
     func fetchPokemon(pokemon: Results) {
         PokemonManager.shared.fetchPokemon(pokemonSelectedName: pokemon.name!, { pokemonData, error in
@@ -24,8 +25,8 @@ class PokemonDetailsInteractor : PokemonDetailsInteractorDelegate {
             saved.name = pokemon.name
             DDBBManager.shared.save(saved){ (error) in
                 self.dataBaseDelegate?.didSaveFavouriteWithError(error: error)
-                
             }
+            //presenter?.didAddFavourite(pokemon: saved) Probar 26 octubre
         }
     }
     func deleteFavourite(pokemon: Results) {

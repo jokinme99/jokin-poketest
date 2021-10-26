@@ -10,6 +10,8 @@
 		52E96436D3664A73002DBC5D /* Pods_Poke_test.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA37C33EACA622F7C18E2B13 /* Pods_Poke_test.framework */; };
 		FD3172D02695CF90006810CA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD3172CF2695CF90006810CA /* AppDelegate.swift */; };
 		FD61B42326B4046800EDBF8C /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD61B42226B4046800EDBF8C /* Constants.swift */; };
+		FD676B3C27269A7200318834 /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD676B3B27269A7200318834 /* NotificationService.swift */; };
+		FD676B4027269A7200318834 /* NotificationExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = FD676B3927269A7200318834 /* NotificationExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		FD7D316E27198B110031AB92 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FD7D316D27198B100031AB92 /* LaunchScreen.storyboard */; };
 		FD85C3A82696EAFC00EAF99F /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD85C3A72696EAFC00EAF99F /* Data.swift */; };
 		FD85C3AC2696EB1E00EAF99F /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD85C3AB2696EB1E00EAF99F /* DataManager.swift */; };
@@ -34,6 +36,30 @@
 		FDF25E8526B17600002474BB /* PokemonCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FDF25E8326B17600002474BB /* PokemonCell.xib */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		FD676B3E27269A7200318834 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FD3172C42695CF90006810CA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FD676B3827269A7200318834;
+			remoteInfo = NotificationExtension;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		FD676B4127269A7200318834 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				FD676B4027269A7200318834 /* NotificationExtension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		59AADBB90D195305A7F8BEFE /* Pods-Poke-test.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Poke-test.debug.xcconfig"; path = "Target Support Files/Pods-Poke-test/Pods-Poke-test.debug.xcconfig"; sourceTree = "<group>"; };
 		CCE5A1BEE58EA2B21595147E /* Pods-Poke-test.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Poke-test.release.xcconfig"; path = "Target Support Files/Pods-Poke-test/Pods-Poke-test.release.xcconfig"; sourceTree = "<group>"; };
@@ -42,6 +68,9 @@
 		FD3172CF2695CF90006810CA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FD61B42226B4046800EDBF8C /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		FD64D039271D53E200473D88 /* Poke-test.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Poke-test.entitlements"; sourceTree = "<group>"; };
+		FD676B3927269A7200318834 /* NotificationExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = NotificationExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		FD676B3B27269A7200318834 /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
+		FD676B3D27269A7200318834 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FD7D316D27198B100031AB92 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FD85C3A72696EAFC00EAF99F /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
 		FD85C3AB2696EB1E00EAF99F /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
@@ -76,6 +105,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		FD676B3627269A7200318834 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -101,6 +137,7 @@
 			children = (
 				FD86C1512701A33C00DB4B8F /* Assets.xcassets */,
 				FD3172CE2695CF90006810CA /* Poke-test */,
+				FD676B3A27269A7200318834 /* NotificationExtension */,
 				23D5F057476480FAA267E25D /* Frameworks */,
 				5EC64DBEAFD90D2980EB309C /* Pods */,
 				FD3172CD2695CF90006810CA /* Products */,
@@ -111,6 +148,7 @@
 			isa = PBXGroup;
 			children = (
 				FD3172CC2695CF90006810CA /* Poke-test.app */,
+				FD676B3927269A7200318834 /* NotificationExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -129,6 +167,15 @@
 				FD7D316D27198B100031AB92 /* LaunchScreen.storyboard */,
 			);
 			path = "Poke-test";
+			sourceTree = "<group>";
+		};
+		FD676B3A27269A7200318834 /* NotificationExtension */ = {
+			isa = PBXGroup;
+			children = (
+				FD676B3B27269A7200318834 /* NotificationService.swift */,
+				FD676B3D27269A7200318834 /* Info.plist */,
+			);
+			path = NotificationExtension;
 			sourceTree = "<group>";
 		};
 		FD7FD3582716F275008E0448 /* Pokemon Cell */ = {
@@ -197,10 +244,12 @@
 				FD3172C92695CF90006810CA /* Frameworks */,
 				FD3172CA2695CF90006810CA /* Resources */,
 				4147056D35AD7DD0195E0610 /* [CP] Embed Pods Frameworks */,
+				FD676B4127269A7200318834 /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				FD676B3F27269A7200318834 /* PBXTargetDependency */,
 			);
 			name = "Poke-test";
 			packageProductDependencies = (
@@ -210,6 +259,23 @@
 			productName = "Poke-test";
 			productReference = FD3172CC2695CF90006810CA /* Poke-test.app */;
 			productType = "com.apple.product-type.application";
+		};
+		FD676B3827269A7200318834 /* NotificationExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FD676B4427269A7200318834 /* Build configuration list for PBXNativeTarget "NotificationExtension" */;
+			buildPhases = (
+				FD676B3527269A7200318834 /* Sources */,
+				FD676B3627269A7200318834 /* Frameworks */,
+				FD676B3727269A7200318834 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = NotificationExtension;
+			productName = NotificationExtension;
+			productReference = FD676B3927269A7200318834 /* NotificationExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
 		};
 /* End PBXNativeTarget section */
 
@@ -222,6 +288,9 @@
 				TargetAttributes = {
 					FD3172CB2695CF90006810CA = {
 						CreatedOnToolsVersion = 12.5.1;
+					};
+					FD676B3827269A7200318834 = {
+						CreatedOnToolsVersion = 13.0;
 					};
 				};
 			};
@@ -242,6 +311,7 @@
 			projectRoot = "";
 			targets = (
 				FD3172CB2695CF90006810CA /* Poke-test */,
+				FD676B3827269A7200318834 /* NotificationExtension */,
 			);
 		};
 /* End PBXProject section */
@@ -257,6 +327,13 @@
 				FD7D316E27198B110031AB92 /* LaunchScreen.storyboard in Resources */,
 				FDA34EF226E8952900AE2143 /* PokemonListViewController.xib in Resources */,
 				FD87CCB227213A7A00FB45FA /* GoogleService-Info.plist in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FD676B3727269A7200318834 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -328,7 +405,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		FD676B3527269A7200318834 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FD676B3C27269A7200318834 /* NotificationService.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		FD676B3F27269A7200318834 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = FD676B3827269A7200318834 /* NotificationExtension */;
+			targetProxy = FD676B3E27269A7200318834 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		FD3172DE2695CF91006810CA /* Debug */ = {
@@ -454,6 +547,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 59AADBB90D195305A7F8BEFE /* Pods-Poke-test.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "Poke-test/Poke-test.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -477,6 +571,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = CCE5A1BEE58EA2B21595147E /* Pods-Poke-test.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "Poke-test/Poke-test.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
@@ -491,6 +586,62 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.baturamobile.jokin-poketest";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "Jokin Poke API - Release";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		FD676B4227269A7200318834 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = WV4ELQGDQE;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = NotificationExtension/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = NotificationExtension;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.baturamobile.jokin-poketest.NotificationExtension";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		FD676B4327269A7200318834 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = WV4ELQGDQE;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = NotificationExtension/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = NotificationExtension;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.baturamobile.jokin-poketest.NotificationExtension";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -513,6 +664,15 @@
 			buildConfigurations = (
 				FD3172E12695CF91006810CA /* Debug */,
 				FD3172E22695CF91006810CA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FD676B4427269A7200318834 /* Build configuration list for PBXNativeTarget "NotificationExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FD676B4227269A7200318834 /* Debug */,
+				FD676B4327269A7200318834 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

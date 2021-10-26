@@ -16,8 +16,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate, UNUser
         UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) { success , _ in
             guard success else {return}
             print("Success in APN registry")
+            DispatchQueue.main.async { application.registerForRemoteNotifications() }
         }
-        application.registerForRemoteNotifications()
+        
         //IQKeyboardManager.shared.enable = true //Not working well with searchBar, in Pods IQKeyboardManagerSwift, IQUIView+Hierarchy file line 260 comment textFieldSearchBar() == nil
         //IQKeyboardManager.shared.enableAutoToolbar = true
         
@@ -27,14 +28,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate, UNUser
     
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
         Messaging.messaging().apnsToken = deviceToken
+        Messaging.messaging().token { token, error in
+            if let error = error {
+                print(error)
+            } else {
+                print(token)
+            }
+        }
     }
     
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
-        //completionHandler([.sound, .badge, .alert]) what will show(sound yes or no badge or alert) 
+        completionHandler([.sound, .badge, .alert]) //what will show(sound yes or no badge or alert)
     }
     
     func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
-        //
+        print(response)
     }
     
     

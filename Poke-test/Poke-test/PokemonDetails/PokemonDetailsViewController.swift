@@ -1,9 +1,9 @@
 
 import UIKit
 import AlamofireImage
+import RealmSwift
 
-//ToDo: IN FAVS WHEN DELETING APP BREAKS
-//Check favourites fixed
+
 class PokemonDetailsViewController: UIViewController {
     @IBOutlet weak var backgroundView: UIView!
     @IBOutlet weak var typesView: UIView!
@@ -43,15 +43,14 @@ class PokemonDetailsViewController: UIViewController {
     var cell: PokemonListCellDelegate?
     var filtered: [Results]?
     var row : Int?
-    var vc: PokemonListViewController?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //print(Realm.Configuration.defaultConfiguration.fileURL!)
+        print(Realm.Configuration.defaultConfiguration.fileURL!)
         loadSelectedPokemon()
         presenter?.fetchFavourites()
         loadMethods()
-        row = (filtered?.firstIndex(of: selectedPokemon!)) // row 4 (first row is 0) charizard(4th row, position 3)
+        row = (filtered?.firstIndex(of: selectedPokemon!)) 
         
     }
 }
@@ -73,15 +72,12 @@ extension PokemonDetailsViewController{
         self.previewButton.addTarget(self, action: #selector(previousPokemonButtonAction), for: .touchUpInside)
         self.nextButton.addTarget(self, action: #selector(nextPokemonButtonAction), for: .touchUpInside)
         guard let filtered = filtered else{return}
-        if filtered.count < 3{
+        if filtered.count < 2{
             nextButton.isHidden = true
             previewButton.isHidden = true
-        }else{
-            self.nextButton.setTitle(self.nextPokemon?.name?.capitalized, for: .normal)
-            self.previewButton.setTitle(self.previousPokemon?.name?.capitalized, for: .normal)
         }
-       
-        
+        self.nextButton.setTitle(self.nextPokemon?.name?.capitalized, for: .normal)
+        self.previewButton.setTitle(self.previousPokemon?.name?.capitalized, for: .normal)
     }
     func loadButtonsStyle(){
         self.previewButton.layer.cornerRadius = 5
@@ -102,25 +98,21 @@ extension PokemonDetailsViewController: PokemonDetailsViewDelegate {
         favouritesButton.setTitle("Delete from favourites", for: .normal)
         favouritesImage.image = UIImage(named: "emptyStar")
     }
-    func deleteFavourite(pokemon: Results) {
+    func deleteFavourite(pokemon: Results) {//Next and previous Poks??
         if filtered == favouritesList{
             favouritesButton.setTitle("Add to favourites", for: .normal)
             favouritesImage.image = UIImage(named: "fullStar")
             favouriteConfirmationImage.isHidden = true
             presenter?.deleteFavourite(pokemon: pokemon)
-            let a = favouritesList
-            let b = filtered
-            
             let index = filtered?.firstIndex(of: pokemon)
             filtered?.remove(at: index!)
-            presenter?.fetchFavourites()//When we remove the favourite, the list has to be updated in tableview also
-            let c = favouritesList
-            let d = filtered
-            let e = vc?.filtered
-            vc?.presenter?.fetchFavourites()
-            vc?.filtered = filtered!
+            presenter?.fetchFavourites()
+            if filtered?.count == 1{
+                self.previewButton.isHidden = true
+                self.nextButton.isHidden = true
+            }
             
-        }else{
+        }else{ //WORKS
             //if you don't select the favourites only
             presenter?.deleteFavourite(pokemon: pokemon)
             favouritesButton.setTitle("Add to favourites", for: .normal)
@@ -217,19 +209,27 @@ extension PokemonDetailsViewController{
         nextOrPrevious()
         
     }
-    //OFFLINE NOT WORKING, FIX DELETING IN FAVOURITES ONLY VIEW
-    //WHEN ADDED TO FAV AND PRESSING NEXT/PREVIOUS POKEMON FAVOURITES BUTTON FAILS
     func nextOrPrevious(){
         guard let filtered = filtered, let row = row else { return }
         if filtered.count < 3{
-            nextButton.isHidden = true
-            previewButton.isHidden = true
+            if row == 0{
+                self.selectedPokemon = filtered[row]
+                self.previousPokemon = filtered.last
+                self.nextPokemon = previousPokemon
+                self.selectedPokemon = filtered[row]
+                self.nextPokemon = filtered.first
+                self.previousPokemon = nextPokemon
+            }
+        }else if filtered.count == 1{
+            
+            self.previewButton.isHidden = true
+            self.nextButton.isHidden = true
         }else{
         if row == 0{
             self.selectedPokemon = filtered[row]
             self.nextPokemon = filtered[row + 1]
             self.previousPokemon = filtered.last
-        }else if row == filtered.count - 1{ //-1 -> the 0 position is the first row
+        }else if row == filtered.count - 1{
             self.selectedPokemon = filtered[row]
             self.previousPokemon = filtered[row - 1]
             self.nextPokemon = filtered.first
@@ -238,12 +238,10 @@ extension PokemonDetailsViewController{
             self.selectedPokemon = filtered[row]
             self.previousPokemon = filtered[row - 1]
         }
-            self.nextButton.setTitle(self.nextPokemon?.name?.capitalized, for: .normal)
-            self.previewButton.setTitle(self.previousPokemon?.name?.capitalized, for: .normal)
-            presenter?.fetchFavourites()
-            
-            
         }
+        self.nextButton.setTitle(self.nextPokemon?.name?.capitalized, for: .normal)
+        self.previewButton.setTitle(self.previousPokemon?.name?.capitalized, for: .normal)
+        presenter?.fetchFavourites()
     }
 }
 

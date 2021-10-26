@@ -6,11 +6,12 @@ struct PokemonManager{
     
     //MARK: - Fetch Pokemon List
     func fetchList( _ completion:  @escaping  (PokemonListData?, Error?) -> Void){
-#if DEBUG
-        let pokemonListURL = "https://pokeapi.co/api/v2/pokemon/?limit=1118" //1118
-#else
-        let pokemonListURL = "https://pokeapi.co/api/v2/pokemon/?limit=1118" //1118
-#endif
+//#if DEBUG
+//        let pokemonListURL = "https://pokeapi.co/api/v2/pokemon/?limit=1118" //1118
+//#else
+//        let pokemonListURL = "https://pokeapi.co/api/v2/pokemon/?limit=1118" //1118
+//#endif
+        let pokemonListURL = "https://pokeapi.co/api/v2/pokemon/?limit=1118"
         AF.request(pokemonListURL,
                    method: .get,
                    encoding: URLEncoding.queryString,

@@ -1,18 +1,16 @@
 
 import UIKit
 import NotificationCenter
+//import RealmSwift
 
-//Todo: IN ORDERBY IT HAS TO BE ORDERED BY ID
 //ToDo: WHEN OFFLINE APP DOESN'T WORK
-
-//Orders the list as the pokemon are added/fetched if #12 is added to favs before #1 favourites[0] is #12 and not #1
-
 class PokemonListViewController: UIViewController {//PIN iPhone: 281106
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var orderByButton: UIButton!
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet var buttonList: [UIButton]!
+    @IBOutlet weak var orderBySearchView: UIView!
     
     var pokemon : [Results] = []
     var filtered : [Results] = []
@@ -25,7 +23,6 @@ class PokemonListViewController: UIViewController {//PIN iPhone: 281106
     var nextPokemon: Results?
     var previousPokemon: Results?
     var vc: PokemonDetailsViewController?
-    //var pokemonIdAndNames: [Int : String]?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,10 +35,20 @@ class PokemonListViewController: UIViewController {//PIN iPhone: 281106
         loadSearchBar()
     }
     override func viewWillAppear(_ animated: Bool) {
-            presenter?.fetchFavourites()
+        presenter?.fetchFavourites()
+        for filter in filtered { //No hace falta recorrer pokemon o savefilteredorder 
+            if filter.isInvalidated{
+                let indexFiltered = filtered.firstIndex(of: filter)
+                filtered.remove(at: indexFiltered!)
+                let indexPokemons = pokemon.firstIndex(of: filter)
+                pokemon.remove(at: indexPokemons!)
+                let indexSaveFilteredOrder = savefilteredOrder.firstIndex(of: filter)
+                savefilteredOrder.remove(at: indexSaveFilteredOrder!)
+                tableView.reloadData()
+            }
+        }
     }
- 
- 
+    
 }
 
 //MARK: - ViewDidLoad Methods
@@ -129,18 +136,24 @@ extension PokemonListViewController:UITableViewDelegate, UITableViewDataSource{
         let row = indexPath.row
         let previousRow = row - 1
         let nextRow = row + 1
-        if row == 0{
+        if filtered.count == 1{
             pokemonSelected = filtered[row]
-            nextPokemon = filtered[nextRow]
-            previousPokemon = filtered.last
-        }else if row == filtered.count - 1{ //-1 -> the 0 position is the first row
-            pokemonSelected = filtered[row]
-            previousPokemon = filtered[previousRow]
-            nextPokemon = filtered.first
+            nextPokemon = Results()
+            previousPokemon = Results()
         }else{
-            nextPokemon = filtered[nextRow]
-            pokemonSelected = filtered[row]
-            previousPokemon = filtered[previousRow]
+            if row == 0{
+                pokemonSelected = filtered[row]
+                nextPokemon = filtered[nextRow]
+                previousPokemon = filtered.last
+            }else if row == filtered.count - 1{
+                pokemonSelected = filtered[row]
+                previousPokemon = filtered[previousRow]
+                nextPokemon = filtered.first
+            }else{
+                nextPokemon = filtered[nextRow]
+                pokemonSelected = filtered[row]
+                previousPokemon = filtered[previousRow]
+            }
         }
         presenter?.openPokemonDetail(pokemon: pokemonSelected!, nextPokemon: nextPokemon!, previousPokemon: previousPokemon!, filtered: filtered)
         
@@ -168,12 +181,14 @@ extension PokemonListViewController:UISearchBarDelegate{
     }
     func searchBarBookmarkButtonClicked(_ searchBar: UISearchBar) {
         if filtered != favouritesList{
+            self.orderByButton.isHidden = true
             self.filtered = favouritesList
             self.savefilteredOrder = favouritesList
             self.pokemon = favouritesList
             self.tableView.reloadData()
         }else{
-            presenter?.fetchPokemonList()
+            self.orderByButton.isHidden = false
+            self.presenter?.fetchPokemonList()
         }
         
         
@@ -191,15 +206,14 @@ extension PokemonListViewController:UISearchBarDelegate{
             
         }
     }
-
+    
     @objc private func keyboardWillHide(notification: NSNotification) {
         if ((notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue) != nil {//If it has value
             tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-            }
+        }
     }
     
 }
-
 extension UISearchBar{
     @IBInspectable var doneAccessory: Bool{
         get{
@@ -211,38 +225,37 @@ extension UISearchBar{
             }
         }
     }
-
+    
     func addDoneButtonOnKeyboard()
     {
         let doneToolbar: UIToolbar = UIToolbar(frame: CGRect.init(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 50))
         doneToolbar.barStyle = .default
-
+        
         let flexSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
         let done: UIBarButtonItem = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(self.doneButtonAction))
         /* let goUp: UIBarButtonItem = UIBarButtonItem(image: UIImage(named: "arrowUp"), style: .done, target: self, action: #selector(self.goUpButtonAction))
-        let goDown: UIBarButtonItem = UIBarButtonItem(image: UIImage(named: "arrowDown"), style: .done, target: self, action: #selector(self.goDownButtonAction)) */
-
+         let goDown: UIBarButtonItem = UIBarButtonItem(image: UIImage(named: "arrowDown"), style: .done, target: self, action: #selector(self.goDownButtonAction)) */
+        
         let items = [ /* goUp, goDown, */ flexSpace, done]
         doneToolbar.items = items
         doneToolbar.sizeToFit()
-
+        
         self.inputAccessoryView = doneToolbar
     }
-
+    
     @objc func doneButtonAction()
     {
         self.resignFirstResponder()
     }
     /*
-    @objc func goDownButtonAction(){
-        
-    }
-    @objc func goUpButtonAction(){
-
-    } */
-
+     @objc func goDownButtonAction(){
+     
+     }
+     @objc func goUpButtonAction(){
+     
+     } */
+    
 }
-
 
 //MARK: - OrderBy Buttons methods
 extension PokemonListViewController{
@@ -251,7 +264,6 @@ extension PokemonListViewController{
         if orderByButton.titleLabel?.text == "Order by Name"{
             orderByButton.setTitle("Order by Id", for: .normal)
             self.filtered = filtered.sorted(by: {$0.name ?? "" < $1.name ?? ""})
-            
             self.tableView.reloadData()
         }
         else{

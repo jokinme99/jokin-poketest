@@ -24,6 +24,7 @@ class PokemonListData:Object, Codable{
     }
 }
 
+
 //MARK: - Pokemons' details
 class PokemonData: Codable{
     let name: String
