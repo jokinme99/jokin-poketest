@@ -12,7 +12,7 @@ protocol PokemonListViewDelegate: AnyObject {
     var presenter: PokemonListPresenterDelegate? {get set}
     func updateTableView(pokemons: PokemonListData)
     func updateTableViewFavourites()
-    func updateFavouritesFetchInCell(favourites: [Results])
+    func updateFavouritesFetchInCell(favourites: [Favourites])
     func updateFiltersTableView(pokemons: PokemonFilterListData)
 }
 
@@ -46,7 +46,7 @@ protocol PokemonListInteractorDelegate: AnyObject {
 protocol PokemonListInteractorOutputDelegate: AnyObject {
     func didFetchPokemonList(pokemon: PokemonListData)
     func didFailWith(error: Error)
-    func didFetchFavourites(favourites: [Results])
+    func didFetchFavourites(favourites: [Favourites])
     func didFetchType(pokemons: PokemonFilterListData)
 }
 

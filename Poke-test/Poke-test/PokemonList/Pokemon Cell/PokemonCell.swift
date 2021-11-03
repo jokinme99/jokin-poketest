@@ -9,7 +9,7 @@ class PokemonCell: UITableViewCell {
     @IBOutlet weak var idLabel: UILabel!
     
     var pokemon: Results?
-    var favouritesList: [Results] = []
+    var favouritesList: [Favourites] = []
     var view: PokemonListViewDelegate?
     var presenter: PokemonListPresenterDelegate?
     
@@ -42,11 +42,8 @@ extension PokemonCell: PokemonListCellDelegate{
                 self.setColor((pokemonData.types[0].type.name), self.pokemonNameLabel)
                 self.idLabel.text = "#\(pokemonData.id)"
                 self.setColor((pokemonData.types[0].type.name), self.idLabel)
-                
             }
-            
         })
-        
         self.pokemonNameLabel.text = pokemonToFetch.name?.capitalized
         self.checkIfFavouritePokemon(pokemonToCheck: pokemonToFetch)
     }

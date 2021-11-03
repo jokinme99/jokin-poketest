@@ -1,7 +1,7 @@
 
 import UIKit
 import NotificationCenter
-//import RealmSwift
+import RealmSwift
 
 //ToDo: WHEN OFFLINE APP DOESN'T WORK
 class PokemonListViewController: UIViewController {//PIN iPhone: 281106
@@ -18,13 +18,16 @@ class PokemonListViewController: UIViewController {//PIN iPhone: 281106
     var pokemonSelected: Results?
     var cell = PokemonCell()
     var presenter: PokemonListPresenterDelegate?
-    var favouritesList: [Results] = []
+    var favouritesList: [Favourites] = []
     var pokemonInCell: Results?
     var nextPokemon: Results?
     var previousPokemon: Results?
     var vc: PokemonDetailsViewController?
+    var isBookmarkActive: Bool = false
+    var detailsPresenter: PokemonDetailsPresenter?
     
     override func viewDidLoad() {
+        print(Realm.Configuration.defaultConfiguration.fileURL!)
         super.viewDidLoad()
         loadDelegates()
         presenter?.fetchPokemonList()
@@ -36,17 +39,29 @@ class PokemonListViewController: UIViewController {//PIN iPhone: 281106
     }
     override func viewWillAppear(_ animated: Bool) {
         presenter?.fetchFavourites()
-        for filter in filtered { //No hace falta recorrer pokemon o savefilteredorder 
-            if filter.isInvalidated{
-                let indexFiltered = filtered.firstIndex(of: filter)
-                filtered.remove(at: indexFiltered!)
-                let indexPokemons = pokemon.firstIndex(of: filter)
-                pokemon.remove(at: indexPokemons!)
-                let indexSaveFilteredOrder = savefilteredOrder.firstIndex(of: filter)
-                savefilteredOrder.remove(at: indexSaveFilteredOrder!)
-                tableView.reloadData()
+        if isBookmarkActive {//Checks if bookmark is active
+            filtered.removeAll()
+            for favourite in favouritesList{
+                filtered.append(Results(name: favourite.name!))
             }
+            savefilteredOrder = filtered
+            pokemon = filtered
+            tableView.reloadData()
+        }else{
+            tableView.reloadData()
         }
+//        for filter in filtered { //No hace falta recorrer pokemon o savefilteredorder
+//            if filter.isInvalidated{
+//                let indexFiltered = filtered.firstIndex(of: filter)
+//                filtered.remove(at: indexFiltered!)
+//                let indexPokemons = pokemon.firstIndex(of: filter)
+//                pokemon.remove(at: indexPokemons!)
+//                let indexSaveFilteredOrder = savefilteredOrder.firstIndex(of: filter)
+//                savefilteredOrder.remove(at: indexSaveFilteredOrder!)
+//                tableView.reloadData()
+//            }
+//        }
+        
     }
     
 }
@@ -78,18 +93,18 @@ extension PokemonListViewController{
 //MARK: - ViewControllerDelegate methods
 extension PokemonListViewController: PokemonListViewDelegate {
     //MARK: - Updates filters
-    func updateFiltersTableView(pokemons: PokemonFilterListData) {
+    func updateFiltersTableView(pokemons: PokemonFilterListData) {//Saves filter colour and name
         self.pokemon.removeAll()
         self.filtered.removeAll()
         for pokemonType in pokemons.pokemon{
-            pokemon.append(Results(name: pokemonType.pokemon.name))
-            filtered.append(Results(name: pokemonType.pokemon.name))
+            pokemon.append(Results(name: pokemonType.pokemon!.name!))
+            filtered.append(Results(name: pokemonType.pokemon!.name!))
         }
         self.tableView.reloadData()
     }
     
     //MARK: - Updates the favourite list after the fetching
-    func updateFavouritesFetchInCell(favourites: [Results]) {
+    func updateFavouritesFetchInCell(favourites: [Favourites]) {
         self.favouritesList = favourites
     }
     
@@ -180,16 +195,26 @@ extension PokemonListViewController:UISearchBarDelegate{
         self.tableView.reloadData()
     }
     func searchBarBookmarkButtonClicked(_ searchBar: UISearchBar) {
-        if filtered != favouritesList{
+        let filt = filtered.map{$0.name}
+        let fav = favouritesList.map{$0.name}
+        if filt != fav{//Activated
+            self.isBookmarkActive = true
             self.orderByButton.isHidden = true
-            self.filtered = favouritesList
-            self.savefilteredOrder = favouritesList
-            self.pokemon = favouritesList
+            filtered.removeAll()
+            for favourite in favouritesList{
+                filtered.append(Results(name: favourite.name!))
+                
+            }
+            self.savefilteredOrder = filtered
+            self.pokemon = filtered
+            
             self.tableView.reloadData()
-        }else{
+        }else{//Disactivated
+            self.isBookmarkActive = false
             self.orderByButton.isHidden = false
             self.presenter?.fetchPokemonList()
         }
+        
         
         
     }
@@ -358,6 +383,7 @@ extension PokemonListViewController{
             searchBar.text?.removeAll()
         }
     }
+    
     
 }
 

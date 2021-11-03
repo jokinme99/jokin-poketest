@@ -39,19 +39,18 @@ class PokemonDetailsViewController: UIViewController {
     var selectedPokemon : Results?
     var previousPokemon: Results?
     var nextPokemon: Results?
-    var favouritesList: [Results] = []
+    var favouritesList: [Favourites] = []
     var cell: PokemonListCellDelegate?
-    var filtered: [Results]?
+    var filtered: [Results] = []
     var row : Int?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print(Realm.Configuration.defaultConfiguration.fileURL!)
+        //print(Realm.Configuration.defaultConfiguration.fileURL!)
         loadSelectedPokemon()
         presenter?.fetchFavourites()
         loadMethods()
-        row = (filtered?.firstIndex(of: selectedPokemon!)) 
-        
+        row = (filtered.firstIndex(of: selectedPokemon!))
     }
 }
 
@@ -71,7 +70,6 @@ extension PokemonDetailsViewController{
         self.favouritesButton.addTarget(self, action: #selector(pressed), for: .touchUpInside)
         self.previewButton.addTarget(self, action: #selector(previousPokemonButtonAction), for: .touchUpInside)
         self.nextButton.addTarget(self, action: #selector(nextPokemonButtonAction), for: .touchUpInside)
-        guard let filtered = filtered else{return}
         if filtered.count < 2{
             nextButton.isHidden = true
             previewButton.isHidden = true
@@ -97,17 +95,20 @@ extension PokemonDetailsViewController: PokemonDetailsViewDelegate {
         presenter?.addFavourite(pokemon: pokemon)
         favouritesButton.setTitle("Delete from favourites", for: .normal)
         favouritesImage.image = UIImage(named: "emptyStar")
+        favouriteConfirmationImage.isHidden = false
     }
-    func deleteFavourite(pokemon: Results) {//Next and previous Poks??
-        if filtered == favouritesList{
+    func deleteFavourite(pokemon: Results) {
+        let filt = filtered.map{$0.name}
+        let fav = favouritesList.map{$0.name}
+        if filt == fav{ //It has to be deleted from filtered
             favouritesButton.setTitle("Add to favourites", for: .normal)
             favouritesImage.image = UIImage(named: "fullStar")
             favouriteConfirmationImage.isHidden = true
             presenter?.deleteFavourite(pokemon: pokemon)
-            let index = filtered?.firstIndex(of: pokemon)
-            filtered?.remove(at: index!)
+            let index = filtered.firstIndex(of: pokemon)
+            filtered.remove(at: index!)
             presenter?.fetchFavourites()
-            if filtered?.count == 1{
+            if filtered.count == 1{
                 self.previewButton.isHidden = true
                 self.nextButton.isHidden = true
             }
@@ -131,7 +132,7 @@ extension PokemonDetailsViewController: PokemonDetailsViewDelegate {
     }
     
     //MARK: - Gets the favourite list after the fetching
-    func updateDetailsViewFavourites(favourites: [Results]) {
+    func updateDetailsViewFavourites(favourites: [Favourites]) {
         self.favouritesList = favourites
     }
     
@@ -154,7 +155,8 @@ extension PokemonDetailsViewController: PokemonDetailsViewDelegate {
         paintWindow(pokemon)
     }
     func paintWindow(_ pokemon: PokemonData){
-        self.pokemonNameLabel.text = pokemon.name.uppercased()
+        
+        self.pokemonNameLabel.text = pokemon.name.uppercased()// change-> ?
         self.pokemonType1Label.text = pokemon.types[0].type.name.uppercased()
         self.pokemonIdLabel.text = "# \(pokemon.id)"
         self.heightLabel.text = "Height: \(pokemon.height) m"
@@ -167,7 +169,7 @@ extension PokemonDetailsViewController: PokemonDetailsViewDelegate {
         self.specialDefenseLabel.text = "Special-defense: \(pokemon.stats[4].base_stat)"
         self.speedLabel.text = "Speed: \(pokemon.stats[5].base_stat)"
         self.paintLabel(pokemon: pokemon)
-        if let downloadURL = URL(string: pokemon.sprites.front_default ?? ""){
+        if let downloadURL = URL(string: pokemon.sprites.front_default ?? ""){// change-> ?
             return  self.pokemonImage.af.setImage(withURL: downloadURL )
         }else {
             return
@@ -187,7 +189,6 @@ extension PokemonDetailsViewController{
     @objc func nextPokemonButtonAction(_ sender: UIButton!){
         guard let nextPokemon = nextPokemon else{return}
         presenter?.fetchPokemon(pokemon: nextPokemon)
-        guard let filtered = filtered else{return}
         if row == filtered.count - 1{ // if we're in the last row, and we press next actualRow will be the first
             row = 0
         }else{
@@ -200,7 +201,6 @@ extension PokemonDetailsViewController{
     @objc func previousPokemonButtonAction(_ sender: UIButton!){
         guard let previousPokemon = previousPokemon else{return}
         presenter?.fetchPokemon(pokemon: previousPokemon)
-        guard let filtered = filtered else{return}
         if row == 0{ // if we're in the first row, and we press previous actualRow will be the last
             row = filtered.count - 1
         }else{
@@ -210,7 +210,7 @@ extension PokemonDetailsViewController{
         
     }
     func nextOrPrevious(){
-        guard let filtered = filtered, let row = row else { return }
+        guard let row = row else{return}
         if filtered.count < 3{
             if row == 0{
                 self.selectedPokemon = filtered[row]
@@ -225,19 +225,19 @@ extension PokemonDetailsViewController{
             self.previewButton.isHidden = true
             self.nextButton.isHidden = true
         }else{
-        if row == 0{
-            self.selectedPokemon = filtered[row]
-            self.nextPokemon = filtered[row + 1]
-            self.previousPokemon = filtered.last
-        }else if row == filtered.count - 1{
-            self.selectedPokemon = filtered[row]
-            self.previousPokemon = filtered[row - 1]
-            self.nextPokemon = filtered.first
-        }else{
-            self.nextPokemon = filtered[row  + 1]
-            self.selectedPokemon = filtered[row]
-            self.previousPokemon = filtered[row - 1]
-        }
+            if row == 0{
+                self.selectedPokemon = filtered[row]
+                self.nextPokemon = filtered[row + 1]
+                self.previousPokemon = filtered.last
+            }else if row == filtered.count - 1{
+                self.selectedPokemon = filtered[row]
+                self.previousPokemon = filtered[row - 1]
+                self.nextPokemon = filtered.first
+            }else{
+                self.nextPokemon = filtered[row  + 1]
+                self.selectedPokemon = filtered[row]
+                self.previousPokemon = filtered[row - 1]
+            }
         }
         self.nextButton.setTitle(self.nextPokemon?.name?.capitalized, for: .normal)
         self.previewButton.setTitle(self.previousPokemon?.name?.capitalized, for: .normal)

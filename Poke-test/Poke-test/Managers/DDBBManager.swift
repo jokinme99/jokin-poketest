@@ -55,7 +55,7 @@ class DDBBManager {
         }
     }
     
-    //MARK: - Saves data into Realm's DB
+    //MARK: - Saves data into Realm's DB (ADD)
     func save <T: Object>(_ object: T, _ block: ((Error?) -> Void)?) {
         do{
             let realm = try Realm(configuration: self.configuration)
@@ -102,3 +102,4 @@ class DDBBManager {
         return result
     }
 }
+

@@ -23,7 +23,7 @@ class PokemonListPresenter : PokemonListPresenterDelegate {
 
 //MARK: - Methods that return the results from the functionality methods
 extension PokemonListPresenter: PokemonListInteractorOutputDelegate {
-    func didFetchFavourites(favourites: [Results]) {
+    func didFetchFavourites(favourites: [Favourites]) {
         view?.updateTableViewFavourites()
         view?.updateFavouritesFetchInCell(favourites: favourites)
     }

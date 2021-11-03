@@ -15,7 +15,7 @@ class PokemonListInteractor : PokemonListInteractorDelegate{
         }
     }
     func fetchFavouritePokemons(){
-        let favourites = DDBBManager.shared.get(Results.self)
+        let favourites = DDBBManager.shared.get(Favourites.self)
         self.presenter?.didFetchFavourites(favourites: favourites)
     }
     func fetchPokemonType(type: String) {

@@ -33,7 +33,7 @@ extension PokemonDetailsPresenter: PokemonDetailsInteractorOutputDelegate {
     func didGetSelectedPokemon(with pokemon: Results) {
         view?.getSelectedPokemon(with: pokemon)//It works
     }
-    func didFetchFavourites(_ favourites: [Results]) {
+    func didFetchFavourites(_ favourites: [Favourites]) {
         view?.updateDetailsViewFavourites(favourites: favourites)
     }
     func didAddFavourite(pokemon: Results) {

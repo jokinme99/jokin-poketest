@@ -5,7 +5,7 @@ import UIKit
 protocol PokemonDetailsViewDelegate: AnyObject {
     var presenter: PokemonDetailsPresenterDelegate? {get set}
     func updateDetailsView(pokemon: PokemonData)
-    func updateDetailsViewFavourites(favourites: [Results])//When fetching favourites
+    func updateDetailsViewFavourites(favourites: [Favourites])//When fetching favourites
     func addFavourite(pokemon: Results)
     func deleteFavourite(pokemon: Results)
     func getSelectedPokemon(with pokemon: Results)
@@ -41,7 +41,7 @@ protocol PokemonDetailsInteractorDelegate: AnyObject {
 protocol PokemonDetailsInteractorOutputDelegate: AnyObject {
     func didFetchPokemon(pokemon: PokemonData)
     func didFailWithError(error: Error)
-    func didFetchFavourites(_ favourites: [Results])
+    func didFetchFavourites(_ favourites: [Favourites])
     func didAddFavourite(pokemon: Results)
     func didAddFavouriteWithError(error: Error?)
     func didDeleteFavourite(pokemon: Results)

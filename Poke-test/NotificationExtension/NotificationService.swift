@@ -6,21 +6,27 @@
 //
 
 import UserNotifications
+import FirebaseMessaging
 
 class NotificationService: UNNotificationServiceExtension {
-
+    
     var contentHandler: ((UNNotificationContent) -> Void)?
     var bestAttemptContent: UNMutableNotificationContent?
-
+    
     override func didReceive(_ request: UNNotificationRequest, withContentHandler contentHandler: @escaping (UNNotificationContent) -> Void) {
         self.contentHandler = contentHandler
         bestAttemptContent = (request.content.mutableCopy() as? UNMutableNotificationContent)
         
         if let bestAttemptContent = bestAttemptContent { //Extract URL with method
             // Modify the notification content here...
-            bestAttemptContent.title = "\(bestAttemptContent.title) [modified]"
+            FIRMessagingExtensionHelper().populateNotificationContent(
+                bestAttemptContent,
+                withContentHandler: contentHandler)
+            let data = bestAttemptContent.userInfo as NSDictionary
+            let pref = UserDefaults.init(suiteName: "group.id.gits.notifserviceextension")
+            pref?.set(data, forKey: "NOTIF_DATA")
+            pref?.synchronize()
             
-            contentHandler(bestAttemptContent)
         }
     }
     
@@ -31,5 +37,5 @@ class NotificationService: UNNotificationServiceExtension {
             contentHandler(bestAttemptContent)
         }
     }
-
+    
 }
