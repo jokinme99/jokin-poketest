@@ -39,7 +39,7 @@ class PokemonListInteractor : PokemonListInteractorDelegate{
                 }
                 
             })
-        }else{
+        }else{ //Make it work offline
 //            let pokemons = DDBBManager.shared.get(PokemonListData.self)
 //            for pokemon in pokemons {
 //                if pokemon

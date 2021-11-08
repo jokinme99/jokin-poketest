@@ -32,48 +32,11 @@ class Favourites: Object, Codable{
         self.name = name
     }
 }
-
-
-
-
-//MARK: - Pokemons' details
-/*
-class PokemonData: Codable{
-    let name: String
-    let sprites: Sprites
-    let types: [Types]
-    let id: Int
-    let height: Int
-    let weight: Int
-    let stats: [Stats]
-    let abilities: [Abilities]
-}
-class Sprites: Codable{
-    let front_default:String?
-}
-class Type:  Codable{
-    let name: String //types[0].type.name
-}
-class Types: Codable{
-    let type: Type
-}
-class Stats: Codable{
-    let base_stat: Int //Valor de la estadistica
-}
-class Abilities: Codable{
-    let ability: Ability
-}
-class Ability: Codable{
-    let name: String //abilities[0].ability.name
-}
-*/
-
-
  
  //MARK: - Pokemons' details
  class PokemonData: Object, Codable{
      @objc dynamic var name: String?
-     @objc var sprites: Sprites?
+     @objc dynamic var sprites: Sprites?
      var types = List<Types>()
      @objc dynamic var id: Int = 0
      @objc dynamic var height: Int = 0
@@ -98,50 +61,36 @@ class Ability: Codable{
          abilities.append(objectsIn: abilityInAbilities)
          self.abilities = abilities
      }
-//     convenience init( name: String, sprites: Sprites, id: Int, height: Int, weight: Int) {
-//         self.init()
-//         self.name = name
-//         self.sprites = sprites
-//         self.id = id
-//         self.height = height
-//         self.weight = weight
-//     }
+
      override class func primaryKey() -> String? {
          return "name"
      }
  }
- class Sprites: Object, Codable{
-     @objc dynamic var front_default:String
-     override static func primaryKey() -> String? {//Foto es unica
-         return "front_default"
-     }
+ class Sprites: EmbeddedObject, Codable{ //Not working
+     @objc dynamic var front_default: String
+     
      
  }
-class Types: Object, Codable{
-    @objc var type: Type?
+class Types: EmbeddedObject, Codable{
+    @objc dynamic var type: Type?
+
 }
- class Type: Object, Codable{
+ class Type: EmbeddedObject, Codable{ //Not working
      @objc dynamic var name: String? //el tipo no es unico
-//     override class func primaryKey() -> String? {
-//         return "name"
-//     }
  }
 
- class Stats: Object, Codable{
+ class Stats: EmbeddedObject, Codable{
      @objc dynamic var base_stat: Int = 0 //las estadisticas no son unicas
-//     override class func primaryKey() -> String? {
-//         return "base_stat"
-//     }
-     
+     convenience init(base_stat: Int) {
+         self.init()
+         self.base_stat = base_stat
+     }
  }
- class Abilities: Object, Codable{
-     @objc var ability: Ability?
+ class Abilities: EmbeddedObject, Codable{
+     @objc dynamic var ability: Ability?
  }
- class Ability: Object, Codable{
+ class Ability: EmbeddedObject, Codable{//Not working
      @objc dynamic var name: String? //las habilidades no son unicas
-//     override class func primaryKey() -> String? {
-//         return "name"
-//     }
 
  }
 //MARK: - Pokemons' types
@@ -155,17 +104,10 @@ class PokemonFilterListData: Object, Codable{//Do the DDBBManager in DataManager
     }
 }
 class Pokemons: Object, Codable{
-    @objc var pokemon: Pokemon?
+    @objc dynamic var pokemon: Pokemon?
 }
-class Pokemon: Object, Codable{
+class Pokemon: EmbeddedObject, Codable{ //Not working
     @objc dynamic var name: String?
-//    override static func primaryKey() -> String?{//Un pokemon puede estar en dos tipos, por lo que no es unico
-//        return "name"
-//    }
-//    convenience init(name: String) {
-//        self.init()
-//        self.name = name
-//    }
 
 }
 

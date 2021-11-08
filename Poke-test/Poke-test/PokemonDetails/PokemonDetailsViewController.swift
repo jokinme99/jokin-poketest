@@ -113,8 +113,7 @@ extension PokemonDetailsViewController: PokemonDetailsViewDelegate {
                 self.nextButton.isHidden = true
             }
             
-        }else{ //WORKS
-            //if you don't select the favourites only
+        }else{
             presenter?.deleteFavourite(pokemon: pokemon)
             favouritesButton.setTitle("Add to favourites", for: .normal)
             favouritesImage.image = UIImage(named: "fullStar")
@@ -132,12 +131,12 @@ extension PokemonDetailsViewController: PokemonDetailsViewDelegate {
     }
     
     //MARK: - Gets the favourite list after the fetching
-    func updateDetailsViewFavourites(favourites: [Favourites]) {//Make it work if offline
+    func updateDetailsViewFavourites(favourites: [Favourites]) {
         self.favouritesList = favourites
     }
     
     //MARK: - Updates view after fetching the details of the selected pokemon
-    func updateDetailsView(pokemon: PokemonData) {//Make it work if offline
+    func updateDetailsView(pokemon: PokemonData) {
         favouriteConfirmationImage.isHidden = true
         presenter?.fetchFavourites()
         for favouritesFiltered in favouritesList{
@@ -154,9 +153,9 @@ extension PokemonDetailsViewController: PokemonDetailsViewDelegate {
         }
         paintWindow(pokemon)
     }
-    func paintWindow(_ pokemon: PokemonData){//WORKS EVERYTHING EXCEPT TYPES, ABILITIES AND IMAGE (OFFLINE MODE)
+    func paintWindow(_ pokemon: PokemonData){//Fix image and filters (offline)
         let type = pokemon.types[0]
-        self.pokemonNameLabel.text = pokemon.name?.uppercased() // change-> ?
+        self.pokemonNameLabel.text = pokemon.name?.uppercased()
         self.pokemonType1Label.text = type.type?.name?.uppercased()
         self.pokemonIdLabel.text = "# \(pokemon.id)"
         self.heightLabel.text = "Height: \(pokemon.height) m"
@@ -170,7 +169,8 @@ extension PokemonDetailsViewController: PokemonDetailsViewDelegate {
         self.speedLabel.text = "Speed: \(pokemon.stats[5].base_stat)"
         self.paintLabel(pokemon: pokemon)
         if let downloadURL = URL(string: pokemon.sprites?.front_default ?? ""){// change-> ?
-            return  self.pokemonImage.af.setImage(withURL: downloadURL )
+            let image = self.pokemonImage.af.setImage(withURL: downloadURL)
+            return image
         }else {
             return
         }

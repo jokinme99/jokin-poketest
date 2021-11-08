@@ -49,10 +49,10 @@ extension PokemonCell: PokemonListCellDelegate{
             let pokemonDataList = DDBBManager.shared.get(PokemonData.self)
             for pokemonData in pokemonDataList {
                 if pokemonData.name == pokemonToFetch.name {
-                    guard let typeName = pokemonData.types[0].type?.name else{return}
                     self.setColor((pokemonData.types[0].type?.name ?? "default"), self.pokemonNameLabel)
                     self.idLabel.text = "#\(pokemonData.id)"
                     self.setColor((pokemonData.types[0].type?.name ?? "default"), self.idLabel)
+                    
                 }
                 
             }
@@ -70,9 +70,6 @@ extension PokemonCell: PokemonListCellDelegate{
                 self.favouriteImage.image = imageWithImage(image: UIImage(named: "fullStar")!, scaledToSize: CGSize(width: 20, height: 20))
             }
         }
-        //guard let dictionary = dictionary else{return}
-        //self.vc?.pokemonIdAndNames = dictionary
-        //self.view?.updateTableViewFavourites()
     }
 }
 

@@ -139,7 +139,7 @@ extension PokemonManager{ //Only do it if everything is empty
     }
     
     func didSaveWithError(error: Error?) {
-        //print("error")
+        print("error")
     }
 }
 
