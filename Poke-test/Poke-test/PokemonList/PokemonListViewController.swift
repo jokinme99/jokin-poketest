@@ -3,7 +3,6 @@ import UIKit
 import NotificationCenter
 import RealmSwift
 
-//ToDo: WHEN OFFLINE APP DOESN'T WORK
 class PokemonListViewController: UIViewController {//PIN iPhone: 281106
     
     @IBOutlet weak var tableView: UITableView!
@@ -22,7 +21,6 @@ class PokemonListViewController: UIViewController {//PIN iPhone: 281106
     var pokemonInCell: Results?
     var nextPokemon: Results?
     var previousPokemon: Results?
-    var vc: PokemonDetailsViewController?
     var isBookmarkActive: Bool = false
     var detailsPresenter: PokemonDetailsPresenter?
     
@@ -36,6 +34,11 @@ class PokemonListViewController: UIViewController {//PIN iPhone: 281106
         navigationItem.title = "Pokedex"
         loadButtons()
         loadSearchBar()
+        if Reachability.isConnectedToNetwork(){
+            print("Internet Connection Available!")
+        }else{
+            print("Internet Connection not Available!")
+        }
     }
     override func viewWillAppear(_ animated: Bool) {
         presenter?.fetchFavourites()
@@ -50,22 +53,15 @@ class PokemonListViewController: UIViewController {//PIN iPhone: 281106
         }else{
             tableView.reloadData()
         }
-//        for filter in filtered { //No hace falta recorrer pokemon o savefilteredorder
-//            if filter.isInvalidated{
-//                let indexFiltered = filtered.firstIndex(of: filter)
-//                filtered.remove(at: indexFiltered!)
-//                let indexPokemons = pokemon.firstIndex(of: filter)
-//                pokemon.remove(at: indexPokemons!)
-//                let indexSaveFilteredOrder = savefilteredOrder.firstIndex(of: filter)
-//                savefilteredOrder.remove(at: indexSaveFilteredOrder!)
-//                tableView.reloadData()
-//            }
-//        }
-        
+        //WORKS!
+        if Reachability.isConnectedToNetwork(){
+            print("Internet Connection Available!")
+        }else{
+            print("Internet Connection not Available!")
+        }
     }
     
 }
-
 //MARK: - ViewDidLoad Methods
 extension PokemonListViewController{
     func loadDelegates(){
@@ -93,28 +89,28 @@ extension PokemonListViewController{
 //MARK: - ViewControllerDelegate methods
 extension PokemonListViewController: PokemonListViewDelegate {
     //MARK: - Updates filters
-    func updateFiltersTableView(pokemons: PokemonFilterListData) {//Saves filter colour and name
+    func updateFiltersTableView(pokemons: PokemonFilterListData) {
         self.pokemon.removeAll()
         self.filtered.removeAll()
         for pokemonType in pokemons.pokemon{
-            pokemon.append(Results(name: pokemonType.pokemon!.name!))
-            filtered.append(Results(name: pokemonType.pokemon!.name!))
+            pokemon.append(Results(name: pokemonType.pokemon?.name! ?? "default"))
+            filtered.append(Results(name: pokemonType.pokemon?.name! ?? "default"))
         }
         self.tableView.reloadData()
     }
     
     //MARK: - Updates the favourite list after the fetching
-    func updateFavouritesFetchInCell(favourites: [Favourites]) {
+    func updateFavouritesFetchInCell(favourites: [Favourites]) {//Make it work if offline
         self.favouritesList = favourites
     }
     
     //MARK: - Updates tableView after adding/deleting favourites
-    func updateTableViewFavourites() {
+    func updateTableViewFavourites() {//Make it work if offline
         self.tableView.reloadData()
     }
     
     //MARK: - Updates tableView after fetching pokemon list
-    func updateTableView(pokemons: PokemonListData) {
+    func updateTableView(pokemons: PokemonListData) {//Make it work if offline
         if filtered.isEmpty && pokemon.isEmpty{
             self.pokemon = Array(pokemons.results)
             self.filtered = self.pokemon

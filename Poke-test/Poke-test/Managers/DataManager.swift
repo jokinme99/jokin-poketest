@@ -15,35 +15,17 @@ class PokemonManager{
             .responseDecodable { (response: DataResponse<PokemonListData, AFError>) in
                 switch response.result {
                 case .success(let data):
+                    if DDBBManager.shared.get(PokemonListData.self).isEmpty{
+                        self.addOfflineData(data)
+                    }
                     completion(data, nil)
-                    self.addPokemonListData(data)
                 case .failure(let error):
                     completion(nil, error)
                 }
             }
     }
-    func addPokemonListData(_ pokemons: PokemonListData){
-        //if pokemon exist nothing(check with isSaved method)
-        //if not save them
-        let isSaved = isSavedPokemonInList(pokemons)
-        if !isSaved.isSaved{//If doesn't exist
-            DDBBManager.shared.save(pokemons){(error) in
-                self.didSaveWithError(error: error)
-            }
-        }
-    }
-    func isSaved(pokemonList: PokemonListData){
-        let saved = isSavedPokemonInList(pokemonList)
-        didIsSaved(saved: saved.isSaved)
-    }
-    func isSavedPokemonInList(_ pokemonList: PokemonListData)-> (isSaved: Bool, saved: Results?){
-        for pokemonInlist in pokemonList.results{//Run pokemonList's results
-            let filter = "name == '\(pokemonInlist.name!)'" //Make the SQL sentence to compare the names of the pokemons
-            let saved = DDBBManager.shared.get(Results.self, filter: filter) // Use the SQL sentence into the Database and get the list of the objects fetched with the SQL sentence
-            return (saved.count > 0, saved.first)
-        }
-        return(false, Results())//?
-    }
+
+
     
     //MARK: - Fetch Pokemon Details
     func fetchPokemon(pokemonSelectedName: String, _ completion:  @escaping  (PokemonData?, Error?) -> Void){
@@ -75,44 +57,90 @@ class PokemonManager{
                 switch response.result{
                 case .success(let data):
                     completion(data,nil)
-                    //self.addPokemonTypeData(data)//Add all pokemons of all types
                 case .failure(let error):
                     completion(nil, error)
                 }
             }
     }
-//    func addPokemonTypeData(_ pokemons: PokemonFilterListData){
-//        //if pokemon exist nothing(check with isSaved method)
-//        //if not save them
-//        let isSaved = isSavedPokemonInList(pokemons)
-//        if !isSaved.isSaved{//If doesn't exist
-//            DDBBManager.shared.save(pokemons){(error) in
-//                self.didSaveWithError(error: error)
-//            }
-//        }
-//    }
-//    func isSaved(pokemonList: PokemonFilterListData){
-//        let saved = isSavedPokemonInList(pokemonList)
-//        didIsSaved(saved: saved.isSaved)
-//    }
-//    func isSavedPokemonInList(_ pokemonList: PokemonFilterListData)-> (isSaved: Bool, saved: Pokemons?){
-//        for pok in pokemonList.pokemon{//Run pokemonList's results
-//            //let filter = "name == '\(String(describing: pok.pokemon?.name))'" //Make the SQL sentence to compare the names of the pokemons
-//            let saved = DDBBManager.shared.get(Pokemons.self) // Use the SQL sentence into the Database and get the list of the objects fetched with the SQL sentence
-//            return (saved.count > 0, saved.first)
-//        }
-//        return(false, Pokemons())//?
-//    }
+}
+
+//Offline storage methods
+extension PokemonManager{ //Only do it if everything is empty
+    func addOfflineData(_ pokemons: PokemonListData){
+        let isSaved = isSavedPokemonInList(pokemons)
+        if !isSaved.isSaved{
+            DDBBManager.shared.save(pokemons){(error) in
+                self.didSaveWithError(error: error)
+            }
+        }
+        for pokemon in pokemons.results {
+            PokemonManager.shared.fetchPokemon(pokemonSelectedName: pokemon.name! , { pokemonData, error in
+                if let error = error{
+                    print(error)
+                }else{
+                    guard let pokemonData = pokemonData else {return}
+                    self.addPokemonData(pokemonData)
+                }
+            })
+        }
+        let pokemonTypes =  [TypeName.normal, TypeName.fight, TypeName.flying, TypeName.poison, TypeName.ground, TypeName.rock, TypeName.bug, TypeName.ghost, TypeName.steel, TypeName.fire, TypeName.water, TypeName.grass,TypeName.electric, TypeName.psychic, TypeName.ice, TypeName.dragon, TypeName.dark, TypeName.fairy, TypeName.unknown, TypeName.shadow]
+        for type in pokemonTypes {
+            PokemonManager.shared.fetchPokemonTypes(pokemonType: type, {pokemonFilterListData, error in
+                if let error = error {
+                    print(error)
+                }else{
+                    guard let pokemonFilterListData = pokemonFilterListData else {return}
+                    self.addPokemonTypeData(pokemonFilterListData)
+                }
+            })
+        }
+        
+    }
+    func addPokemonData(_ pokemons: PokemonData){
+        let isSaved = isSavedPokemonDataInList(pokemons)
+        if !isSaved.isSaved{
+            DDBBManager.shared.save(pokemons){(error) in
+                self.didSaveWithError(error: error)
+            }
+        }
+    }
+    func addPokemonTypeData(_ pokemons: PokemonFilterListData){
+        let savedPokemonFilters = DDBBManager.shared.get(Pokemons.self)
+        if savedPokemonFilters != Array(pokemons.pokemon){
+            DDBBManager.shared.save(pokemons) { error in
+                print("Saving pokemons' Filters error: \(String(describing: error))")
+            }
+        }
+    }
     
+    func isSaved(pokemonList: PokemonData){
+        let saved = isSavedPokemonDataInList(pokemonList)
+        didIsSaved(saved: saved.isSaved)
+    }
+    func isSavedPokemonDataInList(_ pokemonList: PokemonData)-> (isSaved: Bool, saved: PokemonData?){
+        let filter = "name == '\(pokemonList.name!)'"
+        let saved = DDBBManager.shared.get(PokemonData.self, filter: filter)
+        return (saved.count > 0, saved.first)
+    }
+    func isSaved(pokemonList: PokemonListData){
+        let saved = isSavedPokemonInList(pokemonList)
+        didIsSaved(saved: saved.isSaved)
+    }
+    func isSavedPokemonInList(_ pokemonList: PokemonListData)-> (isSaved: Bool, saved: Results?){
+        for pokemonInlist in pokemonList.results{
+            let filter = "name == '\(pokemonInlist.name!)'"
+            let saved = DDBBManager.shared.get(Results.self, filter: filter)
+            return (saved.count > 0, saved.first)
+        }
+        return(false, Results())
+    }
     func didIsSaved(saved: Bool) {
         print(saved)
     }
     
     func didSaveWithError(error: Error?) {
-        print(error)
+        //print("error")
     }
-    
-    
 }
 
 

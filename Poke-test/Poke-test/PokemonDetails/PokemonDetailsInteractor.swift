@@ -6,14 +6,24 @@ class PokemonDetailsInteractor : PokemonDetailsInteractorDelegate {
     var tableView: PokemonListViewDelegate?
     //MARK: - Methods that do the functionality
     func fetchPokemon(pokemon: Results) {
-        PokemonManager.shared.fetchPokemon(pokemonSelectedName: pokemon.name!, { pokemonData, error in
-            if let error = error{
-                self.presenter?.didFailWithError(error: error)
-            }else{
-                self.presenter?.didFetchPokemon(pokemon: pokemonData!)
-            }
+        if Reachability.isConnectedToNetwork(){
+            PokemonManager.shared.fetchPokemon(pokemonSelectedName: pokemon.name!, { pokemonData, error in
+                if let error = error{
+                    self.presenter?.didFailWithError(error: error)
+                }else{
+                    self.presenter?.didFetchPokemon(pokemon: pokemonData!)
+                }
 
-        })
+            })
+        }else{
+            let pokemons = DDBBManager.shared.get(PokemonData.self)
+            for pok in pokemons {
+                if pok.name == pokemon.name{
+                    self.presenter?.didFetchPokemon(pokemon: pok)
+                }
+            }
+        }
+       
     }
     func fetchFavouritePokemons() {//Pass from results to favs here!
         presenter?.didFetchFavourites(DDBBManager.shared.get(Favourites.self))

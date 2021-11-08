@@ -132,12 +132,12 @@ extension PokemonDetailsViewController: PokemonDetailsViewDelegate {
     }
     
     //MARK: - Gets the favourite list after the fetching
-    func updateDetailsViewFavourites(favourites: [Favourites]) {
+    func updateDetailsViewFavourites(favourites: [Favourites]) {//Make it work if offline
         self.favouritesList = favourites
     }
     
     //MARK: - Updates view after fetching the details of the selected pokemon
-    func updateDetailsView(pokemon: PokemonData) {
+    func updateDetailsView(pokemon: PokemonData) {//Make it work if offline
         favouriteConfirmationImage.isHidden = true
         presenter?.fetchFavourites()
         for favouritesFiltered in favouritesList{
@@ -154,14 +154,14 @@ extension PokemonDetailsViewController: PokemonDetailsViewDelegate {
         }
         paintWindow(pokemon)
     }
-    func paintWindow(_ pokemon: PokemonData){
-        
-        self.pokemonNameLabel.text = pokemon.name.uppercased()// change-> ?
-        self.pokemonType1Label.text = pokemon.types[0].type.name.uppercased()
+    func paintWindow(_ pokemon: PokemonData){//WORKS EVERYTHING EXCEPT TYPES, ABILITIES AND IMAGE (OFFLINE MODE)
+        let type = pokemon.types[0]
+        self.pokemonNameLabel.text = pokemon.name?.uppercased() // change-> ?
+        self.pokemonType1Label.text = type.type?.name?.uppercased()
         self.pokemonIdLabel.text = "# \(pokemon.id)"
         self.heightLabel.text = "Height: \(pokemon.height) m"
         self.weightLabel.text = "Weight: \(pokemon.weight) kg"
-        self.ability1Label.text = pokemon.abilities[0].ability.name.capitalized.uppercased()
+        self.ability1Label.text = pokemon.abilities[0].ability?.name!.capitalized.uppercased()
         self.hpLabel.text = "Hp: \(pokemon.stats[0].base_stat)"
         self.attackLabel.text = "Attack: \(pokemon.stats[1].base_stat)"
         self.defenseLabel.text = "Defense: \(pokemon.stats[2].base_stat)"
@@ -169,7 +169,7 @@ extension PokemonDetailsViewController: PokemonDetailsViewDelegate {
         self.specialDefenseLabel.text = "Special-defense: \(pokemon.stats[4].base_stat)"
         self.speedLabel.text = "Speed: \(pokemon.stats[5].base_stat)"
         self.paintLabel(pokemon: pokemon)
-        if let downloadURL = URL(string: pokemon.sprites.front_default ?? ""){// change-> ?
+        if let downloadURL = URL(string: pokemon.sprites?.front_default ?? ""){// change-> ?
             return  self.pokemonImage.af.setImage(withURL: downloadURL )
         }else {
             return
@@ -250,7 +250,7 @@ extension PokemonDetailsViewController{
     func paintLabel(pokemon: PokemonData){
         if pokemon.types.count >= 2{
             self.pokemonType2Label.isHidden = false
-            self.pokemonType2Label.text = pokemon.types[1].type.name.uppercased() //Saved the 2nd type
+            self.pokemonType2Label.text = pokemon.types[1].type?.name!.uppercased() //Saved the 2nd type
             self.paintType(label: self.pokemonType1Label)
             self.paintType(label: self.pokemonType2Label)
             self.pokemonDescriptionView.backgroundColor = UIColor(named: "grayColor")
@@ -275,7 +275,7 @@ extension PokemonDetailsViewController{
             self.previewButton.titleLabel?.textColor = .black
             self.previewButton.backgroundColor = pokemonDescriptionView.backgroundColor
             if pokemon.abilities.count >= 2{
-                self.ability2Label.text = pokemon.abilities[1].ability.name.uppercased() //Save the 2nd ability
+                self.ability2Label.text = pokemon.abilities[1].ability?.name!.uppercased() //Save the 2nd ability
                 self.ability1Label.textColor = pokemonType1Label.backgroundColor
                 self.ability2Label.textColor = pokemonType2Label.backgroundColor
             }else{
@@ -299,7 +299,7 @@ extension PokemonDetailsViewController{
             self.ability1Label.textColor = pokemonType1Label.backgroundColor
             
             if pokemon.abilities.count >= 2{
-                self.ability2Label.text = pokemon.abilities[1].ability.name.uppercased() //Save the 2nd ability
+                self.ability2Label.text = pokemon.abilities[1].ability?.name!.uppercased() //Save the 2nd ability
                 self.ability1Label.textColor = pokemonType1Label.backgroundColor
                 self.ability2Label.textColor = pokemonType1Label.backgroundColor
             }else{

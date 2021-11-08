@@ -1,3 +1,4 @@
+import RealmSwift
 
 class PokemonListInteractor : PokemonListInteractorDelegate{
     var presenter: PokemonListInteractorOutputDelegate?
@@ -5,28 +6,47 @@ class PokemonListInteractor : PokemonListInteractorDelegate{
     
     //MARK: - Methods that do the functionality
     func fetchPokemonList() {
-        PokemonManager.shared.fetchList { pokemonList, error in
-            if let error = error {
-                self.presenter?.didFailWith(error: error)
-            } else {
-                self.presenter?.didFetchPokemonList(pokemon: pokemonList!)
-                
+        if Reachability.isConnectedToNetwork(){
+            PokemonManager.shared.fetchList { pokemonList, error in
+                if let error = error {
+                    self.presenter?.didFailWith(error: error)
+                } else {
+                    self.presenter?.didFetchPokemonList(pokemon: pokemonList!)
+                    
+                }
             }
+        }else{
+            let pokemons = DDBBManager.shared.get(Results.self)
+            let pokemonList = PokemonListData()
+            for pokemon in pokemons {
+                pokemonList.results.append(pokemon)
+            }
+            self.presenter?.didFetchPokemonList(pokemon: pokemonList)
         }
+       
     }
     func fetchFavouritePokemons(){
         let favourites = DDBBManager.shared.get(Favourites.self)
         self.presenter?.didFetchFavourites(favourites: favourites)
     }
     func fetchPokemonType(type: String) {
-        PokemonManager.shared.fetchPokemonTypes(pokemonType: type, { pokemonFilterListData, error in
-            if let error = error {
-                self.presenter?.didFailWith(error: error)
-            }else{
-                self.presenter?.didFetchType(pokemons: pokemonFilterListData!)
-            }
-            
-        })
+        if Reachability.isConnectedToNetwork(){
+            PokemonManager.shared.fetchPokemonTypes(pokemonType: type, { pokemonFilterListData, error in
+                if let error = error {
+                    self.presenter?.didFailWith(error: error)
+                }else{
+                    self.presenter?.didFetchType(pokemons: pokemonFilterListData!)
+                }
+                
+            })
+        }else{
+//            let pokemons = DDBBManager.shared.get(PokemonListData.self)
+//            for pokemon in pokemons {
+//                if pokemon
+//            }
+//            self.presenter?.didFetchType(pokemons: pokemons)
+        }
+       
     }
 }
 

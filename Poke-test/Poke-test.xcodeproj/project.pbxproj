@@ -13,6 +13,7 @@
 		FD61B42326B4046800EDBF8C /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD61B42226B4046800EDBF8C /* Constants.swift */; };
 		FD676B3C27269A7200318834 /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD676B3B27269A7200318834 /* NotificationService.swift */; };
 		FD676B4027269A7200318834 /* NotificationExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = FD676B3927269A7200318834 /* NotificationExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		FD6B780F27392C2E0055A0AE /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD6B780E27392C2E0055A0AE /* Reachability.swift */; };
 		FD7D316E27198B110031AB92 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FD7D316D27198B100031AB92 /* LaunchScreen.storyboard */; };
 		FD85C3A82696EAFC00EAF99F /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD85C3A72696EAFC00EAF99F /* Data.swift */; };
 		FD85C3AC2696EB1E00EAF99F /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD85C3AB2696EB1E00EAF99F /* DataManager.swift */; };
@@ -74,6 +75,7 @@
 		FD676B3927269A7200318834 /* NotificationExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = NotificationExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		FD676B3B27269A7200318834 /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
 		FD676B3D27269A7200318834 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FD6B780E27392C2E0055A0AE /* Reachability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		FD7D316D27198B100031AB92 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FD85C3A72696EAFC00EAF99F /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
 		FD85C3AB2696EB1E00EAF99F /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
@@ -209,6 +211,7 @@
 			children = (
 				FD85C3AB2696EB1E00EAF99F /* DataManager.swift */,
 				FD88DF3E26DE076E0094858B /* DDBBManager.swift */,
+				FD6B780E27392C2E0055A0AE /* Reachability.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -396,6 +399,7 @@
 				FDA34EF026E8952900AE2143 /* PokemonListProtocols.swift in Sources */,
 				FDA34EF126E8952900AE2143 /* PokemonListInteractor.swift in Sources */,
 				FDA34EFC26E8954D00AE2143 /* PokemonDetailsViewController.swift in Sources */,
+				FD6B780F27392C2E0055A0AE /* Reachability.swift in Sources */,
 				FD3172D02695CF90006810CA /* AppDelegate.swift in Sources */,
 				FD88DF3F26DE076E0094858B /* DDBBManager.swift in Sources */,
 				FDA34F0026E8954D00AE2143 /* PokemonDetailsWireframe.swift in Sources */,

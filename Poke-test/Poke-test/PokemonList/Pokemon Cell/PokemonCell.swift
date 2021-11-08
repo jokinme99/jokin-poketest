@@ -34,19 +34,34 @@ extension PokemonCell: PokemonListCellDelegate{
     //MARK: - Sets each pokemon cell
     func updatePokemonInCell(pokemonToFetch: Results) {
         self.pokemon = pokemonToFetch
-        PokemonManager.shared.fetchPokemon(pokemonSelectedName: pokemonToFetch.name!,{ pokemonData, error in
-            if let error = error {
-                print(error)
-            }else{
-                guard let pokemonData = pokemonData else {return}
-                self.setColor((pokemonData.types[0].type.name), self.pokemonNameLabel)
-                self.idLabel.text = "#\(pokemonData.id)"
-                self.setColor((pokemonData.types[0].type.name), self.idLabel)
+        if Reachability.isConnectedToNetwork(){
+            PokemonManager.shared.fetchPokemon(pokemonSelectedName: pokemonToFetch.name!,{ pokemonData, error in
+                if let error = error {
+                    print(error)
+                }else{
+                    guard let pokemonData = pokemonData else {return}
+                    self.setColor((pokemonData.types[0].type?.name ?? "default"), self.pokemonNameLabel)
+                    self.idLabel.text = "#\(pokemonData.id)"
+                    self.setColor((pokemonData.types[0].type?.name ?? "default"), self.idLabel)
+                }
+            })
+        }else{
+            let pokemonDataList = DDBBManager.shared.get(PokemonData.self)
+            for pokemonData in pokemonDataList {
+                if pokemonData.name == pokemonToFetch.name {
+                    guard let typeName = pokemonData.types[0].type?.name else{return}
+                    self.setColor((pokemonData.types[0].type?.name ?? "default"), self.pokemonNameLabel)
+                    self.idLabel.text = "#\(pokemonData.id)"
+                    self.setColor((pokemonData.types[0].type?.name ?? "default"), self.idLabel)
+                }
+                
             }
-        })
+        }
+      
         self.pokemonNameLabel.text = pokemonToFetch.name?.capitalized
         self.checkIfFavouritePokemon(pokemonToCheck: pokemonToFetch)
     }
+    
     
     //MARK: - Checks favourite pokemons
     func checkIfFavouritePokemon(pokemonToCheck: Results){

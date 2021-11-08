@@ -25,7 +25,7 @@ class PokemonDetailsPresenter : PokemonDetailsPresenterDelegate {
 //MARK: - Methods that return the results from the functionality methods
 extension PokemonDetailsPresenter: PokemonDetailsInteractorOutputDelegate {
     func didFetchPokemon(pokemon: PokemonData) {
-        view?.updateDetailsView(pokemon: pokemon)
+        view?.updateDetailsView(pokemon: pokemon) //WORKS!
     }
     func didFailWithError(error: Error) {
         print(error)
