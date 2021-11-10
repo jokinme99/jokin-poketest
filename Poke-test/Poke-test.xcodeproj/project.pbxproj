@@ -15,6 +15,12 @@
 		FD676B4027269A7200318834 /* NotificationExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = FD676B3927269A7200318834 /* NotificationExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		FD6B780F27392C2E0055A0AE /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD6B780E27392C2E0055A0AE /* Reachability.swift */; };
 		FD7D316E27198B110031AB92 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FD7D316D27198B100031AB92 /* LaunchScreen.storyboard */; };
+		FD806D97273BFC5500331C74 /* MainTabBarPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD806D91273BFC5500331C74 /* MainTabBarPresenter.swift */; };
+		FD806D98273BFC5500331C74 /* MainTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD806D92273BFC5500331C74 /* MainTabBarViewController.swift */; };
+		FD806D99273BFC5500331C74 /* MainTabBarProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD806D93273BFC5500331C74 /* MainTabBarProtocols.swift */; };
+		FD806D9A273BFC5500331C74 /* MainTabBarInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD806D94273BFC5500331C74 /* MainTabBarInteractor.swift */; };
+		FD806D9B273BFC5500331C74 /* MainTabBarViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FD806D95273BFC5500331C74 /* MainTabBarViewController.xib */; };
+		FD806D9C273BFC5500331C74 /* MainTabBarWireframe.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD806D96273BFC5500331C74 /* MainTabBarWireframe.swift */; };
 		FD85C3A82696EAFC00EAF99F /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD85C3A72696EAFC00EAF99F /* Data.swift */; };
 		FD85C3AC2696EB1E00EAF99F /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD85C3AB2696EB1E00EAF99F /* DataManager.swift */; };
 		FD86C1522701A33C00DB4B8F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FD86C1512701A33C00DB4B8F /* Assets.xcassets */; };
@@ -77,6 +83,12 @@
 		FD676B3D27269A7200318834 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FD6B780E27392C2E0055A0AE /* Reachability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		FD7D316D27198B100031AB92 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		FD806D91273BFC5500331C74 /* MainTabBarPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarPresenter.swift; sourceTree = "<group>"; };
+		FD806D92273BFC5500331C74 /* MainTabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarViewController.swift; sourceTree = "<group>"; };
+		FD806D93273BFC5500331C74 /* MainTabBarProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarProtocols.swift; sourceTree = "<group>"; };
+		FD806D94273BFC5500331C74 /* MainTabBarInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarInteractor.swift; sourceTree = "<group>"; };
+		FD806D95273BFC5500331C74 /* MainTabBarViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainTabBarViewController.xib; sourceTree = "<group>"; };
+		FD806D96273BFC5500331C74 /* MainTabBarWireframe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarWireframe.swift; sourceTree = "<group>"; };
 		FD85C3A72696EAFC00EAF99F /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
 		FD85C3AB2696EB1E00EAF99F /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		FD86C1512701A33C00DB4B8F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -165,8 +177,7 @@
 				FD5676712729471000E29371 /* GoogleService-Info.plist */,
 				FDA34F0226E8957400AE2143 /* Managers */,
 				FDA34F0426E8A2DF00AE2143 /* Models */,
-				FDA34F0326E8A2BD00AE2143 /* PokemonList */,
-				FDA34F0126E8955B00AE2143 /* PokemonDetails */,
+				FD806D90273BFC3100331C74 /* Modules */,
 				FDF25E8126B1724F002474BB /* Info.plist */,
 				FD7D316D27198B100031AB92 /* LaunchScreen.storyboard */,
 			);
@@ -191,6 +202,29 @@
 				FDF25E8326B17600002474BB /* PokemonCell.xib */,
 			);
 			path = "Pokemon Cell";
+			sourceTree = "<group>";
+		};
+		FD806D90273BFC3100331C74 /* Modules */ = {
+			isa = PBXGroup;
+			children = (
+				FDA34F0326E8A2BD00AE2143 /* PokemonList */,
+				FDA34F0126E8955B00AE2143 /* PokemonDetails */,
+				FD806D9D273BFC6700331C74 /* MainTabBar */,
+			);
+			path = Modules;
+			sourceTree = "<group>";
+		};
+		FD806D9D273BFC6700331C74 /* MainTabBar */ = {
+			isa = PBXGroup;
+			children = (
+				FD806D91273BFC5500331C74 /* MainTabBarPresenter.swift */,
+				FD806D92273BFC5500331C74 /* MainTabBarViewController.swift */,
+				FD806D93273BFC5500331C74 /* MainTabBarProtocols.swift */,
+				FD806D94273BFC5500331C74 /* MainTabBarInteractor.swift */,
+				FD806D95273BFC5500331C74 /* MainTabBarViewController.xib */,
+				FD806D96273BFC5500331C74 /* MainTabBarWireframe.swift */,
+			);
+			path = MainTabBar;
 			sourceTree = "<group>";
 		};
 		FDA34F0126E8955B00AE2143 /* PokemonDetails */ = {
@@ -334,6 +368,7 @@
 				FD7D316E27198B110031AB92 /* LaunchScreen.storyboard in Resources */,
 				FDA34EF226E8952900AE2143 /* PokemonListViewController.xib in Resources */,
 				FD5676722729471000E29371 /* GoogleService-Info.plist in Resources */,
+				FD806D9B273BFC5500331C74 /* MainTabBarViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -401,15 +436,20 @@
 				FDA34EFC26E8954D00AE2143 /* PokemonDetailsViewController.swift in Sources */,
 				FD6B780F27392C2E0055A0AE /* Reachability.swift in Sources */,
 				FD3172D02695CF90006810CA /* AppDelegate.swift in Sources */,
+				FD806D9A273BFC5500331C74 /* MainTabBarInteractor.swift in Sources */,
+				FD806D9C273BFC5500331C74 /* MainTabBarWireframe.swift in Sources */,
 				FD88DF3F26DE076E0094858B /* DDBBManager.swift in Sources */,
 				FDA34F0026E8954D00AE2143 /* PokemonDetailsWireframe.swift in Sources */,
+				FD806D99273BFC5500331C74 /* MainTabBarProtocols.swift in Sources */,
 				FD85C3A82696EAFC00EAF99F /* Data.swift in Sources */,
+				FD806D98273BFC5500331C74 /* MainTabBarViewController.swift in Sources */,
 				FDF25E8426B17600002474BB /* PokemonCell.swift in Sources */,
 				FDA34EFD26E8954D00AE2143 /* PokemonDetailsProtocols.swift in Sources */,
 				FD61B42326B4046800EDBF8C /* Constants.swift in Sources */,
 				FDA34EF326E8952900AE2143 /* PokemonListWireframe.swift in Sources */,
 				FDA34EEF26E8952900AE2143 /* PokemonListViewController.swift in Sources */,
 				FDA34EFE26E8954D00AE2143 /* PokemonDetailsInteractor.swift in Sources */,
+				FD806D97273BFC5500331C74 /* MainTabBarPresenter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
