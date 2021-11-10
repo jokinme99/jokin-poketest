@@ -26,7 +26,9 @@ class PokemonDetailsInteractor : PokemonDetailsInteractorDelegate {
        
     }
     func fetchFavouritePokemons() {//Pass from results to favs here!
-        presenter?.didFetchFavourites(DDBBManager.shared.get(Favourites.self))
+        let favourites = DDBBManager.shared.get(Favourites.self)
+        presenter?.didFetchFavourites(favourites)
+    
     }
     func addFavourite(pokemon: Results) {
         let fav = Favourites(name: pokemon.name!)
@@ -37,7 +39,6 @@ class PokemonDetailsInteractor : PokemonDetailsInteractorDelegate {
             DDBBManager.shared.save(saved){ (error) in
                 self.dataBaseDelegate?.didSaveFavouriteWithError(error: error)
             }
-            //presenter?.didAddFavourite(pokemon: saved) Probar 26 octubre
         }
     }
     func deleteFavourite(pokemon: Results) {

@@ -32,9 +32,8 @@ class Favourites: Object, Codable{
         self.name = name
     }
 }
- 
  //MARK: - Pokemons' details
- class PokemonData: Object, Codable{
+ class PokemonData: Object, Codable {
      @objc dynamic var name: String?
      @objc dynamic var sprites: Sprites?
      var types = List<Types>()

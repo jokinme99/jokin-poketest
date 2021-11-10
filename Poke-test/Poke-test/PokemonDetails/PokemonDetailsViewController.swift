@@ -3,9 +3,9 @@ import UIKit
 import AlamofireImage
 import RealmSwift
 
-
-class PokemonDetailsViewController: UIViewController { //If offline, favourite star unable to edit, when only two pokemons after filtered only favs and pressed next/preview buttons not working
-    @IBOutlet weak var backgroundView: UIView!//COMMENTARY : CMD + MAYUS + '(BLOCK)
+//COMMENTARY(BLOCK) : CMD + MAYUS + '
+class PokemonDetailsViewController: UIViewController {
+    @IBOutlet weak var backgroundView: UIView!
     @IBOutlet weak var typesView: UIView!
     @IBOutlet weak var pokemonType1Label: UILabel!
     @IBOutlet weak var pokemonType2Label: UILabel!
@@ -70,11 +70,10 @@ extension PokemonDetailsViewController{
         self.favouriteConfirmationImage.isHidden = true
         for favourite in favouritesList {
             if favourite.name == selectedPokemon?.name{
-                self.favouritesImage.isHidden = false
+                self.favouriteConfirmationImage.isHidden = false
                 break
             }
         }
-        
         self.favouritesButton.addTarget(self, action: #selector(pressed), for: .touchUpInside)
         self.previewButton.addTarget(self, action: #selector(previousPokemonButtonAction), for: .touchUpInside)
         self.nextButton.addTarget(self, action: #selector(nextPokemonButtonAction), for: .touchUpInside)
@@ -141,6 +140,7 @@ extension PokemonDetailsViewController: PokemonDetailsViewDelegate {
     //MARK: - Gets the favourite list after the fetching
     func updateDetailsViewFavourites(favourites: [Favourites]) {
         self.favouritesList = favourites
+        
     }
     
     //MARK: - Updates view after fetching the details of the selected pokemon
@@ -176,11 +176,15 @@ extension PokemonDetailsViewController: PokemonDetailsViewDelegate {
         self.specialDefenseLabel.text = "Special-defense: \(pokemon.stats[4].base_stat)"
         self.speedLabel.text = "Speed: \(pokemon.stats[5].base_stat)"
         self.paintLabel(pokemon: pokemon)
-        if let downloadURL = URL(string: pokemon.sprites?.front_default ?? ""){// change-> ?
+        self.transformUrlToImage(url: pokemon.sprites?.front_default ?? "")
+    }
+    func transformUrlToImage(url: String){
+        if let downloadURL = URL(string: url){
             if Reachability.isConnectedToNetwork(){
                 return self.pokemonImage.af.setImage(withURL: downloadURL)
             }else{
                 return self.pokemonImage.af.setImage(withURL: downloadURL) // get data from DB
+                //return DDBBManager(Image.self) // [Image](with all images) -> get the one that references(with the url)
             }
             
         }else {
