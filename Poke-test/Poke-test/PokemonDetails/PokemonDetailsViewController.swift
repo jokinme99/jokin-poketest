@@ -4,8 +4,8 @@ import AlamofireImage
 import RealmSwift
 
 
-class PokemonDetailsViewController: UIViewController {
-    @IBOutlet weak var backgroundView: UIView!
+class PokemonDetailsViewController: UIViewController { //If offline, favourite star unable to edit, when only two pokemons after filtered only favs and pressed next/preview buttons not working
+    @IBOutlet weak var backgroundView: UIView!//COMMENTARY : CMD + MAYUS + '(BLOCK)
     @IBOutlet weak var typesView: UIView!
     @IBOutlet weak var pokemonType1Label: UILabel!
     @IBOutlet weak var pokemonType2Label: UILabel!
@@ -51,6 +51,7 @@ class PokemonDetailsViewController: UIViewController {
         presenter?.fetchFavourites()
         loadMethods()
         row = (filtered.firstIndex(of: selectedPokemon!))
+        
     }
 }
 
@@ -66,7 +67,14 @@ extension PokemonDetailsViewController{
     func loadMethods(){
         self.loadButtonsStyle()
         self.presenter?.fetchFavourites()
-        self.favouriteConfirmationImage.isHidden = false
+        self.favouriteConfirmationImage.isHidden = true
+        for favourite in favouritesList {
+            if favourite.name == selectedPokemon?.name{
+                self.favouritesImage.isHidden = false
+                break
+            }
+        }
+        
         self.favouritesButton.addTarget(self, action: #selector(pressed), for: .touchUpInside)
         self.previewButton.addTarget(self, action: #selector(previousPokemonButtonAction), for: .touchUpInside)
         self.nextButton.addTarget(self, action: #selector(nextPokemonButtonAction), for: .touchUpInside)
@@ -169,8 +177,12 @@ extension PokemonDetailsViewController: PokemonDetailsViewDelegate {
         self.speedLabel.text = "Speed: \(pokemon.stats[5].base_stat)"
         self.paintLabel(pokemon: pokemon)
         if let downloadURL = URL(string: pokemon.sprites?.front_default ?? ""){// change-> ?
-            let image = self.pokemonImage.af.setImage(withURL: downloadURL)
-            return image
+            if Reachability.isConnectedToNetwork(){
+                return self.pokemonImage.af.setImage(withURL: downloadURL)
+            }else{
+                return self.pokemonImage.af.setImage(withURL: downloadURL) // get data from DB
+            }
+            
         }else {
             return
         }
@@ -216,6 +228,7 @@ extension PokemonDetailsViewController{
                 self.selectedPokemon = filtered[row]
                 self.previousPokemon = filtered.last
                 self.nextPokemon = previousPokemon
+            }else{
                 self.selectedPokemon = filtered[row]
                 self.nextPokemon = filtered.first
                 self.previousPokemon = nextPokemon

@@ -34,11 +34,6 @@ class PokemonListViewController: UIViewController {//PIN iPhone: 281106
         navigationItem.title = "Pokedex"
         loadButtons()
         loadSearchBar()
-        if Reachability.isConnectedToNetwork(){
-            print("Internet Connection Available!")
-        }else{
-            print("Internet Connection not Available!")
-        }
     }
     override func viewWillAppear(_ animated: Bool) {
         presenter?.fetchFavourites()

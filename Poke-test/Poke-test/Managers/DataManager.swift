@@ -105,10 +105,10 @@ extension PokemonManager{ //Only do it if everything is empty
         }
     }
     func addPokemonTypeData(_ pokemons: PokemonFilterListData){
-        let savedPokemonFilters = DDBBManager.shared.get(Pokemons.self)
-        if savedPokemonFilters != Array(pokemons.pokemon){
-            DDBBManager.shared.save(pokemons) { error in
-                print("Saving pokemons' Filters error: \(String(describing: error))")
+        let isSaved = isSavedPokemonFilterData(pokemons)
+        if !isSaved.isSaved{
+            DDBBManager.shared.save(pokemons){(error) in
+                self.didSaveWithError(error: error)
             }
         }
     }
@@ -133,6 +133,15 @@ extension PokemonManager{ //Only do it if everything is empty
             return (saved.count > 0, saved.first)
         }
         return(false, Results())
+    }
+    func isSaved(pokemonList: PokemonFilterListData){
+        let saved = isSavedPokemonFilterData(pokemonList)
+        didIsSaved(saved: saved.isSaved)
+    }
+    func isSavedPokemonFilterData(_ pokemonList: PokemonFilterListData)-> (isSaved: Bool, saved: PokemonFilterListData?){
+        let filter = "name == '\(pokemonList.name!)'"
+        let saved = DDBBManager.shared.get(PokemonFilterListData.self, filter: filter)
+        return (saved.count > 0, saved.first)
     }
     func didIsSaved(saved: Bool) {
         print(saved)

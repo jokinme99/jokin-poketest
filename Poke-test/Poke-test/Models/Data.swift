@@ -95,12 +95,17 @@ class Types: EmbeddedObject, Codable{
  }
 //MARK: - Pokemons' types
 class PokemonFilterListData: Object, Codable{//Do the DDBBManager in DataManager
-    let pokemon = List<Pokemons>()
-    public required convenience init(from decoder: Decoder) throws { //Needed to set the array in realm Array[] -> List<>
+    @objc dynamic var name: String?
+    var pokemon = List<Pokemons>()
+    public required convenience init(from decoder: Decoder, name: String) throws { //Needed to set the array in realm Array[] -> List<>
         self.init()
         let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.name = name
         let pokemonTypes = try container.decodeIfPresent([Pokemons].self, forKey: .pokemon) ?? [Pokemons()]
         pokemon.append(objectsIn: pokemonTypes)
+    }
+    override class func primaryKey() -> String? {
+        return "name"
     }
 }
 class Pokemons: Object, Codable{

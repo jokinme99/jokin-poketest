@@ -40,11 +40,12 @@ class PokemonListInteractor : PokemonListInteractorDelegate{
                 
             })
         }else{ //Make it work offline
-//            let pokemons = DDBBManager.shared.get(PokemonListData.self)
-//            for pokemon in pokemons {
-//                if pokemon
-//            }
-//            self.presenter?.didFetchType(pokemons: pokemons)
+            let pokemons = DDBBManager.shared.get(PokemonFilterListData.self)
+            for pokemon in pokemons{
+                if pokemon.name == type{
+                    self.presenter?.didFetchType(pokemons: pokemon)
+                }
+            }
         }
        
     }
