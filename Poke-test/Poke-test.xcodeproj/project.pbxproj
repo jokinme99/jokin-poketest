@@ -14,6 +14,12 @@
 		FD676B3C27269A7200318834 /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD676B3B27269A7200318834 /* NotificationService.swift */; };
 		FD676B4027269A7200318834 /* NotificationExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = FD676B3927269A7200318834 /* NotificationExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		FD6B780F27392C2E0055A0AE /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD6B780E27392C2E0055A0AE /* Reachability.swift */; };
+		FD7B9B03273E4B2A006B7610 /* PokemonFavouritesPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD7B9AFD273E4B2A006B7610 /* PokemonFavouritesPresenter.swift */; };
+		FD7B9B04273E4B2A006B7610 /* PokemonFavouritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD7B9AFE273E4B2A006B7610 /* PokemonFavouritesViewController.swift */; };
+		FD7B9B05273E4B2A006B7610 /* PokemonFavouritesProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD7B9AFF273E4B2A006B7610 /* PokemonFavouritesProtocols.swift */; };
+		FD7B9B06273E4B2A006B7610 /* PokemonFavouritesInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD7B9B00273E4B2A006B7610 /* PokemonFavouritesInteractor.swift */; };
+		FD7B9B07273E4B2A006B7610 /* PokemonFavouritesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FD7B9B01273E4B2A006B7610 /* PokemonFavouritesViewController.xib */; };
+		FD7B9B08273E4B2A006B7610 /* PokemonFavouritesWireframe.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD7B9B02273E4B2A006B7610 /* PokemonFavouritesWireframe.swift */; };
 		FD7D316E27198B110031AB92 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FD7D316D27198B100031AB92 /* LaunchScreen.storyboard */; };
 		FD806D97273BFC5500331C74 /* MainTabBarPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD806D91273BFC5500331C74 /* MainTabBarPresenter.swift */; };
 		FD806D98273BFC5500331C74 /* MainTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD806D92273BFC5500331C74 /* MainTabBarViewController.swift */; };
@@ -82,6 +88,12 @@
 		FD676B3B27269A7200318834 /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
 		FD676B3D27269A7200318834 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FD6B780E27392C2E0055A0AE /* Reachability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
+		FD7B9AFD273E4B2A006B7610 /* PokemonFavouritesPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonFavouritesPresenter.swift; sourceTree = "<group>"; };
+		FD7B9AFE273E4B2A006B7610 /* PokemonFavouritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonFavouritesViewController.swift; sourceTree = "<group>"; };
+		FD7B9AFF273E4B2A006B7610 /* PokemonFavouritesProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonFavouritesProtocols.swift; sourceTree = "<group>"; };
+		FD7B9B00273E4B2A006B7610 /* PokemonFavouritesInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonFavouritesInteractor.swift; sourceTree = "<group>"; };
+		FD7B9B01273E4B2A006B7610 /* PokemonFavouritesViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PokemonFavouritesViewController.xib; sourceTree = "<group>"; };
+		FD7B9B02273E4B2A006B7610 /* PokemonFavouritesWireframe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonFavouritesWireframe.swift; sourceTree = "<group>"; };
 		FD7D316D27198B100031AB92 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FD806D91273BFC5500331C74 /* MainTabBarPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarPresenter.swift; sourceTree = "<group>"; };
 		FD806D92273BFC5500331C74 /* MainTabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarViewController.swift; sourceTree = "<group>"; };
@@ -195,6 +207,19 @@
 			path = NotificationExtension;
 			sourceTree = "<group>";
 		};
+		FD7B9B09273E4B34006B7610 /* PokemonFavourites */ = {
+			isa = PBXGroup;
+			children = (
+				FD7B9B00273E4B2A006B7610 /* PokemonFavouritesInteractor.swift */,
+				FD7B9AFD273E4B2A006B7610 /* PokemonFavouritesPresenter.swift */,
+				FD7B9AFF273E4B2A006B7610 /* PokemonFavouritesProtocols.swift */,
+				FD7B9AFE273E4B2A006B7610 /* PokemonFavouritesViewController.swift */,
+				FD7B9B01273E4B2A006B7610 /* PokemonFavouritesViewController.xib */,
+				FD7B9B02273E4B2A006B7610 /* PokemonFavouritesWireframe.swift */,
+			);
+			path = PokemonFavourites;
+			sourceTree = "<group>";
+		};
 		FD7FD3582716F275008E0448 /* Pokemon Cell */ = {
 			isa = PBXGroup;
 			children = (
@@ -207,9 +232,11 @@
 		FD806D90273BFC3100331C74 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				FD7FD3582716F275008E0448 /* Pokemon Cell */,
 				FDA34F0326E8A2BD00AE2143 /* PokemonList */,
 				FDA34F0126E8955B00AE2143 /* PokemonDetails */,
 				FD806D9D273BFC6700331C74 /* MainTabBar */,
+				FD7B9B09273E4B34006B7610 /* PokemonFavourites */,
 			);
 			path = Modules;
 			sourceTree = "<group>";
@@ -253,7 +280,6 @@
 		FDA34F0326E8A2BD00AE2143 /* PokemonList */ = {
 			isa = PBXGroup;
 			children = (
-				FD7FD3582716F275008E0448 /* Pokemon Cell */,
 				FDA34EEB26E8952900AE2143 /* PokemonListInteractor.swift */,
 				FDA34EE826E8952900AE2143 /* PokemonListPresenter.swift */,
 				FDA34EEA26E8952900AE2143 /* PokemonListProtocols.swift */,
@@ -366,6 +392,7 @@
 				FD86C1522701A33C00DB4B8F /* Assets.xcassets in Resources */,
 				FDF25E8526B17600002474BB /* PokemonCell.xib in Resources */,
 				FD7D316E27198B110031AB92 /* LaunchScreen.storyboard in Resources */,
+				FD7B9B07273E4B2A006B7610 /* PokemonFavouritesViewController.xib in Resources */,
 				FDA34EF226E8952900AE2143 /* PokemonListViewController.xib in Resources */,
 				FD5676722729471000E29371 /* GoogleService-Info.plist in Resources */,
 				FD806D9B273BFC5500331C74 /* MainTabBarViewController.xib in Resources */,
@@ -428,6 +455,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FD7B9B04273E4B2A006B7610 /* PokemonFavouritesViewController.swift in Sources */,
 				FD85C3AC2696EB1E00EAF99F /* DataManager.swift in Sources */,
 				FDA34EFB26E8954D00AE2143 /* PokemonDetailsPresenter.swift in Sources */,
 				FDA34EEE26E8952900AE2143 /* PokemonListPresenter.swift in Sources */,
@@ -435,7 +463,9 @@
 				FDA34EF126E8952900AE2143 /* PokemonListInteractor.swift in Sources */,
 				FDA34EFC26E8954D00AE2143 /* PokemonDetailsViewController.swift in Sources */,
 				FD6B780F27392C2E0055A0AE /* Reachability.swift in Sources */,
+				FD7B9B05273E4B2A006B7610 /* PokemonFavouritesProtocols.swift in Sources */,
 				FD3172D02695CF90006810CA /* AppDelegate.swift in Sources */,
+				FD7B9B03273E4B2A006B7610 /* PokemonFavouritesPresenter.swift in Sources */,
 				FD806D9A273BFC5500331C74 /* MainTabBarInteractor.swift in Sources */,
 				FD806D9C273BFC5500331C74 /* MainTabBarWireframe.swift in Sources */,
 				FD88DF3F26DE076E0094858B /* DDBBManager.swift in Sources */,
@@ -447,9 +477,11 @@
 				FDA34EFD26E8954D00AE2143 /* PokemonDetailsProtocols.swift in Sources */,
 				FD61B42326B4046800EDBF8C /* Constants.swift in Sources */,
 				FDA34EF326E8952900AE2143 /* PokemonListWireframe.swift in Sources */,
+				FD7B9B06273E4B2A006B7610 /* PokemonFavouritesInteractor.swift in Sources */,
 				FDA34EEF26E8952900AE2143 /* PokemonListViewController.swift in Sources */,
 				FDA34EFE26E8954D00AE2143 /* PokemonDetailsInteractor.swift in Sources */,
 				FD806D97273BFC5500331C74 /* MainTabBarPresenter.swift in Sources */,
+				FD7B9B08273E4B2A006B7610 /* PokemonFavouritesWireframe.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

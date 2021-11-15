@@ -115,3 +115,12 @@ class Pokemon: EmbeddedObject, Codable{ //Not working
 
 }
 
+//MARK: - DictionaryPokemon
+class PokemonDictionary{
+    var pokemonInDict: Results?
+    var pokemonId: Int?
+    init(pokemonInDict: Results, pokemonId: Int){
+        self.pokemonInDict = pokemonInDict
+        self.pokemonId = pokemonId
+    }
+}

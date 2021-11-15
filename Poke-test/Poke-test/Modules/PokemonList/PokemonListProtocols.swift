@@ -3,7 +3,6 @@ import UIKit
 //MARK: - CellDelegate methods
 protocol PokemonListCellDelegate: AnyObject{
     var presenter: PokemonListPresenterDelegate? {get set}
-    func checkIfFavouritePokemon(pokemonToCheck: Results)
     func updatePokemonInCell(pokemonToFetch: Results)
 }
 
@@ -11,9 +10,8 @@ protocol PokemonListCellDelegate: AnyObject{
 protocol PokemonListViewDelegate: AnyObject {
     var presenter: PokemonListPresenterDelegate? {get set}
     func updateTableView(pokemons: PokemonListData)
-    func updateTableViewFavourites()
-    func updateFavouritesFetchInCell(favourites: [Favourites])
     func updateFiltersTableView(pokemons: PokemonFilterListData)
+    func updateTableView()
 }
 
 //MARK: - SceneController methods: Connections between .xib
@@ -29,7 +27,6 @@ protocol PokemonListPresenterDelegate: AnyObject {
     var interactor: PokemonListInteractorDelegate? {get set}
     var wireframe: PokemonListWireframeDelegate? {get set}
     func fetchPokemonList()
-    func fetchFavourites()
     func openPokemonDetail(pokemon: Results, nextPokemon: Results, previousPokemon: Results, filtered: [Results])
     func fetchPokemonType(type: String)
 }
@@ -38,7 +35,6 @@ protocol PokemonListPresenterDelegate: AnyObject {
 protocol PokemonListInteractorDelegate: AnyObject {
     var presenter: PokemonListInteractorOutputDelegate? {get set}
     func fetchPokemonList()
-    func fetchFavouritePokemons()
     func fetchPokemonType(type:String)
 }
 
@@ -46,7 +42,6 @@ protocol PokemonListInteractorDelegate: AnyObject {
 protocol PokemonListInteractorOutputDelegate: AnyObject {
     func didFetchPokemonList(pokemon: PokemonListData)
     func didFailWith(error: Error)
-    func didFetchFavourites(favourites: [Favourites])
     func didFetchType(pokemons: PokemonFilterListData)
 }
 

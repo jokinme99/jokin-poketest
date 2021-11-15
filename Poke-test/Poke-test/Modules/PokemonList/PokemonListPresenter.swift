@@ -10,9 +10,6 @@ class PokemonListPresenter : PokemonListPresenterDelegate {
     func fetchPokemonList() { 
         interactor?.fetchPokemonList()
     }
-    func fetchFavourites(){ 
-        interactor?.fetchFavouritePokemons()
-    }
     func openPokemonDetail(pokemon: Results, nextPokemon: Results, previousPokemon: Results, filtered: [Results]) {
         wireframe?.openPokemonDetailsWindow(pokemon: pokemon, nextPokemon: nextPokemon, previousPokemon: previousPokemon, filtered: filtered)
     }
@@ -23,10 +20,6 @@ class PokemonListPresenter : PokemonListPresenterDelegate {
 
 //MARK: - Methods that return the results from the functionality methods
 extension PokemonListPresenter: PokemonListInteractorOutputDelegate {
-    func didFetchFavourites(favourites: [Favourites]) {
-        view?.updateTableViewFavourites()
-        view?.updateFavouritesFetchInCell(favourites: favourites)
-    }
     func didFailWith(error: Error) {
         print(error)
     }

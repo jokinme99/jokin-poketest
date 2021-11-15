@@ -5,11 +5,9 @@ class PokemonCell: UITableViewCell {
     
     @IBOutlet weak var pokemonBubble: UIView!
     @IBOutlet weak var pokemonNameLabel: UILabel!
-    @IBOutlet weak var favouriteImage: UIImageView!
     @IBOutlet weak var idLabel: UILabel!
     
     var pokemon: Results?
-    var favouritesList: [Favourites] = []
     var view: PokemonListViewDelegate?
     var presenter: PokemonListPresenterDelegate?
     
@@ -22,7 +20,6 @@ class PokemonCell: UITableViewCell {
         super.prepareForReuse()
         backgroundColor = .white
         pokemonNameLabel.text = nil
-        favouriteImage.image = nil
         idLabel.text = nil
     }
     
@@ -44,6 +41,7 @@ extension PokemonCell: PokemonListCellDelegate{
                     self.idLabel.text = "#\(pokemonData.id)"
                     self.setColor((pokemonData.types[0].type?.name ?? "default"), self.idLabel)
                 }
+                self.view?.updateTableView()
             })
         }else{
             let pokemonDataList = DDBBManager.shared.get(PokemonData.self)
@@ -59,17 +57,6 @@ extension PokemonCell: PokemonListCellDelegate{
         }
       
         self.pokemonNameLabel.text = pokemonToFetch.name?.capitalized
-        self.checkIfFavouritePokemon(pokemonToCheck: pokemonToFetch)
-    }
-    
-    
-    //MARK: - Checks favourite pokemons
-    func checkIfFavouritePokemon(pokemonToCheck: Results){
-        for favourite in self.favouritesList{
-            if favourite.name == pokemonToCheck.name{
-                self.favouriteImage.image = imageWithImage(image: UIImage(named: "fullStar")!, scaledToSize: CGSize(width: 20, height: 20))
-            }
-        }
     }
 }
 

@@ -14,17 +14,19 @@ class MainTabBarViewController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do view setup here.
-        
         let list = PokemonListWireframe.createPokemonListModule()
-        list.tabBarItem = UITabBarItem(title: "List", image: UIImage(named: "fullStar"), selectedImage: nil)
+        list.tabBarItem = UITabBarItem(title: "ALL", image: UIImage(named: "notSelected"), selectedImage: UIImage(named: "selected"))
         //error: #imageLiteral(resourceName:"favorites")
-        let favorites = PokemonListWireframe.createPokemonListModule()
-        favorites.tabBarItem = UITabBarItem(title: "Favorites", image: UIImage(named: "emptyStar"), selectedImage: nil)
+        let favourites = PokemonFavouritesWireframe.createPokemonFavouritesModule()
+        favourites.tabBarItem = UITabBarItem(title: "FAVS", image: UIImage(named: "fullStar"), selectedImage: UIImage(named: "emptyStar"))
+        navigationItem.title = "POKEDEX"
+        setViewControllers([list, favourites], animated: true)
+        UITabBarItem.appearance().setTitleTextAttributes([.foregroundColor: UIColor.white], for: .selected)
         
-        setViewControllers([list, favorites], animated: true)
     }
 }
 
-extension MainTabBarViewController: MainTabBarViewDelegate {
+extension MainTabBarViewController: MainTabBarViewDelegate{
+    
 
 }

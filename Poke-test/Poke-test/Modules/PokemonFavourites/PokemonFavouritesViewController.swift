@@ -3,8 +3,7 @@ import UIKit
 import NotificationCenter
 import RealmSwift
 
-class PokemonListViewController: UIViewController {//PIN iPhone: 281106
-    
+class PokemonFavouritesViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var orderByButton: UIButton!
     @IBOutlet weak var searchBar: UISearchBar!
@@ -16,41 +15,47 @@ class PokemonListViewController: UIViewController {//PIN iPhone: 281106
     var savefilteredOrder : [Results] = []
     var pokemonSelected: Results?
     var cell = PokemonCell()
-    var presenter: PokemonListPresenterDelegate?
+    var presenter: PokemonFavouritesPresenterDelegate?
     var pokemonInCell: Results?
     var nextPokemon: Results?
     var previousPokemon: Results?
     var detailsPresenter: PokemonDetailsPresenter?
+    var pokemonDataList: [PokemonData] = []
+    var dictionaryIdResults: [Results:Int]?
+    var dictionary: [PokemonDictionary] = []
     
     override func viewDidLoad() {
-        print(Realm.Configuration.defaultConfiguration.fileURL!)
+        //print(Realm.Configuration.defaultConfiguration.fileURL!)
         super.viewDidLoad()
         loadDelegates()
-        presenter?.fetchPokemonList()
         tableView.register(UINib(nibName: "PokemonCell", bundle: nil), forCellReuseIdentifier: "PokemonNameCell")
+        presenter?.fetchFavourites()
         loadButtons()
         loadSearchBar()
-        tableView.rowHeight = 50.0
+        tableView.rowHeight = 80.0
+        pokemonDataList = DDBBManager.shared.get(PokemonData.self)
+        
     }
     override func viewWillAppear(_ animated: Bool) {
-        for filter in filtered {
+        presenter?.fetchFavourites()
+        for filter in filtered{
             if filter.isInvalidated{
                 filtered.removeAll()
-                presenter?.fetchPokemonList()
-                self.pokemon = filtered
-                self.savefilteredOrder = filtered
+                pokemon.removeAll()
+                savefilteredOrder.removeAll()
+                presenter?.fetchFavourites()
             }
         }
     }
     
 }
 //MARK: - ViewDidLoad Methods
-extension PokemonListViewController{
+extension PokemonFavouritesViewController{
     func loadDelegates(){
         searchBar.delegate = self
         tableView.delegate = self
         tableView.dataSource = self
-            }
+    }
     func loadButtons(){
         orderByButton.addTarget(self, action: #selector(pressedOrderBy), for: .touchUpInside)
         for button in buttonList{
@@ -66,41 +71,59 @@ extension PokemonListViewController{
 }
 
 //MARK: - ViewControllerDelegate methods
-extension PokemonListViewController: PokemonListViewDelegate {
+extension PokemonFavouritesViewController: PokemonFavouritesViewDelegate {
+    
     //MARK: - Updates filters
     func updateFiltersTableView(pokemons: PokemonFilterListData) {
-        self.pokemon.removeAll()
-        self.filtered.removeAll()
+        presenter?.fetchFavourites()
+        let saveFiltered = self.filtered
+        filtered.removeAll()
+        pokemon.removeAll()
+        savefilteredOrder.removeAll()
         for pokemonType in pokemons.pokemon{
-            pokemon.append(Results(name: pokemonType.pokemon?.name! ?? "default"))
-            filtered.append(Results(name: pokemonType.pokemon?.name! ?? "default"))
+            for filter in saveFiltered{
+                if filter.name == pokemonType.pokemon?.name{
+                    pokemon.append(filter)
+                    filtered.append(filter)
+                    savefilteredOrder.append(filter)
+                }
+            }
         }
         self.tableView.reloadData()
     }
-    //MARK: - Updates tableView after fetching pokemon list
-    func updateTableView(pokemons: PokemonListData) {//Make it work if offline
+    
+    //MARK: - Updates the favourite list after the fetching
+    func updateFavouritesFetchInCell(favourites: [Favourites]) {//Make it work if offline
         if filtered.isEmpty && pokemon.isEmpty{
-            self.pokemon = Array(pokemons.results)
+            for favourite in favourites {
+                self.pokemon.append(Results(name: favourite.name ?? "default"))
+            }
             self.filtered = self.pokemon
             self.savefilteredOrder = self.pokemon
+            sortFilteredOrdered()
             self.tableView.reloadData()
-        }
-        else{
+        }else{
             pokemon.removeAll()
             filtered.removeAll()
-            self.pokemon = Array(pokemons.results)
+            savefilteredOrder.removeAll()
+            for favourite in favourites {
+                self.pokemon.append(Results(name: favourite.name ?? "default"))
+            }
             self.filtered = self.pokemon
             self.savefilteredOrder = self.pokemon
+            sortFilteredOrdered()
             self.tableView.reloadData()
         }
     }
-    func updateTableView() {
+    
+    //MARK: - Updates tableView after adding/deleting favourites
+    func updateTableViewFavourites() {//Make it work if offline
         self.tableView.reloadData()
     }
 }
 
 //MARK: - TableView Methods
-extension PokemonListViewController:UITableViewDelegate, UITableViewDataSource{
+extension PokemonFavouritesViewController:UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return filtered.count; //Row count
         
@@ -142,7 +165,7 @@ extension PokemonListViewController:UITableViewDelegate, UITableViewDataSource{
 }
 
 //MARK: - SearchBar Delegate & bookmark buttons methods
-extension PokemonListViewController:UISearchBarDelegate{
+extension PokemonFavouritesViewController:UISearchBarDelegate{
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         if searchText.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines).isEmpty {
             self.filtered = self.pokemon
@@ -159,7 +182,6 @@ extension PokemonListViewController:UISearchBarDelegate{
         }
         self.tableView.reloadData()
     }
-
     func imageWithImage(image: UIImage, scaledToSize newSize: CGSize) -> UIImage {
         UIGraphicsBeginImageContext(newSize)
         image.draw(in: CGRect(x: 0 ,y: 0 ,width: newSize.width ,height: newSize.height))
@@ -181,51 +203,10 @@ extension PokemonListViewController:UISearchBarDelegate{
     }
     
 }
-extension UISearchBar{
-    @IBInspectable var doneAccessory: Bool{
-        get{
-            return self.doneAccessory
-        }
-        set (hasDone) {
-            if hasDone{
-                addDoneButtonOnKeyboard()
-            }
-        }
-    }
-    
-    func addDoneButtonOnKeyboard()
-    {
-        let doneToolbar: UIToolbar = UIToolbar(frame: CGRect.init(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 50))
-        doneToolbar.barStyle = .default
-        
-        let flexSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
-        let done: UIBarButtonItem = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(self.doneButtonAction))
-        /* let goUp: UIBarButtonItem = UIBarButtonItem(image: UIImage(named: "arrowUp"), style: .done, target: self, action: #selector(self.goUpButtonAction))
-         let goDown: UIBarButtonItem = UIBarButtonItem(image: UIImage(named: "arrowDown"), style: .done, target: self, action: #selector(self.goDownButtonAction)) */
-        
-        let items = [ /* goUp, goDown, */ flexSpace, done]
-        doneToolbar.items = items
-        doneToolbar.sizeToFit()
-        
-        self.inputAccessoryView = doneToolbar
-    }
-    
-    @objc func doneButtonAction()
-    {
-        self.resignFirstResponder()
-    }
-    /*
-     @objc func goDownButtonAction(){
-     
-     }
-     @objc func goUpButtonAction(){
-     
-     } */
-    
-}
+
 
 //MARK: - OrderBy Buttons methods
-extension PokemonListViewController{
+extension PokemonFavouritesViewController{
     
     @objc func pressedOrderBy(_ sender: UIButton!) {
         if orderByButton.titleLabel?.text == "Order by Name"{
@@ -235,25 +216,34 @@ extension PokemonListViewController{
         }
         else{
             orderByButton.setTitle("Order by Name", for: .normal)
-            if searchBar.text?.isEmpty == true{
-                self.filtered = self.pokemon
-            }else{
-                self.filtered = self.savefilteredOrder
-            }
+            sortFilteredOrdered()
             
-            self.tableView.reloadData()
         }
-        
+    }
+    func sortFilteredOrdered(){
+        dictionary.removeAll()
+        for pokemonInDataList in pokemonDataList.sorted(by: {$0.id < $1.id}){
+            for pok in filtered{
+                if pok.name == pokemonInDataList.name{
+                    dictionary.append(PokemonDictionary(pokemonInDict: pok, pokemonId: pokemonInDataList.id))
+                }
+            }
+        }
+        filtered.removeAll()
+        for sort in dictionary{
+            filtered.append(sort.pokemonInDict!)
+        }
+        self.tableView.reloadData()
     }
 }
 
 //MARK: - Filter Buttons methods
-extension PokemonListViewController{
+extension PokemonFavouritesViewController{
     @objc func pressedFilterButton(_ sender: UIButton!){
         switch sender.titleLabel?.text?.lowercased(){
         case "all":
             cleanSearchBar()
-            self.presenter?.fetchPokemonList()
+            self.presenter?.fetchFavourites()
         case TypeName.normal:
             cleanSearchBar()
             self.presenter?.fetchPokemonType(type: TypeName.normal)
@@ -330,7 +320,7 @@ extension PokemonListViewController{
 }
 
 //MARK: - Painting Methods
-extension PokemonListViewController{
+extension PokemonFavouritesViewController{
     func setPokemonTextColor(_ color: UIColor, _ button: UIButton){
         button.titleLabel?.textColor = color
     }

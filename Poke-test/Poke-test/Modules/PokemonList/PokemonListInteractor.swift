@@ -25,10 +25,6 @@ class PokemonListInteractor : PokemonListInteractorDelegate{
         }
        
     }
-    func fetchFavouritePokemons(){
-        let favourites = DDBBManager.shared.get(Favourites.self)
-        self.presenter?.didFetchFavourites(favourites: favourites)
-    }
     func fetchPokemonType(type: String) {
         if Reachability.isConnectedToNetwork(){
             PokemonManager.shared.fetchPokemonTypes(pokemonType: type, { pokemonFilterListData, error in
