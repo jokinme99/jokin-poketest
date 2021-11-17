@@ -7,6 +7,7 @@
 
 class PokemonFavouritesInteractor : PokemonFavouritesInteractorDelegate {
     var presenter: PokemonFavouritesInteractorOutputDelegate?
+    var dataBaseDelegate: DDBBManagerDelegate?
     func fetchFavouritePokemons() {
         let favourites = DDBBManager.shared.get(Favourites.self)
         self.presenter?.didFetchFavourites(favourites: favourites)
@@ -31,8 +32,25 @@ class PokemonFavouritesInteractor : PokemonFavouritesInteractorDelegate {
             }
         }
     }
-    
-    
-    
+    func deleteFavourite(pokemon: Results) {
+        let fav = Favourites(name: pokemon.name!)
+        let isSaved = isSavedFavourite(fav)
+        if isSaved.isSaved{
+            if let saved = isSaved.saved{
+                DDBBManager.shared.delete(saved){ (error) in
+                    self.presenter?.didDeleteFavouriteWithError(error: error)
+                }
+            }
+        }
+    }
+    func isSaved(favourite: Favourites){
+        let saved = isSavedFavourite(favourite)
+        presenter?.didIsSaved(saved: saved.isSaved)
+    }
+    private func isSavedFavourite(_ favourite: Favourites)-> (isSaved: Bool, saved: Favourites?){
+        let filter = "name == '\(favourite.name!)'"
+        let saved = DDBBManager.shared.get(Favourites.self, filter: filter)
+        return (saved.count > 0, saved.first)
+    }
     
 }

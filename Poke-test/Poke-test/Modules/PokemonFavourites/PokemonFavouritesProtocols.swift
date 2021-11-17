@@ -13,6 +13,7 @@ protocol PokemonFavouritesViewDelegate: AnyObject {
     func updateTableViewFavourites()
     func updateFavouritesFetchInCell(favourites: [Favourites])
     func updateFiltersTableView(pokemons: PokemonFilterListData)
+    func deleteFavourite(pokemon: Results)
 }
 
 protocol PokemonFavouritesWireframeDelegate: AnyObject {
@@ -28,16 +29,22 @@ protocol PokemonFavouritesPresenterDelegate: AnyObject {
     func fetchFavourites()
     func openPokemonDetail(pokemon: Results, nextPokemon: Results, previousPokemon: Results, filtered: [Results])
     func fetchPokemonType(type: String)
+    func deleteFavourite(pokemon: Results)
 }
 
 protocol PokemonFavouritesInteractorDelegate: AnyObject {
     var presenter: PokemonFavouritesInteractorOutputDelegate? {get set}
     func fetchFavouritePokemons()
     func fetchPokemonType(type:String)
+    
+    func deleteFavourite(pokemon: Results)
 }
 
 protocol PokemonFavouritesInteractorOutputDelegate: AnyObject {
     func didFailWith(error: Error)
     func didFetchFavourites(favourites: [Favourites])
     func didFetchType(pokemons: PokemonFilterListData)
+    func didDeleteFavourite(pokemon: Results)
+    func didIsSaved(saved: Bool)
+    func didDeleteFavouriteWithError(error: Error?)
 }

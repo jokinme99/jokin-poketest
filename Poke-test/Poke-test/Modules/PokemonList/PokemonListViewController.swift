@@ -21,6 +21,7 @@ class PokemonListViewController: UIViewController {//PIN iPhone: 281106
     var nextPokemon: Results?
     var previousPokemon: Results?
     var detailsPresenter: PokemonDetailsPresenter?
+    var favourites: [Favourites] = []
     
     override func viewDidLoad() {
         print(Realm.Configuration.defaultConfiguration.fileURL!)
@@ -62,11 +63,23 @@ extension PokemonListViewController{
         self.searchBar.addDoneButtonOnKeyboard()
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
+        
     }
 }
 
 //MARK: - ViewControllerDelegate methods
 extension PokemonListViewController: PokemonListViewDelegate {
+    //MARK: - Fetch favourites method
+    func updateFavourites(favourites: [Favourites]) {
+        self.favourites = favourites
+    }
+    
+    //MARK: - Add favourite method
+    func addFavourite(pokemon: Results) {
+        presenter?.addFavourite(pokemon: pokemon)
+        self.tableView.reloadData()
+    }
+    
     //MARK: - Updates filters
     func updateFiltersTableView(pokemons: PokemonFilterListData) {
         self.pokemon.removeAll()
@@ -78,7 +91,7 @@ extension PokemonListViewController: PokemonListViewDelegate {
         self.tableView.reloadData()
     }
     //MARK: - Updates tableView after fetching pokemon list
-    func updateTableView(pokemons: PokemonListData) {//Make it work if offline
+    func updateTableView(pokemons: PokemonListData) {
         if filtered.isEmpty && pokemon.isEmpty{
             self.pokemon = Array(pokemons.results)
             self.filtered = self.pokemon
@@ -94,6 +107,7 @@ extension PokemonListViewController: PokemonListViewDelegate {
             self.tableView.reloadData()
         }
     }
+    //MARK: - TableView from cell method
     func updateTableView() {
         self.tableView.reloadData()
     }
@@ -138,7 +152,29 @@ extension PokemonListViewController:UITableViewDelegate, UITableViewDataSource{
         presenter?.openPokemonDetail(pokemon: pokemonSelected!, nextPokemon: nextPokemon!, previousPokemon: previousPokemon!, filtered: filtered)
         
     }
-    
+    func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        presenter?.fetchFavourites()
+        var arrayOfFavouritesNames: [String] = []
+        for favs in favourites{
+            arrayOfFavouritesNames.append(favs.name!)
+        }
+        if arrayOfFavouritesNames.contains(filtered[indexPath.row].name!){
+            return nil
+        }else{
+            return UISwipeActionsConfiguration(actions: [
+                    makeCompleteContextualAction(forRowAt: indexPath)
+                
+                   ])
+        }
+    }
+    private func makeCompleteContextualAction(forRowAt indexPath: IndexPath) -> UIContextualAction {
+        let addAction = UIContextualAction(style: .normal, title: "Add") { (action, swipeButtonView, completion) in
+            self.addFavourite(pokemon: self.filtered[indexPath.row])
+            completion(true)
+        }
+        addAction.backgroundColor = .systemBlue
+        return addAction
+    }
 }
 
 //MARK: - SearchBar Delegate & bookmark buttons methods

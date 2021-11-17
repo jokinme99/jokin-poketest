@@ -73,6 +73,13 @@ extension PokemonFavouritesViewController{
 //MARK: - ViewControllerDelegate methods
 extension PokemonFavouritesViewController: PokemonFavouritesViewDelegate {
     
+    //MARK: - Delete favourites method
+    func deleteFavourite(pokemon: Results) {
+        presenter?.deleteFavourite(pokemon: pokemon)
+        presenter?.fetchFavourites()
+    }
+    
+    
     //MARK: - Updates filters
     func updateFiltersTableView(pokemons: PokemonFilterListData) {
         presenter?.fetchFavourites()
@@ -160,6 +167,11 @@ extension PokemonFavouritesViewController:UITableViewDelegate, UITableViewDataSo
         }
         presenter?.openPokemonDetail(pokemon: pokemonSelected!, nextPokemon: nextPokemon!, previousPokemon: previousPokemon!, filtered: filtered)
         
+    }
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete{
+            deleteFavourite(pokemon: filtered[indexPath.row])
+        }
     }
     
 }

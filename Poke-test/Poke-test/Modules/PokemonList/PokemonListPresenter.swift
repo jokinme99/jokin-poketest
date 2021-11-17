@@ -16,6 +16,12 @@ class PokemonListPresenter : PokemonListPresenterDelegate {
     func fetchPokemonType(type: String) {
         interactor?.fetchPokemonType(type: type)
     }
+    func addFavourite(pokemon: Results) {
+        interactor?.addFavourite(pokemon: pokemon)
+    }
+    func fetchFavourites() {
+        interactor?.fetchFavourites()
+    }
 }
 
 //MARK: - Methods that return the results from the functionality methods
@@ -28,6 +34,19 @@ extension PokemonListPresenter: PokemonListInteractorOutputDelegate {
     }
     func didFetchType(pokemons: PokemonFilterListData) {
         view?.updateFiltersTableView(pokemons: pokemons)
+    }
+    func didAddFavourite(pokemon: Results) {
+        view?.addFavourite(pokemon: pokemon)
+    }
+    func didAddFavouriteWithError(error: Error?) {
+        print(error)
+    }
+    func didIsSaved(saved: Bool) {
+        print(saved)
+    }
+    func didFetchFavourites(favourites: [Favourites]) {
+        view?.updateTableView()
+        view?.updateFavourites(favourites: favourites)
     }
     
 }

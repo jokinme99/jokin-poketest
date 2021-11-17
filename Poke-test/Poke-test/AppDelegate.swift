@@ -39,7 +39,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate, UNUser
         //CALLED ONLY WHEN IN APP-> UIAPPLICATIONSTATE = BACKGROUND
         //IF ANOTHER NOTIFICATION IS CALLED(A NEW ONE) MUST UPDATE BADGE NUMBER
         completionHandler([.sound, .badge, .alert]) //what will show(sound yes or no badge or alert)
-        let a = state
         //When we're in the app state is background
         if state == .active{
             UIApplication.shared.applicationIconBadgeNumber += 1
