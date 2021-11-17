@@ -12,6 +12,8 @@ protocol PokemonListViewDelegate: AnyObject {
     func updateTableView(pokemons: PokemonListData)
     func updateFiltersTableView(pokemons: PokemonFilterListData)
     func updateTableView()
+    func addFavourite(pokemon: Results)
+    func updateFavourites(favourites: [Favourites])
 }
 
 //MARK: - SceneController methods: Connections between .xib
@@ -29,6 +31,8 @@ protocol PokemonListPresenterDelegate: AnyObject {
     func fetchPokemonList()
     func openPokemonDetail(pokemon: Results, nextPokemon: Results, previousPokemon: Results, filtered: [Results])
     func fetchPokemonType(type: String)
+    func addFavourite(pokemon: Results)
+    func fetchFavourites()
 }
 
 //MARK: - InteractorDelegate methods: Methods that do the functionality
@@ -36,6 +40,8 @@ protocol PokemonListInteractorDelegate: AnyObject {
     var presenter: PokemonListInteractorOutputDelegate? {get set}
     func fetchPokemonList()
     func fetchPokemonType(type:String)
+    func addFavourite(pokemon: Results)
+    func fetchFavourites()
 }
 
 //MARK: - InteractorOutPutDelegate methods: Methods that send the data received from the InteractorDelegate methods
@@ -43,5 +49,9 @@ protocol PokemonListInteractorOutputDelegate: AnyObject {
     func didFetchPokemonList(pokemon: PokemonListData)
     func didFailWith(error: Error)
     func didFetchType(pokemons: PokemonFilterListData)
+    func didAddFavourite(pokemon: Results)
+    func didAddFavouriteWithError(error: Error?)
+    func didIsSaved(saved: Bool)
+    func didFetchFavourites(favourites: [Favourites])
 }
 
