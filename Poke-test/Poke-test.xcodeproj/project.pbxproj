@@ -7,7 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		52E96436D3664A73002DBC5D /* Pods_Poke_test.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA37C33EACA622F7C18E2B13 /* Pods_Poke_test.framework */; };
+		74A499A0C7134511CCE567F1 /* Pods_NotificationExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2FF1610285F0C565D3A223D3 /* Pods_NotificationExtension.framework */; };
+		8892A806BC7C02A358C27527 /* Pods_Poke_test.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43F6D372EC6CD810E55195EE /* Pods_Poke_test.framework */; };
 		FD3172D02695CF90006810CA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD3172CF2695CF90006810CA /* AppDelegate.swift */; };
 		FD5676722729471000E29371 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FD5676712729471000E29371 /* GoogleService-Info.plist */; };
 		FD61B42326B4046800EDBF8C /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD61B42226B4046800EDBF8C /* Constants.swift */; };
@@ -20,6 +21,25 @@
 		FD7B9B06273E4B2A006B7610 /* PokemonFavouritesInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD7B9B00273E4B2A006B7610 /* PokemonFavouritesInteractor.swift */; };
 		FD7B9B07273E4B2A006B7610 /* PokemonFavouritesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FD7B9B01273E4B2A006B7610 /* PokemonFavouritesViewController.xib */; };
 		FD7B9B08273E4B2A006B7610 /* PokemonFavouritesWireframe.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD7B9B02273E4B2A006B7610 /* PokemonFavouritesWireframe.swift */; };
+		FD7CC042274505C5006D1CD5 /* BuildFile in Embed Frameworks */ = {isa = PBXBuildFile; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		FD7CC04A27450FFF006D1CD5 /* LoginOrSignUpPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD7CC04427450FFF006D1CD5 /* LoginOrSignUpPresenter.swift */; };
+		FD7CC04B27450FFF006D1CD5 /* LoginOrSignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD7CC04527450FFF006D1CD5 /* LoginOrSignUpViewController.swift */; };
+		FD7CC04C27450FFF006D1CD5 /* LoginOrSignUpProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD7CC04627450FFF006D1CD5 /* LoginOrSignUpProtocols.swift */; };
+		FD7CC04D27450FFF006D1CD5 /* LoginOrSignUpInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD7CC04727450FFF006D1CD5 /* LoginOrSignUpInteractor.swift */; };
+		FD7CC04E27450FFF006D1CD5 /* LoginOrSignUpViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FD7CC04827450FFF006D1CD5 /* LoginOrSignUpViewController.xib */; };
+		FD7CC04F27450FFF006D1CD5 /* LoginOrSignUpWireframe.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD7CC04927450FFF006D1CD5 /* LoginOrSignUpWireframe.swift */; };
+		FD7CC05727451023006D1CD5 /* LoginPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD7CC05127451023006D1CD5 /* LoginPresenter.swift */; };
+		FD7CC05827451023006D1CD5 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD7CC05227451023006D1CD5 /* LoginViewController.swift */; };
+		FD7CC05927451023006D1CD5 /* LoginProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD7CC05327451023006D1CD5 /* LoginProtocols.swift */; };
+		FD7CC05A27451023006D1CD5 /* LoginInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD7CC05427451023006D1CD5 /* LoginInteractor.swift */; };
+		FD7CC05B27451023006D1CD5 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FD7CC05527451023006D1CD5 /* LoginViewController.xib */; };
+		FD7CC05C27451023006D1CD5 /* LoginWireframe.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD7CC05627451023006D1CD5 /* LoginWireframe.swift */; };
+		FD7CC07327452200006D1CD5 /* SignUpPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD7CC06D27452200006D1CD5 /* SignUpPresenter.swift */; };
+		FD7CC07427452200006D1CD5 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD7CC06E27452200006D1CD5 /* SignUpViewController.swift */; };
+		FD7CC07527452200006D1CD5 /* SignUpProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD7CC06F27452200006D1CD5 /* SignUpProtocols.swift */; };
+		FD7CC07627452200006D1CD5 /* SignUpInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD7CC07027452200006D1CD5 /* SignUpInteractor.swift */; };
+		FD7CC07727452200006D1CD5 /* SignUpViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FD7CC07127452200006D1CD5 /* SignUpViewController.xib */; };
+		FD7CC07827452200006D1CD5 /* SignUpWireframe.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD7CC07227452200006D1CD5 /* SignUpWireframe.swift */; };
 		FD7D316E27198B110031AB92 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FD7D316D27198B100031AB92 /* LaunchScreen.storyboard */; };
 		FD806D97273BFC5500331C74 /* MainTabBarPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD806D91273BFC5500331C74 /* MainTabBarPresenter.swift */; };
 		FD806D98273BFC5500331C74 /* MainTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD806D92273BFC5500331C74 /* MainTabBarViewController.swift */; };
@@ -71,12 +91,26 @@
 			name = "Embed App Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		FD7CC043274505C5006D1CD5 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				FD7CC042274505C5006D1CD5 /* BuildFile in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		59AADBB90D195305A7F8BEFE /* Pods-Poke-test.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Poke-test.debug.xcconfig"; path = "Target Support Files/Pods-Poke-test/Pods-Poke-test.debug.xcconfig"; sourceTree = "<group>"; };
-		CCE5A1BEE58EA2B21595147E /* Pods-Poke-test.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Poke-test.release.xcconfig"; path = "Target Support Files/Pods-Poke-test/Pods-Poke-test.release.xcconfig"; sourceTree = "<group>"; };
-		DA37C33EACA622F7C18E2B13 /* Pods_Poke_test.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Poke_test.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		085F63513826F0F8E3F2B945 /* Pods-Poke-test.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Poke-test.debug.xcconfig"; path = "Target Support Files/Pods-Poke-test/Pods-Poke-test.debug.xcconfig"; sourceTree = "<group>"; };
+		2FF1610285F0C565D3A223D3 /* Pods_NotificationExtension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NotificationExtension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		43F6D372EC6CD810E55195EE /* Pods_Poke_test.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Poke_test.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		62E7829E89C8FDE38FCF7DDB /* Pods-NotificationExtension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NotificationExtension.release.xcconfig"; path = "Target Support Files/Pods-NotificationExtension/Pods-NotificationExtension.release.xcconfig"; sourceTree = "<group>"; };
+		EA16FC4DF4FDC81DE34C48F4 /* Pods-NotificationExtension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NotificationExtension.debug.xcconfig"; path = "Target Support Files/Pods-NotificationExtension/Pods-NotificationExtension.debug.xcconfig"; sourceTree = "<group>"; };
+		FB9D5B34F6577493398B32A9 /* Pods-Poke-test.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Poke-test.release.xcconfig"; path = "Target Support Files/Pods-Poke-test/Pods-Poke-test.release.xcconfig"; sourceTree = "<group>"; };
 		FD3172CC2695CF90006810CA /* Poke-test.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Poke-test.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FD3172CF2695CF90006810CA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FD56766F27293B5100E29371 /* NotificationExtensionDebug.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = NotificationExtensionDebug.entitlements; sourceTree = "<group>"; };
@@ -94,6 +128,24 @@
 		FD7B9B00273E4B2A006B7610 /* PokemonFavouritesInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonFavouritesInteractor.swift; sourceTree = "<group>"; };
 		FD7B9B01273E4B2A006B7610 /* PokemonFavouritesViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PokemonFavouritesViewController.xib; sourceTree = "<group>"; };
 		FD7B9B02273E4B2A006B7610 /* PokemonFavouritesWireframe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonFavouritesWireframe.swift; sourceTree = "<group>"; };
+		FD7CC04427450FFF006D1CD5 /* LoginOrSignUpPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginOrSignUpPresenter.swift; sourceTree = "<group>"; };
+		FD7CC04527450FFF006D1CD5 /* LoginOrSignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginOrSignUpViewController.swift; sourceTree = "<group>"; };
+		FD7CC04627450FFF006D1CD5 /* LoginOrSignUpProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginOrSignUpProtocols.swift; sourceTree = "<group>"; };
+		FD7CC04727450FFF006D1CD5 /* LoginOrSignUpInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginOrSignUpInteractor.swift; sourceTree = "<group>"; };
+		FD7CC04827450FFF006D1CD5 /* LoginOrSignUpViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoginOrSignUpViewController.xib; sourceTree = "<group>"; };
+		FD7CC04927450FFF006D1CD5 /* LoginOrSignUpWireframe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginOrSignUpWireframe.swift; sourceTree = "<group>"; };
+		FD7CC05127451023006D1CD5 /* LoginPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginPresenter.swift; sourceTree = "<group>"; };
+		FD7CC05227451023006D1CD5 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		FD7CC05327451023006D1CD5 /* LoginProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginProtocols.swift; sourceTree = "<group>"; };
+		FD7CC05427451023006D1CD5 /* LoginInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginInteractor.swift; sourceTree = "<group>"; };
+		FD7CC05527451023006D1CD5 /* LoginViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
+		FD7CC05627451023006D1CD5 /* LoginWireframe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginWireframe.swift; sourceTree = "<group>"; };
+		FD7CC06D27452200006D1CD5 /* SignUpPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpPresenter.swift; sourceTree = "<group>"; };
+		FD7CC06E27452200006D1CD5 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		FD7CC06F27452200006D1CD5 /* SignUpProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpProtocols.swift; sourceTree = "<group>"; };
+		FD7CC07027452200006D1CD5 /* SignUpInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpInteractor.swift; sourceTree = "<group>"; };
+		FD7CC07127452200006D1CD5 /* SignUpViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SignUpViewController.xib; sourceTree = "<group>"; };
+		FD7CC07227452200006D1CD5 /* SignUpWireframe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpWireframe.swift; sourceTree = "<group>"; };
 		FD7D316D27198B100031AB92 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FD806D91273BFC5500331C74 /* MainTabBarPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarPresenter.swift; sourceTree = "<group>"; };
 		FD806D92273BFC5500331C74 /* MainTabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarViewController.swift; sourceTree = "<group>"; };
@@ -129,7 +181,7 @@
 			files = (
 				FD9B9A8626D627BC000322D3 /* RealmSwift in Frameworks */,
 				FD9B9A8426D627BC000322D3 /* Realm in Frameworks */,
-				52E96436D3664A73002DBC5D /* Pods_Poke_test.framework in Frameworks */,
+				8892A806BC7C02A358C27527 /* Pods_Poke_test.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -137,16 +189,18 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				74A499A0C7134511CCE567F1 /* Pods_NotificationExtension.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		23D5F057476480FAA267E25D /* Frameworks */ = {
+		351E0D57C11208A7FDA3F436 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				DA37C33EACA622F7C18E2B13 /* Pods_Poke_test.framework */,
+				43F6D372EC6CD810E55195EE /* Pods_Poke_test.framework */,
+				2FF1610285F0C565D3A223D3 /* Pods_NotificationExtension.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -154,8 +208,10 @@
 		5EC64DBEAFD90D2980EB309C /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				59AADBB90D195305A7F8BEFE /* Pods-Poke-test.debug.xcconfig */,
-				CCE5A1BEE58EA2B21595147E /* Pods-Poke-test.release.xcconfig */,
+				085F63513826F0F8E3F2B945 /* Pods-Poke-test.debug.xcconfig */,
+				FB9D5B34F6577493398B32A9 /* Pods-Poke-test.release.xcconfig */,
+				EA16FC4DF4FDC81DE34C48F4 /* Pods-NotificationExtension.debug.xcconfig */,
+				62E7829E89C8FDE38FCF7DDB /* Pods-NotificationExtension.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -166,9 +222,9 @@
 				FD86C1512701A33C00DB4B8F /* Assets.xcassets */,
 				FD3172CE2695CF90006810CA /* Poke-test */,
 				FD676B3A27269A7200318834 /* NotificationExtension */,
-				23D5F057476480FAA267E25D /* Frameworks */,
 				5EC64DBEAFD90D2980EB309C /* Pods */,
 				FD3172CD2695CF90006810CA /* Products */,
+				351E0D57C11208A7FDA3F436 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -220,6 +276,67 @@
 			path = PokemonFavourites;
 			sourceTree = "<group>";
 		};
+		FD7CC05027451004006D1CD5 /* LoginOrSignUp */ = {
+			isa = PBXGroup;
+			children = (
+				FD7CC04427450FFF006D1CD5 /* LoginOrSignUpPresenter.swift */,
+				FD7CC04527450FFF006D1CD5 /* LoginOrSignUpViewController.swift */,
+				FD7CC04627450FFF006D1CD5 /* LoginOrSignUpProtocols.swift */,
+				FD7CC04727450FFF006D1CD5 /* LoginOrSignUpInteractor.swift */,
+				FD7CC04827450FFF006D1CD5 /* LoginOrSignUpViewController.xib */,
+				FD7CC04927450FFF006D1CD5 /* LoginOrSignUpWireframe.swift */,
+			);
+			path = LoginOrSignUp;
+			sourceTree = "<group>";
+		};
+		FD7CC05D27451027006D1CD5 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				FD7CC05127451023006D1CD5 /* LoginPresenter.swift */,
+				FD7CC05227451023006D1CD5 /* LoginViewController.swift */,
+				FD7CC05327451023006D1CD5 /* LoginProtocols.swift */,
+				FD7CC05427451023006D1CD5 /* LoginInteractor.swift */,
+				FD7CC05527451023006D1CD5 /* LoginViewController.xib */,
+				FD7CC05627451023006D1CD5 /* LoginWireframe.swift */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		FD7CC06B27451984006D1CD5 /* Menu */ = {
+			isa = PBXGroup;
+			children = (
+				FD806D9D273BFC6700331C74 /* MainTabBar */,
+				FDA34F0326E8A2BD00AE2143 /* PokemonList */,
+				FD7B9B09273E4B34006B7610 /* PokemonFavourites */,
+				FD7FD3582716F275008E0448 /* Pokemon Cell */,
+				FDA34F0126E8955B00AE2143 /* PokemonDetails */,
+			);
+			path = Menu;
+			sourceTree = "<group>";
+		};
+		FD7CC06C274519D8006D1CD5 /* Start */ = {
+			isa = PBXGroup;
+			children = (
+				FD7CC05027451004006D1CD5 /* LoginOrSignUp */,
+				FD7CC05D27451027006D1CD5 /* Login */,
+				FD7CC07A2745220F006D1CD5 /* SignUp */,
+			);
+			path = Start;
+			sourceTree = "<group>";
+		};
+		FD7CC07A2745220F006D1CD5 /* SignUp */ = {
+			isa = PBXGroup;
+			children = (
+				FD7CC06D27452200006D1CD5 /* SignUpPresenter.swift */,
+				FD7CC06E27452200006D1CD5 /* SignUpViewController.swift */,
+				FD7CC06F27452200006D1CD5 /* SignUpProtocols.swift */,
+				FD7CC07027452200006D1CD5 /* SignUpInteractor.swift */,
+				FD7CC07127452200006D1CD5 /* SignUpViewController.xib */,
+				FD7CC07227452200006D1CD5 /* SignUpWireframe.swift */,
+			);
+			path = SignUp;
+			sourceTree = "<group>";
+		};
 		FD7FD3582716F275008E0448 /* Pokemon Cell */ = {
 			isa = PBXGroup;
 			children = (
@@ -232,11 +349,8 @@
 		FD806D90273BFC3100331C74 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
-				FD7FD3582716F275008E0448 /* Pokemon Cell */,
-				FDA34F0326E8A2BD00AE2143 /* PokemonList */,
-				FDA34F0126E8955B00AE2143 /* PokemonDetails */,
-				FD806D9D273BFC6700331C74 /* MainTabBar */,
-				FD7B9B09273E4B34006B7610 /* PokemonFavourites */,
+				FD7CC06B27451984006D1CD5 /* Menu */,
+				FD7CC06C274519D8006D1CD5 /* Start */,
 			);
 			path = Modules;
 			sourceTree = "<group>";
@@ -306,12 +420,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = FD3172E02695CF91006810CA /* Build configuration list for PBXNativeTarget "Poke-test" */;
 			buildPhases = (
-				01731E13A2891A82F5FF5091 /* [CP] Check Pods Manifest.lock */,
+				C764B513FACC8F3819644917 /* [CP] Check Pods Manifest.lock */,
 				FD3172C82695CF90006810CA /* Sources */,
 				FD3172C92695CF90006810CA /* Frameworks */,
 				FD3172CA2695CF90006810CA /* Resources */,
-				4147056D35AD7DD0195E0610 /* [CP] Embed Pods Frameworks */,
 				FD676B4127269A7200318834 /* Embed App Extensions */,
+				B3A0225CF01F3E0A78A6D01E /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -331,9 +445,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = FD676B4427269A7200318834 /* Build configuration list for PBXNativeTarget "NotificationExtension" */;
 			buildPhases = (
+				5CB211BE1C07B72618A3EEAD /* [CP] Check Pods Manifest.lock */,
 				FD676B3527269A7200318834 /* Sources */,
 				FD676B3627269A7200318834 /* Frameworks */,
 				FD676B3727269A7200318834 /* Resources */,
+				FD7CC043274505C5006D1CD5 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -371,7 +487,7 @@
 			);
 			mainGroup = FD3172C32695CF90006810CA;
 			packageReferences = (
-				FD9B9A8226D627BC000322D3 /* XCRemoteSwiftPackageReference "realm-cocoa" */,
+				FD9B9A8226D627BC000322D3 /* XCRemoteSwiftPackageReference "realm-cocoa.git" */,
 			);
 			productRefGroup = FD3172CD2695CF90006810CA /* Products */;
 			projectDirPath = "";
@@ -388,14 +504,17 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FD7CC05B27451023006D1CD5 /* LoginViewController.xib in Resources */,
 				FDA34EFF26E8954D00AE2143 /* PokemonDetailsViewController.xib in Resources */,
 				FD86C1522701A33C00DB4B8F /* Assets.xcassets in Resources */,
 				FDF25E8526B17600002474BB /* PokemonCell.xib in Resources */,
 				FD7D316E27198B110031AB92 /* LaunchScreen.storyboard in Resources */,
+				FD7CC07727452200006D1CD5 /* SignUpViewController.xib in Resources */,
 				FD7B9B07273E4B2A006B7610 /* PokemonFavouritesViewController.xib in Resources */,
 				FDA34EF226E8952900AE2143 /* PokemonListViewController.xib in Resources */,
 				FD5676722729471000E29371 /* GoogleService-Info.plist in Resources */,
 				FD806D9B273BFC5500331C74 /* MainTabBarViewController.xib in Resources */,
+				FD7CC04E27450FFF006D1CD5 /* LoginOrSignUpViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -409,7 +528,46 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		01731E13A2891A82F5FF5091 /* [CP] Check Pods Manifest.lock */ = {
+		5CB211BE1C07B72618A3EEAD /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-NotificationExtension-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B3A0225CF01F3E0A78A6D01E /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Poke-test/Pods-Poke-test-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Poke-test/Pods-Poke-test-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Poke-test/Pods-Poke-test-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C764B513FACC8F3819644917 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -431,23 +589,6 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		4147056D35AD7DD0195E0610 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Poke-test/Pods-Poke-test-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Poke-test/Pods-Poke-test-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Poke-test/Pods-Poke-test-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -456,23 +597,34 @@
 			buildActionMask = 2147483647;
 			files = (
 				FD7B9B04273E4B2A006B7610 /* PokemonFavouritesViewController.swift in Sources */,
+				FD7CC05927451023006D1CD5 /* LoginProtocols.swift in Sources */,
 				FD85C3AC2696EB1E00EAF99F /* DataManager.swift in Sources */,
+				FD7CC04D27450FFF006D1CD5 /* LoginOrSignUpInteractor.swift in Sources */,
 				FDA34EFB26E8954D00AE2143 /* PokemonDetailsPresenter.swift in Sources */,
 				FDA34EEE26E8952900AE2143 /* PokemonListPresenter.swift in Sources */,
+				FD7CC07827452200006D1CD5 /* SignUpWireframe.swift in Sources */,
+				FD7CC07327452200006D1CD5 /* SignUpPresenter.swift in Sources */,
 				FDA34EF026E8952900AE2143 /* PokemonListProtocols.swift in Sources */,
 				FDA34EF126E8952900AE2143 /* PokemonListInteractor.swift in Sources */,
+				FD7CC05A27451023006D1CD5 /* LoginInteractor.swift in Sources */,
 				FDA34EFC26E8954D00AE2143 /* PokemonDetailsViewController.swift in Sources */,
 				FD6B780F27392C2E0055A0AE /* Reachability.swift in Sources */,
+				FD7CC04F27450FFF006D1CD5 /* LoginOrSignUpWireframe.swift in Sources */,
 				FD7B9B05273E4B2A006B7610 /* PokemonFavouritesProtocols.swift in Sources */,
 				FD3172D02695CF90006810CA /* AppDelegate.swift in Sources */,
 				FD7B9B03273E4B2A006B7610 /* PokemonFavouritesPresenter.swift in Sources */,
 				FD806D9A273BFC5500331C74 /* MainTabBarInteractor.swift in Sources */,
 				FD806D9C273BFC5500331C74 /* MainTabBarWireframe.swift in Sources */,
+				FD7CC05727451023006D1CD5 /* LoginPresenter.swift in Sources */,
 				FD88DF3F26DE076E0094858B /* DDBBManager.swift in Sources */,
 				FDA34F0026E8954D00AE2143 /* PokemonDetailsWireframe.swift in Sources */,
 				FD806D99273BFC5500331C74 /* MainTabBarProtocols.swift in Sources */,
 				FD85C3A82696EAFC00EAF99F /* Data.swift in Sources */,
 				FD806D98273BFC5500331C74 /* MainTabBarViewController.swift in Sources */,
+				FD7CC07427452200006D1CD5 /* SignUpViewController.swift in Sources */,
+				FD7CC05C27451023006D1CD5 /* LoginWireframe.swift in Sources */,
+				FD7CC04C27450FFF006D1CD5 /* LoginOrSignUpProtocols.swift in Sources */,
+				FD7CC07527452200006D1CD5 /* SignUpProtocols.swift in Sources */,
 				FDF25E8426B17600002474BB /* PokemonCell.swift in Sources */,
 				FDA34EFD26E8954D00AE2143 /* PokemonDetailsProtocols.swift in Sources */,
 				FD61B42326B4046800EDBF8C /* Constants.swift in Sources */,
@@ -481,7 +633,11 @@
 				FDA34EEF26E8952900AE2143 /* PokemonListViewController.swift in Sources */,
 				FDA34EFE26E8954D00AE2143 /* PokemonDetailsInteractor.swift in Sources */,
 				FD806D97273BFC5500331C74 /* MainTabBarPresenter.swift in Sources */,
+				FD7CC05827451023006D1CD5 /* LoginViewController.swift in Sources */,
 				FD7B9B08273E4B2A006B7610 /* PokemonFavouritesWireframe.swift in Sources */,
+				FD7CC07627452200006D1CD5 /* SignUpInteractor.swift in Sources */,
+				FD7CC04B27450FFF006D1CD5 /* LoginOrSignUpViewController.swift in Sources */,
+				FD7CC04A27450FFF006D1CD5 /* LoginOrSignUpPresenter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -625,20 +781,17 @@
 		};
 		FD3172E12695CF91006810CA /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 59AADBB90D195305A7F8BEFE /* Pods-Poke-test.debug.xcconfig */;
+			baseConfigurationReference = 085F63513826F0F8E3F2B945 /* Pods-Poke-test.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "Poke-test/Poke-test.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = WV4ELQGDQE;
 				INFOPLIST_FILE = "Poke-test/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited)";
 				MARKETING_VERSION = 1.1.8;
+				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.baturamobile.jokin-poketest";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "Poke Test Jokin - Debug";
@@ -649,20 +802,17 @@
 		};
 		FD3172E22695CF91006810CA /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = CCE5A1BEE58EA2B21595147E /* Pods-Poke-test.release.xcconfig */;
+			baseConfigurationReference = FB9D5B34F6577493398B32A9 /* Pods-Poke-test.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "Poke-test/Poke-test.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = WV4ELQGDQE;
 				INFOPLIST_FILE = "Poke-test/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited)";
 				MARKETING_VERSION = 1.1.8;
+				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.baturamobile.jokin-poketest";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "Poke Test Jokin - Release";
@@ -673,7 +823,7 @@
 		};
 		FD676B4227269A7200318834 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 59AADBB90D195305A7F8BEFE /* Pods-Poke-test.debug.xcconfig */;
+			baseConfigurationReference = EA16FC4DF4FDC81DE34C48F4 /* Pods-NotificationExtension.debug.xcconfig */;
 			buildSettings = {
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
 				CODE_SIGN_ENTITLEMENTS = NotificationExtension/NotificationExtensionDebug.entitlements;
@@ -686,12 +836,9 @@
 				INFOPLIST_KEY_CFBundleDisplayName = NotificationExtension;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@executable_path/../../Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited)";
 				MARKETING_VERSION = 1.1.8;
+				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.baturamobile.jokin-poketest.NotificationExtension";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "Jokin Poketest NotificationExtension-Debug";
@@ -704,7 +851,7 @@
 		};
 		FD676B4327269A7200318834 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = CCE5A1BEE58EA2B21595147E /* Pods-Poke-test.release.xcconfig */;
+			baseConfigurationReference = 62E7829E89C8FDE38FCF7DDB /* Pods-NotificationExtension.release.xcconfig */;
 			buildSettings = {
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
 				CODE_SIGN_ENTITLEMENTS = NotificationExtension/NotificationExtension.entitlements;
@@ -717,12 +864,9 @@
 				INFOPLIST_KEY_CFBundleDisplayName = NotificationExtension;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@executable_path/../../Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited)";
 				MARKETING_VERSION = 1.1.8;
+				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.baturamobile.jokin-poketest.NotificationExtension";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "Jokin Poketest NotificationExtension-Release";
@@ -766,7 +910,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		FD9B9A8226D627BC000322D3 /* XCRemoteSwiftPackageReference "realm-cocoa" */ = {
+		FD9B9A8226D627BC000322D3 /* XCRemoteSwiftPackageReference "realm-cocoa.git" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/realm/realm-cocoa.git";
 			requirement = {
@@ -779,12 +923,12 @@
 /* Begin XCSwiftPackageProductDependency section */
 		FD9B9A8326D627BC000322D3 /* Realm */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = FD9B9A8226D627BC000322D3 /* XCRemoteSwiftPackageReference "realm-cocoa" */;
+			package = FD9B9A8226D627BC000322D3 /* XCRemoteSwiftPackageReference "realm-cocoa.git" */;
 			productName = Realm;
 		};
 		FD9B9A8526D627BC000322D3 /* RealmSwift */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = FD9B9A8226D627BC000322D3 /* XCRemoteSwiftPackageReference "realm-cocoa" */;
+			package = FD9B9A8226D627BC000322D3 /* XCRemoteSwiftPackageReference "realm-cocoa.git" */;
 			productName = RealmSwift;
 		};
 /* End XCSwiftPackageProductDependency section */

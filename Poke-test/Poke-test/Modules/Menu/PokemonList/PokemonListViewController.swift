@@ -159,6 +159,9 @@ extension PokemonListViewController:UITableViewDelegate, UITableViewDataSource{
             arrayOfFavouritesNames.append(favs.name!)
         }
         if arrayOfFavouritesNames.contains(filtered[indexPath.row].name!){
+            let alert = UIAlertController(title: "Pokemon already added to favourites", message: nil, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
             return nil
         }else{
             return UISwipeActionsConfiguration(actions: [
