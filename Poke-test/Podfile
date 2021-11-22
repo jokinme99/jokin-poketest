@@ -22,6 +22,9 @@ target 'Poke-test' do
   pod 'Alamofire'
   pod 'AlamofireImage'
   pod 'Firebase/Core'
+  pod 'Firebase/Database'
+  pod 'Firebase/Auth'
+  pod 'ValidationComponents'
   firebase_messaging
   google_utilites
   # pod 'IQKeyboardManagerSwift'

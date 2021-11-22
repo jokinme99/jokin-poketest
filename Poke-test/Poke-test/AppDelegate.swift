@@ -85,7 +85,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate, UNUser
     func setWindow(){
         let frame = UIScreen.main.bounds
         self.window = UIWindow(frame: frame)
-        let mainViewController = MainTabBarWireframe.createMainTabBarModule()//Take to loginOrSignUpWindow
+        let mainViewController = LoginOrSignUpWireframe.createLoginOrSignUpModule()
         let navController = UINavigationController(rootViewController: mainViewController)
         self.window?.rootViewController = navController
         self.window?.makeKeyAndVisible()

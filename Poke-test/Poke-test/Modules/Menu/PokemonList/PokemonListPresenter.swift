@@ -39,6 +39,7 @@ extension PokemonListPresenter: PokemonListInteractorOutputDelegate {
         view?.addFavourite(pokemon: pokemon)
     }
     func didAddFavouriteWithError(error: Error?) {
+        guard let error = error else {return}
         print(error)
     }
     func didIsSaved(saved: Bool) {

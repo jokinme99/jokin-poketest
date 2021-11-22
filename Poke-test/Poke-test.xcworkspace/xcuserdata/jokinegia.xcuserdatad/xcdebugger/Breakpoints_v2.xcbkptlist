@@ -327,48 +327,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "6F7B3AD0-7F2A-43E1-AFF8-D73EE8BF5A38"
+            uuid = "473CED2A-D448-43F3-A35F-4FE79E3CC765"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Poke-test/Modules/Menu/MainTabBar/MainTabBarViewController.swift"
+            filePath = "Poke-test/Modules/Start/Login/LoginWireframe.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "42"
-            endingLineNumber = "42"
-            landmarkName = "viewDidLoad()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "20AC2E56-B5AE-4467-BCBA-085D9F6D888C"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Poke-test/Modules/Start/LoginOrSignUp/LoginOrSignUpWireframe.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "40"
-            endingLineNumber = "40"
-            landmarkName = "openPokemonListWindow()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "AAFA6DA2-BC81-461B-BF45-BDB6604655A9"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Poke-test/Modules/Start/LoginOrSignUp/LoginOrSignUpWireframe.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "42"
-            endingLineNumber = "42"
-            landmarkName = "openPokemonListWindow()"
+            startingLineNumber = "34"
+            endingLineNumber = "34"
+            landmarkName = "openMainTabBar()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

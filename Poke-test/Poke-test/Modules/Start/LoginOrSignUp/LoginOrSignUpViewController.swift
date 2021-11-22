@@ -21,7 +21,6 @@ class LoginOrSignUpViewController: UIViewController {
         super.viewDidLoad()
         toLoginMenuButton.setTitle("Login", for: .normal)
         toSignUpMenuButton.setTitle("Sign Up", for: .normal)
-        navigationItem.title = "Welcome"
         toLoginMenuView.layer.cornerRadius = 10
         toSignUpMenuView.layer.cornerRadius = 10
     }

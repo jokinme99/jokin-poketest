@@ -42,6 +42,7 @@ extension PokemonFavouritesPresenter: PokemonFavouritesInteractorOutputDelegate 
         view?.deleteFavourite(pokemon: pokemon)
     }
     func didDeleteFavouriteWithError(error: Error?) {
+        guard let error = error else {return}
         print(error)
     }
     func didIsSaved(saved: Bool) {

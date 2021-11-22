@@ -40,12 +40,14 @@ extension PokemonDetailsPresenter: PokemonDetailsInteractorOutputDelegate {
         view?.addFavourite(pokemon: pokemon)
     }
     func didAddFavouriteWithError(error: Error?) {
+        guard let error = error else {return}
         print(error)
     }
     func didDeleteFavourite(pokemon: Results) {
         view?.deleteFavourite(pokemon: pokemon)
     }
     func didDeleteFavouriteWithError(error: Error?) {
+        guard let error = error else {return}
         print(error)
     }
     func didIsSaved(saved: Bool) {

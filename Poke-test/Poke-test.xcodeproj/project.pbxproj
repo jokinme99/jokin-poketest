@@ -10,18 +10,18 @@
 		74A499A0C7134511CCE567F1 /* Pods_NotificationExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2FF1610285F0C565D3A223D3 /* Pods_NotificationExtension.framework */; };
 		8892A806BC7C02A358C27527 /* Pods_Poke_test.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43F6D372EC6CD810E55195EE /* Pods_Poke_test.framework */; };
 		FD3172D02695CF90006810CA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD3172CF2695CF90006810CA /* AppDelegate.swift */; };
-		FD5676722729471000E29371 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FD5676712729471000E29371 /* GoogleService-Info.plist */; };
 		FD61B42326B4046800EDBF8C /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD61B42226B4046800EDBF8C /* Constants.swift */; };
 		FD676B3C27269A7200318834 /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD676B3B27269A7200318834 /* NotificationService.swift */; };
 		FD676B4027269A7200318834 /* NotificationExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = FD676B3927269A7200318834 /* NotificationExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		FD6B780F27392C2E0055A0AE /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD6B780E27392C2E0055A0AE /* Reachability.swift */; };
+		FD7A6003274BB4A00073C2EC /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FD7A6002274BB49F0073C2EC /* GoogleService-Info.plist */; };
 		FD7B9B03273E4B2A006B7610 /* PokemonFavouritesPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD7B9AFD273E4B2A006B7610 /* PokemonFavouritesPresenter.swift */; };
 		FD7B9B04273E4B2A006B7610 /* PokemonFavouritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD7B9AFE273E4B2A006B7610 /* PokemonFavouritesViewController.swift */; };
 		FD7B9B05273E4B2A006B7610 /* PokemonFavouritesProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD7B9AFF273E4B2A006B7610 /* PokemonFavouritesProtocols.swift */; };
 		FD7B9B06273E4B2A006B7610 /* PokemonFavouritesInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD7B9B00273E4B2A006B7610 /* PokemonFavouritesInteractor.swift */; };
 		FD7B9B07273E4B2A006B7610 /* PokemonFavouritesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FD7B9B01273E4B2A006B7610 /* PokemonFavouritesViewController.xib */; };
 		FD7B9B08273E4B2A006B7610 /* PokemonFavouritesWireframe.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD7B9B02273E4B2A006B7610 /* PokemonFavouritesWireframe.swift */; };
-		FD7CC042274505C5006D1CD5 /* BuildFile in Embed Frameworks */ = {isa = PBXBuildFile; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		FD7CC042274505C5006D1CD5 /* (null) in Embed Frameworks */ = {isa = PBXBuildFile; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		FD7CC04A27450FFF006D1CD5 /* LoginOrSignUpPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD7CC04427450FFF006D1CD5 /* LoginOrSignUpPresenter.swift */; };
 		FD7CC04B27450FFF006D1CD5 /* LoginOrSignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD7CC04527450FFF006D1CD5 /* LoginOrSignUpViewController.swift */; };
 		FD7CC04C27450FFF006D1CD5 /* LoginOrSignUpProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD7CC04627450FFF006D1CD5 /* LoginOrSignUpProtocols.swift */; };
@@ -97,7 +97,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				FD7CC042274505C5006D1CD5 /* BuildFile in Embed Frameworks */,
+				FD7CC042274505C5006D1CD5 /* (null) in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -115,13 +115,13 @@
 		FD3172CF2695CF90006810CA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FD56766F27293B5100E29371 /* NotificationExtensionDebug.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = NotificationExtensionDebug.entitlements; sourceTree = "<group>"; };
 		FD56767027293B5700E29371 /* NotificationExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = NotificationExtension.entitlements; sourceTree = "<group>"; };
-		FD5676712729471000E29371 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		FD61B42226B4046800EDBF8C /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		FD64D039271D53E200473D88 /* Poke-test.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Poke-test.entitlements"; sourceTree = "<group>"; };
 		FD676B3927269A7200318834 /* NotificationExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = NotificationExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		FD676B3B27269A7200318834 /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
 		FD676B3D27269A7200318834 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FD6B780E27392C2E0055A0AE /* Reachability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
+		FD7A6002274BB49F0073C2EC /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		FD7B9AFD273E4B2A006B7610 /* PokemonFavouritesPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonFavouritesPresenter.swift; sourceTree = "<group>"; };
 		FD7B9AFE273E4B2A006B7610 /* PokemonFavouritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonFavouritesViewController.swift; sourceTree = "<group>"; };
 		FD7B9AFF273E4B2A006B7610 /* PokemonFavouritesProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonFavouritesProtocols.swift; sourceTree = "<group>"; };
@@ -240,9 +240,9 @@
 		FD3172CE2695CF90006810CA /* Poke-test */ = {
 			isa = PBXGroup;
 			children = (
+				FD7A6002274BB49F0073C2EC /* GoogleService-Info.plist */,
 				FD64D039271D53E200473D88 /* Poke-test.entitlements */,
 				FD3172CF2695CF90006810CA /* AppDelegate.swift */,
-				FD5676712729471000E29371 /* GoogleService-Info.plist */,
 				FDA34F0226E8957400AE2143 /* Managers */,
 				FDA34F0426E8A2DF00AE2143 /* Models */,
 				FD806D90273BFC3100331C74 /* Modules */,
@@ -487,7 +487,7 @@
 			);
 			mainGroup = FD3172C32695CF90006810CA;
 			packageReferences = (
-				FD9B9A8226D627BC000322D3 /* XCRemoteSwiftPackageReference "realm-cocoa.git" */,
+				FD9B9A8226D627BC000322D3 /* XCRemoteSwiftPackageReference "realm-cocoa" */,
 			);
 			productRefGroup = FD3172CD2695CF90006810CA /* Products */;
 			projectDirPath = "";
@@ -512,7 +512,7 @@
 				FD7CC07727452200006D1CD5 /* SignUpViewController.xib in Resources */,
 				FD7B9B07273E4B2A006B7610 /* PokemonFavouritesViewController.xib in Resources */,
 				FDA34EF226E8952900AE2143 /* PokemonListViewController.xib in Resources */,
-				FD5676722729471000E29371 /* GoogleService-Info.plist in Resources */,
+				FD7A6003274BB4A00073C2EC /* GoogleService-Info.plist in Resources */,
 				FD806D9B273BFC5500331C74 /* MainTabBarViewController.xib in Resources */,
 				FD7CC04E27450FFF006D1CD5 /* LoginOrSignUpViewController.xib in Resources */,
 			);
@@ -910,7 +910,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		FD9B9A8226D627BC000322D3 /* XCRemoteSwiftPackageReference "realm-cocoa.git" */ = {
+		FD9B9A8226D627BC000322D3 /* XCRemoteSwiftPackageReference "realm-cocoa" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/realm/realm-cocoa.git";
 			requirement = {
@@ -923,12 +923,12 @@
 /* Begin XCSwiftPackageProductDependency section */
 		FD9B9A8326D627BC000322D3 /* Realm */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = FD9B9A8226D627BC000322D3 /* XCRemoteSwiftPackageReference "realm-cocoa.git" */;
+			package = FD9B9A8226D627BC000322D3 /* XCRemoteSwiftPackageReference "realm-cocoa" */;
 			productName = Realm;
 		};
 		FD9B9A8526D627BC000322D3 /* RealmSwift */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = FD9B9A8226D627BC000322D3 /* XCRemoteSwiftPackageReference "realm-cocoa.git" */;
+			package = FD9B9A8226D627BC000322D3 /* XCRemoteSwiftPackageReference "realm-cocoa" */;
 			productName = RealmSwift;
 		};
 /* End XCSwiftPackageProductDependency section */

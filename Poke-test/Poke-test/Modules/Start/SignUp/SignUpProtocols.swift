@@ -13,12 +13,14 @@ protocol SignUpViewDelegate: AnyObject {
 
 protocol SignUpWireframeDelegate: AnyObject {
     static func createSignUpModule() -> UIViewController
+    func openMainTabBar()
 }
 
 protocol SignUpPresenterDelegate: AnyObject {
     var view: SignUpViewDelegate? {get set}
     var interactor: SignUpInteractorDelegate? {get set}
     var wireframe: SignUpWireframeDelegate? {get set}
+    func openMainTabBar()
 }
 
 protocol SignUpInteractorDelegate: AnyObject {

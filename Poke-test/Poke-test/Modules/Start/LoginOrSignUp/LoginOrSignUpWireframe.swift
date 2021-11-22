@@ -26,21 +26,21 @@ class LoginOrSignUpWireframe : LoginOrSignUpWireframeDelegate {
 
         return view
     }
-    func openLoginWindow() {
+
+    func openLoginWindow() {//FIX (With present)
         let loginModule = LoginWireframe.createLoginModule()
-        viewController?.present(loginModule, animated: true, completion: nil)
+//        viewController?.show(loginModule, sender: nil)
+        viewController?.show(loginModule, sender: viewController)
     }
     
-    func openSignUpWindow() {
+    func openSignUpWindow() {//ALSO FIX IT (Testing with .show())
         let signUpModule = SignUpWireframe.createSignUpModule()
-        viewController?.present(signUpModule, animated: true, completion: nil)
+        viewController?.show(signUpModule, sender: viewController)
+        //viewController?.present(signUpModule, animated: true, completion: nil)
     }
     func openPokemonListWindow() {
-        let listModule = PokemonListWireframe.createPokemonListModule()
-        let a = viewController?.nibName
-        viewController?.navigationController?.storyboard?.instantiateViewController(withIdentifier: listModule.nibName!)
-        //viewController.active
-        //viewController?.navigationController?.pushViewController(listModule, animated: true)
+        let listModule = MainTabBarWireframe.createMainTabBarModule()
+        viewController?.navigationController?.setViewControllers([listModule], animated: true)
     }
     
 }

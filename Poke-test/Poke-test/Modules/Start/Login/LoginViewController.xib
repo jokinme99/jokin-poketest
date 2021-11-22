@@ -4,6 +4,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -29,7 +30,7 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="0DD-LF-w5C" userLabel="Background Image View">
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="launchScreenImage" translatesAutoresizingMaskIntoConstraints="NO" id="0DD-LF-w5C" userLabel="Background Image View">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                     <constraints>
                         <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="320" id="8Bd-6k-yRm"/>
@@ -39,7 +40,7 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="na6-IU-BUW" userLabel="Title View">
                     <rect key="frame" x="16" y="20" width="288" height="54"/>
                     <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Login" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wb8-e5-wrW" userLabel="Title Label">
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sign Up" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wb8-e5-wrW" userLabel="Title Label">
                             <rect key="frame" x="0.0" y="0.0" width="288" height="54"/>
                             <constraints>
                                 <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="288" id="VXo-Ld-qaJ"/>
@@ -83,7 +84,7 @@
                             <textInputTraits key="textInputTraits"/>
                         </textField>
                     </subviews>
-                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <color key="backgroundColor" name="grayColor"/>
                     <constraints>
                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="58" id="3YB-nL-fAs"/>
                         <constraint firstItem="MIT-5d-eVq" firstAttribute="leading" secondItem="Wdd-nb-1be" secondAttribute="leading" constant="8" id="67X-Am-57B"/>
@@ -99,7 +100,7 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="V5c-56-X1N" userLabel="Password View">
                     <rect key="frame" x="16" y="301" width="288" height="62"/>
                     <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Password: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9dt-KE-wq1" userLabel="Password Label">
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Password:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9dt-KE-wq1" userLabel="Password Label">
                             <rect key="frame" x="8" y="12" width="88" height="38"/>
                             <constraints>
                                 <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="38" id="dhf-xC-Q3k"/>
@@ -116,10 +117,10 @@
                                 <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="176" id="jFD-kw-teR"/>
                             </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                            <textInputTraits key="textInputTraits"/>
+                            <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                         </textField>
                     </subviews>
-                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <color key="backgroundColor" name="grayColor"/>
                     <constraints>
                         <constraint firstItem="9dt-KE-wq1" firstAttribute="leading" secondItem="V5c-56-X1N" secondAttribute="leading" constant="8" id="4g0-CP-FNr"/>
                         <constraint firstAttribute="bottom" secondItem="QJI-An-V1r" secondAttribute="bottom" constant="12" id="6zy-HT-Y5r"/>
@@ -133,25 +134,29 @@
                     </constraints>
                 </view>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eHU-ly-SB1" userLabel="Enter Button">
-                    <rect key="frame" x="90" y="420" width="140" height="31"/>
+                    <rect key="frame" x="16" y="411" width="288" height="40"/>
+                    <color key="backgroundColor" name="grayColor"/>
                     <constraints>
-                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="140" id="uIQ-SB-2P7"/>
-                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="31" id="x76-WP-Tfa"/>
+                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="40" id="F6Z-F7-FNY"/>
+                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="288" id="aFj-CW-VRK"/>
                     </constraints>
                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                     <state key="normal" title="Enter"/>
+                    <connections>
+                        <action selector="pressedEnterButton:" destination="-1" eventType="touchUpInside" id="iUH-ba-esX"/>
+                    </connections>
                 </button>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="eHU-ly-SB1" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="90" id="2As-GP-cq5"/>
+                <constraint firstItem="eHU-ly-SB1" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="2As-GP-cq5"/>
                 <constraint firstItem="0DD-LF-w5C" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="4oG-jj-2Fc"/>
                 <constraint firstItem="V5c-56-X1N" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" constant="-16" id="6im-tk-WzM"/>
                 <constraint firstItem="na6-IU-BUW" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="GsD-Pc-zYc"/>
-                <constraint firstItem="eHU-ly-SB1" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" constant="-90" id="Ha3-rD-hUn"/>
+                <constraint firstItem="eHU-ly-SB1" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" constant="-16" id="Ha3-rD-hUn"/>
                 <constraint firstItem="eHU-ly-SB1" firstAttribute="bottom" secondItem="fnl-2z-Ty3" secondAttribute="bottom" constant="-29" id="PmQ-PR-IIX"/>
-                <constraint firstItem="eHU-ly-SB1" firstAttribute="top" secondItem="V5c-56-X1N" secondAttribute="bottom" constant="57" id="Pyf-1u-0Jb"/>
+                <constraint firstItem="eHU-ly-SB1" firstAttribute="top" relation="greaterThanOrEqual" secondItem="V5c-56-X1N" secondAttribute="bottom" constant="39" id="Pyf-1u-0Jb"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="na6-IU-BUW" secondAttribute="trailing" constant="16" id="RuY-Gy-mEi"/>
                 <constraint firstItem="na6-IU-BUW" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="20" id="XY1-H5-Ugy"/>
                 <constraint firstItem="V5c-56-X1N" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="dRh-MG-bZg"/>
@@ -167,6 +172,10 @@
         </view>
     </objects>
     <resources>
+        <image name="launchScreenImage" width="384" height="384"/>
+        <namedColor name="grayColor">
+            <color red="0.84500002861022949" green="0.89800000190734863" blue="0.91900002956390381" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

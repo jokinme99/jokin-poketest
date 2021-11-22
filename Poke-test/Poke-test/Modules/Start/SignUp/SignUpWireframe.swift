@@ -27,4 +27,10 @@ class SignUpWireframe : SignUpWireframeDelegate {
 
         return view
     }
+    func openMainTabBar() {
+        //viewController?.dismiss(animated: true, completion: nil) TO WORK WITH VIEWCONTROLLER.PRESENT()
+        //viewController?.navigationController?.popViewController(animated: true)
+        let listModule = MainTabBarWireframe.createMainTabBarModule()
+        viewController?.navigationController?.setViewControllers([listModule], animated: true)
+    }
 }

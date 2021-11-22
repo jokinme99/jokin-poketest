@@ -9,6 +9,9 @@ class SignUpPresenter : SignUpPresenterDelegate {
     var view: SignUpViewDelegate?
     var interactor: SignUpInteractorDelegate?
     var wireframe: SignUpWireframeDelegate?
+    func openMainTabBar(){
+        wireframe?.openMainTabBar()
+    }
 }
 
 extension SignUpPresenter: SignUpInteractorOutputDelegate {

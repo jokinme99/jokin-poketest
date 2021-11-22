@@ -27,9 +27,13 @@ class LoginWireframe : LoginWireframeDelegate {
 
         return view
     }
-    func openMainTabBar() {
-        let mainTabModule = MainTabBarWireframe.createMainTabBarModule()
-        //viewController?.navigationController.
-        //Take to MAIN with no back buttons
+    func openMainTabBar() {//FIX!
+        //viewController?.dismiss(animated: true, completion: nil) TO WORK WITH VIEWCONTROLLER.PRESENT()
+        //viewController?.navigationController?.popViewController(animated: true)
+        let listModule = MainTabBarWireframe.createMainTabBarModule()
+        viewController?.navigationController?.setViewControllers([listModule], animated: true)
+        viewController?.dismiss(animated: true, completion: nil)
+        listModule.navigationController?.popViewController(animated: true)
+        
     }
 }
