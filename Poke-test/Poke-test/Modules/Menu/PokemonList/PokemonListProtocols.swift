@@ -12,7 +12,7 @@ protocol PokemonListViewDelegate: AnyObject {
     func updateTableView(pokemons: PokemonListData)
     func updateFiltersTableView(pokemons: PokemonFilterListData)
     func updateTableView()
-    func addFavourite(pokemon: Results)
+//    func addFavourite(pokemon: Results)
     func updateFavourites(favourites: [Favourites])
 }
 
@@ -49,7 +49,7 @@ protocol PokemonListInteractorOutputDelegate: AnyObject {
     func didFetchPokemonList(pokemon: PokemonListData)
     func didFailWith(error: Error)
     func didFetchType(pokemons: PokemonFilterListData)
-    func didAddFavourite(pokemon: Results)
+//    func didAddFavourite(pokemon: Results)//No es necesario porque en la ventana no se va a hacer ningún cambio
     func didAddFavouriteWithError(error: Error?)
     func didIsSaved(saved: Bool)
     func didFetchFavourites(favourites: [Favourites])

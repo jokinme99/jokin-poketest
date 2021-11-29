@@ -31,4 +31,18 @@ class PokemonFavouritesWireframe : PokemonFavouritesWireframeDelegate {
         let detailModule = PokemonDetailsWireframe.createPokemonDetailsModule(pokemon: pokemon, nextPokemon: nextPokemon, previousPokemon: previousPokemon, filtered: filtered)
         viewController?.navigationController?.pushViewController(detailModule, animated: true)
     }
+    func openLoginSignUpWindow(){
+        let loginSignUpModule = LoginOrSignUpWireframe.createLoginOrSignUpModule()
+        let navigation = UINavigationController(rootViewController: loginSignUpModule)
+        let window = (UIApplication.shared.delegate as? AppDelegate)?.window
+        window?.rootViewController = navigation
+        window?.makeKeyAndVisible()
+    }
+    func openPokemonListWindow(){
+        let mainTabBarModule = MainTabBarWireframe.createMainTabBarModule()
+        let navigation = UINavigationController(rootViewController: mainTabBarModule)
+        let window = (UIApplication.shared.delegate as? AppDelegate)?.window
+        window?.rootViewController = navigation
+        window?.makeKeyAndVisible()
+    }
 }

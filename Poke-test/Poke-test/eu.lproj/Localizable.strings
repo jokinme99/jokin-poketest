@@ -1,0 +1,37 @@
+/* 
+  Localizable.strings
+  Poke-test
+
+  Created by Jokin Egia on 24/11/21.
+  
+*/
+
+"email_and_password_empty_error"="Email eta pasahitz bat sartu mesedez.";
+"email_empty_error"="Email bat sartu mesedez.";
+"password_empty_error"="Pasahitza sartu mesedez.";
+"invalid_email_error"="Sartutako emaila es da baliozkoa.";
+"already_in_use_email_error"="Email hau saioa daegoeneko hastuta dago.";
+"user_not_found_error"="Sartutako emaila ez da existitzen.";
+"wrong_password_error"="Sartutako emaila ez da zuzena.";
+"weak_password_error"="Sartutako pasahitza ahula da. Gutxienez 6 karakter izan behar ditu.";
+"all"="GUZTIAK";
+"normal"="normala";
+"fighting"="borroka";
+"flying"="hegan";
+"poison"="pozoia";
+"ground"="lurra";
+"rock"="harria";
+"bug"="zomorro";
+"ghost"="mamua";
+"steel"="altzairua";
+"fire"="sua";
+"water"="ura";
+"grass"="belarra";
+"electric"="elektrizitatea";
+"psychic"="psikikoa";
+"ice"="izotza";
+"dragon"="dragoia";
+"dark"="maltzurra";//txarto
+"fairy"="maitagarria";
+"unknown"="ezezaguna";
+"shadow"="itzala";

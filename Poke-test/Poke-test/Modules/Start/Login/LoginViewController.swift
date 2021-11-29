@@ -9,7 +9,6 @@ import UIKit
 import Firebase
 import FirebaseDatabase
 import FirebaseAuth
-import ValidationComponents
 class LoginViewController: UIViewController {
 
     @IBOutlet weak var backgroundImageView: UIImageView!
@@ -24,11 +23,11 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var enterButton: UIButton!
     
     var presenter: LoginPresenterDelegate?
-
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do view setup here.
-        enterButton.addTarget(self, action: #selector(pressedEnterButton), for: .touchUpInside)
         userView.layer.cornerRadius = 10
         passwordView.layer.cornerRadius = 10
         enterButton.layer.cornerRadius = 10
@@ -36,49 +35,36 @@ class LoginViewController: UIViewController {
 }
 
 extension LoginViewController: LoginViewDelegate {
-
-    @objc func pressedEnterButton(){//WORKS!
+    @IBAction func pressedEnterButton(_ sender: Any) {//WORKS!
         guard let email = userTextField.text, let password = passwordTextField.text else{return}
-        let ref = Database.database().reference().root
-        let isEmailValid = EmailValidationPredicate().evaluate(with: "\(email)")
-        if (password.isEmpty || password == "") && (email.isEmpty || email == ""){
-            createAlert(title: "Email and password error!", message: "Email and password don't have any value.")
+        if (password.isEmpty) && (email.isEmpty){
+            createAlert(title: "Email and password error!", message: NSLocalizedString("email_and_password_empty_error", comment: ""))
         }else if email.isEmpty || email == ""{
-            createAlert(title: "Email error!", message: "Enter an email please.")
-        }else if password.isEmpty || password == "" {
-            createAlert(title: "Password error!", message: "Enter a password please.")
-        }else if password.count < 6 && isEmailValid == true{
-            createAlert(title: "Password error!", message: "The password must have at least 6 characters.")
-        }else if isEmailValid == false && password.count >= 6{
-            createAlert(title: "Email error!", message: "Introduced email's format is not valid.")
-        }else if password.count <= 6 && EmailValidationPredicate().evaluate(with: "\(email)") == false{
-            createAlert(title: "Email and password error!", message: "Neither the introduced email's format is not valid, nor the password is at least 6 characters long.")
+            createAlert(title: "Email error!", message: NSLocalizedString("email_empty_error", comment: ""))
+        }else if password.isEmpty {
+            createAlert(title: "Password error!", message: NSLocalizedString("password_empty_error", comment: ""))
         }else{
-            ref.child("users").observe(.value, with: { snapshot in
-                ref.child("users").removeAllObservers()
-                let savedEmails = snapshot.value as! [String: Any]
-                for selectedEmail in savedEmails{
-                    if selectedEmail.value as! String != email{
-                        self.createAlert(title: "Email error!", message: "This email does not exist.")
-                    }else{
-                        //check if password correct user of DB
-                        //email = user.email
-                        if password != "the one the user has"{
-                            //wrong password
-                        }else{
-                            Auth.auth().signIn(withEmail: email, password: password) { (user, error) in
-                                if let error = error{
-                                    print(error.localizedDescription)
-                                }else {//When user does not exist say it
-                                    self.presenter?.openMainTabBar()
-                                }
-                            }
-                        }
+            Auth.auth().signIn(withEmail: email, password: password) { (user, error) in
+                if let error = error {//Mal contra , UserNotFound, InvalidEmail
+                    let parsedError = error as NSError
+                    switch parsedError.code {
+                    case FirebaseErrors.errorCodeInvalidEmail:
+                        self.createAlert(title: "Email error!", message: NSLocalizedString("invalid_email_error", comment: ""))
+                    case FirebaseErrors.errorEmailAlreadyInUse:
+                        self.createAlert(title: "Email error!", message: NSLocalizedString("already_in_use_email_error", comment: ""))
+                    case FirebaseErrors.errorCodeUserNotFound:
+                        self.createAlert(title: "Email error!", message: NSLocalizedString("user_not_found_error", comment: ""))
+                    case FirebaseErrors.errorCodeWrongPassword:
+                        self.createAlert(title: "Password error!", message: NSLocalizedString("wrong_password_error", comment: ""))
+                    default:
+                        print("default error in login")
                     }
+                    //Compare codes if same error(localizated)
+                }else {
+                    self.presenter?.openMainTabBar()
                 }
-            })
+            }
         }
-      
         
     }
     func createAlert(title: String, message: String){

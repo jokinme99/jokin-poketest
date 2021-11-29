@@ -2,6 +2,10 @@
 import UIKit
 import NotificationCenter
 import RealmSwift
+import Firebase
+import FirebaseAuth
+import FirebaseDatabase
+
 
 class PokemonListViewController: UIViewController {//PIN iPhone: 281106
     
@@ -22,6 +26,7 @@ class PokemonListViewController: UIViewController {//PIN iPhone: 281106
     var previousPokemon: Results?
     var detailsPresenter: PokemonDetailsPresenter?
     var favourites: [Favourites] = []
+    let user = Auth.auth().currentUser
     
     override func viewDidLoad() {
         print(Realm.Configuration.defaultConfiguration.fileURL!)
@@ -33,6 +38,7 @@ class PokemonListViewController: UIViewController {//PIN iPhone: 281106
         loadSearchBar()
         tableView.rowHeight = 50.0
     }
+    
     override func viewWillAppear(_ animated: Bool) {
         for filter in filtered {
             if filter.isInvalidated{
@@ -75,10 +81,11 @@ extension PokemonListViewController: PokemonListViewDelegate {
     }
     
     //MARK: - Add favourite method
-    func addFavourite(pokemon: Results) {
-        presenter?.addFavourite(pokemon: pokemon)
-        self.tableView.reloadData()
-    }
+//    func addFavourite(pokemon: Results) {//Metodo para pintar
+//        //presenter?.addFavourite(pokemon: pokemon)
+//        presenter?.fetchFavourites()
+//        self.tableView.reloadData()
+//    }
     
     //MARK: - Updates filters
     func updateFiltersTableView(pokemons: PokemonFilterListData) {
@@ -152,31 +159,32 @@ extension PokemonListViewController:UITableViewDelegate, UITableViewDataSource{
         presenter?.openPokemonDetail(pokemon: pokemonSelected!, nextPokemon: nextPokemon!, previousPokemon: previousPokemon!, filtered: filtered)
         
     }
-    func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        presenter?.fetchFavourites()
-        var arrayOfFavouritesNames: [String] = []
-        for favs in favourites{
-            arrayOfFavouritesNames.append(favs.name!)
-        }
-        if arrayOfFavouritesNames.contains(filtered[indexPath.row].name!){
-            let alert = UIAlertController(title: "Pokemon already added to favourites", message: nil, preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-            self.present(alert, animated: true, completion: nil)
-            return nil
+    func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? { //Only working with not logged
+        if user != nil{
+            presenter?.fetchFavourites()
+            var arrayOfFavouritesNames: [String] = []
+            for favs in favourites{
+                arrayOfFavouritesNames.append(favs.name!)
+            }
+            if arrayOfFavouritesNames.contains(filtered[indexPath.row].name!){
+                let alert = UIAlertController(title: "Pokemon already added to favourites", message: nil, preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                self.present(alert, animated: true, completion: nil)
+                return nil
+            }else{
+                let action = UIContextualAction(style: .destructive, title: nil) { action, view, completion in
+                    self.presenter?.addFavourite(pokemon: self.filtered[indexPath.row])
+                    completion(true)//Si se hace breakpoint funciona
+                    }
+                action.backgroundColor = .blue
+                action.title = "Add"
+                return UISwipeActionsConfiguration(actions: [action])
+            }
         }else{
-            return UISwipeActionsConfiguration(actions: [
-                    makeCompleteContextualAction(forRowAt: indexPath)
-                
-                   ])
+            return nil
         }
-    }
-    private func makeCompleteContextualAction(forRowAt indexPath: IndexPath) -> UIContextualAction {
-        let addAction = UIContextualAction(style: .normal, title: "Add") { (action, swipeButtonView, completion) in
-            self.addFavourite(pokemon: self.filtered[indexPath.row])
-            completion(true)
-        }
-        addAction.backgroundColor = .systemBlue
-        return addAction
+       
+    
     }
 }
 

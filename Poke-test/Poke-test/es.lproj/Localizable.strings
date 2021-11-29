@@ -1,0 +1,37 @@
+/* 
+  Localizable.strings
+  Poke-test
+
+  Created by Jokin Egia on 24/11/21.
+  
+*/
+
+"email_and_password_empty_error"="Introduce una dirección de correo y una contraseña por favor.";
+"email_empty_error"="Introduce una dirección de correo por favor.";
+"password_empty_error"="Introduce una contraseña por favor.";
+"invalid_email_error"="Introduce una dirección de correo válida.";
+"already_in_use_email_error"="La dirección de correo introducida ya ha iniciado sesión en este dispositivo";
+"user_not_found_error"="La dirección de correo introducida no existe.";
+"wrong_password_error"="La contraseña introducida no es correcta.";
+"weak_password_error"="La contraseña introducida es muy débil. Tiene que tener al menos 6 caracteres.";
+"all"="TODOS";
+"normal"="normal";
+"fighting"="lucha";
+"flying"="vuelo";
+"poison"="venenoso";
+"ground"="tierra";
+"rock"="roca";
+"bug"="bicho";
+"ghost"="fantasma";
+"steel"="acero";
+"fire"="fuego";
+"water"="agua";
+"grass"="hierba";
+"electric"="electrico";
+"psychic"="psiquico";
+"ice"="hielo";
+"dragon"="dragon";
+"dark"="siniestro";
+"fairy"="hada";
+"unknown"="desconocido";
+"shadow"="sombra";

@@ -2,6 +2,9 @@
 import UIKit
 import AlamofireImage
 import RealmSwift
+import Firebase
+import FirebaseDatabase
+import FirebaseAuth
 
 //COMMENTARY(BLOCK) : CMD + MAYUS + '
 class PokemonDetailsViewController: UIViewController {
@@ -43,15 +46,16 @@ class PokemonDetailsViewController: UIViewController {
     var cell: PokemonListCellDelegate?
     var filtered: [Results] = []
     var row : Int?
+    let user = Auth.auth().currentUser
+    var arrayOfNames: [String] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         //print(Realm.Configuration.defaultConfiguration.fileURL!)
-        loadSelectedPokemon()
         presenter?.fetchFavourites()
+        loadSelectedPokemon()
         loadMethods()
         row = (filtered.firstIndex(of: selectedPokemon!))
-        
     }
 }
 
@@ -64,16 +68,25 @@ extension PokemonDetailsViewController{
             return
         }
     }
+    func isFavourite(){
+        for fav in favouritesList{
+            arrayOfNames.append(fav.name!)
+        }
+        guard let name = selectedPokemon?.name else{return}
+        if arrayOfNames.contains(name){
+          favouritesButton.setTitle("Delete from favourites", for: .normal)
+          favouritesImage.image = UIImage(named: "emptyStar")
+          favouriteConfirmationImage.isHidden = false
+
+        }else{
+            favouritesButton.setTitle("Add to favourites", for: .normal)
+            favouritesImage.image = UIImage(named: "fullStar")
+            favouriteConfirmationImage.isHidden = true
+            
+        }
+    }
     func loadMethods(){
         self.loadButtonsStyle()
-        self.presenter?.fetchFavourites()
-        self.favouriteConfirmationImage.isHidden = true
-        for favourite in favouritesList {
-            if favourite.name == selectedPokemon?.name{
-                self.favouriteConfirmationImage.isHidden = false
-                break
-            }
-        }
         self.favouritesButton.addTarget(self, action: #selector(pressed), for: .touchUpInside)
         self.previewButton.addTarget(self, action: #selector(previousPokemonButtonAction), for: .touchUpInside)
         self.nextButton.addTarget(self, action: #selector(nextPokemonButtonAction), for: .touchUpInside)
@@ -99,11 +112,13 @@ extension PokemonDetailsViewController: PokemonDetailsViewDelegate {
     
     //MARK: - Sets the add/delete label wether it's a favourite or not
     func addFavourite(pokemon: Results) {
-        presenter?.addFavourite(pokemon: pokemon)
         favouritesButton.setTitle("Delete from favourites", for: .normal)
         favouritesImage.image = UIImage(named: "emptyStar")
         favouriteConfirmationImage.isHidden = false
     }
+    //FIX DELETE NOT CHANGING
+    //LANGUAGE CHANGES
+    //IF NO INTERNET WHAT HAPPENS WHEN TRYING TO ADDFAVS
     func deleteFavourite(pokemon: Results) {
         let filt = filtered.map{$0.name}
         let fav = favouritesList.map{$0.name}
@@ -111,7 +126,6 @@ extension PokemonDetailsViewController: PokemonDetailsViewDelegate {
             favouritesButton.setTitle("Add to favourites", for: .normal)
             favouritesImage.image = UIImage(named: "fullStar")
             favouriteConfirmationImage.isHidden = true
-            presenter?.deleteFavourite(pokemon: pokemon)
             let index = filtered.firstIndex(of: pokemon)
             filtered.remove(at: index!)
             presenter?.fetchFavourites()
@@ -119,14 +133,11 @@ extension PokemonDetailsViewController: PokemonDetailsViewDelegate {
                 self.previewButton.isHidden = true
                 self.nextButton.isHidden = true
             }
-            
         }else{
-            presenter?.deleteFavourite(pokemon: pokemon)
             favouritesButton.setTitle("Add to favourites", for: .normal)
             favouritesImage.image = UIImage(named: "fullStar")
             favouriteConfirmationImage.isHidden = true
             presenter?.fetchFavourites()
-            
             
         }
         
@@ -140,25 +151,11 @@ extension PokemonDetailsViewController: PokemonDetailsViewDelegate {
     //MARK: - Gets the favourite list after the fetching
     func updateDetailsViewFavourites(favourites: [Favourites]) {
         self.favouritesList = favourites
-        
+        isFavourite()
     }
     
     //MARK: - Updates view after fetching the details of the selected pokemon
     func updateDetailsView(pokemon: PokemonData) {
-        favouriteConfirmationImage.isHidden = true
-        presenter?.fetchFavourites()
-        for favouritesFiltered in favouritesList{
-            if favouritesFiltered.name == pokemon.name{
-                favouritesButton.setTitle("Delete from favourites", for: .normal)
-                favouritesImage.image = UIImage(named: "emptyStar")
-                favouriteConfirmationImage.isHidden = false
-                break
-            }else{
-                favouritesButton.setTitle("Add to favourites", for: .normal)
-                favouritesImage.image = UIImage(named: "fullStar")
-                favouriteConfirmationImage.isHidden = true
-            }
-        }
         paintWindow(pokemon)
     }
     func paintWindow(_ pokemon: PokemonData){//Fix image and filters (offline)
@@ -197,9 +194,9 @@ extension PokemonDetailsViewController: PokemonDetailsViewDelegate {
 extension PokemonDetailsViewController{
     @objc func pressed(_ sender: UIButton!) {
         if favouritesButton.titleLabel?.text == "Add to favourites"{
-            addFavourite(pokemon: selectedPokemon!)
+            presenter?.addFavourite(pokemon: selectedPokemon!)
         } else if favouritesButton.titleLabel?.text == "Delete from favourites"{
-            deleteFavourite(pokemon: selectedPokemon!)
+            presenter?.deleteFavourite(pokemon: selectedPokemon!)
         }
     }
     @objc func nextPokemonButtonAction(_ sender: UIButton!){
@@ -368,6 +365,7 @@ extension PokemonDetailsViewController{
         case TypeName.water:
             setPokemonBackgroundColor(104, 144, 240, label)
             setPokemonTextColor(.white, label)
+            favouriteConfirmationImage.image = UIImage(named: "fullStar")
         case TypeName.grass:
             setPokemonBackgroundColor(120, 200, 80, label)
             setPokemonTextColor(.white, label)

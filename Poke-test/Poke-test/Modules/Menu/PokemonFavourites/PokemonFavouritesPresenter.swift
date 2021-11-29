@@ -25,6 +25,12 @@ class PokemonFavouritesPresenter : PokemonFavouritesPresenterDelegate {
     func deleteFavourite(pokemon: Results) {
         interactor?.deleteFavourite(pokemon: pokemon)
     }
+    func openLoginSignUpWindow(){
+        wireframe?.openLoginSignUpWindow()
+    }
+    func openPokemonListWindow(){
+        wireframe?.openPokemonListWindow()
+    }
 }
 
 extension PokemonFavouritesPresenter: PokemonFavouritesInteractorOutputDelegate {

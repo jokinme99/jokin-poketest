@@ -9,6 +9,9 @@ class MainTabBarPresenter : MainTabBarPresenterDelegate {
     var view: MainTabBarViewDelegate?
     var interactor: MainTabBarInteractorDelegate?
     var wireframe: MainTabBarWireframeDelegate?
+    func openLoginSignUpWindow() {
+        wireframe?.openLoginSignUpWindow()
+    }
 }
 
 extension MainTabBarPresenter: MainTabBarInteractorOutputDelegate {

@@ -3,6 +3,7 @@ import UIKit
 import Firebase
 import FirebaseMessaging
 import UserNotifications
+import FirebaseAuth
 //import IQKeyboardManagerSwift
 
 @main
@@ -85,10 +86,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate, UNUser
     func setWindow(){
         let frame = UIScreen.main.bounds
         self.window = UIWindow(frame: frame)
-        let mainViewController = LoginOrSignUpWireframe.createLoginOrSignUpModule()
-        let navController = UINavigationController(rootViewController: mainViewController)
-        self.window?.rootViewController = navController
-        self.window?.makeKeyAndVisible()
+        if Auth.auth().currentUser != nil {
+            let maintabController = MainTabBarWireframe.createMainTabBarModule()
+            let navController = UINavigationController(rootViewController: maintabController)
+            self.window?.rootViewController = navController
+            self.window?.makeKeyAndVisible()
+        } else {
+            let mainViewController = LoginOrSignUpWireframe.createLoginOrSignUpModule()
+            let navController = UINavigationController(rootViewController: mainViewController)
+            self.window?.rootViewController = navController
+            self.window?.makeKeyAndVisible()
+        }
     }
     
     

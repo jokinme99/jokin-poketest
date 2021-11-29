@@ -1,0 +1,37 @@
+/* 
+  Localizable.strings
+  Poke-test
+
+  Created by Jokin Egia on 24/11/21.
+  
+*/
+
+"email_and_password_empty_error"="Insert an email and password please.";
+"email_empty_error"="Insert an email please.";
+"password_empty_error"="Insert a password please.";
+"invalid_email_error"="Insert a valid email please.";
+"already_in_use_email_error"="Inserted email is already in use.";
+"user_not_found_error"="Inserted email does not exist.";
+"wrong_password_error"="Inserted password is wrong.";
+"weak_password_error"="Inserted password is too weak. It must have at least 6 characters.";
+"all"="ALL";
+"normal"="normal";
+"fighting"="fighting";
+"flying"="flying";
+"poison"="poison";
+"ground"="ground";
+"rock"="rock";
+"bug"="bug";
+"ghost"="ghost";
+"steel"="steel";
+"fire"="fire";
+"water"="water";
+"grass"="grass";
+"electric"="electric";
+"psychic"="psychic";
+"ice"="ice";
+"dragon"="dragon";
+"dark"="dark";
+"fairy"="fairy";
+"unknown"="unknown";
+"shadow"="shadow";

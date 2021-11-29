@@ -2,6 +2,9 @@
 import UIKit
 import NotificationCenter
 import RealmSwift
+import Firebase
+import FirebaseAuth
+import FirebaseDatabase
 
 class PokemonFavouritesViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
@@ -23,6 +26,7 @@ class PokemonFavouritesViewController: UIViewController {
     var pokemonDataList: [PokemonData] = []
     var dictionaryIdResults: [Results:Int]?
     var dictionary: [PokemonDictionary] = []
+    let user = Auth.auth().currentUser
     
     override func viewDidLoad() {
         //print(Realm.Configuration.defaultConfiguration.fileURL!)
@@ -34,6 +38,7 @@ class PokemonFavouritesViewController: UIViewController {
         loadSearchBar()
         tableView.rowHeight = 80.0
         pokemonDataList = DDBBManager.shared.get(PokemonData.self)
+        
         
     }
     override func viewWillAppear(_ animated: Bool) {
@@ -75,7 +80,6 @@ extension PokemonFavouritesViewController: PokemonFavouritesViewDelegate {
     
     //MARK: - Delete favourites method
     func deleteFavourite(pokemon: Results) {
-        presenter?.deleteFavourite(pokemon: pokemon)
         presenter?.fetchFavourites()
     }
     
@@ -101,26 +105,46 @@ extension PokemonFavouritesViewController: PokemonFavouritesViewDelegate {
     
     //MARK: - Updates the favourite list after the fetching
     func updateFavouritesFetchInCell(favourites: [Favourites]) {//Make it work if offline
-        if filtered.isEmpty && pokemon.isEmpty{
-            for favourite in favourites {
-                self.pokemon.append(Results(name: favourite.name ?? "default"))
+        if user != nil{
+            if favourites.isEmpty{
+                let alert = UIAlertController(title: "Favourites", message: "You haven't added any favourites yet. Would you like to see all the available Pokemon, in order to add any of them?", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "Sure!", style: .default, handler: {(action) in
+                    self.presenter?.openPokemonListWindow()
+                }))
+                alert.addAction(UIAlertAction(title: "Maybe later", style: .destructive, handler: nil))
+                self.present(alert, animated: true, completion: nil)
             }
-            self.filtered = self.pokemon
-            self.savefilteredOrder = self.pokemon
-            sortFilteredOrdered()
-            self.tableView.reloadData()
+            if filtered.isEmpty && pokemon.isEmpty{
+                for favourite in favourites {
+                    self.pokemon.append(Results(name: favourite.name ?? "default"))
+                }
+                self.filtered = self.pokemon
+                self.savefilteredOrder = self.pokemon
+                sortFilteredOrdered()
+                self.tableView.reloadData()
+            }else{
+                pokemon.removeAll()
+                filtered.removeAll()
+                savefilteredOrder.removeAll()
+                for favourite in favourites {
+                    self.pokemon.append(Results(name: favourite.name ?? "default"))
+                }
+                self.filtered = self.pokemon
+                self.savefilteredOrder = self.pokemon
+                sortFilteredOrdered()
+                self.tableView.reloadData()
+            }
         }else{
-            pokemon.removeAll()
-            filtered.removeAll()
-            savefilteredOrder.removeAll()
-            for favourite in favourites {
-                self.pokemon.append(Results(name: favourite.name ?? "default"))
-            }
-            self.filtered = self.pokemon
-            self.savefilteredOrder = self.pokemon
-            sortFilteredOrdered()
-            self.tableView.reloadData()
+            //not logged
+            let alert = UIAlertController(title: "Favourites", message: "You will not be able to add any pokemons to favourites until you login or sign up. Would you like to login or sign up?", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Sure!", style: .default, handler: {(action) in
+                self.presenter?.openLoginSignUpWindow()
+            }))
+            alert.addAction(UIAlertAction(title: "Maybe later", style: .destructive, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+            
         }
+        
     }
     
     //MARK: - Updates tableView after adding/deleting favourites
@@ -170,7 +194,7 @@ extension PokemonFavouritesViewController:UITableViewDelegate, UITableViewDataSo
     }
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete{
-            deleteFavourite(pokemon: filtered[indexPath.row])
+            self.presenter?.deleteFavourite(pokemon: filtered[indexPath.row])
         }
     }
     

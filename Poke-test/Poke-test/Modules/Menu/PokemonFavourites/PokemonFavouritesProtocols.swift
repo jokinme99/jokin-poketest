@@ -19,6 +19,8 @@ protocol PokemonFavouritesViewDelegate: AnyObject {
 protocol PokemonFavouritesWireframeDelegate: AnyObject {
     static func createPokemonFavouritesModule() -> UIViewController
     func openPokemonDetailsWindow(pokemon: Results, nextPokemon: Results, previousPokemon: Results, filtered: [Results])
+    func openLoginSignUpWindow()
+    func openPokemonListWindow()
 }
 
 protocol PokemonFavouritesPresenterDelegate: AnyObject {
@@ -28,6 +30,8 @@ protocol PokemonFavouritesPresenterDelegate: AnyObject {
     var wireframe: PokemonFavouritesWireframeDelegate? {get set}
     func fetchFavourites()
     func openPokemonDetail(pokemon: Results, nextPokemon: Results, previousPokemon: Results, filtered: [Results])
+    func openLoginSignUpWindow()
+    func openPokemonListWindow()
     func fetchPokemonType(type: String)
     func deleteFavourite(pokemon: Results)
 }
@@ -36,7 +40,6 @@ protocol PokemonFavouritesInteractorDelegate: AnyObject {
     var presenter: PokemonFavouritesInteractorOutputDelegate? {get set}
     func fetchFavouritePokemons()
     func fetchPokemonType(type:String)
-    
     func deleteFavourite(pokemon: Results)
 }
 

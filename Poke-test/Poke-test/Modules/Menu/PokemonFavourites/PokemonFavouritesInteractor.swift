@@ -4,13 +4,36 @@
 //
 //  Created by Jokin Egia on 12/11/21.
 //
+import Firebase
+import FirebaseAuth
+import FirebaseDatabase
 
 class PokemonFavouritesInteractor : PokemonFavouritesInteractorDelegate {
     var presenter: PokemonFavouritesInteractorOutputDelegate?
     var dataBaseDelegate: DDBBManagerDelegate?
+    let ref = Database.database().reference()
+    let user = Auth.auth().currentUser
     func fetchFavouritePokemons() {
-        let favourites = DDBBManager.shared.get(Favourites.self)
-        self.presenter?.didFetchFavourites(favourites: favourites)
+        if user != nil{
+            guard let user = user else{return}
+            self.ref.child("users").child(user.uid).child("Favourites").observe(.value, with: {snapshot in
+                self.ref.child("users").child(user.uid).child("Favourites").removeAllObservers()
+                if snapshot.exists(){//is not empty
+                    let favouritesList = snapshot.value as![String:Any]
+                    var favourites: [Favourites] = []
+                    for fav in favouritesList{
+                        favourites.append(Favourites(name: fav.key))
+                    }
+                    self.presenter?.didFetchFavourites(favourites: favourites)
+                }else{
+                    let favourites: [Favourites] = []
+                    self.presenter?.didFetchFavourites(favourites: favourites)
+                }
+            })
+        }else{
+            let favourites: [Favourites] = []
+            self.presenter?.didFetchFavourites(favourites: favourites)
+        }
     }
     
     func fetchPokemonType(type: String) {
@@ -33,24 +56,15 @@ class PokemonFavouritesInteractor : PokemonFavouritesInteractorDelegate {
         }
     }
     func deleteFavourite(pokemon: Results) {
-        let fav = Favourites(name: pokemon.name!)
-        let isSaved = isSavedFavourite(fav)
-        if isSaved.isSaved{
-            if let saved = isSaved.saved{
-                DDBBManager.shared.delete(saved){ (error) in
-                    self.presenter?.didDeleteFavouriteWithError(error: error)
-                }
-            }
+        if user != nil{
+            guard let user = user else {return}
+            guard let name = pokemon.name else{return}
+            self.ref.child("users").child(user.uid).child("Favourites").child(name).removeValue()
+            self.presenter?.didDeleteFavourite(pokemon: pokemon)
+        }else{
+            let favourites: [Favourites] = []
+            self.presenter?.didFetchFavourites(favourites: favourites)
         }
-    }
-    func isSaved(favourite: Favourites){
-        let saved = isSavedFavourite(favourite)
-        presenter?.didIsSaved(saved: saved.isSaved)
-    }
-    private func isSavedFavourite(_ favourite: Favourites)-> (isSaved: Bool, saved: Favourites?){
-        let filter = "name == '\(favourite.name!)'"
-        let saved = DDBBManager.shared.get(Favourites.self, filter: filter)
-        return (saved.count > 0, saved.first)
     }
     
 }

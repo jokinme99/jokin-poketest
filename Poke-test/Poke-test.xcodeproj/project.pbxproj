@@ -15,6 +15,7 @@
 		FD676B4027269A7200318834 /* NotificationExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = FD676B3927269A7200318834 /* NotificationExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		FD6B780F27392C2E0055A0AE /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD6B780E27392C2E0055A0AE /* Reachability.swift */; };
 		FD7A6003274BB4A00073C2EC /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FD7A6002274BB49F0073C2EC /* GoogleService-Info.plist */; };
+		FD7B1C68274E46C3004DBB0B /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = FD7B1C64274E46C3004DBB0B /* Localizable.strings */; };
 		FD7B9B03273E4B2A006B7610 /* PokemonFavouritesPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD7B9AFD273E4B2A006B7610 /* PokemonFavouritesPresenter.swift */; };
 		FD7B9B04273E4B2A006B7610 /* PokemonFavouritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD7B9AFE273E4B2A006B7610 /* PokemonFavouritesViewController.swift */; };
 		FD7B9B05273E4B2A006B7610 /* PokemonFavouritesProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD7B9AFF273E4B2A006B7610 /* PokemonFavouritesProtocols.swift */; };
@@ -122,6 +123,9 @@
 		FD676B3D27269A7200318834 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FD6B780E27392C2E0055A0AE /* Reachability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		FD7A6002274BB49F0073C2EC /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		FD7B1C66274E46C3004DBB0B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		FD7B1C67274E46C3004DBB0B /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
+		FD7B1C69274E6639004DBB0B /* eu */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = eu; path = eu.lproj/Localizable.strings; sourceTree = "<group>"; };
 		FD7B9AFD273E4B2A006B7610 /* PokemonFavouritesPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonFavouritesPresenter.swift; sourceTree = "<group>"; };
 		FD7B9AFE273E4B2A006B7610 /* PokemonFavouritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonFavouritesViewController.swift; sourceTree = "<group>"; };
 		FD7B9AFF273E4B2A006B7610 /* PokemonFavouritesProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonFavouritesProtocols.swift; sourceTree = "<group>"; };
@@ -247,6 +251,7 @@
 				FDA34F0426E8A2DF00AE2143 /* Models */,
 				FD806D90273BFC3100331C74 /* Modules */,
 				FDF25E8126B1724F002474BB /* Info.plist */,
+				FD7B1C64274E46C3004DBB0B /* Localizable.strings */,
 				FD7D316D27198B100031AB92 /* LaunchScreen.storyboard */,
 			);
 			path = "Poke-test";
@@ -483,7 +488,9 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				es,
 				Base,
+				eu,
 			);
 			mainGroup = FD3172C32695CF90006810CA;
 			packageReferences = (
@@ -505,6 +512,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FD7CC05B27451023006D1CD5 /* LoginViewController.xib in Resources */,
+				FD7B1C68274E46C3004DBB0B /* Localizable.strings in Resources */,
 				FDA34EFF26E8954D00AE2143 /* PokemonDetailsViewController.xib in Resources */,
 				FD86C1522701A33C00DB4B8F /* Assets.xcassets in Resources */,
 				FDF25E8526B17600002474BB /* PokemonCell.xib in Resources */,
@@ -658,6 +666,19 @@
 			targetProxy = FD676B3E27269A7200318834 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		FD7B1C64274E46C3004DBB0B /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				FD7B1C66274E46C3004DBB0B /* en */,
+				FD7B1C67274E46C3004DBB0B /* es */,
+				FD7B1C69274E6639004DBB0B /* eu */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		FD3172DE2695CF91006810CA /* Debug */ = {

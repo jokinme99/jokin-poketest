@@ -27,13 +27,11 @@ class LoginWireframe : LoginWireframeDelegate {
 
         return view
     }
-    func openMainTabBar() {//FIX!
-        //viewController?.dismiss(animated: true, completion: nil) TO WORK WITH VIEWCONTROLLER.PRESENT()
-        //viewController?.navigationController?.popViewController(animated: true)
+    func openMainTabBar() {
         let listModule = MainTabBarWireframe.createMainTabBarModule()
-        viewController?.navigationController?.setViewControllers([listModule], animated: true)
-        viewController?.dismiss(animated: true, completion: nil)
-        listModule.navigationController?.popViewController(animated: true)
-        
+        let navigation = UINavigationController(rootViewController: listModule)
+        let window = (UIApplication.shared.delegate as? AppDelegate)?.window
+        window?.rootViewController = navigation
+        window?.makeKeyAndVisible()
     }
 }

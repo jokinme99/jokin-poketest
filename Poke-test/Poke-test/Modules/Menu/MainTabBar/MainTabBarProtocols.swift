@@ -13,12 +13,14 @@ protocol MainTabBarViewDelegate: AnyObject {
 
 protocol MainTabBarWireframeDelegate: AnyObject {
     static func createMainTabBarModule() -> UIViewController
+    func openLoginSignUpWindow()
 }
 
 protocol MainTabBarPresenterDelegate: AnyObject {
     var view: MainTabBarViewDelegate? {get set}
     var interactor: MainTabBarInteractorDelegate? {get set}
     var wireframe: MainTabBarWireframeDelegate? {get set}
+    func openLoginSignUpWindow()
 }
 
 protocol MainTabBarInteractorDelegate: AnyObject {

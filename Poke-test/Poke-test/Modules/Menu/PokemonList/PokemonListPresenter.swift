@@ -35,9 +35,9 @@ extension PokemonListPresenter: PokemonListInteractorOutputDelegate {
     func didFetchType(pokemons: PokemonFilterListData) {
         view?.updateFiltersTableView(pokemons: pokemons)
     }
-    func didAddFavourite(pokemon: Results) {
-        view?.addFavourite(pokemon: pokemon)
-    }
+//    func didAddFavourite(pokemon: Results) {
+//        view?.addFavourite(pokemon: pokemon)
+//    }
     func didAddFavouriteWithError(error: Error?) {
         guard let error = error else {return}
         print(error)

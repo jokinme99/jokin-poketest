@@ -9,7 +9,6 @@ import UIKit
 import Firebase
 import FirebaseDatabase
 import FirebaseAuth
-import ValidationComponents
 
 class SignUpViewController: UIViewController {
     @IBOutlet weak var backgroundImageView: UIImageView!
@@ -38,21 +37,32 @@ extension SignUpViewController: SignUpViewDelegate {
     @IBAction func pressedEnterButton(_ sender: Any) {
         guard let email = userTextField.text, let password = passwordTextField.text else{return}
         let ref = Database.database().reference().root
-        let isEmailValid = EmailValidationPredicate().evaluate(with: "\(email)")
-        if (password.isEmpty || password == "") && (email.isEmpty || email == ""){
-            createAlert(title: "Email and password error!", message: "Email and password don't have any value.")
+        if (password.isEmpty) && (email.isEmpty){
+            createAlert(title: "Email and password error!", message: NSLocalizedString("email_and_password_empty_error", comment: ""))
         }else if email.isEmpty || email == ""{
-            createAlert(title: "Email error!", message: "Enter an email please.")
-        }else if password.isEmpty || password == "" {
-            createAlert(title: "Password error!", message: "Enter a password please.")
-        }else if password.count < 6 && isEmailValid == true{
-            createAlert(title: "Password error!", message: "The password must have at least 6 characters.")
-        }else if isEmailValid == false && password.count >= 6{
-            createAlert(title: "Email error!", message: "Introduced email's format is not valid.")
-        }else if password.count <= 6 && EmailValidationPredicate().evaluate(with: "\(email)") == false{
-            createAlert(title: "Email and password error!", message: "Neither the introduced email's format is not valid, nor the password is at least 6 characters long.")
+            createAlert(title: "Email error!", message: NSLocalizedString("email_empty_error", comment: ""))
+        }else if password.isEmpty {
+            createAlert(title: "Password error!", message: NSLocalizedString("password_empty_error", comment: ""))
         }else{
-            ref.child("users").observe(.value, with: { snapshot in                
+            Auth.auth().createUser(withEmail: email, password: password, completion: {(user, error) in
+                if let error = error{
+                    let parsedError = error as NSError
+                    switch parsedError.code {
+                    case FirebaseErrors.errorCodeInvalidEmail:
+                        self.createAlert(title: "Email error!", message: NSLocalizedString("invalid_email_error", comment: ""))
+                    case FirebaseErrors.errorEmailAlreadyInUse:
+                        self.createAlert(title: "Email error!", message: NSLocalizedString("already_in_use_email_error", comment: ""))
+                    case FirebaseErrors.errorCodeWeakPassword:
+                        self.createAlert(title: "Password error!", message: NSLocalizedString("weak_password_error", comment: ""))
+                    default:
+                        print("default error in signing up!")
+                    }
+                }else{
+                    ref.child("users").child((user?.user.uid)!).setValue(email)
+                    self.presenter?.openMainTabBar()
+                }
+            })
+            /*ref.child("users").observe(.value, with: { snapshot in
                ref.child("users").removeAllObservers()
                 let savedEmails = snapshot.value as![String:Any]
                 for selectedEmail in savedEmails{
@@ -60,15 +70,10 @@ extension SignUpViewController: SignUpViewDelegate {
                         self.createAlert(title: "Email error!", message: "Email already exists.")
                         break
                     }else{
-                        Auth.auth().createUser(withEmail: email, password: password, completion: {(user, error) in
-                            if error == nil{
-                                ref.child("users").child((user?.user.uid)!).setValue(email)
-                                self.presenter?.openMainTabBar()
-                            }
-                        })
+                        
                     }
                 }
-            })
+            })*/
         }
         
     }

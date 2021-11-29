@@ -25,76 +25,67 @@ class MainTabBarViewController: UITabBarController {
         super.viewDidLoad()
         delegate = self
         setTabBar()
-        if selectedIndex == 0{
-            title = "Pokedex"
-        }else if selectedIndex == 1{
-            title = "Favourites"
-        }
-        
     }
 }
 //MARK: - ViewDidLoad methods
 extension MainTabBarViewController{
     func setLoggingSettings(){
         if user != nil{
-            titleLog = "LOG OUT"
+            titleLog = "Log out"
             image = UIImage(named: "logOut")
             imageSelect = UIImage(named: "logInSelected")
         }else{
-            titleLog = "LOG IN" //Change!
+            titleLog = "Log in" //Change!
             image = UIImage(named:"logInNotSelected")
             imageSelect = UIImage(named:"logInSelected")
         }
     }
     func setTabBar(){
         list = PokemonListWireframe.createPokemonListModule()
-        list.tabBarItem = UITabBarItem(title: "ALL", image: UIImage(named: "notSelected"), selectedImage: UIImage(named: "selected"))
-        //error: #imageLiteral(resourceName:"favorites")
+        list.tabBarItem = UITabBarItem(title: NSLocalizedString("all", comment: ""), image: UIImage(named: "notSelected"), selectedImage: UIImage(named: "selected"))
         favourites = PokemonFavouritesWireframe.createPokemonFavouritesModule()
         favourites.tabBarItem = UITabBarItem(title: "FAVS", image: UIImage(named: "fullStar"), selectedImage: UIImage(named: "emptyStar"))
-        userAdministration = LoginOrSignUpWireframe.createLoginOrSignUpModule()//Cerrar sesion
         setLoggingSettings()
-        userAdministration.tabBarItem = UITabBarItem(title: titleLog, image: image, selectedImage: imageSelect)
-        setViewControllers([list, favourites,userAdministration], animated: true)
+        setViewControllers([list, favourites], animated: true)
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: titleLog, style: .plain, target: self, action: #selector(logMethod))
+        navigationItem.title = "Pokedex"
     }
 }
+
 //MARK: - UITabBarControllerDelegate methods
 extension MainTabBarViewController: MainTabBarViewDelegate, UITabBarControllerDelegate{
     override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
-        if item.title == titleLog{
-            if item.title == "LOG OUT"{
-                let previousIndex = selectedIndex
-                //alerta si esta seguro
-                let alert = UIAlertController(title: "Logging out", message: "You are going to close \(user?.email ?? "")'s account. Are you sure?", preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "Yes", style: .destructive, handler: {(action) in
-                    item.title = "LOG IN"
-                    let firebaseAuth = Auth.auth()
-                    do {
-                        try firebaseAuth.signOut()
-                    } catch let signOutError as NSError {
-                        print("Error signing out: %@", signOutError)
-                    }
-                    //logout() metodo que confirma que el usuario cierra sesion
-                    //borrar los favoritos y no dejar guardar si no inicia sesion
-                }))
-                alert.addAction(UIAlertAction(title: "No", style: .cancel, handler: {(action) in
-                    self.selectedIndex = previousIndex
-                    
-                }))
-                self.present(alert, animated: true, completion: nil)
-            }
-        }else if item.title == "FAVS"{
-            //check if there are any favourites
-            if DDBBManager.shared.get(Favourites.self).isEmpty{
-                let alert = UIAlertController(title: "Favourites", message: "You haven't added any favourites yet. Would you like to see all the available Pokemon, in order to add any of them?", preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "Sure!", style: .default, handler: {(action) in
-                    self.selectedIndex = 0
-                }))
-                alert.addAction(UIAlertAction(title: "Maybe later", style: .destructive, handler: nil))
-                self.present(alert, animated: true, completion: nil)
-            }
-            
+        if item.title == "FAVS"{
+            navigationItem.title = "Favourites"
+        }else if item.title == NSLocalizedString("all", comment: ""){
+            navigationItem.title = "Pokedex"
         }
-        
+    }
+}
+
+//MARK: - LogIn/LogOut method
+extension MainTabBarViewController{
+    @objc func logMethod(){
+        if self.titleLog == "Log out"{
+            //alerta si esta seguro
+            let alert = UIAlertController(title: "Logging out", message: "You are going to close \(user?.email ?? "")'s account. Are you sure?", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Yes", style: .destructive, handler: {(action) in
+                self.titleLog = "Log in"
+                self.logOut()
+                self.presenter?.openLoginSignUpWindow()
+            }))
+            alert.addAction(UIAlertAction(title: "No", style: .cancel, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+        }else{//log in
+            self.presenter?.openLoginSignUpWindow()
+        }
+    }
+    func logOut(){
+        let firebaseAuth = Auth.auth()
+        do {
+            try firebaseAuth.signOut()
+        } catch let signOutError as NSError {
+            print("Error signing out: %@", signOutError)
+        }
     }
 }
