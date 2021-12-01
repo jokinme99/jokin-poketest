@@ -1,4 +1,4 @@
-
+import Foundation
 struct TypeName{
     static let normal = "normal"
     static let fight = "fighting"
@@ -20,4 +20,12 @@ struct TypeName{
     static let fairy = "fairy"
     static let unknown = "unknown"
     static let shadow = "shadow"
+}
+
+struct FirebaseErrors{
+    static let errorEmailAlreadyInUse = 17007
+    static let errorCodeInvalidEmail = 17008
+    static let errorCodeWrongPassword = 17009
+    static let errorCodeUserNotFound = 17011
+    static let errorCodeWeakPassword = 17026
 }

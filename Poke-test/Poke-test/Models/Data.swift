@@ -22,11 +22,8 @@ class PokemonListData:Object, Codable{
         results.append(objectsIn: favouritePokemonsList)
     }
 }
-class Favourites: Object, Codable{
-    @objc dynamic var name: String?
-    override static func primaryKey() -> String? {
-        return "name"
-    }
+class Favourites{
+    var name: String?
     convenience init(name: String) {
         self.init()
         self.name = name

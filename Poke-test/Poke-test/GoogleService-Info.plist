@@ -30,5 +30,7 @@
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
 	<string>1:591457491665:ios:bc639a69d6b22e244f83f0</string>
+	<key>DATABASE_URL</key>
+	<string>https://poke-test-cda39-default-rtdb.europe-west1.firebasedatabase.app</string>
 </dict>
 </plist>

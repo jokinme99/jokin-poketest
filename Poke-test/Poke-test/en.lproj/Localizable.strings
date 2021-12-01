@@ -1,0 +1,74 @@
+/* 
+  Localizable.strings
+  Poke-test
+
+  Created by Jokin Egia on 24/11/21.
+  
+*/
+
+"email_and_password_empty_error"="Insert an email and password please.";
+"email_empty_error"="Insert an email please.";
+"password_empty_error"="Insert a password please.";
+"invalid_email_error"="Insert a valid email please.";
+"already_in_use_email_error"="Inserted email is already in use.";
+"user_not_found_error"="Inserted email does not exist.";
+"wrong_password_error"="Inserted password is wrong.";
+"weak_password_error"="Inserted password is too weak. It must have at least 6 characters.";
+"all"="ALL";
+"normal"="NORMAL";
+"fighting"="FIGHTING";
+"flying"="FLYING";
+"poison"="POISON";
+"ground"="GROUND";
+"rock"="ROCK";
+"bug"="BUG";
+"ghost"="GHOST";
+"steel"="STEEL";
+"fire"="FIRE";
+"water"="WATER";
+"grass"="GRASS";
+"electric"="ELECTRIC";
+"psychic"="PSYCHIC";
+"ice"="ICE";
+"dragon"="DRAGON";
+"dark"="DARK";
+"fairy"="FAIRY";
+"unknown"="UNKNOWN";
+"shadow"="SHADOW";
+"Log_out" = "Log out";
+"Log_in" = "Log in";
+"FAVS" = "FAVS";
+"Favourites" = "Favourites";
+"Logging_out" = "Logging out";
+"You_are_going_to_close_this account_Are_you_sure" = "You are going to close this account. Are you sure?";
+"Yes" = "Yes";
+"No" = "No";
+"Order_by_Name" = "Order by Name";
+"Order_by_Id" = "Order by id";
+"You_have_noy_added_any_favourites_yet_Would_you_like_to_see_all_the_available_Pokemon_in_order_to_add_any_of_them" = "You haven't added any favourites yet. Would you like to see all the available Pokemon, in order to add any of them?";
+"Pokemon_already_added_to_favourites" = "Pokemon already added to favourites.";
+"You_will_not_be_able_to_add_any_pokemons_to_favourites_until_you_login_or_sign_up_Would_you_like_to_login_or_sign_up" = "You will not be able to add any pokemons to favourites until you login or sign up. Would you like to login or sign up?";
+"Add" = "Add";
+"delete_from_favourites" = "Delete from favourites";
+"add_to_favourites" = "Add to favourites";
+"Height" = "Height: ";
+"Weight" = "Weight: ";
+"Attack" = "Attack: ";
+"Defense" = "Defense: ";
+"Special_attack" = "Special-attack: ";
+"Special_defense" = "Special-defense: ";
+"Speed" ="Speed: ";
+"Login" = "Login";
+"Sign_Up" = "Sign Up";
+"Access_without_user" = "Access without user";
+"No_internet_connection" = "No internet connection!";
+"If_you_want_to_login_into_your_account_you_will_need_internet_connection" = "If you want to login into your account you'll need internet connection.";
+"If_you_want_to_signUp_into_your_account_you_will_need_internet_connection" = "If you want to sign up you'll need internet connection.";
+"email_and_password_error" = "Email and password error!";
+"email_error" = "Email error!";
+"password_error" = "Password error!";
+"Welcome" = "Welcome";
+"Email" = "Email: ";
+"Password" = "Password: ";
+"Enter" = "Enter";
+"search_for_pokemons" = "Search for pokemons...";
