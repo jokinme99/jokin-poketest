@@ -32,7 +32,8 @@ extension PokemonCell: PokemonListCellDelegate{
     func updatePokemonInCell(pokemonToFetch: Results) {
         self.pokemon = pokemonToFetch
         if Reachability.isConnectedToNetwork(){
-            PokemonManager.shared.fetchPokemon(pokemonSelectedName: pokemonToFetch.name!,{ pokemonData, error in
+            guard let name = pokemonToFetch.name else{return}
+            PokemonManager.shared.fetchPokemon(pokemonSelectedName: name,{ pokemonData, error in
                 if let error = error {
                     print(error)
                 }else{

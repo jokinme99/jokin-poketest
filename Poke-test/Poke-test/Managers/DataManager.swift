@@ -74,7 +74,8 @@ extension PokemonManager{ //Only do it if everything is empty
             }
         }
         for pokemon in pokemons.results {
-            PokemonManager.shared.fetchPokemon(pokemonSelectedName: pokemon.name! , { pokemonData, error in
+            guard let name = pokemon.name else{return}
+            PokemonManager.shared.fetchPokemon(pokemonSelectedName: name , { pokemonData, error in
                 if let error = error{
                     print(error)
                 }else{

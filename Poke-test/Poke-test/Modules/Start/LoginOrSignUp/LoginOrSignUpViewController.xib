@@ -13,6 +13,7 @@
             <connections>
                 <outlet property="backgroundImageView" destination="wK0-W2-ejn" id="kPD-NP-HNR"/>
                 <outlet property="notLoginOrSignUpButton" destination="dlr-qS-kME" id="c7i-T7-9dc"/>
+                <outlet property="titleLabel" destination="COr-de-QP2" id="oKl-Tm-4jk"/>
                 <outlet property="toLoginMenuButton" destination="Uht-0F-xt0" id="3Fh-kN-SBR"/>
                 <outlet property="toLoginMenuView" destination="LfT-Mp-9YK" id="Tdm-JZ-wN0"/>
                 <outlet property="toSignUpMenuButton" destination="PwI-Wz-AbY" id="iWL-PH-Yvo"/>

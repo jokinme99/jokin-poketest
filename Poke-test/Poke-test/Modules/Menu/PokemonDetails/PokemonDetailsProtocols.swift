@@ -14,6 +14,7 @@ protocol PokemonDetailsViewDelegate: AnyObject {
 //MARK: - SceneController methods: Connections between .xib
 protocol PokemonDetailsWireframeDelegate: AnyObject {
     static func createPokemonDetailsModule(pokemon: Results, nextPokemon: Results, previousPokemon: Results, filtered: [Results]) -> UIViewController
+    func openLoginSignUpWindow()
 }
 
 //MARK: - PresenterDelegate methods: Connection between methods
@@ -25,6 +26,7 @@ protocol PokemonDetailsPresenterDelegate: AnyObject {
     func fetchFavourites()//Check if the pokemon is in the fetched favourites
     func addFavourite(pokemon: Results)
     func deleteFavourite(pokemon: Results)
+    func openLoginSignUpWindow()
 }
 
 //MARK: - InteractorDelegate methods: Methods that do the functionality

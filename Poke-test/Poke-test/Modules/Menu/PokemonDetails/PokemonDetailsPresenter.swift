@@ -20,6 +20,9 @@ class PokemonDetailsPresenter : PokemonDetailsPresenterDelegate {
     func deleteFavourite(pokemon: Results) {
         interactor?.deleteFavourite(pokemon: pokemon)
     }
+    func openLoginSignUpWindow(){
+        wireframe?.openLoginSignUpWindow()
+    }
 }
 
 //MARK: - Methods that return the results from the functionality methods

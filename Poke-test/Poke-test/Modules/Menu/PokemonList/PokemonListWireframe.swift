@@ -28,5 +28,11 @@ class PokemonListWireframe : PokemonListWireframeDelegate {
         let detailModule = PokemonDetailsWireframe.createPokemonDetailsModule(pokemon: pokemon, nextPokemon: nextPokemon, previousPokemon: previousPokemon, filtered: filtered)
         viewController?.navigationController?.pushViewController(detailModule, animated: true)
     }
-    
+    func openLoginSignUpWindow(){
+        let loginSignUpModule = LoginOrSignUpWireframe.createLoginOrSignUpModule()
+        let navigation = UINavigationController(rootViewController: loginSignUpModule)
+        let window = (UIApplication.shared.delegate as? AppDelegate)?.window
+        window?.rootViewController = navigation
+        window?.makeKeyAndVisible()
+    }
 }

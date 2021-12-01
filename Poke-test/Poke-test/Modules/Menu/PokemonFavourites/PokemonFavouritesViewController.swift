@@ -5,7 +5,7 @@ import RealmSwift
 import Firebase
 import FirebaseAuth
 import FirebaseDatabase
-
+//QUITAR COMENTARIOS & !
 class PokemonFavouritesViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var orderByButton: UIButton!
@@ -27,6 +27,8 @@ class PokemonFavouritesViewController: UIViewController {
     var dictionaryIdResults: [Results:Int]?
     var dictionary: [PokemonDictionary] = []
     let user = Auth.auth().currentUser
+    var all: String?; var normal: String?; var fighting: String?; var flying: String?; var poison: String?; var ground: String?; var rock: String?; var bug: String?; var ghost: String?; var steel: String?; var fire: String?; var water: String?; var grass: String?; var electric: String?; var psychic: String?; var ice: String?; var dragon: String?; var dark: String?; var fairy: String?; var unknown: String?; var shadow: String?
+    var saveFiltered: [String] = []
     
     override func viewDidLoad() {
         //print(Realm.Configuration.defaultConfiguration.fileURL!)
@@ -67,11 +69,31 @@ extension PokemonFavouritesViewController{
             button.addTarget(self, action: #selector(pressedFilterButton), for: .touchUpInside)
             paintButton(button)
         }
+        orderByButton.setTitle(NSLocalizedString("Order_by_Name", comment: ""), for: .normal)
+        loadFilterButtons()
     }
     func loadSearchBar(){
         self.searchBar.addDoneButtonOnKeyboard()
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
+        searchBar.placeholder = NSLocalizedString("search_for_pokemons", comment: "")
+    }
+    func loadFilterButtons(){
+        all = NSLocalizedString("all", comment: "").lowercased(); normal = NSLocalizedString("normal", comment: "").lowercased(); fighting = NSLocalizedString("fighting", comment: "").lowercased()
+        flying = NSLocalizedString("flying", comment: "").lowercased(); poison = NSLocalizedString("poison", comment: "").lowercased(); ground = NSLocalizedString("ground", comment: "").lowercased()
+        rock = NSLocalizedString("rock", comment: "").lowercased(); bug = NSLocalizedString("bug", comment: "").lowercased(); ghost = NSLocalizedString("ghost", comment: "").lowercased()
+        steel = NSLocalizedString("steel", comment: "").lowercased(); fire = NSLocalizedString("fire", comment: "").lowercased(); water = NSLocalizedString("water", comment: "").lowercased()
+        grass = NSLocalizedString("grass", comment: "").lowercased(); electric = NSLocalizedString("electric", comment: "").lowercased(); psychic = NSLocalizedString("psychic", comment: "").lowercased()
+        ice = NSLocalizedString("ice", comment: "").lowercased(); dragon = NSLocalizedString("dragon", comment: "").lowercased(); dark = NSLocalizedString("dark", comment: "").lowercased()
+        fairy = NSLocalizedString("fairy", comment: "").lowercased(); unknown = NSLocalizedString("unknown", comment: "").lowercased(); shadow = NSLocalizedString("shadow", comment: "").lowercased()
+        
+        buttonList[0].setTitle(all?.capitalized, for: .normal); buttonList[1].setTitle(normal?.capitalized, for: .normal); buttonList[2].setTitle(fighting?.capitalized, for: .normal)
+        buttonList[3].setTitle(flying?.capitalized, for: .normal); buttonList[4].setTitle(poison?.capitalized, for: .normal); buttonList[5].setTitle(ground?.capitalized, for: .normal)
+        buttonList[6].setTitle(rock?.capitalized, for: .normal); buttonList[07].setTitle(bug?.capitalized, for: .normal); buttonList[8].setTitle(ghost?.capitalized, for: .normal)
+        buttonList[9].setTitle(steel?.capitalized, for: .normal); buttonList[10].setTitle(fire?.capitalized, for: .normal); buttonList[11].setTitle(water?.capitalized, for: .normal)
+        buttonList[12].setTitle(grass?.capitalized, for: .normal); buttonList[13].setTitle(electric?.capitalized, for: .normal); buttonList[14].setTitle(psychic?.capitalized, for: .normal)
+        buttonList[15].setTitle(ice?.capitalized, for: .normal); buttonList[16].setTitle(dragon?.capitalized, for: .normal); buttonList[17].setTitle(dark?.capitalized, for: .normal)
+        buttonList[18].setTitle(fairy?.capitalized, for: .normal); buttonList[19].setTitle(unknown?.capitalized, for: .normal); buttonList[20].setTitle(shadow?.capitalized, for: .normal)
     }
 }
 
@@ -86,32 +108,33 @@ extension PokemonFavouritesViewController: PokemonFavouritesViewDelegate {
     
     //MARK: - Updates filters
     func updateFiltersTableView(pokemons: PokemonFilterListData) {
-        presenter?.fetchFavourites()
-        let saveFiltered = self.filtered
-        filtered.removeAll()
-        pokemon.removeAll()
-        savefilteredOrder.removeAll()
+        orderByButton.setTitle(NSLocalizedString("Order_by_Name", comment: ""), for: .normal)
+        cleanSearchBar()
+        self.pokemon.removeAll()
+        self.filtered.removeAll()
         for pokemonType in pokemons.pokemon{
-            for filter in saveFiltered{
-                if filter.name == pokemonType.pokemon?.name{
-                    pokemon.append(filter)
-                    filtered.append(filter)
-                    savefilteredOrder.append(filter)
-                }
+            guard let name = pokemonType.pokemon?.name else{return}
+            if self.saveFiltered.contains(name){
+                guard let name = pokemonType.pokemon?.name else{return}
+                pokemon.append(Results(name: name))
+                filtered.append(Results(name: name))
             }
         }
         self.tableView.reloadData()
+        
     }
     
     //MARK: - Updates the favourite list after the fetching
     func updateFavouritesFetchInCell(favourites: [Favourites]) {//Make it work if offline
+        orderByButton.setTitle(NSLocalizedString("Order_by_Name", comment: ""), for: .normal)
+        cleanSearchBar()
         if user != nil{
             if favourites.isEmpty{
-                let alert = UIAlertController(title: "Favourites", message: "You haven't added any favourites yet. Would you like to see all the available Pokemon, in order to add any of them?", preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "Sure!", style: .default, handler: {(action) in
+                let alert = UIAlertController(title: NSLocalizedString("Favourites", comment: ""), message: NSLocalizedString("You_have_noy_added_any_favourites_yet_Would_you_like_to_see_all_the_available_Pokemon_in_order_to_add_any_of_them", comment: ""), preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: NSLocalizedString("Yes", comment: ""), style: .default, handler: {(action) in
                     self.presenter?.openPokemonListWindow()
                 }))
-                alert.addAction(UIAlertAction(title: "Maybe later", style: .destructive, handler: nil))
+                alert.addAction(UIAlertAction(title: NSLocalizedString("No", comment: ""), style: .destructive, handler: nil))
                 self.present(alert, animated: true, completion: nil)
             }
             if filtered.isEmpty && pokemon.isEmpty{
@@ -120,6 +143,7 @@ extension PokemonFavouritesViewController: PokemonFavouritesViewDelegate {
                 }
                 self.filtered = self.pokemon
                 self.savefilteredOrder = self.pokemon
+                self.saveFiltered = self.filtered.map{$0.name!}
                 sortFilteredOrdered()
                 self.tableView.reloadData()
             }else{
@@ -131,16 +155,17 @@ extension PokemonFavouritesViewController: PokemonFavouritesViewDelegate {
                 }
                 self.filtered = self.pokemon
                 self.savefilteredOrder = self.pokemon
+                self.saveFiltered = self.filtered.map{$0.name!}
                 sortFilteredOrdered()
                 self.tableView.reloadData()
             }
         }else{
             //not logged
-            let alert = UIAlertController(title: "Favourites", message: "You will not be able to add any pokemons to favourites until you login or sign up. Would you like to login or sign up?", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "Sure!", style: .default, handler: {(action) in
+            let alert = UIAlertController(title: NSLocalizedString("Favourites", comment: ""), message: NSLocalizedString("You_will_not_be_able_to_add_any_pokemons_to_favourites_until_you_login_or_sign_up_Would_you_like_to_login_or_sign_up", comment: ""), preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: NSLocalizedString("Yes", comment: ""), style: .default, handler: {(action) in
                 self.presenter?.openLoginSignUpWindow()
             }))
-            alert.addAction(UIAlertAction(title: "Maybe later", style: .destructive, handler: nil))
+            alert.addAction(UIAlertAction(title: NSLocalizedString("Ez", comment: ""), style: .destructive, handler: nil))
             self.present(alert, animated: true, completion: nil)
             
         }
@@ -163,7 +188,6 @@ extension PokemonFavouritesViewController:UITableViewDelegate, UITableViewDataSo
         cell = tableView.dequeueReusableCell(withIdentifier: "PokemonNameCell", for: indexPath) as! PokemonCell
         pokemonInCell = filtered[indexPath.row]
         cell.updatePokemonInCell(pokemonToFetch: pokemonInCell!)
-        
         return cell
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -189,11 +213,12 @@ extension PokemonFavouritesViewController:UITableViewDelegate, UITableViewDataSo
                 previousPokemon = filtered[previousRow]
             }
         }
-        presenter?.openPokemonDetail(pokemon: pokemonSelected!, nextPokemon: nextPokemon!, previousPokemon: previousPokemon!, filtered: filtered)
+        guard let pokemonSelected = pokemonSelected, let nextPokemon = nextPokemon, let previousPokemon = previousPokemon else{return}
+        presenter?.openPokemonDetail(pokemon: pokemonSelected, nextPokemon: nextPokemon, previousPokemon: previousPokemon, filtered: filtered)
         
     }
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete{
+        if editingStyle == .delete{//delete text TRADUCIR
             self.presenter?.deleteFavourite(pokemon: filtered[indexPath.row])
         }
     }
@@ -245,13 +270,13 @@ extension PokemonFavouritesViewController:UISearchBarDelegate{
 extension PokemonFavouritesViewController{
     
     @objc func pressedOrderBy(_ sender: UIButton!) {
-        if orderByButton.titleLabel?.text == "Order by Name"{
-            orderByButton.setTitle("Order by Id", for: .normal)
+        if orderByButton.titleLabel?.text == NSLocalizedString("Order_by_Name", comment: ""){
+            orderByButton.setTitle(NSLocalizedString("Order_by_Id", comment: ""), for: .normal)
             self.filtered = filtered.sorted(by: {$0.name ?? "" < $1.name ?? ""})
             self.tableView.reloadData()
         }
         else{
-            orderByButton.setTitle("Order by Name", for: .normal)
+            orderByButton.setTitle(NSLocalizedString("Order_by_Name", comment: ""), for: .normal)
             sortFilteredOrdered()
             
         }
@@ -274,71 +299,50 @@ extension PokemonFavouritesViewController{
 }
 
 //MARK: - Filter Buttons methods
-extension PokemonFavouritesViewController{
+extension PokemonFavouritesViewController{//Nombre de los filtros TRADUCIR
     @objc func pressedFilterButton(_ sender: UIButton!){
         switch sender.titleLabel?.text?.lowercased(){
-        case "all":
-            cleanSearchBar()
+        case all:
             self.presenter?.fetchFavourites()
-        case TypeName.normal:
-            cleanSearchBar()
+        case normal:
             self.presenter?.fetchPokemonType(type: TypeName.normal)
-        case TypeName.fight:
-            cleanSearchBar()
+        case fighting:
             self.presenter?.fetchPokemonType(type: TypeName.fight)
-        case TypeName.flying:
-            cleanSearchBar()
+        case flying:
             self.presenter?.fetchPokemonType(type: TypeName.flying)
-        case TypeName.poison:
-            cleanSearchBar()
+        case poison:
             self.presenter?.fetchPokemonType(type: TypeName.poison)
-        case TypeName.ground:
-            cleanSearchBar()
+        case ground:
             self.presenter?.fetchPokemonType(type: TypeName.ground)
-        case TypeName.rock:
-            cleanSearchBar()
+        case rock:
             self.presenter?.fetchPokemonType(type: TypeName.rock)
-        case TypeName.bug:
-            cleanSearchBar()
+        case bug:
             self.presenter?.fetchPokemonType(type: TypeName.bug)
-        case TypeName.ghost:
-            cleanSearchBar()
+        case ghost:
             self.presenter?.fetchPokemonType(type: TypeName.ghost)
-        case TypeName.steel:
-            cleanSearchBar()
+        case steel:
             self.presenter?.fetchPokemonType(type: TypeName.steel)
-        case TypeName.fire:
-            cleanSearchBar()
+        case fire:
             self.presenter?.fetchPokemonType(type: TypeName.fire)
-        case TypeName.water:
-            cleanSearchBar()
+        case water:
             self.presenter?.fetchPokemonType(type: TypeName.water)
-        case TypeName.grass:
-            cleanSearchBar()
+        case grass:
             self.presenter?.fetchPokemonType(type: TypeName.grass)
-        case TypeName.electric:
-            cleanSearchBar()
+        case electric:
             self.presenter?.fetchPokemonType(type: TypeName.electric)
-        case TypeName.psychic:
-            cleanSearchBar()
+        case psychic:
             self.presenter?.fetchPokemonType(type: TypeName.psychic)
-        case TypeName.ice:
-            cleanSearchBar()
+        case ice:
             self.presenter?.fetchPokemonType(type: TypeName.ice)
-        case TypeName.dragon:
-            cleanSearchBar()
+        case dragon:
             self.presenter?.fetchPokemonType(type: TypeName.dragon)
-        case TypeName.dark:
-            cleanSearchBar()
+        case dark:
             self.presenter?.fetchPokemonType(type: TypeName.dark)
-        case TypeName.fairy:
-            cleanSearchBar()
+        case fairy:
             self.presenter?.fetchPokemonType(type: TypeName.fairy)
-        case TypeName.unknown: //There exist 0 pokemon with this type
-            cleanSearchBar()
+        case unknown:
             self.presenter?.fetchPokemonType(type: TypeName.unknown)
-        case TypeName.shadow:
-            cleanSearchBar()
+        case shadow:
             self.presenter?.fetchPokemonType(type: TypeName.shadow)
         case .none:
             print("Error: .none")

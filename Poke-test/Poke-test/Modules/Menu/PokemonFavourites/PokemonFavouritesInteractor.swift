@@ -42,7 +42,8 @@ class PokemonFavouritesInteractor : PokemonFavouritesInteractorDelegate {
                 if let error = error {
                     self.presenter?.didFailWith(error: error)
                 }else{
-                    self.presenter?.didFetchType(pokemons: pokemonFilterListData!)
+                    guard let pokemonFilterListData = pokemonFilterListData else {return}
+                    self.presenter?.didFetchType(pokemons: pokemonFilterListData)
                 }
                 
             })

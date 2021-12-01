@@ -69,7 +69,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate, UNUser
             print("Token: \(token)")
         }
     }
-    
     func applicationWillEnterForeground(_ application: UIApplication) {
         print("willEnterForeground")//active
     }

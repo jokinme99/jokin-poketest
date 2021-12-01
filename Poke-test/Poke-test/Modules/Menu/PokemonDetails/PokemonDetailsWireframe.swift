@@ -26,4 +26,11 @@ class PokemonDetailsWireframe : PokemonDetailsWireframeDelegate {
 
         return view
     }
+    func openLoginSignUpWindow(){
+        let loginSignUpModule = LoginOrSignUpWireframe.createLoginOrSignUpModule()
+        let navigation = UINavigationController(rootViewController: loginSignUpModule)
+        let window = (UIApplication.shared.delegate as? AppDelegate)?.window
+        window?.rootViewController = navigation
+        window?.makeKeyAndVisible()
+    }
 }

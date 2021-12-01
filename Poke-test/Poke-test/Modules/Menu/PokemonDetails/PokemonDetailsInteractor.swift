@@ -11,13 +11,14 @@ class PokemonDetailsInteractor : PokemonDetailsInteractorDelegate {
     //MARK: - Methods that do the functionality
     func fetchPokemon(pokemon: Results) {
         if Reachability.isConnectedToNetwork(){
-            PokemonManager.shared.fetchPokemon(pokemonSelectedName: pokemon.name!, { pokemonData, error in
+            guard let name = pokemon.name else{return}
+            PokemonManager.shared.fetchPokemon(pokemonSelectedName: name, { pokemonData, error in
                 if let error = error{
                     self.presenter?.didFailWithError(error: error)
                 }else{
-                    self.presenter?.didFetchPokemon(pokemon: pokemonData!)
+                    guard let pokemonData = pokemonData else {return}
+                    self.presenter?.didFetchPokemon(pokemon: pokemonData)
                 }
-
             })
         }else{
             let pokemons = DDBBManager.shared.get(PokemonData.self)

@@ -29,6 +29,10 @@ class SignUpViewController: UIViewController {
         userView.layer.cornerRadius = 10
         passwordView.layer.cornerRadius = 10
         enterButton.layer.cornerRadius = 10
+        titleLabel.text = NSLocalizedString("Sign_Up", comment: "")
+        userLabel.text = NSLocalizedString("Email", comment: "")
+        passwordLabel.text = NSLocalizedString("Password", comment: "")
+        enterButton.setTitle(NSLocalizedString("Enter", comment: ""), for: .normal)
     }
 }
 
@@ -38,42 +42,31 @@ extension SignUpViewController: SignUpViewDelegate {
         guard let email = userTextField.text, let password = passwordTextField.text else{return}
         let ref = Database.database().reference().root
         if (password.isEmpty) && (email.isEmpty){
-            createAlert(title: "Email and password error!", message: NSLocalizedString("email_and_password_empty_error", comment: ""))
+            createAlert(title: NSLocalizedString("email_and_password_error", comment: ""), message: NSLocalizedString("email_and_password_empty_error", comment: ""))
         }else if email.isEmpty || email == ""{
-            createAlert(title: "Email error!", message: NSLocalizedString("email_empty_error", comment: ""))
+            createAlert(title: NSLocalizedString("email_error", comment: ""), message: NSLocalizedString("email_empty_error", comment: ""))
         }else if password.isEmpty {
-            createAlert(title: "Password error!", message: NSLocalizedString("password_empty_error", comment: ""))
+            createAlert(title: NSLocalizedString("password_error", comment: ""), message: NSLocalizedString("password_empty_error", comment: ""))
         }else{
             Auth.auth().createUser(withEmail: email, password: password, completion: {(user, error) in
                 if let error = error{
                     let parsedError = error as NSError
                     switch parsedError.code {
                     case FirebaseErrors.errorCodeInvalidEmail:
-                        self.createAlert(title: "Email error!", message: NSLocalizedString("invalid_email_error", comment: ""))
+                        self.createAlert(title: NSLocalizedString("email_error", comment: ""), message: NSLocalizedString("invalid_email_error", comment: ""))
                     case FirebaseErrors.errorEmailAlreadyInUse:
-                        self.createAlert(title: "Email error!", message: NSLocalizedString("already_in_use_email_error", comment: ""))
+                        self.createAlert(title: NSLocalizedString("email_error", comment: ""), message: NSLocalizedString("already_in_use_email_error", comment: ""))
                     case FirebaseErrors.errorCodeWeakPassword:
-                        self.createAlert(title: "Password error!", message: NSLocalizedString("weak_password_error", comment: ""))
+                        self.createAlert(title: NSLocalizedString("password_error", comment: ""), message: NSLocalizedString("weak_password_error", comment: ""))
                     default:
                         print("default error in signing up!")
                     }
                 }else{
-                    ref.child("users").child((user?.user.uid)!).setValue(email)
+                    guard let uid = user?.user.uid else{return}
+                    ref.child("users").child(uid).setValue(email)
                     self.presenter?.openMainTabBar()
                 }
             })
-            /*ref.child("users").observe(.value, with: { snapshot in
-               ref.child("users").removeAllObservers()
-                let savedEmails = snapshot.value as![String:Any]
-                for selectedEmail in savedEmails{
-                    if selectedEmail.value as! String  == email{
-                        self.createAlert(title: "Email error!", message: "Email already exists.")
-                        break
-                    }else{
-                        
-                    }
-                }
-            })*/
         }
         
     }

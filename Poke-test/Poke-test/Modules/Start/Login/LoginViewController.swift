@@ -21,7 +21,6 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var passwordLabel: UILabel!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var enterButton: UIButton!
-    
     var presenter: LoginPresenterDelegate?
     
     
@@ -31,31 +30,35 @@ class LoginViewController: UIViewController {
         userView.layer.cornerRadius = 10
         passwordView.layer.cornerRadius = 10
         enterButton.layer.cornerRadius = 10
+        titleLabel.text = NSLocalizedString("Login", comment: "")
+        userLabel.text = NSLocalizedString("Email", comment: "")
+        passwordLabel.text = NSLocalizedString("Password", comment: "")
+        enterButton.setTitle(NSLocalizedString("Enter", comment: ""), for: .normal)
     }
 }
 
 extension LoginViewController: LoginViewDelegate {
-    @IBAction func pressedEnterButton(_ sender: Any) {//WORKS!
+    @IBAction func pressedEnterButton(_ sender: Any) {
         guard let email = userTextField.text, let password = passwordTextField.text else{return}
         if (password.isEmpty) && (email.isEmpty){
-            createAlert(title: "Email and password error!", message: NSLocalizedString("email_and_password_empty_error", comment: ""))
+            createAlert(title: NSLocalizedString("email_and_password_error", comment: ""), message: NSLocalizedString("email_and_password_empty_error", comment: ""))
         }else if email.isEmpty || email == ""{
-            createAlert(title: "Email error!", message: NSLocalizedString("email_empty_error", comment: ""))
+            createAlert(title: NSLocalizedString("email_error", comment: ""), message: NSLocalizedString("email_empty_error", comment: ""))
         }else if password.isEmpty {
-            createAlert(title: "Password error!", message: NSLocalizedString("password_empty_error", comment: ""))
+            createAlert(title: NSLocalizedString("password_error", comment: ""), message: NSLocalizedString("password_empty_error", comment: ""))
         }else{
             Auth.auth().signIn(withEmail: email, password: password) { (user, error) in
                 if let error = error {//Mal contra , UserNotFound, InvalidEmail
                     let parsedError = error as NSError
                     switch parsedError.code {
                     case FirebaseErrors.errorCodeInvalidEmail:
-                        self.createAlert(title: "Email error!", message: NSLocalizedString("invalid_email_error", comment: ""))
+                        self.createAlert(title: NSLocalizedString("email_error", comment: ""), message: NSLocalizedString("invalid_email_error", comment: ""))
                     case FirebaseErrors.errorEmailAlreadyInUse:
-                        self.createAlert(title: "Email error!", message: NSLocalizedString("already_in_use_email_error", comment: ""))
+                        self.createAlert(title: NSLocalizedString("email_error", comment: ""), message: NSLocalizedString("already_in_use_email_error", comment: ""))
                     case FirebaseErrors.errorCodeUserNotFound:
-                        self.createAlert(title: "Email error!", message: NSLocalizedString("user_not_found_error", comment: ""))
+                        self.createAlert(title: NSLocalizedString("email_error", comment: ""), message: NSLocalizedString("user_not_found_error", comment: ""))
                     case FirebaseErrors.errorCodeWrongPassword:
-                        self.createAlert(title: "Password error!", message: NSLocalizedString("wrong_password_error", comment: ""))
+                        self.createAlert(title: NSLocalizedString("password_error", comment: ""), message: NSLocalizedString("wrong_password_error", comment: ""))
                     default:
                         print("default error in login")
                     }

@@ -15,7 +15,8 @@ class PokemonListInteractor : PokemonListInteractorDelegate{
                 if let error = error {
                     self.presenter?.didFailWith(error: error)
                 } else {
-                    self.presenter?.didFetchPokemonList(pokemon: pokemonList!)
+                    guard let pokemonList = pokemonList else {return}
+                    self.presenter?.didFetchPokemonList(pokemon: pokemonList)
                     
                 }
             }
@@ -35,7 +36,8 @@ class PokemonListInteractor : PokemonListInteractorDelegate{
                 if let error = error {
                     self.presenter?.didFailWith(error: error)
                 }else{
-                    self.presenter?.didFetchType(pokemons: pokemonFilterListData!)
+                    guard let pokemonFilterListData = pokemonFilterListData else {return}
+                    self.presenter?.didFetchType(pokemons: pokemonFilterListData)
                 }
                 
             })

@@ -20,6 +20,7 @@ protocol PokemonListViewDelegate: AnyObject {
 protocol PokemonListWireframeDelegate: AnyObject {
     static func createPokemonListModule() -> UIViewController
     func openPokemonDetailsWindow(pokemon: Results, nextPokemon: Results, previousPokemon: Results, filtered: [Results])
+    func openLoginSignUpWindow()
 }
 
 //MARK: - PresenterDelegate methods: Connection between methods
@@ -33,6 +34,7 @@ protocol PokemonListPresenterDelegate: AnyObject {
     func fetchPokemonType(type: String)
     func addFavourite(pokemon: Results)
     func fetchFavourites()
+    func openLoginSignUpWindow()
 }
 
 //MARK: - InteractorDelegate methods: Methods that do the functionality

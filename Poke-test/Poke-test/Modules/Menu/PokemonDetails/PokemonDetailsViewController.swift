@@ -6,7 +6,6 @@ import Firebase
 import FirebaseDatabase
 import FirebaseAuth
 
-//COMMENTARY(BLOCK) : CMD + MAYUS + '
 class PokemonDetailsViewController: UIViewController {
     @IBOutlet weak var backgroundView: UIView!
     @IBOutlet weak var typesView: UIView!
@@ -55,7 +54,8 @@ class PokemonDetailsViewController: UIViewController {
         presenter?.fetchFavourites()
         loadSelectedPokemon()
         loadMethods()
-        row = (filtered.firstIndex(of: selectedPokemon!))
+        guard let selectedPokemon = selectedPokemon else {return}
+        row = (filtered.firstIndex(of: selectedPokemon))
     }
 }
 
@@ -70,16 +70,20 @@ extension PokemonDetailsViewController{
     }
     func isFavourite(){
         for fav in favouritesList{
-            arrayOfNames.append(fav.name!)
+            guard let name = fav.name else {return}
+            if arrayOfNames.contains(name) == false{
+                arrayOfNames.append(name)
+            }
+            
         }
         guard let name = selectedPokemon?.name else{return}
         if arrayOfNames.contains(name){
-          favouritesButton.setTitle("Delete from favourites", for: .normal)
+            favouritesButton.setTitle(NSLocalizedString("delete_from_favourites", comment: ""), for: .normal)
           favouritesImage.image = UIImage(named: "emptyStar")
           favouriteConfirmationImage.isHidden = false
 
         }else{
-            favouritesButton.setTitle("Add to favourites", for: .normal)
+            favouritesButton.setTitle(NSLocalizedString("add_to_favourites", comment: ""), for: .normal)
             favouritesImage.image = UIImage(named: "fullStar")
             favouriteConfirmationImage.isHidden = true
             
@@ -112,29 +116,32 @@ extension PokemonDetailsViewController: PokemonDetailsViewDelegate {
     
     //MARK: - Sets the add/delete label wether it's a favourite or not
     func addFavourite(pokemon: Results) {
-        favouritesButton.setTitle("Delete from favourites", for: .normal)
+        favouritesButton.setTitle(NSLocalizedString("delete_from_favourites", comment: ""), for: .normal)
         favouritesImage.image = UIImage(named: "emptyStar")
         favouriteConfirmationImage.isHidden = false
     }
     //FIX DELETE NOT CHANGING
-    //LANGUAGE CHANGES
-    //IF NO INTERNET WHAT HAPPENS WHEN TRYING TO ADDFAVS
     func deleteFavourite(pokemon: Results) {
         let filt = filtered.map{$0.name}
         let fav = favouritesList.map{$0.name}
         if filt == fav{ //It has to be deleted from filtered
-            favouritesButton.setTitle("Add to favourites", for: .normal)
+            favouritesButton.setTitle(NSLocalizedString("add_to_favourites", comment: ""), for: .normal)
             favouritesImage.image = UIImage(named: "fullStar")
             favouriteConfirmationImage.isHidden = true
             let index = filtered.firstIndex(of: pokemon)
-            filtered.remove(at: index!)
+            guard let index = index else {return}
+            filtered.remove(at: index)
             presenter?.fetchFavourites()
             if filtered.count == 1{
                 self.previewButton.isHidden = true
                 self.nextButton.isHidden = true
             }
-        }else{
-            favouritesButton.setTitle("Add to favourites", for: .normal)
+        }else{//Si añades y luego eliminas Error
+            if arrayOfNames.isEmpty == false{
+                let indexName = arrayOfNames.firstIndex(of: pokemon.name ?? "default")
+                arrayOfNames.remove(at: indexName ?? 0)
+            }
+            favouritesButton.setTitle(NSLocalizedString("add_to_favourites", comment: ""), for: .normal)
             favouritesImage.image = UIImage(named: "fullStar")
             favouriteConfirmationImage.isHidden = true
             presenter?.fetchFavourites()
@@ -163,15 +170,16 @@ extension PokemonDetailsViewController: PokemonDetailsViewDelegate {
         self.pokemonNameLabel.text = pokemon.name?.uppercased()
         self.pokemonType1Label.text = type.type?.name?.uppercased()
         self.pokemonIdLabel.text = "# \(pokemon.id)"
-        self.heightLabel.text = "Height: \(pokemon.height) m"
-        self.weightLabel.text = "Weight: \(pokemon.weight) kg"
-        self.ability1Label.text = pokemon.abilities[0].ability?.name!.capitalized.uppercased()
+        self.heightLabel.text = NSLocalizedString("Height", comment: "") + "\(pokemon.height) m"
+        self.weightLabel.text = NSLocalizedString("Weight", comment: "") + " \(pokemon.weight) kg"
+        guard let abilityName = pokemon.abilities[0].ability?.name else{return}
+        self.ability1Label.text = abilityName.capitalized.uppercased()
         self.hpLabel.text = "Hp: \(pokemon.stats[0].base_stat)"
-        self.attackLabel.text = "Attack: \(pokemon.stats[1].base_stat)"
-        self.defenseLabel.text = "Defense: \(pokemon.stats[2].base_stat)"
-        self.specialAttackLabel.text = "Special-attack: \(pokemon.stats[3].base_stat)"
-        self.specialDefenseLabel.text = "Special-defense: \(pokemon.stats[4].base_stat)"
-        self.speedLabel.text = "Speed: \(pokemon.stats[5].base_stat)"
+        self.attackLabel.text = NSLocalizedString("Attack", comment: "") + "\(pokemon.stats[1].base_stat)"
+        self.defenseLabel.text = NSLocalizedString("Defense", comment: "") + "\(pokemon.stats[2].base_stat)"
+        self.specialAttackLabel.text = NSLocalizedString("Special_attack", comment: "") + "\(pokemon.stats[3].base_stat)"
+        self.specialDefenseLabel.text = NSLocalizedString("Special_defense", comment: "") + "\(pokemon.stats[4].base_stat)"
+        self.speedLabel.text = NSLocalizedString("Speed", comment: "") + "\(pokemon.stats[5].base_stat)"
         self.paintLabel(pokemon: pokemon)
         self.transformUrlToImage(url: pokemon.sprites?.front_default ?? "")
     }
@@ -193,11 +201,22 @@ extension PokemonDetailsViewController: PokemonDetailsViewDelegate {
 //MARK: - Buttons methods
 extension PokemonDetailsViewController{
     @objc func pressed(_ sender: UIButton!) {
-        if favouritesButton.titleLabel?.text == "Add to favourites"{
-            presenter?.addFavourite(pokemon: selectedPokemon!)
-        } else if favouritesButton.titleLabel?.text == "Delete from favourites"{
-            presenter?.deleteFavourite(pokemon: selectedPokemon!)
+        if user != nil{
+            guard let selectedPokemon = selectedPokemon else{return}
+            if favouritesButton.titleLabel?.text == NSLocalizedString("add_to_favourites", comment: ""){
+                    presenter?.addFavourite(pokemon: selectedPokemon)
+            } else if favouritesButton.titleLabel?.text == NSLocalizedString("delete_from_favourites", comment: ""){
+                    presenter?.deleteFavourite(pokemon: selectedPokemon)
+            }
+        }else{
+            let alert = UIAlertController(title: NSLocalizedString("Favourites", comment: ""), message: NSLocalizedString("You_will_not_be_able_to_add_any_pokemons_to_favourites_until_you_login_or_sign_up_Would_you_like_to_login_or_sign_up", comment: ""), preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: NSLocalizedString("Yes", comment: ""), style: .default, handler: {(action) in
+                self.presenter?.openLoginSignUpWindow()
+            }))
+            alert.addAction(UIAlertAction(title: NSLocalizedString("No", comment: ""), style: .destructive, handler: nil))
+            self.present(alert, animated: true, completion: nil)
         }
+        
     }
     @objc func nextPokemonButtonAction(_ sender: UIButton!){
         guard let nextPokemon = nextPokemon else{return}
@@ -261,12 +280,62 @@ extension PokemonDetailsViewController{
 
 //MARK: - Coloring methods
 extension PokemonDetailsViewController{
+    func setName(type: String, to label : UILabel){
+        switch type {
+        case TypeName.normal:
+            label.text = NSLocalizedString("normal", comment: "")
+        case TypeName.fight:
+            label.text = NSLocalizedString("fight", comment: "")
+        case TypeName.flying:
+            label.text = NSLocalizedString("flying", comment: "")
+        case TypeName.poison:
+            label.text = NSLocalizedString("poison", comment: "")
+        case TypeName.ground:
+            label.text = NSLocalizedString("ground", comment: "")
+        case TypeName.rock:
+            label.text = NSLocalizedString("rock", comment: "")
+        case TypeName.bug:
+            label.text = NSLocalizedString("bug", comment: "")
+        case TypeName.ghost:
+            label.text = NSLocalizedString("ghost", comment: "")
+        case TypeName.steel:
+            label.text = NSLocalizedString("steel", comment: "")
+        case TypeName.fire:
+            label.text = NSLocalizedString("fire", comment: "")
+        case TypeName.water:
+            label.text = NSLocalizedString("water", comment: "")
+        case TypeName.grass:
+            label.text = NSLocalizedString("grass", comment: "")
+        case TypeName.electric:
+            label.text = NSLocalizedString("electric", comment: "")
+        case TypeName.psychic:
+            label.text = NSLocalizedString("psychic", comment: "")
+        case TypeName.ice:
+            label.text = NSLocalizedString("ice", comment: "")
+        case TypeName.dragon:
+            label.text = NSLocalizedString("dragon", comment: "")
+        case TypeName.dark:
+            label.text = NSLocalizedString("dark", comment: "")
+        case TypeName.fairy:
+            label.text = NSLocalizedString("fairy", comment: "")
+        case TypeName.unknown:
+            label.text = NSLocalizedString("unknown", comment: "")
+        case TypeName.shadow:
+            label.text = NSLocalizedString("shadow", comment: "")
+        default:
+            print("DEFAULT ERROR")
+        }
+    }
     func paintLabel(pokemon: PokemonData){
         if pokemon.types.count >= 2{
             self.pokemonType2Label.isHidden = false
-            self.pokemonType2Label.text = pokemon.types[1].type?.name!.uppercased() //Saved the 2nd type
+            guard let typeName_1 = pokemon.types[1].type?.name else{return}
+            self.pokemonType2Label.text = typeName_1 //Saved the 2nd type
             self.paintType(label: self.pokemonType1Label)
             self.paintType(label: self.pokemonType2Label)
+            guard let typeName_0 = pokemon.types[0].type?.name else{return}
+            self.setName(type: typeName_1, to: pokemonType2Label)
+            self.setName(type: typeName_0, to: pokemonType1Label)
             self.pokemonDescriptionView.backgroundColor = UIColor(named: "grayColor")
             self.setBackgroundColor(from: self.pokemonDescriptionView, to: self.typesView)
             self.setBackgroundColor(from: self.pokemonDescriptionView, to: self.backgroundView)
@@ -289,7 +358,8 @@ extension PokemonDetailsViewController{
             self.previewButton.titleLabel?.textColor = .black
             self.previewButton.backgroundColor = pokemonDescriptionView.backgroundColor
             if pokemon.abilities.count >= 2{
-                self.ability2Label.text = pokemon.abilities[1].ability?.name!.uppercased() //Save the 2nd ability
+                guard let ability2Name = pokemon.abilities[1].ability?.name else{return}
+                self.ability2Label.text = ability2Name.uppercased() //Save the 2nd ability
                 self.ability1Label.textColor = pokemonType1Label.backgroundColor
                 self.ability2Label.textColor = pokemonType2Label.backgroundColor
             }else{
@@ -297,6 +367,8 @@ extension PokemonDetailsViewController{
             }
         } else{
             self.paintType(label: self.pokemonType1Label)
+            guard let typeName = pokemon.types[0].type?.name else{return}
+            self.setName(type: typeName, to: pokemonType1Label)
             self.pokemonType2Label.isHidden = true
             self.setBackgroundColor(from: self.pokemonType1Label, to: self.pokemonDescriptionView)
             self.setBackgroundColor(from: self.pokemonType1Label, to: self.typesView)
@@ -313,7 +385,8 @@ extension PokemonDetailsViewController{
             self.ability1Label.textColor = pokemonType1Label.backgroundColor
             
             if pokemon.abilities.count >= 2{
-                self.ability2Label.text = pokemon.abilities[1].ability?.name!.uppercased() //Save the 2nd ability
+                guard let abilityName = pokemon.abilities[1].ability?.name else{return}
+                self.ability2Label.text = abilityName.uppercased() //Save the 2nd ability
                 self.ability1Label.textColor = pokemonType1Label.backgroundColor
                 self.ability2Label.textColor = pokemonType1Label.backgroundColor
             }else{
@@ -358,6 +431,7 @@ extension PokemonDetailsViewController{
         case TypeName.steel:
             setPokemonBackgroundColor(184, 184, 208, label)
             setPokemonTextColor(.black, label)
+            favouriteConfirmationImage.image = UIImage(named: "fullStar")
         case TypeName.fire:
             setPokemonBackgroundColor(240, 128, 48, label)
             setPokemonTextColor(.black, label)
@@ -381,6 +455,7 @@ extension PokemonDetailsViewController{
         case TypeName.ice:
             setPokemonBackgroundColor(152, 216, 216, label)
             setPokemonTextColor(.black, label)
+            favouriteConfirmationImage.image = UIImage(named: "fullStar")
             break
         case TypeName.dragon:
             setPokemonBackgroundColor(112, 56, 248, label)
@@ -397,6 +472,7 @@ extension PokemonDetailsViewController{
         case TypeName.unknown:
             setPokemonBackgroundColor(0, 0, 0, label)
             setPokemonTextColor(.white, label)
+            favouriteConfirmationImage.image = UIImage(named: "fullStar")
         case TypeName.shadow:
             setPokemonBackgroundColor(124, 110, 187, label)
             setPokemonTextColor(.white, label)

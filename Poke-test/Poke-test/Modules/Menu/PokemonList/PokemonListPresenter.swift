@@ -22,6 +22,9 @@ class PokemonListPresenter : PokemonListPresenterDelegate {
     func fetchFavourites() {
         interactor?.fetchFavourites()
     }
+    func openLoginSignUpWindow(){
+        wireframe?.openLoginSignUpWindow()
+    }
 }
 
 //MARK: - Methods that return the results from the functionality methods

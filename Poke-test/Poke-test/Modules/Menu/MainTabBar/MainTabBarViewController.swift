@@ -31,11 +31,11 @@ class MainTabBarViewController: UITabBarController {
 extension MainTabBarViewController{
     func setLoggingSettings(){
         if user != nil{
-            titleLog = "Log out"
+            titleLog = NSLocalizedString("Log_out", comment: "")
             image = UIImage(named: "logOut")
             imageSelect = UIImage(named: "logInSelected")
         }else{
-            titleLog = "Log in" //Change!
+            titleLog = NSLocalizedString("Log_in", comment: "")
             image = UIImage(named:"logInNotSelected")
             imageSelect = UIImage(named:"logInSelected")
         }
@@ -44,7 +44,7 @@ extension MainTabBarViewController{
         list = PokemonListWireframe.createPokemonListModule()
         list.tabBarItem = UITabBarItem(title: NSLocalizedString("all", comment: ""), image: UIImage(named: "notSelected"), selectedImage: UIImage(named: "selected"))
         favourites = PokemonFavouritesWireframe.createPokemonFavouritesModule()
-        favourites.tabBarItem = UITabBarItem(title: "FAVS", image: UIImage(named: "fullStar"), selectedImage: UIImage(named: "emptyStar"))
+        favourites.tabBarItem = UITabBarItem(title: NSLocalizedString("FAVS", comment: ""), image: UIImage(named: "fullStar"), selectedImage: UIImage(named: "emptyStar"))
         setLoggingSettings()
         setViewControllers([list, favourites], animated: true)
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: titleLog, style: .plain, target: self, action: #selector(logMethod))
@@ -55,8 +55,8 @@ extension MainTabBarViewController{
 //MARK: - UITabBarControllerDelegate methods
 extension MainTabBarViewController: MainTabBarViewDelegate, UITabBarControllerDelegate{
     override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
-        if item.title == "FAVS"{
-            navigationItem.title = "Favourites"
+        if item.title == NSLocalizedString("FAVS", comment: ""){
+            navigationItem.title = NSLocalizedString("Favourites", comment: "")
         }else if item.title == NSLocalizedString("all", comment: ""){
             navigationItem.title = "Pokedex"
         }
@@ -66,15 +66,15 @@ extension MainTabBarViewController: MainTabBarViewDelegate, UITabBarControllerDe
 //MARK: - LogIn/LogOut method
 extension MainTabBarViewController{
     @objc func logMethod(){
-        if self.titleLog == "Log out"{
+        if self.titleLog == NSLocalizedString("Log_out", comment: ""){//\(user?.email ?? "")
             //alerta si esta seguro
-            let alert = UIAlertController(title: "Logging out", message: "You are going to close \(user?.email ?? "")'s account. Are you sure?", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "Yes", style: .destructive, handler: {(action) in
-                self.titleLog = "Log in"
+            let alert = UIAlertController(title: NSLocalizedString("Logging_out", comment: "") + " \(user?.email ?? "default@default")", message: NSLocalizedString("You_are_going_to_close_this account_Are_you_sure", comment: ""), preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: NSLocalizedString("Yes", comment: ""), style: .destructive, handler: {(action) in
+                self.titleLog = NSLocalizedString("Log_in", comment: "")
                 self.logOut()
                 self.presenter?.openLoginSignUpWindow()
             }))
-            alert.addAction(UIAlertAction(title: "No", style: .cancel, handler: nil))
+            alert.addAction(UIAlertAction(title: NSLocalizedString("No", comment: ""), style: .cancel, handler: nil))
             self.present(alert, animated: true, completion: nil)
         }else{//log in
             self.presenter?.openLoginSignUpWindow()
