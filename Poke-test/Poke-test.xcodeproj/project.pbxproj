@@ -22,7 +22,7 @@
 		FD7B9B06273E4B2A006B7610 /* PokemonFavouritesInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD7B9B00273E4B2A006B7610 /* PokemonFavouritesInteractor.swift */; };
 		FD7B9B07273E4B2A006B7610 /* PokemonFavouritesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FD7B9B01273E4B2A006B7610 /* PokemonFavouritesViewController.xib */; };
 		FD7B9B08273E4B2A006B7610 /* PokemonFavouritesWireframe.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD7B9B02273E4B2A006B7610 /* PokemonFavouritesWireframe.swift */; };
-		FD7CC042274505C5006D1CD5 /* (null) in Embed Frameworks */ = {isa = PBXBuildFile; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		FD7CC042274505C5006D1CD5 /* BuildFile in Embed Frameworks */ = {isa = PBXBuildFile; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		FD7CC04A27450FFF006D1CD5 /* LoginOrSignUpPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD7CC04427450FFF006D1CD5 /* LoginOrSignUpPresenter.swift */; };
 		FD7CC04B27450FFF006D1CD5 /* LoginOrSignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD7CC04527450FFF006D1CD5 /* LoginOrSignUpViewController.swift */; };
 		FD7CC04C27450FFF006D1CD5 /* LoginOrSignUpProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD7CC04627450FFF006D1CD5 /* LoginOrSignUpProtocols.swift */; };
@@ -98,7 +98,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				FD7CC042274505C5006D1CD5 /* (null) in Embed Frameworks */,
+				FD7CC042274505C5006D1CD5 /* BuildFile in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -472,7 +472,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1300;
-				LastUpgradeCheck = 1250;
+				LastUpgradeCheck = 1310;
 				TargetAttributes = {
 					FD3172CB2695CF90006810CA = {
 						CreatedOnToolsVersion = 12.5.1;
@@ -494,7 +494,7 @@
 			);
 			mainGroup = FD3172C32695CF90006810CA;
 			packageReferences = (
-				FD9B9A8226D627BC000322D3 /* XCRemoteSwiftPackageReference "realm-cocoa" */,
+				FD9B9A8226D627BC000322D3 /* XCRemoteSwiftPackageReference "realm-cocoa.git" */,
 			);
 			productRefGroup = FD3172CD2695CF90006810CA /* Products */;
 			projectDirPath = "";
@@ -685,6 +685,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -748,6 +749,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -810,17 +812,9 @@
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = WV4ELQGDQE;
 				INFOPLIST_FILE = "Poke-test/Info.plist";
-<<<<<<< HEAD
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
-				MARKETING_VERSION = 1.1.9;
-=======
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited)";
 				MARKETING_VERSION = 1.1.9;
 				OTHER_LDFLAGS = "$(inherited)";
->>>>>>> feature/alertAndLogin
 				PRODUCT_BUNDLE_IDENTIFIER = "com.baturamobile.jokin-poketest";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "Poke Test Jokin - Debug";
@@ -839,17 +833,9 @@
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = WV4ELQGDQE;
 				INFOPLIST_FILE = "Poke-test/Info.plist";
-<<<<<<< HEAD
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
-				MARKETING_VERSION = 1.1.9;
-=======
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited)";
 				MARKETING_VERSION = 1.1.9;
 				OTHER_LDFLAGS = "$(inherited)";
->>>>>>> feature/alertAndLogin
 				PRODUCT_BUNDLE_IDENTIFIER = "com.baturamobile.jokin-poketest";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "Poke Test Jokin - Release";
@@ -947,7 +933,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		FD9B9A8226D627BC000322D3 /* XCRemoteSwiftPackageReference "realm-cocoa" */ = {
+		FD9B9A8226D627BC000322D3 /* XCRemoteSwiftPackageReference "realm-cocoa.git" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/realm/realm-cocoa.git";
 			requirement = {
@@ -960,12 +946,12 @@
 /* Begin XCSwiftPackageProductDependency section */
 		FD9B9A8326D627BC000322D3 /* Realm */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = FD9B9A8226D627BC000322D3 /* XCRemoteSwiftPackageReference "realm-cocoa" */;
+			package = FD9B9A8226D627BC000322D3 /* XCRemoteSwiftPackageReference "realm-cocoa.git" */;
 			productName = Realm;
 		};
 		FD9B9A8526D627BC000322D3 /* RealmSwift */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = FD9B9A8226D627BC000322D3 /* XCRemoteSwiftPackageReference "realm-cocoa" */;
+			package = FD9B9A8226D627BC000322D3 /* XCRemoteSwiftPackageReference "realm-cocoa.git" */;
 			productName = RealmSwift;
 		};
 /* End XCSwiftPackageProductDependency section */
