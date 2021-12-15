@@ -1,8 +1,8 @@
 
 import UIKit
 
+//MARK: - PokemonCell
 class PokemonCell: UITableViewCell {
-    
     @IBOutlet weak var pokemonBubble: UIView!
     @IBOutlet weak var pokemonNameLabel: UILabel!
     @IBOutlet weak var idLabel: UILabel!
@@ -25,10 +25,12 @@ class PokemonCell: UITableViewCell {
     
 }
 
-//MARK: - CellDelegate methods
+
+//MARK: - PokemonListCellDelegate methods
 extension PokemonCell: PokemonListCellDelegate{
     
-    //MARK: - Sets each pokemon cell
+    
+    //MARK: - updatePokemonInCell
     func updatePokemonInCell(pokemonToFetch: Results) {
         self.pokemon = pokemonToFetch
         if Reachability.isConnectedToNetwork(){
@@ -61,10 +63,9 @@ extension PokemonCell: PokemonListCellDelegate{
     }
 }
 
+
 //MARK: - Painting methods
 extension PokemonCell{
-    
-    //MARK: - Sets an image size
     func imageWithImage(image: UIImage, scaledToSize newSize: CGSize) -> UIImage {
         UIGraphicsBeginImageContext(newSize)
         image.draw(in: CGRect(x: 0 ,y: 0 ,width: newSize.width ,height: newSize.height))
@@ -73,17 +74,13 @@ extension PokemonCell{
         return newImage!.withRenderingMode(.alwaysOriginal)
     }
     
-    //MARK: - Paints cell background
     func setPokemonBackgroundColor(_ red: CGFloat, _ green: CGFloat, _ blue: CGFloat, _ label: UILabel){
         label.backgroundColor = .init(red: red/255, green: green/255, blue: blue/255, alpha: 1)
     }
-    
-    //MARK: - Paints cell text color
+  
     func setPokemonTextColor(_ color: UIColor){
         pokemonNameLabel.textColor = color
     }
-    
-    //MARK: - Paints cell combining the background color and the text color
     func setColor(_ type: String, _ label: UILabel){
         switch type {
         case TypeName.normal:

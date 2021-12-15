@@ -1,16 +1,11 @@
-//
-//  LoginViewController.swift
-//  Poke-test
-//
-//  Created by Jokin Egia on 17/11/21.
-//
-
 import UIKit
 import Firebase
 import FirebaseDatabase
 import FirebaseAuth
 import FirebaseCrashlytics
 
+
+//MARK: - LoginViewController
 class LoginViewController: UIViewController {
 
     @IBOutlet weak var backgroundImageView: UIImageView!
@@ -39,8 +34,13 @@ class LoginViewController: UIViewController {
         crashlyticsErrorSending()
     }
 }
+
+
 //MARK: - ViewDidLoad methods
 extension LoginViewController{
+    
+    
+    //MARK: - crashlyticsErrorSending
     func crashlyticsErrorSending(){
         guard let email = userTextField.text else {return}
         //Enviar email del usuario
@@ -51,8 +51,13 @@ extension LoginViewController{
         Crashlytics.crashlytics().log("Error in LoginViewController")
     }
 }
-//MARK: - Buttons methods
+
+
+//MARK: - LoginViewDelegate methods
 extension LoginViewController: LoginViewDelegate {
+    
+    
+    //MARK: - pressedEnterButton
     @IBAction func pressedEnterButton(_ sender: Any) {
         guard let email = userTextField.text, let password = passwordTextField.text else{return}
         if (password.isEmpty) && (email.isEmpty){
@@ -85,6 +90,9 @@ extension LoginViewController: LoginViewDelegate {
         }
         
     }
+    
+    
+    //MARK: - createAlert
     func createAlert(title: String, message: String){
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))

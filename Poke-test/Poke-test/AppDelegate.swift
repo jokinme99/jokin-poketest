@@ -4,14 +4,17 @@ import Firebase
 import FirebaseMessaging
 import UserNotifications
 import FirebaseAuth
-//import IQKeyboardManagerSwift
-//Swift package dependencies don't work
 
+//MARK: - AppDelegate class
 @main
-class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate, UNUserNotificationCenterDelegate {
+class AppDelegate: UIResponder{
+    //Swift package dependencies don't work
     var window: UIWindow?
     var state = UIApplication.shared.applicationState
-    
+}
+
+//MARK: - UIApplicationDelegate methods
+extension AppDelegate: UIApplicationDelegate{
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         FirebaseApp.configure()
         Messaging.messaging().delegate = self
@@ -25,8 +28,30 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate, UNUser
         setWindow()
         return true
     }
-    //It takes two minutes to receive notification
+
+    func setWindow(){
+        let frame = UIScreen.main.bounds
+        self.window = UIWindow(frame: frame)
+        if Auth.auth().currentUser != nil {
+            let maintabController = MainTabBarWireframe.createMainTabBarModule()
+            let navController = UINavigationController(rootViewController: maintabController)
+            self.window?.rootViewController = navController
+            self.window?.makeKeyAndVisible()
+        } else {
+            let mainViewController = LoginOrSignUpWireframe.createLoginOrSignUpModule()
+            let navController = UINavigationController(rootViewController: mainViewController)
+            self.window?.rootViewController = navController
+            self.window?.makeKeyAndVisible()
+        }
+    }
+    
+}
+
+
+//MARK: - UNUserNotificationCenterDelegate and MessagingDelegate methods
+extension AppDelegate: MessagingDelegate, UNUserNotificationCenterDelegate{
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+        //It takes two minutes to receive notification
         Messaging.messaging().apnsToken = deviceToken
         Messaging.messaging().token { token, error in
             if let error = error {
@@ -36,7 +61,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate, UNUser
             }
         }
     }
-    
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
         //CALLED ONLY WHEN IN APP-> UIAPPLICATIONSTATE = BACKGROUND
         //IF ANOTHER NOTIFICATION IS CALLED(A NEW ONE) MUST UPDATE BADGE NUMBER
@@ -70,6 +94,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate, UNUser
             print("Token: \(token)")
         }
     }
+}
+
+
+//MARK: - Application states
+extension AppDelegate{
     func applicationWillEnterForeground(_ application: UIApplication) {
         print("willEnterForeground")//active
     }
@@ -83,22 +112,5 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate, UNUser
     func applicationDidEnterBackground(_ application: UIApplication) {
         print("didEnterBackground")
     }
-    func setWindow(){
-        let frame = UIScreen.main.bounds
-        self.window = UIWindow(frame: frame)
-        if Auth.auth().currentUser != nil {
-            let maintabController = MainTabBarWireframe.createMainTabBarModule()
-            let navController = UINavigationController(rootViewController: maintabController)
-            self.window?.rootViewController = navController
-            self.window?.makeKeyAndVisible()
-        } else {
-            let mainViewController = LoginOrSignUpWireframe.createLoginOrSignUpModule()
-            let navController = UINavigationController(rootViewController: mainViewController)
-            self.window?.rootViewController = navController
-            self.window?.makeKeyAndVisible()
-        }
-    }
-    
-    
 }
 

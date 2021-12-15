@@ -7,7 +7,7 @@ import FirebaseAuth
 import FirebaseDatabase
 import FirebaseCrashlytics
 
-
+//MARK: - PokemonListViewController
 class PokemonListViewController: UIViewController {//PIN iPhone: 281106
     
     @IBOutlet weak var tableView: UITableView!
@@ -54,13 +54,21 @@ class PokemonListViewController: UIViewController {//PIN iPhone: 281106
     }
     
 }
+
+
 //MARK: - ViewDidLoad Methods
 extension PokemonListViewController{
+    
+    
+    //MARK: - loadDelegates
     func loadDelegates(){
         searchBar.delegate = self
         tableView.delegate = self
         tableView.dataSource = self
-            }
+    }
+    
+    
+    //MARK: - loadButtons
     func loadButtons(){
         orderByButton.addTarget(self, action: #selector(pressedOrderBy), for: .touchUpInside)
         for button in buttonList{
@@ -70,12 +78,18 @@ extension PokemonListViewController{
         orderByButton.setTitle(NSLocalizedString("Order_by_Name", comment: ""), for: .normal)
         loadFilterButtons()
     }
+    
+    
+    //MARK: - loadSearchBar
     func loadSearchBar(){
         self.searchBar.addDoneButtonOnKeyboard()
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
         searchBar.placeholder = NSLocalizedString("search_for_pokemons", comment: "")
     }
+    
+    
+    //MARK: - loadFilterButtons
     func loadFilterButtons(){
         all = NSLocalizedString("all", comment: "").lowercased(); normal = NSLocalizedString("normal", comment: "").lowercased(); fighting = NSLocalizedString("fighting", comment: "").lowercased()
         flying = NSLocalizedString("flying", comment: "").lowercased(); poison = NSLocalizedString("poison", comment: "").lowercased(); ground = NSLocalizedString("ground", comment: "").lowercased()
@@ -93,6 +107,9 @@ extension PokemonListViewController{
         buttonList[15].setTitle(ice?.capitalized, for: .normal); buttonList[16].setTitle(dragon?.capitalized, for: .normal); buttonList[17].setTitle(dark?.capitalized, for: .normal)
         buttonList[18].setTitle(fairy?.capitalized, for: .normal); buttonList[19].setTitle(unknown?.capitalized, for: .normal); buttonList[20].setTitle(shadow?.capitalized, for: .normal)
     }
+    
+    
+    //MARK: - crashlyticsErrorSending
     func crashlyticsErrorSending(){
         //Enviar email del usuario
         guard let email = user?.email else {return}
@@ -101,15 +118,18 @@ extension PokemonListViewController{
         Crashlytics.crashlytics().setCustomValue(email, forKey: "USER")
         //Enviar logs de errores
         Crashlytics.crashlytics().log("Error in PokemonListViewController")
-    }
-}
+    }}
 
-//MARK: - ViewControllerDelegate methods
+
+//MARK: - PokemonListViewDelegate methods
 extension PokemonListViewController: PokemonListViewDelegate {
+    
+    
     //MARK: - Fetch favourites method
     func updateFavourites(favourites: [Favourites]) {
         self.favourites = favourites
     }
+    
     
     //MARK: - Updates filters
     func updateFiltersTableView(pokemons: PokemonFilterListData) {
@@ -124,6 +144,8 @@ extension PokemonListViewController: PokemonListViewDelegate {
         }
         self.tableView.reloadData()
     }
+    
+
     //MARK: - Updates tableView after fetching pokemon list
     func updateTableView(pokemons: PokemonListData) {
         orderByButton.setTitle(NSLocalizedString("Order_by_Name", comment: ""), for: .normal)
@@ -143,18 +165,27 @@ extension PokemonListViewController: PokemonListViewDelegate {
             self.tableView.reloadData()
         }
     }
+    
+    
     //MARK: - TableView from cell method
     func updateTableView() {
         self.tableView.reloadData()
     }
 }
 
-//MARK: - TableView Methods
+
+//MARK: - UITableViewDelegate and UITableViewDataSource Methods
 extension PokemonListViewController:UITableViewDelegate, UITableViewDataSource{
+    
+    
+    //MARK: - numberOfRowsInSection
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return filtered.count; //Row count
         
     }
+    
+    
+    //MARK: - cellForRowAt
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         cell = tableView.dequeueReusableCell(withIdentifier: "PokemonNameCell", for: indexPath) as! PokemonCell
         pokemonInCell = filtered[indexPath.row]
@@ -162,6 +193,9 @@ extension PokemonListViewController:UITableViewDelegate, UITableViewDataSource{
         
         return cell
     }
+    
+    
+    //MARK: - didSelectRowAt
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let row = indexPath.row
         let previousRow = row - 1
@@ -189,6 +223,9 @@ extension PokemonListViewController:UITableViewDelegate, UITableViewDataSource{
         presenter?.openPokemonDetail(pokemon: pokemonSelected, nextPokemon: nextPokemon, previousPokemon: previousPokemon, filtered: filtered)
         
     }
+    
+    
+    //MARK: - leadingSwipeActionsConfigurationForRowAt
     func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? { //Only working when using breakpoint
         if user != nil{
             presenter?.fetchFavourites()
@@ -230,8 +267,12 @@ extension PokemonListViewController:UITableViewDelegate, UITableViewDataSource{
     }
 }
 
+
 //MARK: - SearchBar Delegate & bookmark buttons methods
 extension PokemonListViewController:UISearchBarDelegate{
+    
+    
+    //MARK: - textDidChange
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         if searchText.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines).isEmpty {
             self.filtered = self.pokemon
@@ -249,6 +290,8 @@ extension PokemonListViewController:UISearchBarDelegate{
         self.tableView.reloadData()
     }
 
+    
+    //MARK: - imageWithImage
     func imageWithImage(image: UIImage, scaledToSize newSize: CGSize) -> UIImage {
         UIGraphicsBeginImageContext(newSize)
         image.draw(in: CGRect(x: 0 ,y: 0 ,width: newSize.width ,height: newSize.height))
@@ -256,6 +299,10 @@ extension PokemonListViewController:UISearchBarDelegate{
         UIGraphicsEndImageContext()
         return newImage!.withRenderingMode(.alwaysOriginal)
     }
+    
+    
+    
+    //MARK: - keyboardWillShow
     @objc private func keyboardWillShow(notification: NSNotification) {
         if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
             tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: keyboardSize.height, right: 0)
@@ -263,6 +310,8 @@ extension PokemonListViewController:UISearchBarDelegate{
         }
     }
     
+    
+    //MARK: - keyboardWillHide
     @objc private func keyboardWillHide(notification: NSNotification) {
         if ((notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue) != nil {//If it has value
             tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
@@ -270,6 +319,9 @@ extension PokemonListViewController:UISearchBarDelegate{
     }
     
 }
+
+
+//MARK: - UISearchBar extension
 extension UISearchBar{
     @IBInspectable var doneAccessory: Bool{
         get{
@@ -282,6 +334,8 @@ extension UISearchBar{
         }
     }
     
+    
+    //MARK: - addDoneButtonOnKeyboard
     func addDoneButtonOnKeyboard()
     {
         let doneToolbar: UIToolbar = UIToolbar(frame: CGRect.init(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 50))
@@ -289,29 +343,23 @@ extension UISearchBar{
         
         let flexSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
         let done: UIBarButtonItem = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(self.doneButtonAction))
-        /* let goUp: UIBarButtonItem = UIBarButtonItem(image: UIImage(named: "arrowUp"), style: .done, target: self, action: #selector(self.goUpButtonAction))
-         let goDown: UIBarButtonItem = UIBarButtonItem(image: UIImage(named: "arrowDown"), style: .done, target: self, action: #selector(self.goDownButtonAction)) */
-        
-        let items = [ /* goUp, goDown, */ flexSpace, done]
+
+        let items = [flexSpace, done]
         doneToolbar.items = items
         doneToolbar.sizeToFit()
         
         self.inputAccessoryView = doneToolbar
     }
     
+    
+    //MARK: - doneButtonAction
     @objc func doneButtonAction()
     {
         self.resignFirstResponder()
     }
-    /*
-     @objc func goDownButtonAction(){
-     
-     }
-     @objc func goUpButtonAction(){
-     
-     } */
     
 }
+
 
 //MARK: - OrderBy Buttons methods
 extension PokemonListViewController{
@@ -336,8 +384,10 @@ extension PokemonListViewController{
     }
 }
 
+
 //MARK: - Filter Buttons methods
-extension PokemonListViewController{//Filter buttons TRADUCIR
+extension PokemonListViewController{
+    
     @objc func pressedFilterButton(_ sender: UIButton!){
         switch sender.titleLabel?.text?.lowercased(){
         case all:
@@ -396,6 +446,7 @@ extension PokemonListViewController{//Filter buttons TRADUCIR
     
     
 }
+
 
 //MARK: - Painting Methods
 extension PokemonListViewController{

@@ -1,21 +1,21 @@
-//
-//  LoginProtocols.swift
-//  Poke-test
-//
-//  Created by Jokin Egia on 17/11/21.
-//
 
 import UIKit
 
+
+//MARK: - LoginViewDelegate
 protocol LoginViewDelegate: AnyObject {
     var presenter: LoginPresenterDelegate? {get set}
 }
 
+
+//MARK: - LoginWireframeDelegate
 protocol LoginWireframeDelegate: AnyObject {
     static func createLoginModule() -> UIViewController
     func openMainTabBar()
 }
 
+
+//MARK: - LoginPresenterDelegate
 protocol LoginPresenterDelegate: AnyObject {
     var view: LoginViewDelegate? {get set}
     var interactor: LoginInteractorDelegate? {get set}
@@ -23,10 +23,14 @@ protocol LoginPresenterDelegate: AnyObject {
     func openMainTabBar()
 }
 
+
+//MARK: - LoginInteractorDelegate
 protocol LoginInteractorDelegate: AnyObject {
     var presenter: LoginInteractorOutputDelegate? {get set}
 }
 
+
+//MARK: - LoginInteractorOutputDelegate
 protocol LoginInteractorOutputDelegate: AnyObject {
 
 }

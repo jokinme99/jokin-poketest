@@ -3,12 +3,20 @@ import Firebase
 import FirebaseAuth
 import FirebaseDatabase
 
-class PokemonListInteractor : PokemonListInteractorDelegate{
+//MARK: - PokemonListInteractor
+class PokemonListInteractor{
     var presenter: PokemonListInteractorOutputDelegate?
     var view: PokemonListViewDelegate?
     let ref = Database.database().reference()
     let user = Auth.auth().currentUser
-    //MARK: - Methods that do the functionality
+}
+
+
+//MARK: - PokemonListInteractorDelegate
+extension PokemonListInteractor: PokemonListInteractorDelegate{
+    
+    
+    //MARK: - fetchPokemonList
     func fetchPokemonList() {
         if Reachability.isConnectedToNetwork(){
             PokemonManager.shared.fetchList { pokemonList, error in
@@ -30,6 +38,9 @@ class PokemonListInteractor : PokemonListInteractorDelegate{
         }
         
     }
+    
+    
+    //MARK: - fetchPokemonType
     func fetchPokemonType(type: String) {
         if Reachability.isConnectedToNetwork(){
             PokemonManager.shared.fetchPokemonTypes(pokemonType: type, { pokemonFilterListData, error in
@@ -51,6 +62,35 @@ class PokemonListInteractor : PokemonListInteractorDelegate{
         }
         
     }
+    
+    
+    //MARK: - fetchFavourites
+    func fetchFavourites() {
+        if user != nil{
+            guard let user = user else{return}
+            self.ref.child("users").child(user.uid).child("Favourites").observe(.value, with: {snapshot in
+                self.ref.child("users").child(user.uid).child("Favourites").removeAllObservers()
+                if snapshot.exists(){
+                    let favouritesList = snapshot.value as![String:Any]
+                    var favourites: [Favourites] = []
+                    for fav in favouritesList{
+                        favourites.append(Favourites(name: fav.key))
+                    }
+                    self.presenter?.didFetchFavourites(favourites: favourites)
+                }else{
+                    let favourites: [Favourites] = []
+                    self.presenter?.didFetchFavourites(favourites: favourites)
+                }
+            })
+        }else{
+            let favourites: [Favourites] = []
+            self.presenter?.didFetchFavourites(favourites: favourites)
+        }
+        
+    }
+    
+    
+    //MARK: - addFavourite
     func addFavourite(pokemon: Results) {
         if user != nil{ //Si está logeado
             guard let user = user else {return}
@@ -90,29 +130,6 @@ class PokemonListInteractor : PokemonListInteractorDelegate{
             self.presenter?.didFetchFavourites(favourites: favourites)
         }
         
-        
-    }
-    func fetchFavourites() {
-        if user != nil{
-            guard let user = user else{return}
-            self.ref.child("users").child(user.uid).child("Favourites").observe(.value, with: {snapshot in
-                self.ref.child("users").child(user.uid).child("Favourites").removeAllObservers()
-                if snapshot.exists(){
-                    let favouritesList = snapshot.value as![String:Any]
-                    var favourites: [Favourites] = []
-                    for fav in favouritesList{
-                        favourites.append(Favourites(name: fav.key))
-                    }
-                    self.presenter?.didFetchFavourites(favourites: favourites)
-                }else{
-                    let favourites: [Favourites] = []
-                    self.presenter?.didFetchFavourites(favourites: favourites)
-                }
-            })
-        }else{
-            let favourites: [Favourites] = []
-            self.presenter?.didFetchFavourites(favourites: favourites)
-        }
         
     }
 }

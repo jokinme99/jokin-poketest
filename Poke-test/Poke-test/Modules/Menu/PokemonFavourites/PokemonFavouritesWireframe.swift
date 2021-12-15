@@ -1,16 +1,18 @@
-//
-//  PokemonFavouritesWireframe.swift
-//  Poke-test
-//
-//  Created by Jokin Egia on 12/11/21.
-//
 
 import UIKit
 
-class PokemonFavouritesWireframe : PokemonFavouritesWireframeDelegate {
 
+//MARK: - PokemonFavouritesWireframe
+class PokemonFavouritesWireframe{
     var viewController: UIViewController?
+}
 
+
+//MARK: - PokemonFavouritesWireframeDelegate methods
+extension PokemonFavouritesWireframe: PokemonFavouritesWireframeDelegate{
+    
+    
+    //MARK: - createPokemonFavouritesModule
     static func createPokemonFavouritesModule() -> UIViewController {
         let presenter = PokemonFavouritesPresenter()
         let view = PokemonFavouritesViewController()
@@ -27,10 +29,16 @@ class PokemonFavouritesWireframe : PokemonFavouritesWireframeDelegate {
 
         return view
     }
+    
+    
+    //MARK: - openPokemonDetailsWindow
     func openPokemonDetailsWindow(pokemon: Results, nextPokemon: Results, previousPokemon: Results, filtered: [Results]) {
         let detailModule = PokemonDetailsWireframe.createPokemonDetailsModule(pokemon: pokemon, nextPokemon: nextPokemon, previousPokemon: previousPokemon, filtered: filtered)
         viewController?.navigationController?.pushViewController(detailModule, animated: true)
     }
+    
+    
+    //MARK: - openLoginSignUpWindow
     func openLoginSignUpWindow(){
         let loginSignUpModule = LoginOrSignUpWireframe.createLoginOrSignUpModule()
         let navigation = UINavigationController(rootViewController: loginSignUpModule)
@@ -38,6 +46,9 @@ class PokemonFavouritesWireframe : PokemonFavouritesWireframeDelegate {
         window?.rootViewController = navigation
         window?.makeKeyAndVisible()
     }
+    
+    
+    //MARK: - openPokemonListWindow
     func openPokemonListWindow(){
         let mainTabBarModule = MainTabBarWireframe.createMainTabBarModule()
         let navigation = UINavigationController(rootViewController: mainTabBarModule)

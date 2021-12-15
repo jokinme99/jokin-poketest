@@ -1,12 +1,6 @@
-//
-//  Reachability.swift
-//  Poke-test
-//
-//  Created by Jokin Egia on 8/11/21.
-//
 
 import SystemConfiguration
-
+//MARK: - Reachability class
 public class Reachability {
 
     class func isConnectedToNetwork() -> Bool {

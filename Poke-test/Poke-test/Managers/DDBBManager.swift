@@ -1,13 +1,7 @@
 
 import UIKit
 import RealmSwift
-
-protocol DDBBManagerDelegate:AnyObject{
-    func didSaveFavouriteWithError(error: Error?)
-    func didIsSaved(saved: Bool)
-    func didDeleteFavouriteWithError(error: Error?)
-}
-
+//MARK: - DDBBManager Class
 class DDBBManager {
     static let shared = DDBBManager()
     private let configuration: Realm.Configuration!

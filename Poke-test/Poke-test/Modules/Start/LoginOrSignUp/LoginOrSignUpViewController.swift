@@ -1,13 +1,9 @@
-//
-//  LoginOrSignUpViewController.swift
-//  Poke-test
-//
-//  Created by Jokin Egia on 17/11/21.
-//
 
 import UIKit
 import FirebaseCrashlytics
 
+
+//MARK: - LoginOrSignUpViewController
 class LoginOrSignUpViewController: UIViewController {
 
     var presenter: LoginOrSignUpPresenterDelegate?
@@ -31,8 +27,13 @@ class LoginOrSignUpViewController: UIViewController {
     }
    
 }
+
+
 //MARK: - ViewDidLoad methods
 extension LoginOrSignUpViewController{
+    
+    
+    //MARK: - crashlyticsErrorSending
     func crashlyticsErrorSending(){
         //Enviar claves personalizadas
         Crashlytics.crashlytics().setCustomValue("not logged", forKey: "USER")
@@ -40,8 +41,13 @@ extension LoginOrSignUpViewController{
         Crashlytics.crashlytics().log("Error in MainTabBarViewController")
     }
 }
-//MARK: - Buttons methods
+
+
+//MARK: - LoginOrSignUpViewDelegate methods
 extension LoginOrSignUpViewController: LoginOrSignUpViewDelegate{
+    
+    
+    //MARK: - pressedToLoginMenuButton
     @IBAction func pressedToLoginMenuButton(_ sender: Any) {
         if Reachability.isConnectedToNetwork(){
             presenter?.openLoginWindow()
@@ -51,6 +57,9 @@ extension LoginOrSignUpViewController: LoginOrSignUpViewDelegate{
             self.present(alert, animated: true, completion: nil)
         }
     }
+    
+    
+    //MARK: - pressedToSignUpMenuButton
     @IBAction func pressedToSignUpMenuButton(_ sender: Any) {
         if Reachability.isConnectedToNetwork(){
             presenter?.openSignUpWindow()
@@ -61,6 +70,9 @@ extension LoginOrSignUpViewController: LoginOrSignUpViewDelegate{
         }
         
     }
+    
+    
+    //MARK: - pressedNotLoginOrSignUpButton
     @IBAction func pressedNotLoginOrSignUpButton(_ sender: Any) {
         presenter?.openPokemonListWindow()
     }

@@ -1,10 +1,4 @@
-//
-//  LoginInteractor.swift
-//  Poke-test
-//
-//  Created by Jokin Egia on 17/11/21.
-//
-
+//MARK: - LoginInteractor
 class LoginInteractor : LoginInteractorDelegate {
 
     var presenter: LoginInteractorOutputDelegate?

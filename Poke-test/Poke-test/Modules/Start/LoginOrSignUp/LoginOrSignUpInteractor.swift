@@ -1,9 +1,4 @@
-//
-//  LoginOrSignUpInteractor.swift
-//  Poke-test
-//
-//  Created by Jokin Egia on 17/11/21.
-//
+//MARK: - LoginOrSignUpInteractor
 
 class LoginOrSignUpInteractor : LoginOrSignUpInteractorDelegate {
 
