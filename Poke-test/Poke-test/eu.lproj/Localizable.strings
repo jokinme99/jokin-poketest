@@ -72,3 +72,6 @@
 "Password" = "Pasahitza: ";
 "Enter" = "Sartu";
 "search_for_pokemons" = "Pokemonak bilatu...";
+"Pokemon_added_to_favourites"="Pokemon-a gustokoetara gehituta";
+"Pokemon_deleted_from_favourites"="Pokemon-a gustokoetatik ezabatuta";
+"delete"="Ezabatu";

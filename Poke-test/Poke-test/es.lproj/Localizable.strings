@@ -72,3 +72,6 @@
 "Password" = "Contraseña: ";
 "Enter" = "Acceder";
 "search_for_pokemons" = "Buscar pokemons...";
+"Pokemon_added_to_favourites"="Pokemon añadido a favoritos";
+"Pokemon_deleted_from_favourites"="Pokemon eliminado de favoritos";
+"delete"="Eliminar";

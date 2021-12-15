@@ -5,6 +5,7 @@ import RealmSwift
 import Firebase
 import FirebaseAuth
 import FirebaseDatabase
+import FirebaseCrashlytics
 
 
 class PokemonListViewController: UIViewController {//PIN iPhone: 281106
@@ -38,6 +39,7 @@ class PokemonListViewController: UIViewController {//PIN iPhone: 281106
         loadButtons()
         loadSearchBar()
         tableView.rowHeight = 50.0
+        crashlyticsErrorSending()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -90,6 +92,15 @@ extension PokemonListViewController{
         buttonList[12].setTitle(grass?.capitalized, for: .normal); buttonList[13].setTitle(electric?.capitalized, for: .normal); buttonList[14].setTitle(psychic?.capitalized, for: .normal)
         buttonList[15].setTitle(ice?.capitalized, for: .normal); buttonList[16].setTitle(dragon?.capitalized, for: .normal); buttonList[17].setTitle(dark?.capitalized, for: .normal)
         buttonList[18].setTitle(fairy?.capitalized, for: .normal); buttonList[19].setTitle(unknown?.capitalized, for: .normal); buttonList[20].setTitle(shadow?.capitalized, for: .normal)
+    }
+    func crashlyticsErrorSending(){
+        //Enviar email del usuario
+        guard let email = user?.email else {return}
+        Crashlytics.crashlytics().setUserID(email)
+        //Enviar claves personalizadas
+        Crashlytics.crashlytics().setCustomValue(email, forKey: "USER")
+        //Enviar logs de errores
+        Crashlytics.crashlytics().log("Error in PokemonListViewController")
     }
 }
 
@@ -194,9 +205,14 @@ extension PokemonListViewController:UITableViewDelegate, UITableViewDataSource{
                 let action = UIContextualAction(style: .destructive, title: nil) { action, view, completion in
                     self.presenter?.addFavourite(pokemon: self.filtered[indexPath.row])
                     completion(true)//Si se hace breakpoint funciona
+                    let alert = UIAlertController(title: NSLocalizedString("Pokemon_added_to_favourites", comment: ""), message: nil, preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                    self.present(alert, animated: true, completion: nil)
+                    
                     }
-                action.backgroundColor = .blue
+                action.backgroundColor = .init(red: 41, green: 130, blue: 251, alpha: 1)
                 action.title = NSLocalizedString("Add", comment: "")
+
                 return UISwipeActionsConfiguration(actions: [action])
             }
         }else{

@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import FirebaseCrashlytics
 
 class LoginOrSignUpViewController: UIViewController {
 
@@ -26,6 +27,17 @@ class LoginOrSignUpViewController: UIViewController {
         titleLabel.text = NSLocalizedString("Welcome", comment: "")
         toLoginMenuView.layer.cornerRadius = 10
         toSignUpMenuView.layer.cornerRadius = 10
+        crashlyticsErrorSending()
+    }
+   
+}
+//MARK: - ViewDidLoad methods
+extension LoginOrSignUpViewController{
+    func crashlyticsErrorSending(){
+        //Enviar claves personalizadas
+        Crashlytics.crashlytics().setCustomValue("not logged", forKey: "USER")
+        //Enviar logs de errores
+        Crashlytics.crashlytics().log("Error in MainTabBarViewController")
     }
 }
 //MARK: - Buttons methods

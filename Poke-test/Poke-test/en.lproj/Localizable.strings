@@ -72,3 +72,6 @@
 "Password" = "Password: ";
 "Enter" = "Enter";
 "search_for_pokemons" = "Search for pokemons...";
+"Pokemon_added_to_favourites"="Pokemon added to favourites";
+"Pokemon_deleted_from_favourites"="Pokemon deleted from favourites";
+"delete"="Delete";

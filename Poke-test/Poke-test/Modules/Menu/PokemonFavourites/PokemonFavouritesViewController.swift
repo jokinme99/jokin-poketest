@@ -5,7 +5,8 @@ import RealmSwift
 import Firebase
 import FirebaseAuth
 import FirebaseDatabase
-//QUITAR COMENTARIOS & !
+import FirebaseCrashlytics
+
 class PokemonFavouritesViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var orderByButton: UIButton!
@@ -40,6 +41,8 @@ class PokemonFavouritesViewController: UIViewController {
         loadSearchBar()
         tableView.rowHeight = 80.0
         pokemonDataList = DDBBManager.shared.get(PokemonData.self)
+        crashlyticsErrorSending()
+
         
         
     }
@@ -94,6 +97,16 @@ extension PokemonFavouritesViewController{
         buttonList[12].setTitle(grass?.capitalized, for: .normal); buttonList[13].setTitle(electric?.capitalized, for: .normal); buttonList[14].setTitle(psychic?.capitalized, for: .normal)
         buttonList[15].setTitle(ice?.capitalized, for: .normal); buttonList[16].setTitle(dragon?.capitalized, for: .normal); buttonList[17].setTitle(dark?.capitalized, for: .normal)
         buttonList[18].setTitle(fairy?.capitalized, for: .normal); buttonList[19].setTitle(unknown?.capitalized, for: .normal); buttonList[20].setTitle(shadow?.capitalized, for: .normal)
+    }
+    func crashlyticsErrorSending(){
+        //Crashlytics para detectar bugs a la hora de utilizar la app que no se han detectado en el desarrollo
+        //Enviar email del usuario
+        guard let email = user?.email else {return}
+        Crashlytics.crashlytics().setUserID(email)
+        //Enviar claves personalizadas
+        Crashlytics.crashlytics().setCustomValue(email, forKey: "USER")
+        //Enviar logs de errores
+        Crashlytics.crashlytics().log("Error in PokemonFavouritesViewController")
     }
 }
 
@@ -220,7 +233,14 @@ extension PokemonFavouritesViewController:UITableViewDelegate, UITableViewDataSo
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete{//delete text TRADUCIR
             self.presenter?.deleteFavourite(pokemon: filtered[indexPath.row])
+            let alert = UIAlertController(title: NSLocalizedString("Pokemon_deleted_from_favourites", comment: ""), message: nil, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
         }
+    }
+    func tableView(_ tableView: UITableView, titleForDeleteConfirmationButtonForRowAt indexPath: IndexPath) -> String?
+    {
+        return NSLocalizedString("delete", comment: "")
     }
     
 }
@@ -271,6 +291,7 @@ extension PokemonFavouritesViewController{
     
     @objc func pressedOrderBy(_ sender: UIButton!) {
         if orderByButton.titleLabel?.text == NSLocalizedString("Order_by_Name", comment: ""){
+//            fatalError() //Testing Crashlytics
             orderByButton.setTitle(NSLocalizedString("Order_by_Id", comment: ""), for: .normal)
             self.filtered = filtered.sorted(by: {$0.name ?? "" < $1.name ?? ""})
             self.tableView.reloadData()

@@ -5,6 +5,7 @@ import RealmSwift
 import Firebase
 import FirebaseDatabase
 import FirebaseAuth
+import FirebaseCrashlytics
 
 class PokemonDetailsViewController: UIViewController {
     @IBOutlet weak var backgroundView: UIView!
@@ -56,6 +57,8 @@ class PokemonDetailsViewController: UIViewController {
         loadMethods()
         guard let selectedPokemon = selectedPokemon else {return}
         row = (filtered.firstIndex(of: selectedPokemon))
+        crashlyticsErrorSending()
+
     }
 }
 
@@ -108,6 +111,15 @@ extension PokemonDetailsViewController{
         self.nextButton.layer.cornerRadius = 5
         self.nextButton.layer.borderWidth = 2
         self.nextButton.layer.borderColor = UIColor.black.cgColor
+    }
+    func crashlyticsErrorSending(){
+        //Enviar email del usuario
+        guard let email = user?.email else {return}
+        Crashlytics.crashlytics().setUserID(email)
+        //Enviar claves personalizadas
+        Crashlytics.crashlytics().setCustomValue(email, forKey: "USER")
+        //Enviar logs de errores
+        Crashlytics.crashlytics().log("Error in PokemonDetailsViewController")
     }
 }
 

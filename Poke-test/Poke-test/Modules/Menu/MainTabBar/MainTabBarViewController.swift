@@ -9,6 +9,7 @@ import UIKit
 import Firebase
 import FirebaseDatabase
 import FirebaseAuth
+import FirebaseCrashlytics
 
 class MainTabBarViewController: UITabBarController {
     
@@ -25,6 +26,7 @@ class MainTabBarViewController: UITabBarController {
         super.viewDidLoad()
         delegate = self
         setTabBar()
+        crashlyticsErrorSending()
     }
 }
 //MARK: - ViewDidLoad methods
@@ -49,6 +51,12 @@ extension MainTabBarViewController{
         setViewControllers([list, favourites], animated: true)
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: titleLog, style: .plain, target: self, action: #selector(logMethod))
         navigationItem.title = "Pokedex"
+    }
+    func crashlyticsErrorSending(){
+        guard let email = user?.email else {return}
+        Crashlytics.crashlytics().setUserID(email)
+        Crashlytics.crashlytics().setCustomValue(email, forKey: "USER")
+        Crashlytics.crashlytics().log("Error in MainTabBarViewController")
     }
 }
 

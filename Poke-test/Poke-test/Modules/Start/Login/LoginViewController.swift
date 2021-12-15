@@ -9,6 +9,8 @@ import UIKit
 import Firebase
 import FirebaseDatabase
 import FirebaseAuth
+import FirebaseCrashlytics
+
 class LoginViewController: UIViewController {
 
     @IBOutlet weak var backgroundImageView: UIImageView!
@@ -34,9 +36,22 @@ class LoginViewController: UIViewController {
         userLabel.text = NSLocalizedString("Email", comment: "")
         passwordLabel.text = NSLocalizedString("Password", comment: "")
         enterButton.setTitle(NSLocalizedString("Enter", comment: ""), for: .normal)
+        crashlyticsErrorSending()
     }
 }
-
+//MARK: - ViewDidLoad methods
+extension LoginViewController{
+    func crashlyticsErrorSending(){
+        guard let email = userTextField.text else {return}
+        //Enviar email del usuario
+        Crashlytics.crashlytics().setUserID(email)
+        //Enviar claves personalizadas
+        Crashlytics.crashlytics().setCustomValue(email, forKey: "USER")
+        //Enviar logs de errores
+        Crashlytics.crashlytics().log("Error in LoginViewController")
+    }
+}
+//MARK: - Buttons methods
 extension LoginViewController: LoginViewDelegate {
     @IBAction func pressedEnterButton(_ sender: Any) {
         guard let email = userTextField.text, let password = passwordTextField.text else{return}

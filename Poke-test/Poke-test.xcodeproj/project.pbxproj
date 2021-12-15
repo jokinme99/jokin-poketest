@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 52;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -22,7 +22,7 @@
 		FD7B9B06273E4B2A006B7610 /* PokemonFavouritesInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD7B9B00273E4B2A006B7610 /* PokemonFavouritesInteractor.swift */; };
 		FD7B9B07273E4B2A006B7610 /* PokemonFavouritesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FD7B9B01273E4B2A006B7610 /* PokemonFavouritesViewController.xib */; };
 		FD7B9B08273E4B2A006B7610 /* PokemonFavouritesWireframe.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD7B9B02273E4B2A006B7610 /* PokemonFavouritesWireframe.swift */; };
-		FD7CC042274505C5006D1CD5 /* BuildFile in Embed Frameworks */ = {isa = PBXBuildFile; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		FD7CC042274505C5006D1CD5 /* (null) in Embed Frameworks */ = {isa = PBXBuildFile; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		FD7CC04A27450FFF006D1CD5 /* LoginOrSignUpPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD7CC04427450FFF006D1CD5 /* LoginOrSignUpPresenter.swift */; };
 		FD7CC04B27450FFF006D1CD5 /* LoginOrSignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD7CC04527450FFF006D1CD5 /* LoginOrSignUpViewController.swift */; };
 		FD7CC04C27450FFF006D1CD5 /* LoginOrSignUpProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD7CC04627450FFF006D1CD5 /* LoginOrSignUpProtocols.swift */; };
@@ -52,8 +52,6 @@
 		FD85C3AC2696EB1E00EAF99F /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD85C3AB2696EB1E00EAF99F /* DataManager.swift */; };
 		FD86C1522701A33C00DB4B8F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FD86C1512701A33C00DB4B8F /* Assets.xcassets */; };
 		FD88DF3F26DE076E0094858B /* DDBBManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD88DF3E26DE076E0094858B /* DDBBManager.swift */; };
-		FD9B9A8426D627BC000322D3 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = FD9B9A8326D627BC000322D3 /* Realm */; };
-		FD9B9A8626D627BC000322D3 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = FD9B9A8526D627BC000322D3 /* RealmSwift */; };
 		FDA34EEE26E8952900AE2143 /* PokemonListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDA34EE826E8952900AE2143 /* PokemonListPresenter.swift */; };
 		FDA34EEF26E8952900AE2143 /* PokemonListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDA34EE926E8952900AE2143 /* PokemonListViewController.swift */; };
 		FDA34EF026E8952900AE2143 /* PokemonListProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDA34EEA26E8952900AE2143 /* PokemonListProtocols.swift */; };
@@ -98,7 +96,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				FD7CC042274505C5006D1CD5 /* BuildFile in Embed Frameworks */,
+				FD7CC042274505C5006D1CD5 /* (null) in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -183,8 +181,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FD9B9A8626D627BC000322D3 /* RealmSwift in Frameworks */,
-				FD9B9A8426D627BC000322D3 /* Realm in Frameworks */,
 				8892A806BC7C02A358C27527 /* Pods_Poke_test.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -431,6 +427,7 @@
 				FD3172CA2695CF90006810CA /* Resources */,
 				FD676B4127269A7200318834 /* Embed App Extensions */,
 				B3A0225CF01F3E0A78A6D01E /* [CP] Embed Pods Frameworks */,
+				FD8CE3052768AF8F00924721 /* Firebase Crashlytics */,
 			);
 			buildRules = (
 			);
@@ -439,8 +436,6 @@
 			);
 			name = "Poke-test";
 			packageProductDependencies = (
-				FD9B9A8326D627BC000322D3 /* Realm */,
-				FD9B9A8526D627BC000322D3 /* RealmSwift */,
 			);
 			productName = "Poke-test";
 			productReference = FD3172CC2695CF90006810CA /* Poke-test.app */;
@@ -494,7 +489,6 @@
 			);
 			mainGroup = FD3172C32695CF90006810CA;
 			packageReferences = (
-				FD9B9A8226D627BC000322D3 /* XCRemoteSwiftPackageReference "realm-cocoa.git" */,
 			);
 			productRefGroup = FD3172CD2695CF90006810CA /* Products */;
 			projectDirPath = "";
@@ -596,6 +590,26 @@
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
+		};
+		FD8CE3052768AF8F00924721 /* Firebase Crashlytics */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Resources/DWARF/${TARGET_NAME}",
+				"$(SRCROOT)/$(BUILT_PRODUCTS_DIR)/$(INFOPLIST_PATH)",
+			);
+			name = "Firebase Crashlytics";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n\"${PODS_ROOT}/FirebaseCrashlytics/run\"\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -810,6 +824,7 @@
 				CODE_SIGN_ENTITLEMENTS = "Poke-test/Poke-test.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = WV4ELQGDQE;
 				INFOPLIST_FILE = "Poke-test/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited)";
@@ -931,30 +946,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCRemoteSwiftPackageReference section */
-		FD9B9A8226D627BC000322D3 /* XCRemoteSwiftPackageReference "realm-cocoa.git" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/realm/realm-cocoa.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 10.12.0;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		FD9B9A8326D627BC000322D3 /* Realm */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = FD9B9A8226D627BC000322D3 /* XCRemoteSwiftPackageReference "realm-cocoa.git" */;
-			productName = Realm;
-		};
-		FD9B9A8526D627BC000322D3 /* RealmSwift */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = FD9B9A8226D627BC000322D3 /* XCRemoteSwiftPackageReference "realm-cocoa.git" */;
-			productName = RealmSwift;
-		};
-/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = FD3172C42695CF90006810CA /* Project object */;
 }

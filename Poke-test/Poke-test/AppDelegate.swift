@@ -5,6 +5,7 @@ import FirebaseMessaging
 import UserNotifications
 import FirebaseAuth
 //import IQKeyboardManagerSwift
+//Swift package dependencies don't work
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate, UNUserNotificationCenterDelegate {

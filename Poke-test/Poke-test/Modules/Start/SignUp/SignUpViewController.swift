@@ -33,9 +33,22 @@ class SignUpViewController: UIViewController {
         userLabel.text = NSLocalizedString("Email", comment: "")
         passwordLabel.text = NSLocalizedString("Password", comment: "")
         enterButton.setTitle(NSLocalizedString("Enter", comment: ""), for: .normal)
+        crashlyticsErrorSending()
     }
 }
-
+//MARK: - ViewDidLoad methods
+extension SignUpViewController{
+    func crashlyticsErrorSending(){
+        guard let email = userTextField.text else {return}
+        //Enviar email del usuario
+        Crashlytics.crashlytics().setUserID(email)
+        //Enviar claves personalizadas
+        Crashlytics.crashlytics().setCustomValue(email, forKey: "USER")
+        //Enviar logs de errores
+        Crashlytics.crashlytics().log("Error in SignUpViewController")
+    }
+}
+//MARK: - Buttons methods
 extension SignUpViewController: SignUpViewDelegate {
     
     @IBAction func pressedEnterButton(_ sender: Any) {

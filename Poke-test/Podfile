@@ -15,11 +15,12 @@ target 'Poke-test' do
   # Pods for Poke-test
   pod 'Alamofire'
   pod 'AlamofireImage'
-  pod 'Firebase/Core'
-  pod 'Firebase/Database'
+  pod 'RealmSwift'
+  pod 'Firebase/Analytics'
   pod 'Firebase/Auth'
-  pod 'ValidationComponents'
-  firebase_messaging
+  pod 'Firebase/Core'
+  pod 'Firebase/Crashlytics'
+  pod 'Firebase/Database'
   google_utilites
   # pod 'IQKeyboardManagerSwift'
 end
