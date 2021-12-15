@@ -8,7 +8,7 @@ import FirebaseDatabase
 import FirebaseCrashlytics
 
 //MARK: - PokemonListViewController
-class PokemonListViewController: UIViewController {//PIN iPhone: 281106
+class PokemonListViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var orderByButton: UIButton!
