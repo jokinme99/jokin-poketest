@@ -2,8 +2,10 @@
 import Alamofire
 import RealmSwift
 
+//MARK: - PokemonManager class
 class PokemonManager{
     static var shared = PokemonManager()
+    
     //MARK: - Fetch Pokemon List
     func fetchList( _ completion:  @escaping  (PokemonListData?, Error?) -> Void){
         let pokemonListURL = "https://pokeapi.co/api/v2/pokemon/?limit=1118"
@@ -25,7 +27,6 @@ class PokemonManager{
             }
     }
 
-
     
     //MARK: - Fetch Pokemon Details
     func fetchPokemon(pokemonSelectedName: String, _ completion:  @escaping  (PokemonData?, Error?) -> Void){
@@ -45,6 +46,7 @@ class PokemonManager{
             }
     }
     
+    
     //MARK: - Fetch Pokemon Types
     func fetchPokemonTypes(pokemonType: String, _ completion: @escaping(PokemonFilterListData?, Error?)-> Void){
         let pokemonFilterURL = "https://pokeapi.co/api/v2/type/\(pokemonType)"
@@ -61,11 +63,12 @@ class PokemonManager{
                     completion(nil, error)
                 }
             }
-    }
-}
+    }}
 
-//Offline storage methods
-extension PokemonManager{ //Only do it if everything is empty
+
+//MARK: - Offline Storage methods
+extension PokemonManager{
+    //Only do it if everything is empty
     func addOfflineData(_ pokemons: PokemonListData){
         let isSaved = isSavedPokemonInList(pokemons)
         if !isSaved.isSaved{
@@ -114,6 +117,7 @@ extension PokemonManager{ //Only do it if everything is empty
         }
     }
     
+    //IsSavedChecking methods
     func isSaved(pokemonList: PokemonData){
         let saved = isSavedPokemonDataInList(pokemonList)
         didIsSaved(saved: saved.isSaved)
@@ -147,7 +151,6 @@ extension PokemonManager{ //Only do it if everything is empty
     func didIsSaved(saved: Bool) {
         print(saved)
     }
-    
     func didSaveWithError(error: Error?) {
         print("error")
     }

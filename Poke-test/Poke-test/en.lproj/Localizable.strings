@@ -1,11 +1,3 @@
-/* 
-  Localizable.strings
-  Poke-test
-
-  Created by Jokin Egia on 24/11/21.
-  
-*/
-
 "email_and_password_empty_error"="Insert an email and password please.";
 "email_empty_error"="Insert an email please.";
 "password_empty_error"="Insert a password please.";

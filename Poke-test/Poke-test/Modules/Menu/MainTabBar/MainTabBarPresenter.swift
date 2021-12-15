@@ -1,10 +1,5 @@
-//
-//  MainTabBarPresenter.swift
-//  Poke-test
-//
-//  Created by Jokin Egia on 10/11/21.
-//
 
+//MARK: - MainTabBarPresenter
 class MainTabBarPresenter : MainTabBarPresenterDelegate {
     var view: MainTabBarViewDelegate?
     var interactor: MainTabBarInteractorDelegate?
@@ -14,6 +9,8 @@ class MainTabBarPresenter : MainTabBarPresenterDelegate {
     }
 }
 
+
+//MARK: - MainTabBarInteractorOutuputDelegate methods
 extension MainTabBarPresenter: MainTabBarInteractorOutputDelegate {
 
 }

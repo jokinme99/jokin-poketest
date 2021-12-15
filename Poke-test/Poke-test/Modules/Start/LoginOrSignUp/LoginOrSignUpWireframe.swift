@@ -1,15 +1,17 @@
-//
-//  LoginOrSignUpWireframe.swift
-//  Poke-test
-//
-//  Created by Jokin Egia on 17/11/21.
-//
-
 import UIKit
 
-class LoginOrSignUpWireframe : LoginOrSignUpWireframeDelegate {
-    var viewController: UIViewController?
 
+//MARK: - LoginOrSignUpWireframe
+class LoginOrSignUpWireframe{
+    var viewController: UIViewController?
+}
+
+
+//MARK: - LoginOrSignUpWireframeDelegate
+extension LoginOrSignUpWireframe: LoginOrSignUpWireframeDelegate{
+    
+    
+    //MARK: - createLoginOrSignUpModule
     static func createLoginOrSignUpModule() -> UIViewController {
         let presenter = LoginOrSignUpPresenter()
         let view = LoginOrSignUpViewController()
@@ -27,19 +29,25 @@ class LoginOrSignUpWireframe : LoginOrSignUpWireframeDelegate {
         return view
     }
 
-    func openLoginWindow() {//FIX (With present)
+    
+    //MARK: - openLoginWindow
+    func openLoginWindow() {
         let loginModule = LoginWireframe.createLoginModule()
         viewController?.present(loginModule, animated: true, completion: nil)
     }
     
-    func openSignUpWindow() {//ALSO FIX IT (Testing with .show())
+    
+    //MARK: - openSignUpWindow
+    func openSignUpWindow() {
         let signUpModule = SignUpWireframe.createSignUpModule()
         viewController?.present(signUpModule, animated: true, completion: nil)
     }
+    
+    
+    //MARK: - openPokemonListWindow
     func openPokemonListWindow() {
         let listModule = MainTabBarWireframe.createMainTabBarModule()
         viewController?.navigationController?.setViewControllers([listModule], animated: true)
         
     }
-    
 }

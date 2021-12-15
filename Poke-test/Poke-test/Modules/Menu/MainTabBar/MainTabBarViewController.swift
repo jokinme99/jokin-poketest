@@ -1,15 +1,11 @@
-//
-//  MainTabBarViewController.swift
-//  Poke-test
-//
-//  Created by Jokin Egia on 10/11/21.
-//
 
 import UIKit
 import Firebase
 import FirebaseDatabase
 import FirebaseAuth
 import FirebaseCrashlytics
+
+//MARK: - MainTabBarViewController
 
 class MainTabBarViewController: UITabBarController {
     
@@ -29,8 +25,12 @@ class MainTabBarViewController: UITabBarController {
         crashlyticsErrorSending()
     }
 }
+
 //MARK: - ViewDidLoad methods
 extension MainTabBarViewController{
+    
+    
+    //MARK: - setLoggingSettings
     func setLoggingSettings(){
         if user != nil{
             titleLog = NSLocalizedString("Log_out", comment: "")
@@ -42,6 +42,9 @@ extension MainTabBarViewController{
             imageSelect = UIImage(named:"logInSelected")
         }
     }
+    
+    
+    //MARK: - setTabBar
     func setTabBar(){
         list = PokemonListWireframe.createPokemonListModule()
         list.tabBarItem = UITabBarItem(title: NSLocalizedString("all", comment: ""), image: UIImage(named: "notSelected"), selectedImage: UIImage(named: "selected"))
@@ -52,13 +55,16 @@ extension MainTabBarViewController{
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: titleLog, style: .plain, target: self, action: #selector(logMethod))
         navigationItem.title = "Pokedex"
     }
+    
+    
+    //MARK: - crashlyticsErrorSending
     func crashlyticsErrorSending(){
         guard let email = user?.email else {return}
         Crashlytics.crashlytics().setUserID(email)
         Crashlytics.crashlytics().setCustomValue(email, forKey: "USER")
         Crashlytics.crashlytics().log("Error in MainTabBarViewController")
-    }
-}
+    }}
+
 
 //MARK: - UITabBarControllerDelegate methods
 extension MainTabBarViewController: MainTabBarViewDelegate, UITabBarControllerDelegate{
@@ -71,8 +77,12 @@ extension MainTabBarViewController: MainTabBarViewDelegate, UITabBarControllerDe
     }
 }
 
+
 //MARK: - LogIn/LogOut method
 extension MainTabBarViewController{
+    
+    
+    //MARK: - logMethod
     @objc func logMethod(){
         if self.titleLog == NSLocalizedString("Log_out", comment: ""){//\(user?.email ?? "")
             //alerta si esta seguro
@@ -88,6 +98,9 @@ extension MainTabBarViewController{
             self.presenter?.openLoginSignUpWindow()
         }
     }
+    
+    
+    //MARK: - logOut
     func logOut(){
         let firebaseAuth = Auth.auth()
         do {
@@ -96,4 +109,5 @@ extension MainTabBarViewController{
             print("Error signing out: %@", signOutError)
         }
     }
+    
 }

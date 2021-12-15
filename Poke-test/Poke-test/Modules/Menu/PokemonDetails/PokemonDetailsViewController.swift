@@ -7,6 +7,8 @@ import FirebaseDatabase
 import FirebaseAuth
 import FirebaseCrashlytics
 
+
+//MARK: - PokemonDetailsViewController
 class PokemonDetailsViewController: UIViewController {
     @IBOutlet weak var backgroundView: UIView!
     @IBOutlet weak var typesView: UIView!
@@ -62,8 +64,12 @@ class PokemonDetailsViewController: UIViewController {
     }
 }
 
-//MARK: - Load methods
+
+//MARK: - ViewDidLoad methods
 extension PokemonDetailsViewController{
+    
+    
+    //MARK: - loadSelectedPokemon
     func loadSelectedPokemon(){
         if let pokemonToFetch = selectedPokemon{
             presenter?.fetchPokemon(pokemon: pokemonToFetch)
@@ -71,6 +77,9 @@ extension PokemonDetailsViewController{
             return
         }
     }
+    
+    
+    //MARK: - isFavourite
     func isFavourite(){
         for fav in favouritesList{
             guard let name = fav.name else {return}
@@ -92,6 +101,9 @@ extension PokemonDetailsViewController{
             
         }
     }
+    
+    
+    //MARK: - loadMethods
     func loadMethods(){
         self.loadButtonsStyle()
         self.favouritesButton.addTarget(self, action: #selector(pressed), for: .touchUpInside)
@@ -104,6 +116,9 @@ extension PokemonDetailsViewController{
         self.nextButton.setTitle(self.nextPokemon?.name?.capitalized, for: .normal)
         self.previewButton.setTitle(self.previousPokemon?.name?.capitalized, for: .normal)
     }
+    
+    
+    //MARK: - loadButtonsStyle
     func loadButtonsStyle(){
         self.previewButton.layer.cornerRadius = 5
         self.previewButton.layer.borderWidth = 2
@@ -112,6 +127,9 @@ extension PokemonDetailsViewController{
         self.nextButton.layer.borderWidth = 2
         self.nextButton.layer.borderColor = UIColor.black.cgColor
     }
+    
+    
+    //MARK: - crashlyticsErrorSending
     func crashlyticsErrorSending(){
         //Enviar email del usuario
         guard let email = user?.email else {return}
@@ -123,16 +141,20 @@ extension PokemonDetailsViewController{
     }
 }
 
-//MARK: - ViewControllerDelegate methods
+
+//MARK: - PokemonDetailsViewDelegate methods
 extension PokemonDetailsViewController: PokemonDetailsViewDelegate {
     
-    //MARK: - Sets the add/delete label wether it's a favourite or not
+    
+    //MARK: - addFavourite
     func addFavourite(pokemon: Results) {
         favouritesButton.setTitle(NSLocalizedString("delete_from_favourites", comment: ""), for: .normal)
         favouritesImage.image = UIImage(named: "emptyStar")
         favouriteConfirmationImage.isHidden = false
     }
-    //FIX DELETE NOT CHANGING
+    
+    
+    //MARK: - deleteFavourite
     func deleteFavourite(pokemon: Results) {
         let filt = filtered.map{$0.name}
         let fav = favouritesList.map{$0.name}
@@ -162,22 +184,28 @@ extension PokemonDetailsViewController: PokemonDetailsViewDelegate {
         
     }
     
-    //MARK: - Gets the selected pokemon from the tableView
+    
+    //MARK: - getSelectedPokemon
     func getSelectedPokemon(with pokemon: Results) {
         selectedPokemon = pokemon
     }
     
-    //MARK: - Gets the favourite list after the fetching
+    
+    //MARK: - updateDetailsViewFavourites
     func updateDetailsViewFavourites(favourites: [Favourites]) {
         self.favouritesList = favourites
         isFavourite()
     }
     
-    //MARK: - Updates view after fetching the details of the selected pokemon
+    
+    //MARK: - updateDetailsView
     func updateDetailsView(pokemon: PokemonData) {
         paintWindow(pokemon)
     }
-    func paintWindow(_ pokemon: PokemonData){//Fix image and filters (offline)
+    
+    
+    //MARK: - paintWindow
+    func paintWindow(_ pokemon: PokemonData){
         let type = pokemon.types[0]
         self.pokemonNameLabel.text = pokemon.name?.uppercased()
         self.pokemonType1Label.text = type.type?.name?.uppercased()
@@ -195,6 +223,9 @@ extension PokemonDetailsViewController: PokemonDetailsViewDelegate {
         self.paintLabel(pokemon: pokemon)
         self.transformUrlToImage(url: pokemon.sprites?.front_default ?? "")
     }
+    
+    
+    //MARK: - transformUrlToImage
     func transformUrlToImage(url: String){
         if let downloadURL = URL(string: url){
             if Reachability.isConnectedToNetwork(){
@@ -210,8 +241,12 @@ extension PokemonDetailsViewController: PokemonDetailsViewDelegate {
     }
 }
 
+
 //MARK: - Buttons methods
 extension PokemonDetailsViewController{
+    
+    
+    //MARK: - pressed
     @objc func pressed(_ sender: UIButton!) {
         if user != nil{
             guard let selectedPokemon = selectedPokemon else{return}
@@ -230,6 +265,9 @@ extension PokemonDetailsViewController{
         }
         
     }
+    
+    
+    //MARK: - nextPokemonButtonAction
     @objc func nextPokemonButtonAction(_ sender: UIButton!){
         guard let nextPokemon = nextPokemon else{return}
         presenter?.fetchPokemon(pokemon: nextPokemon)
@@ -239,9 +277,10 @@ extension PokemonDetailsViewController{
             row = row! + 1 // if we do guard let row = row or row ?? 0 doesn't work
         }
         nextOrPrevious()
-        
-        
     }
+    
+    
+    //MARK: - previousPokemonButtonAction
     @objc func previousPokemonButtonAction(_ sender: UIButton!){
         guard let previousPokemon = previousPokemon else{return}
         presenter?.fetchPokemon(pokemon: previousPokemon)
@@ -253,6 +292,9 @@ extension PokemonDetailsViewController{
         nextOrPrevious()
         
     }
+    
+    
+    //MARK: - nextOrPrevious
     func nextOrPrevious(){
         guard let row = row else{return}
         if filtered.count < 3{
@@ -290,7 +332,8 @@ extension PokemonDetailsViewController{
     }
 }
 
-//MARK: - Coloring methods
+
+//MARK: - Painting methods
 extension PokemonDetailsViewController{
     func setName(type: String, to label : UILabel){
         switch type {
@@ -505,7 +548,3 @@ extension PokemonDetailsViewController{
     }
     
 }
-
-
-
-

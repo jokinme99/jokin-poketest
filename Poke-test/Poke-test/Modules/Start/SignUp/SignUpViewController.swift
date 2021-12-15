@@ -1,15 +1,11 @@
-//
-//  SignUpViewController.swift
-//  Poke-test
-//
-//  Created by Jokin Egia on 17/11/21.
-//
-
 import UIKit
 import Firebase
 import FirebaseDatabase
 import FirebaseAuth
+import FirebaseCrashlytics
 
+
+//MARK: - SignUpViewController
 class SignUpViewController: UIViewController {
     @IBOutlet weak var backgroundImageView: UIImageView!
     @IBOutlet weak var titleView: UIView!
@@ -36,8 +32,13 @@ class SignUpViewController: UIViewController {
         crashlyticsErrorSending()
     }
 }
+
+
 //MARK: - ViewDidLoad methods
 extension SignUpViewController{
+    
+    
+    //MARK: - crashlyticsErrorSending
     func crashlyticsErrorSending(){
         guard let email = userTextField.text else {return}
         //Enviar email del usuario
@@ -48,9 +49,13 @@ extension SignUpViewController{
         Crashlytics.crashlytics().log("Error in SignUpViewController")
     }
 }
-//MARK: - Buttons methods
+
+
+//MARK: - SignUpViewDelegate methods
 extension SignUpViewController: SignUpViewDelegate {
     
+    
+    //MARK: - pressedEnterButton
     @IBAction func pressedEnterButton(_ sender: Any) {
         guard let email = userTextField.text, let password = passwordTextField.text else{return}
         let ref = Database.database().reference().root
@@ -83,6 +88,9 @@ extension SignUpViewController: SignUpViewDelegate {
         }
         
     }
+    
+    
+    //MARK: - createAlert
     func createAlert(title: String, message: String){
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))

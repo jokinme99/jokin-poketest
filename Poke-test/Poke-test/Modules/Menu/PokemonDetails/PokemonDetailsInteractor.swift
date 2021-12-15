@@ -2,13 +2,21 @@ import Firebase
 import FirebaseDatabase
 import FirebaseAuth
 
-class PokemonDetailsInteractor : PokemonDetailsInteractorDelegate {
-    
+
+//MARK: - PokemonDetailsInteractor
+class PokemonDetailsInteractor{
     var presenter: PokemonDetailsInteractorOutputDelegate?
-    var dataBaseDelegate: DDBBManagerDelegate?
     let ref = Database.database().reference()
     let user = Auth.auth().currentUser
-    //MARK: - Methods that do the functionality
+}
+
+
+//MARK: - PokemonDetailsInteractorDelegate methods
+extension PokemonDetailsInteractor: PokemonDetailsInteractorDelegate{
+
+
+
+    //MARK: - fetchPokemon
     func fetchPokemon(pokemon: Results) {
         if Reachability.isConnectedToNetwork(){
             guard let name = pokemon.name else{return}
@@ -30,7 +38,10 @@ class PokemonDetailsInteractor : PokemonDetailsInteractorDelegate {
         }
        
     }
-    func fetchFavouritePokemons() {//Pass from results to favs here!
+    
+    
+    //MARK: - fetchFavouritePokemons
+    func fetchFavouritePokemons() {
         if user != nil{
             guard let user = user else{return}
             self.ref.child("users").child(user.uid).child("Favourites").observe(.value, with: {snapshot in
@@ -54,6 +65,9 @@ class PokemonDetailsInteractor : PokemonDetailsInteractorDelegate {
         }
     
     }
+    
+    
+    //MARK: - addFavourite
     func addFavourite(pokemon: Results) {
         if user != nil{ //Si está logeado
             guard let user = user else {return}
@@ -93,6 +107,9 @@ class PokemonDetailsInteractor : PokemonDetailsInteractorDelegate {
             self.presenter?.didFetchFavourites(favourites)
         }
     }
+    
+    
+    //MARK: - deleteFavourite
     func deleteFavourite(pokemon: Results) {
         if user != nil{
             guard let user = user else {return}

@@ -1,17 +1,19 @@
-//
-//  LoginWireframe.swift
-//  Poke-test
-//
-//  Created by Jokin Egia on 17/11/21.
-//
-
 import UIKit
 
-class LoginWireframe : LoginWireframeDelegate {
+
+//MARK: - LoginWireframe
+class LoginWireframe{
 
     var viewController: UIViewController?
+}
 
-    static func createLoginModule() -> UIViewController {//Takes to mainTabBar
+
+//MARK: - LoginWireframeDelegate
+extension LoginWireframe: LoginWireframeDelegate{
+    
+    
+    //MARK: - createLoginModule
+    static func createLoginModule() -> UIViewController {
         let presenter = LoginPresenter()
         let view = LoginViewController()
         let wireframe = LoginWireframe()
@@ -27,6 +29,9 @@ class LoginWireframe : LoginWireframeDelegate {
 
         return view
     }
+    
+    
+    //MARK: - Section heading
     func openMainTabBar() {
         let listModule = MainTabBarWireframe.createMainTabBarModule()
         let navigation = UINavigationController(rootViewController: listModule)

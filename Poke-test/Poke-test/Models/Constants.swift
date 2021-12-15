@@ -1,4 +1,5 @@
 import Foundation
+//MARK: - Types' constants
 struct TypeName{
     static let normal = "normal"
     static let fight = "fighting"
@@ -22,6 +23,8 @@ struct TypeName{
     static let shadow = "shadow"
 }
 
+
+//MARK: - FirebaseErrors's constants
 struct FirebaseErrors{
     static let errorEmailAlreadyInUse = 17007
     static let errorCodeInvalidEmail = 17008

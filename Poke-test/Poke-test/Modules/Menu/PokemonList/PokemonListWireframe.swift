@@ -1,12 +1,17 @@
 
 import UIKit
 
-
-class PokemonListWireframe : PokemonListWireframeDelegate {
-    
-    
+//MARK: - PokemonListWireframe
+class PokemonListWireframe{
     var viewController: UIViewController?
-    //MARK: - Method that makes the window(.xib)
+}
+
+
+//MARK: - PokemonListWireframeDelegate methods
+extension PokemonListWireframe: PokemonListWireframeDelegate{
+    
+    
+    //MARK: - createPokemonListModule
     static func createPokemonListModule() -> UIViewController {
         let presenter = PokemonListPresenter()
         let view = PokemonListViewController()
@@ -23,11 +28,16 @@ class PokemonListWireframe : PokemonListWireframeDelegate {
         
         return view
     }
-    //MARK: - Method that opens the detailsViewController .xib
+    
+    
+    //MARK: - openPokemonDetailsWindow
     func openPokemonDetailsWindow(pokemon: Results, nextPokemon: Results, previousPokemon: Results, filtered: [Results]) {
         let detailModule = PokemonDetailsWireframe.createPokemonDetailsModule(pokemon: pokemon, nextPokemon: nextPokemon, previousPokemon: previousPokemon, filtered: filtered)
         viewController?.navigationController?.pushViewController(detailModule, animated: true)
     }
+    
+    
+    //MARK: - openLoginSignUpWindow
     func openLoginSignUpWindow(){
         let loginSignUpModule = LoginOrSignUpWireframe.createLoginOrSignUpModule()
         let navigation = UINavigationController(rootViewController: loginSignUpModule)

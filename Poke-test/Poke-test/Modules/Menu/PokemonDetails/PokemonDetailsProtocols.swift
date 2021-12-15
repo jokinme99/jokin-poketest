@@ -1,7 +1,7 @@
 
 import UIKit
 
-//MARK: - ViewControllerDelegate methods
+//MARK: - PokemonDetailsViewDelegate methods
 protocol PokemonDetailsViewDelegate: AnyObject {
     var presenter: PokemonDetailsPresenterDelegate? {get set}
     func updateDetailsView(pokemon: PokemonData)
@@ -11,13 +11,15 @@ protocol PokemonDetailsViewDelegate: AnyObject {
     func getSelectedPokemon(with pokemon: Results)
 }
 
-//MARK: - SceneController methods: Connections between .xib
+
+//MARK: - PokemonDetailsWireframeDelegate methods
 protocol PokemonDetailsWireframeDelegate: AnyObject {
     static func createPokemonDetailsModule(pokemon: Results, nextPokemon: Results, previousPokemon: Results, filtered: [Results]) -> UIViewController
     func openLoginSignUpWindow()
 }
 
-//MARK: - PresenterDelegate methods: Connection between methods
+
+//MARK: - PokemonDetailsPresenterDelegate methods
 protocol PokemonDetailsPresenterDelegate: AnyObject {
     var view: PokemonDetailsViewDelegate? {get set}
     var interactor: PokemonDetailsInteractorDelegate? {get set}
@@ -29,17 +31,18 @@ protocol PokemonDetailsPresenterDelegate: AnyObject {
     func openLoginSignUpWindow()
 }
 
-//MARK: - InteractorDelegate methods: Methods that do the functionality
+
+//MARK: - PokemonDetailsInteractorDelegate methods
 protocol PokemonDetailsInteractorDelegate: AnyObject {
     var presenter: PokemonDetailsInteractorOutputDelegate? {get set}
-    var dataBaseDelegate: DDBBManagerDelegate? {get set}
     func fetchPokemon(pokemon: Results)
     func fetchFavouritePokemons()
     func addFavourite(pokemon: Results)
     func deleteFavourite(pokemon: Results)
 }
 
-//MARK: - InteractorDelegate methods: Methods that do the functionality
+
+//MARK: - PokemonDetailsInteractorOutputDelegate methods
 protocol PokemonDetailsInteractorOutputDelegate: AnyObject {
     func didFetchPokemon(pokemon: PokemonData)
     func didFailWithError(error: Error)

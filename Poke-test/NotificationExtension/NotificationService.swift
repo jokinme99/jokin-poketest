@@ -1,18 +1,15 @@
-//
-//  NotificationService.swift
-//  NotificationExtension
-//
-//  Created by Jokin Egia on 25/10/21.
-//
 
 import UserNotifications
 import FirebaseMessaging
 
+
+//MARK: - NotificationService
 class NotificationService: UNNotificationServiceExtension {
-    
     var contentHandler: ((UNNotificationContent) -> Void)?
     var bestAttemptContent: UNMutableNotificationContent?
     
+    
+    //MARK: - didReceive
     override func didReceive(_ request: UNNotificationRequest, withContentHandler contentHandler: @escaping (UNNotificationContent) -> Void) {
         self.contentHandler = contentHandler
         bestAttemptContent = (request.content.mutableCopy() as? UNMutableNotificationContent)
@@ -30,6 +27,8 @@ class NotificationService: UNNotificationServiceExtension {
         }
     }
     
+    
+    //MARK: - serviceExtensionTimeWillExpire
     override func serviceExtensionTimeWillExpire() {
         // Called just before the extension will be terminated by the system.
         // Use this as an opportunity to deliver your "best attempt" at modified content, otherwise the original push payload will be used.
