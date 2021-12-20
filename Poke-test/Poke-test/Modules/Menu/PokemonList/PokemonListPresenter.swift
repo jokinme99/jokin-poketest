@@ -3,7 +3,7 @@ class PokemonListPresenter{
     var view: PokemonListViewDelegate?
     var interactor: PokemonListInteractorDelegate?
     var wireframe: PokemonListWireframeDelegate?
-    var cell: PokemonListCellDelegate?
+    var cell: PokemonCellDelegate?
 }
 
 

@@ -1,9 +1,4 @@
 import UIKit
-//MARK: - CellDelegate methods
-protocol PokemonListCellDelegate: AnyObject{
-    var presenter: PokemonListPresenterDelegate? {get set}
-    func updatePokemonInCell(pokemonToFetch: Results)
-}
 
 
 //MARK: - ViewControllerDelegate methods
@@ -26,7 +21,7 @@ protocol PokemonListWireframeDelegate: AnyObject {
 
 //MARK: - PresenterDelegate methods
 protocol PokemonListPresenterDelegate: AnyObject {
-    var cell: PokemonListCellDelegate? {get set}
+    var cell: PokemonCellDelegate? {get set}
     var view: PokemonListViewDelegate? {get set}
     var interactor: PokemonListInteractorDelegate? {get set}
     var wireframe: PokemonListWireframeDelegate? {get set}

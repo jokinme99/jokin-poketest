@@ -4,7 +4,7 @@ class PokemonFavouritesPresenter{
     var view: PokemonFavouritesViewDelegate?
     var interactor: PokemonFavouritesInteractorDelegate?
     var wireframe: PokemonFavouritesWireframeDelegate?
-    var cell: PokemonListCellDelegate?
+    var cell: PokemonCellDelegate?
 }
 
 

@@ -45,7 +45,7 @@ class PokemonDetailsViewController: UIViewController {
     var previousPokemon: Results?
     var nextPokemon: Results?
     var favouritesList: [Favourites] = []
-    var cell: PokemonListCellDelegate?
+    var cell: PokemonCellDelegate?
     var filtered: [Results] = []
     var row : Int?
     let user = Auth.auth().currentUser

@@ -1,5 +1,12 @@
-
 import UIKit
+import AlamofireImage
+
+//MARK: - PokemonCellDelegate protocol
+protocol PokemonCellDelegate: AnyObject{
+    var presenter: PokemonListPresenterDelegate? {get set}
+    func updatePokemonInCell(pokemonToFetch: Results)
+}
+
 
 //MARK: - PokemonCell
 class PokemonCell: UITableViewCell {
@@ -26,8 +33,8 @@ class PokemonCell: UITableViewCell {
 }
 
 
-//MARK: - PokemonListCellDelegate methods
-extension PokemonCell: PokemonListCellDelegate{
+//MARK: - PokemonCellDelegate methods
+extension PokemonCell: PokemonCellDelegate{
     
     
     //MARK: - updatePokemonInCell

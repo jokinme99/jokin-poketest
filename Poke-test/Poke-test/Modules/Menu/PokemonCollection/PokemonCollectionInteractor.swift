@@ -3,17 +3,17 @@ import Firebase
 import FirebaseAuth
 import FirebaseDatabase
 
-//MARK: - PokemonListInteractor
-class PokemonListInteractor{
-    var presenter: PokemonListInteractorOutputDelegate?
-    var view: PokemonListViewDelegate?
+//MARK: - PokemonCollectionInteractor
+class PokemonCollectionInteractor{
+    var presenter: PokemonCollectionInteractorOutputDelegate?
+    var view: PokemonCollectionViewDelegate?
     let ref = Database.database().reference()
     let user = Auth.auth().currentUser
 }
 
 
-//MARK: - PokemonListInteractorDelegate
-extension PokemonListInteractor: PokemonListInteractorDelegate{
+//MARK: - PokemonCollectionInteractorDelegate
+extension PokemonCollectionInteractor: PokemonCollectionInteractorDelegate{
     
     
     //MARK: - fetchPokemonList
@@ -36,33 +36,8 @@ extension PokemonListInteractor: PokemonListInteractorDelegate{
             }
             self.presenter?.didFetchPokemonList(pokemon: pokemonList)
         }
-        
     }
-    
-    
-    //MARK: - fetchPokemonType
-    func fetchPokemonType(type: String) {
-        if Reachability.isConnectedToNetwork(){
-            PokemonManager.shared.fetchPokemonTypes(pokemonType: type, { pokemonFilterListData, error in
-                if let error = error {
-                    self.presenter?.didFailWith(error: error)
-                }else{
-                    guard let pokemonFilterListData = pokemonFilterListData else {return}
-                    self.presenter?.didFetchType(pokemons: pokemonFilterListData)
-                }
-                
-            })
-        }else{
-            let pokemons = DDBBManager.shared.get(PokemonFilterListData.self)
-            for pokemon in pokemons{
-                if pokemon.name == type{
-                    self.presenter?.didFetchType(pokemons: pokemon)
-                }
-            }
-        }
         
-    }
-    
     
     //MARK: - fetchFavourites
     func fetchFavourites() {
@@ -85,6 +60,29 @@ extension PokemonListInteractor: PokemonListInteractorDelegate{
         }else{
             let favourites: [Favourites] = []
             self.presenter?.didFetchFavourites(favourites: favourites)
+        }
+    }
+    
+    
+    //MARK: - fetchPokemonType
+    func fetchPokemonType(type: String) {
+        if Reachability.isConnectedToNetwork(){
+            PokemonManager.shared.fetchPokemonTypes(pokemonType: type, { pokemonFilterListData, error in
+                if let error = error {
+                    self.presenter?.didFailWith(error: error)
+                }else{
+                    guard let pokemonFilterListData = pokemonFilterListData else {return}
+                    self.presenter?.didFetchType(pokemons: pokemonFilterListData)
+                }
+                
+            })
+        }else{
+            let pokemons = DDBBManager.shared.get(PokemonFilterListData.self)
+            for pokemon in pokemons{
+                if pokemon.name == type{
+                    self.presenter?.didFetchType(pokemons: pokemon)
+                }
+            }
         }
         
     }
@@ -132,4 +130,6 @@ extension PokemonListInteractor: PokemonListInteractorDelegate{
         
     }
 }
+    
+    
 
