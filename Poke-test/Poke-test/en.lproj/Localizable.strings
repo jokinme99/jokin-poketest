@@ -48,6 +48,8 @@
 "Sign_Up" = "Sign Up";
 "FAVS" = "FAVS";
 "Favourites" = "Favourites";
+"list" = "List";
+"collection" = "Collection";
 
 //Labels||TextFields||SearchBar
 "Height" = "Height: ";

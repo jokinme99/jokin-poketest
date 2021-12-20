@@ -3,7 +3,7 @@ class PokemonDetailsPresenter{
     var view: PokemonDetailsViewDelegate?
     var interactor: PokemonDetailsInteractorDelegate?
     var wireframe: PokemonDetailsWireframeDelegate?
-    var cell: PokemonListCellDelegate?
+    var cell: PokemonCellDelegate?
     var tableView: PokemonListViewDelegate?
 }
 

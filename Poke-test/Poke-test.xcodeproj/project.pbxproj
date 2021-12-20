@@ -42,6 +42,15 @@
 		FD7CC07727452200006D1CD5 /* SignUpViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FD7CC07127452200006D1CD5 /* SignUpViewController.xib */; };
 		FD7CC07827452200006D1CD5 /* SignUpWireframe.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD7CC07227452200006D1CD5 /* SignUpWireframe.swift */; };
 		FD7D316E27198B110031AB92 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FD7D316D27198B100031AB92 /* LaunchScreen.storyboard */; };
+		FD7F8F6F276C780000EB3FFF /* PokemonCollectionPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD7F8F69276C780000EB3FFF /* PokemonCollectionPresenter.swift */; };
+		FD7F8F70276C780000EB3FFF /* PokemonCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD7F8F6A276C780000EB3FFF /* PokemonCollectionViewController.swift */; };
+		FD7F8F71276C780000EB3FFF /* PokemonCollectionProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD7F8F6B276C780000EB3FFF /* PokemonCollectionProtocols.swift */; };
+		FD7F8F72276C780000EB3FFF /* PokemonCollectionInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD7F8F6C276C780000EB3FFF /* PokemonCollectionInteractor.swift */; };
+		FD7F8F73276C780000EB3FFF /* PokemonCollectionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FD7F8F6D276C780000EB3FFF /* PokemonCollectionViewController.xib */; };
+		FD7F8F74276C780000EB3FFF /* PokemonCollectionWireframe.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD7F8F6E276C780000EB3FFF /* PokemonCollectionWireframe.swift */; };
+		FD7F8F80276CA45D00EB3FFF /* CollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD7F8F7E276CA45D00EB3FFF /* CollectionCell.swift */; };
+		FD7F8F81276CA45D00EB3FFF /* CollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FD7F8F7F276CA45D00EB3FFF /* CollectionCell.xib */; };
+		FD7F8F84276CC47B00EB3FFF /* SearchBarExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD7F8F83276CC47B00EB3FFF /* SearchBarExtension.swift */; };
 		FD806D97273BFC5500331C74 /* MainTabBarPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD806D91273BFC5500331C74 /* MainTabBarPresenter.swift */; };
 		FD806D98273BFC5500331C74 /* MainTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD806D92273BFC5500331C74 /* MainTabBarViewController.swift */; };
 		FD806D99273BFC5500331C74 /* MainTabBarProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD806D93273BFC5500331C74 /* MainTabBarProtocols.swift */; };
@@ -149,6 +158,15 @@
 		FD7CC07127452200006D1CD5 /* SignUpViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SignUpViewController.xib; sourceTree = "<group>"; };
 		FD7CC07227452200006D1CD5 /* SignUpWireframe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpWireframe.swift; sourceTree = "<group>"; };
 		FD7D316D27198B100031AB92 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		FD7F8F69276C780000EB3FFF /* PokemonCollectionPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonCollectionPresenter.swift; sourceTree = "<group>"; };
+		FD7F8F6A276C780000EB3FFF /* PokemonCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonCollectionViewController.swift; sourceTree = "<group>"; };
+		FD7F8F6B276C780000EB3FFF /* PokemonCollectionProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonCollectionProtocols.swift; sourceTree = "<group>"; };
+		FD7F8F6C276C780000EB3FFF /* PokemonCollectionInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonCollectionInteractor.swift; sourceTree = "<group>"; };
+		FD7F8F6D276C780000EB3FFF /* PokemonCollectionViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PokemonCollectionViewController.xib; sourceTree = "<group>"; };
+		FD7F8F6E276C780000EB3FFF /* PokemonCollectionWireframe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonCollectionWireframe.swift; sourceTree = "<group>"; };
+		FD7F8F7E276CA45D00EB3FFF /* CollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionCell.swift; sourceTree = "<group>"; };
+		FD7F8F7F276CA45D00EB3FFF /* CollectionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CollectionCell.xib; sourceTree = "<group>"; };
+		FD7F8F83276CC47B00EB3FFF /* SearchBarExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarExtension.swift; sourceTree = "<group>"; };
 		FD806D91273BFC5500331C74 /* MainTabBarPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarPresenter.swift; sourceTree = "<group>"; };
 		FD806D92273BFC5500331C74 /* MainTabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarViewController.swift; sourceTree = "<group>"; };
 		FD806D93273BFC5500331C74 /* MainTabBarProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarProtocols.swift; sourceTree = "<group>"; };
@@ -311,6 +329,7 @@
 				FD7B9B09273E4B34006B7610 /* PokemonFavourites */,
 				FD7FD3582716F275008E0448 /* Pokemon Cell */,
 				FDA34F0126E8955B00AE2143 /* PokemonDetails */,
+				FD7F8F76276C781500EB3FFF /* PokemonCollection */,
 			);
 			path = Menu;
 			sourceTree = "<group>";
@@ -338,6 +357,29 @@
 			path = SignUp;
 			sourceTree = "<group>";
 		};
+		FD7F8F76276C781500EB3FFF /* PokemonCollection */ = {
+			isa = PBXGroup;
+			children = (
+				FD7F8F77276CA32500EB3FFF /* Collection Cell */,
+				FD7F8F6C276C780000EB3FFF /* PokemonCollectionInteractor.swift */,
+				FD7F8F69276C780000EB3FFF /* PokemonCollectionPresenter.swift */,
+				FD7F8F6B276C780000EB3FFF /* PokemonCollectionProtocols.swift */,
+				FD7F8F6A276C780000EB3FFF /* PokemonCollectionViewController.swift */,
+				FD7F8F6D276C780000EB3FFF /* PokemonCollectionViewController.xib */,
+				FD7F8F6E276C780000EB3FFF /* PokemonCollectionWireframe.swift */,
+			);
+			path = PokemonCollection;
+			sourceTree = "<group>";
+		};
+		FD7F8F77276CA32500EB3FFF /* Collection Cell */ = {
+			isa = PBXGroup;
+			children = (
+				FD7F8F7E276CA45D00EB3FFF /* CollectionCell.swift */,
+				FD7F8F7F276CA45D00EB3FFF /* CollectionCell.xib */,
+			);
+			path = "Collection Cell";
+			sourceTree = "<group>";
+		};
 		FD7FD3582716F275008E0448 /* Pokemon Cell */ = {
 			isa = PBXGroup;
 			children = (
@@ -359,10 +401,10 @@
 		FD806D9D273BFC6700331C74 /* MainTabBar */ = {
 			isa = PBXGroup;
 			children = (
-				FD806D91273BFC5500331C74 /* MainTabBarPresenter.swift */,
-				FD806D92273BFC5500331C74 /* MainTabBarViewController.swift */,
-				FD806D93273BFC5500331C74 /* MainTabBarProtocols.swift */,
 				FD806D94273BFC5500331C74 /* MainTabBarInteractor.swift */,
+				FD806D91273BFC5500331C74 /* MainTabBarPresenter.swift */,
+				FD806D93273BFC5500331C74 /* MainTabBarProtocols.swift */,
+				FD806D92273BFC5500331C74 /* MainTabBarViewController.swift */,
 				FD806D95273BFC5500331C74 /* MainTabBarViewController.xib */,
 				FD806D96273BFC5500331C74 /* MainTabBarWireframe.swift */,
 			);
@@ -410,6 +452,7 @@
 			children = (
 				FD85C3A72696EAFC00EAF99F /* Data.swift */,
 				FD61B42226B4046800EDBF8C /* Constants.swift */,
+				FD7F8F83276CC47B00EB3FFF /* SearchBarExtension.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -510,9 +553,11 @@
 				FDA34EFF26E8954D00AE2143 /* PokemonDetailsViewController.xib in Resources */,
 				FD86C1522701A33C00DB4B8F /* Assets.xcassets in Resources */,
 				FDF25E8526B17600002474BB /* PokemonCell.xib in Resources */,
+				FD7F8F81276CA45D00EB3FFF /* CollectionCell.xib in Resources */,
 				FD7D316E27198B110031AB92 /* LaunchScreen.storyboard in Resources */,
 				FD7CC07727452200006D1CD5 /* SignUpViewController.xib in Resources */,
 				FD7B9B07273E4B2A006B7610 /* PokemonFavouritesViewController.xib in Resources */,
+				FD7F8F73276C780000EB3FFF /* PokemonCollectionViewController.xib in Resources */,
 				FDA34EF226E8952900AE2143 /* PokemonListViewController.xib in Resources */,
 				FD7A6003274BB4A00073C2EC /* GoogleService-Info.plist in Resources */,
 				FD806D9B273BFC5500331C74 /* MainTabBarViewController.xib in Resources */,
@@ -620,6 +665,7 @@
 			files = (
 				FD7B9B04273E4B2A006B7610 /* PokemonFavouritesViewController.swift in Sources */,
 				FD7CC05927451023006D1CD5 /* LoginProtocols.swift in Sources */,
+				FD7F8F6F276C780000EB3FFF /* PokemonCollectionPresenter.swift in Sources */,
 				FD85C3AC2696EB1E00EAF99F /* DataManager.swift in Sources */,
 				FD7CC04D27450FFF006D1CD5 /* LoginOrSignUpInteractor.swift in Sources */,
 				FDA34EFB26E8954D00AE2143 /* PokemonDetailsPresenter.swift in Sources */,
@@ -628,6 +674,7 @@
 				FD7CC07327452200006D1CD5 /* SignUpPresenter.swift in Sources */,
 				FDA34EF026E8952900AE2143 /* PokemonListProtocols.swift in Sources */,
 				FDA34EF126E8952900AE2143 /* PokemonListInteractor.swift in Sources */,
+				FD7F8F80276CA45D00EB3FFF /* CollectionCell.swift in Sources */,
 				FD7CC05A27451023006D1CD5 /* LoginInteractor.swift in Sources */,
 				FDA34EFC26E8954D00AE2143 /* PokemonDetailsViewController.swift in Sources */,
 				FD6B780F27392C2E0055A0AE /* Reachability.swift in Sources */,
@@ -641,7 +688,9 @@
 				FD88DF3F26DE076E0094858B /* DDBBManager.swift in Sources */,
 				FDA34F0026E8954D00AE2143 /* PokemonDetailsWireframe.swift in Sources */,
 				FD806D99273BFC5500331C74 /* MainTabBarProtocols.swift in Sources */,
+				FD7F8F70276C780000EB3FFF /* PokemonCollectionViewController.swift in Sources */,
 				FD85C3A82696EAFC00EAF99F /* Data.swift in Sources */,
+				FD7F8F72276C780000EB3FFF /* PokemonCollectionInteractor.swift in Sources */,
 				FD806D98273BFC5500331C74 /* MainTabBarViewController.swift in Sources */,
 				FD7CC07427452200006D1CD5 /* SignUpViewController.swift in Sources */,
 				FD7CC05C27451023006D1CD5 /* LoginWireframe.swift in Sources */,
@@ -652,9 +701,12 @@
 				FD61B42326B4046800EDBF8C /* Constants.swift in Sources */,
 				FDA34EF326E8952900AE2143 /* PokemonListWireframe.swift in Sources */,
 				FD7B9B06273E4B2A006B7610 /* PokemonFavouritesInteractor.swift in Sources */,
+				FD7F8F71276C780000EB3FFF /* PokemonCollectionProtocols.swift in Sources */,
 				FDA34EEF26E8952900AE2143 /* PokemonListViewController.swift in Sources */,
 				FDA34EFE26E8954D00AE2143 /* PokemonDetailsInteractor.swift in Sources */,
+				FD7F8F74276C780000EB3FFF /* PokemonCollectionWireframe.swift in Sources */,
 				FD806D97273BFC5500331C74 /* MainTabBarPresenter.swift in Sources */,
+				FD7F8F84276CC47B00EB3FFF /* SearchBarExtension.swift in Sources */,
 				FD7CC05827451023006D1CD5 /* LoginViewController.swift in Sources */,
 				FD7B9B08273E4B2A006B7610 /* PokemonFavouritesWireframe.swift in Sources */,
 				FD7CC07627452200006D1CD5 /* SignUpInteractor.swift in Sources */,
@@ -828,7 +880,7 @@
 				DEVELOPMENT_TEAM = WV4ELQGDQE;
 				INFOPLIST_FILE = "Poke-test/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited)";
-				MARKETING_VERSION = 1.1.9;
+				MARKETING_VERSION = 1.2.0;
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.baturamobile.jokin-poketest";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -849,7 +901,7 @@
 				DEVELOPMENT_TEAM = WV4ELQGDQE;
 				INFOPLIST_FILE = "Poke-test/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited)";
-				MARKETING_VERSION = 1.1.9;
+				MARKETING_VERSION = 1.2.0;
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.baturamobile.jokin-poketest";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -875,7 +927,7 @@
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited)";
-				MARKETING_VERSION = 1.1.9;
+				MARKETING_VERSION = 1.2.0;
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.baturamobile.jokin-poketest.NotificationExtension";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -903,7 +955,7 @@
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited)";
-				MARKETING_VERSION = 1.1.9;
+				MARKETING_VERSION = 1.2.0;
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.baturamobile.jokin-poketest.NotificationExtension";
 				PRODUCT_NAME = "$(TARGET_NAME)";

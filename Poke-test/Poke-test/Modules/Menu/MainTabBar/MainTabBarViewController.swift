@@ -12,7 +12,7 @@ class MainTabBarViewController: UITabBarController {
     var presenter: MainTabBarPresenterDelegate?
     var list: UIViewController!
     var favourites: UIViewController!
-    var userAdministration: UIViewController!
+    var collection: UIViewController!
     var titleLog: String?
     var image: UIImage?
     var imageSelect: UIImage?
@@ -47,13 +47,16 @@ extension MainTabBarViewController{
     //MARK: - setTabBar
     func setTabBar(){
         list = PokemonListWireframe.createPokemonListModule()
-        list.tabBarItem = UITabBarItem(title: NSLocalizedString("all", comment: ""), image: UIImage(named: "notSelected"), selectedImage: UIImage(named: "selected"))
+        list.tabBarItem = UITabBarItem(title: NSLocalizedString("list", comment: ""), image: UIImage(named: "listNotSelected"), selectedImage: UIImage(named: "listSelected"))
         favourites = PokemonFavouritesWireframe.createPokemonFavouritesModule()
         favourites.tabBarItem = UITabBarItem(title: NSLocalizedString("FAVS", comment: ""), image: UIImage(named: "fullStar"), selectedImage: UIImage(named: "emptyStar"))
         setLoggingSettings()
-        setViewControllers([list, favourites], animated: true)
+        collection = PokemonCollectionWireframe.createPokemonCollectionModule()
+        collection.tabBarItem = UITabBarItem(title: NSLocalizedString("collection", comment: ""), image: UIImage(named: "collectionNotSelected"), selectedImage: UIImage(named: "collectionSelected"))
+        setViewControllers([list, collection, favourites], animated: true)
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: titleLog, style: .plain, target: self, action: #selector(logMethod))
         navigationItem.title = "Pokedex"
+        
     }
     
     

@@ -16,6 +16,9 @@ class AppDelegate: UIResponder{
 
 //MARK: - UIApplicationDelegate methods
 extension AppDelegate: UIApplicationDelegate{
+    
+    
+    //MARK: - didFinishLaunchingWithOptions
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         FirebaseApp.configure()
         Messaging.messaging().delegate = self
@@ -30,6 +33,8 @@ extension AppDelegate: UIApplicationDelegate{
         return true
     }
 
+    
+    //MARK: - setWindow
     func setWindow(){
         let frame = UIScreen.main.bounds
         self.window = UIWindow(frame: frame)

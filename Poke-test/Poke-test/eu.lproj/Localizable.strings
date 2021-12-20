@@ -48,6 +48,8 @@
 "Sign_Up" = "Kontu bat sortu";
 "FAVS" = "FAVS";
 "Favourites" = "Gustokoak";
+"list" = "Zerrenda";
+"collection" = "Bilduma";
 
 //Testuak || bilaketa barra
 "Height" = "Altuera: ";

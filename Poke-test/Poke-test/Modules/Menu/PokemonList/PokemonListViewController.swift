@@ -9,23 +9,21 @@ import FirebaseCrashlytics
 
 //MARK: - PokemonListViewController
 class PokemonListViewController: UIViewController {
-    
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var orderByButton: UIButton!
     @IBOutlet weak var searchBar: UISearchBar!
-    @IBOutlet var buttonList: [UIButton]!
     @IBOutlet weak var orderBySearchView: UIView!
-    
+    @IBOutlet var buttonList: [UIButton]!
+   
+    var presenter: PokemonListPresenterDelegate?
     var pokemon : [Results] = []
     var filtered : [Results] = []
-    var savefilteredOrder : [Results] = []
+    var saveFilteredOrder : [Results] = []
     var pokemonSelected: Results?
     var cell = PokemonCell()
-    var presenter: PokemonListPresenterDelegate?
     var pokemonInCell: Results?
     var nextPokemon: Results?
     var previousPokemon: Results?
-    var detailsPresenter: PokemonDetailsPresenter?
     var favourites: [Favourites] = []
     let user = Auth.auth().currentUser
     var all: String?; var normal: String?; var fighting: String?; var flying: String?; var poison: String?; var ground: String?; var rock: String?; var bug: String?; var ghost: String?; var steel: String?; var fire: String?; var water: String?; var grass: String?; var electric: String?; var psychic: String?; var ice: String?; var dragon: String?; var dark: String?; var fairy: String?; var unknown: String?; var shadow: String?
@@ -48,7 +46,7 @@ class PokemonListViewController: UIViewController {
                 filtered.removeAll()
                 presenter?.fetchPokemonList()
                 self.pokemon = filtered
-                self.savefilteredOrder = filtered
+                self.saveFilteredOrder = filtered
             }
         }
     }
@@ -118,7 +116,8 @@ extension PokemonListViewController{
         Crashlytics.crashlytics().setCustomValue(email, forKey: "USER")
         //Enviar logs de errores
         Crashlytics.crashlytics().log("Error in PokemonListViewController")
-    }}
+    }
+}
 
 
 //MARK: - PokemonListViewDelegate methods
@@ -153,7 +152,7 @@ extension PokemonListViewController: PokemonListViewDelegate {
         if filtered.isEmpty && pokemon.isEmpty{
             self.pokemon = Array(pokemons.results)
             self.filtered = self.pokemon
-            self.savefilteredOrder = self.pokemon
+            self.saveFilteredOrder = self.pokemon
             self.tableView.reloadData()
         }
         else{
@@ -161,7 +160,7 @@ extension PokemonListViewController: PokemonListViewDelegate {
             filtered.removeAll()
             self.pokemon = Array(pokemons.results)
             self.filtered = self.pokemon
-            self.savefilteredOrder = self.pokemon
+            self.saveFilteredOrder = self.pokemon
             self.tableView.reloadData()
         }
     }
@@ -268,7 +267,7 @@ extension PokemonListViewController:UITableViewDelegate, UITableViewDataSource{
 }
 
 
-//MARK: - SearchBar Delegate & bookmark buttons methods
+//MARK: - UISearchBarDelegate methods
 extension PokemonListViewController:UISearchBarDelegate{
     
     
@@ -276,13 +275,13 @@ extension PokemonListViewController:UISearchBarDelegate{
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         if searchText.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines).isEmpty {
             self.filtered = self.pokemon
-            self.savefilteredOrder = self.pokemon
+            self.saveFilteredOrder = self.pokemon
         } else {
             self.filtered = self.pokemon.filter({ pokemon in
                 guard let name = pokemon.name else { return false }
                 return name.lowercased().contains(searchText.lowercased())
             })
-            self.savefilteredOrder = self.pokemon.filter({ pokemon in
+            self.saveFilteredOrder = self.pokemon.filter({ pokemon in
                 guard let name = pokemon.name else { return false }
                 return name.lowercased().contains(searchText.lowercased())
             })
@@ -290,17 +289,6 @@ extension PokemonListViewController:UISearchBarDelegate{
         self.tableView.reloadData()
     }
 
-    
-    //MARK: - imageWithImage
-    func imageWithImage(image: UIImage, scaledToSize newSize: CGSize) -> UIImage {
-        UIGraphicsBeginImageContext(newSize)
-        image.draw(in: CGRect(x: 0 ,y: 0 ,width: newSize.width ,height: newSize.height))
-        let newImage = UIGraphicsGetImageFromCurrentImageContext()
-        UIGraphicsEndImageContext()
-        return newImage!.withRenderingMode(.alwaysOriginal)
-    }
-    
-    
     
     //MARK: - keyboardWillShow
     @objc private func keyboardWillShow(notification: NSNotification) {
@@ -321,46 +309,6 @@ extension PokemonListViewController:UISearchBarDelegate{
 }
 
 
-//MARK: - UISearchBar extension
-extension UISearchBar{
-    @IBInspectable var doneAccessory: Bool{
-        get{
-            return self.doneAccessory
-        }
-        set (hasDone) {
-            if hasDone{
-                addDoneButtonOnKeyboard()
-            }
-        }
-    }
-    
-    
-    //MARK: - addDoneButtonOnKeyboard
-    func addDoneButtonOnKeyboard()
-    {
-        let doneToolbar: UIToolbar = UIToolbar(frame: CGRect.init(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 50))
-        doneToolbar.barStyle = .default
-        
-        let flexSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
-        let done: UIBarButtonItem = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(self.doneButtonAction))
-
-        let items = [flexSpace, done]
-        doneToolbar.items = items
-        doneToolbar.sizeToFit()
-        
-        self.inputAccessoryView = doneToolbar
-    }
-    
-    
-    //MARK: - doneButtonAction
-    @objc func doneButtonAction()
-    {
-        self.resignFirstResponder()
-    }
-    
-}
-
-
 //MARK: - OrderBy Buttons methods
 extension PokemonListViewController{
     
@@ -375,7 +323,7 @@ extension PokemonListViewController{
             if searchBar.text?.isEmpty == true{
                 self.filtered = self.pokemon
             }else{
-                self.filtered = self.savefilteredOrder
+                self.filtered = self.saveFilteredOrder
             }
             
             self.tableView.reloadData()

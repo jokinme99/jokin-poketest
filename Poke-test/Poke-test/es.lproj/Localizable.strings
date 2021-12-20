@@ -48,6 +48,8 @@
 "Sign_Up" = "Registrarse";
 "FAVS" = "FAVS";
 "Favourites" = "Favoritos";
+"list" = "Lista";
+"collection" = "Colección";
 
 //Textos||Barra de búsqueda
 "Height" = "Altura: ";

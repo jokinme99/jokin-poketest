@@ -21,7 +21,7 @@ protocol PokemonFavouritesWireframeDelegate: AnyObject {
 
 //MARK: - PokemonFavouritesPresenterDelegate
 protocol PokemonFavouritesPresenterDelegate: AnyObject {
-    var cell: PokemonListCellDelegate? {get set}
+    var cell: PokemonCellDelegate? {get set}
     var view: PokemonFavouritesViewDelegate? {get set}
     var interactor: PokemonFavouritesInteractorDelegate? {get set}
     var wireframe: PokemonFavouritesWireframeDelegate? {get set}
