@@ -1,1 +1,1 @@
-<title> Title name </title>
+<title>Title name</title>
