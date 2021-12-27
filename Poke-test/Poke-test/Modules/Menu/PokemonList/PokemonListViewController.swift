@@ -41,6 +41,7 @@ class PokemonListViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        presenter?.fetchFavourites()
         for filter in filtered {
             if filter.isInvalidated{
                 filtered.removeAll()
@@ -126,6 +127,7 @@ extension PokemonListViewController: PokemonListViewDelegate {
     
     //MARK: - Fetch favourites method
     func updateFavourites(favourites: [Favourites]) {
+        self.favourites.removeAll()
         self.favourites = favourites
     }
     
@@ -230,29 +232,23 @@ extension PokemonListViewController:UITableViewDelegate, UITableViewDataSource{
             presenter?.fetchFavourites()
             var arrayOfFavouritesNames: [String] = []
             for favs in favourites{
+                //doesn't update
                 arrayOfFavouritesNames.append(favs.name!)
             }
-            if arrayOfFavouritesNames.contains(filtered[indexPath.row].name!){
-                let alert = UIAlertController(title: NSLocalizedString("Pokemon_already_added_to_favourites", comment: ""), message: nil, preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-                self.present(alert, animated: true, completion: nil)
+            if arrayOfFavouritesNames.contains(self.filtered[indexPath.row].name!){
+                self.createBasicAlert(NSLocalizedString("Pokemon_already_added_to_favourites", comment: ""))
                 return nil
             }else{
-                let action = UIContextualAction(style: .destructive, title: nil) { action, view, completion in
+                let action = UIContextualAction(style: .normal, title: NSLocalizedString("Add", comment: ""), handler: { (ac:UIContextualAction, view:UIView, success:(Bool) -> Void) in
                     self.presenter?.addFavourite(pokemon: self.filtered[indexPath.row])
-                    completion(true)//Si se hace breakpoint funciona
-                    let alert = UIAlertController(title: NSLocalizedString("Pokemon_added_to_favourites", comment: ""), message: nil, preferredStyle: .alert)
-                    alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-                    self.present(alert, animated: true, completion: nil)
-                    
-                    }
-                action.backgroundColor = .init(red: 41, green: 130, blue: 251, alpha: 1)
-                action.title = NSLocalizedString("Add", comment: "")
-
+                    self.favourites.append(Favourites(name: self.filtered[indexPath.row].name!))
+                    self.createBasicAlert(NSLocalizedString("Pokemon_added_to_favourites", comment: ""))
+                    success(true)
+                })
+                action.backgroundColor = .init(red: 41/255, green: 130/255, blue: 251/255, alpha: 1)
                 return UISwipeActionsConfiguration(actions: [action])
             }
         }else{
-            //Alert
             let alert = UIAlertController(title: NSLocalizedString("Favourites", comment: ""), message: NSLocalizedString("You_will_not_be_able_to_add_any_pokemons_to_favourites_until_you_login_or_sign_up_Would_you_like_to_login_or_sign_up", comment: ""), preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: NSLocalizedString("Yes", comment: ""), style: .default, handler: {(action) in
                 self.presenter?.openLoginSignUpWindow()
@@ -261,11 +257,25 @@ extension PokemonListViewController:UITableViewDelegate, UITableViewDataSource{
             self.present(alert, animated: true, completion: nil)
             return nil
         }
-       
+    }
     
+    
+    //MARK: - editingStyleForRowAt
+    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
+        return .none
     }
 }
 
+
+
+//MARK: - Alert method
+extension PokemonListViewController{
+func createBasicAlert(_ title: String){
+    let alert = UIAlertController(title: title, message: nil, preferredStyle: .alert)
+    alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+    self.present(alert, animated: true, completion: nil)
+}
+}
 
 //MARK: - UISearchBarDelegate methods
 extension PokemonListViewController:UISearchBarDelegate{
@@ -407,7 +417,7 @@ extension PokemonListViewController{
     func paintButton(_ button: UIButton){
         switch button.titleLabel?.text?.lowercased(){
         case "all":
-            button.titleLabel?.textColor = #colorLiteral(red: 0.8454863429, green: 0.8979230523, blue: 0.9188942909, alpha: 1)
+            button.titleLabel?.textColor =  .init(red: 0.8454863429, green: 0.8979230523, blue: 0.9188942909, alpha: 1)
             setPokemonTextColor(.black, button)
         case TypeName.normal:
             setFilterButtonsBackground(168, 168, 120, button)

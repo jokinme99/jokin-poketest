@@ -3,7 +3,7 @@ import Firebase
 import FirebaseDatabase
 import FirebaseAuth
 import FirebaseCrashlytics
-
+import IQKeyboardManagerSwift
 
 //MARK: - SignUpViewController
 class SignUpViewController: UIViewController {
@@ -30,6 +30,7 @@ class SignUpViewController: UIViewController {
         passwordLabel.text = NSLocalizedString("Password", comment: "")
         enterButton.setTitle(NSLocalizedString("Enter", comment: ""), for: .normal)
         crashlyticsErrorSending()
+        loadKeyboard()
     }
 }
 
@@ -47,6 +48,13 @@ extension SignUpViewController{
         Crashlytics.crashlytics().setCustomValue(email, forKey: "USER")
         //Enviar logs de errores
         Crashlytics.crashlytics().log("Error in SignUpViewController")
+    }
+    
+    
+    //MARK: - loadKeyboard()
+    func loadKeyboard(){
+        IQKeyboardManager.shared.enable = true
+        userTextField.keyboardType = .emailAddress
     }
 }
 
