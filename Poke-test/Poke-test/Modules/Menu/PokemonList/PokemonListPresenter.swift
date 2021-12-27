@@ -85,7 +85,7 @@ extension PokemonListPresenter: PokemonListInteractorOutputDelegate {
     
     //MARK: - didFetchFavourites
     func didFetchFavourites(favourites: [Favourites]) {
-        view?.updateTableView()
+        //view?.updateTableView()
         view?.updateFavourites(favourites: favourites)
     }
     
