@@ -8,7 +8,7 @@ import FirebaseAuth
 //MARK: - AppDelegate class
 @main
 class AppDelegate: UIResponder{
-    //Swift package dependencies don't work
+    
     //PIN iPhone: 281106
     var window: UIWindow?
     var state = UIApplication.shared.applicationState
