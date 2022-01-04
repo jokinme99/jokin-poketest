@@ -43,4 +43,11 @@ extension PokemonDetailsWireframe: PokemonDetailsWireframeDelegate{
         window?.rootViewController = navigation
         window?.makeKeyAndVisible()
     }
+    
+    
+    //MARK: - openARKitViewController
+    func openARKitView(){//Pass the image
+        let arkitModule = ARKitWireframe.createARKitModule()
+        viewController?.navigationController?.pushViewController(arkitModule, animated: true)
+    }
 }

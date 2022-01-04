@@ -1,3 +1,6 @@
+import UIKit
+
+
 //MARK: - PokemonDetailsPresenter
 class PokemonDetailsPresenter{
     var view: PokemonDetailsViewDelegate?
@@ -39,6 +42,12 @@ extension PokemonDetailsPresenter: PokemonDetailsPresenterDelegate{
     //MARK: - openLoginSignUpWindow
     func openLoginSignUpWindow(){
         wireframe?.openLoginSignUpWindow()
+    }
+    
+    
+    //MARK: - openTestViewController
+    func openARKitView(){
+        wireframe?.openARKitView()
     }
 }
 
