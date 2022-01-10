@@ -6,28 +6,50 @@ import ARKit
 class ARKitViewController: UIViewController {
     @IBOutlet weak var sceneView: ARSCNView!
     var presenter: ARKitPresenterDelegate?
-    let augmentedRealitySession = ARSession()
     let configuration = ARWorldTrackingConfiguration()
-    
+    var imagePok: UIImage?
+    var anchors: [ARAnchor] = []
     
     //MARK: - viewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
         setSceneView()
-       
     }
-    
-    
-    //MARK: - viewWillAppear
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        
+        if let currentFrame = sceneView.session.currentFrame {
+            var translation = matrix_identity_float4x4
+            translation.columns.3.z = -0.3
+            let transform = simd_mul(currentFrame.camera.transform, translation)
+            let anchor = ARAnchor(transform: transform)
+            if anchors.count >= 1{
+                guard let anchorToRemove = anchors.first else{return}
+                sceneView.session.remove(anchor: anchorToRemove)
+                anchors.removeAll()
+                sceneView.session.add(anchor: anchor)
+                anchors.append(anchor)
+            }else{
+                sceneView.session.add(anchor: anchor)
+                anchors.append(anchor)
+            }
+        }
     }
+
     
     
-    //MARK: - viewWillDisappear
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-    }
+//    //MARK: - viewWillAppear
+//    override func viewWillAppear(_ animated: Bool) {
+//        super.viewWillAppear(animated)
+//        configuration.planeDetection = .vertical
+//        sceneView.session.run(configuration)
+//    }
+//
+//
+//    //MARK: - viewWillDisappear
+//    override func viewWillDisappear(_ animated: Bool) {
+//        super.viewWillDisappear(animated)
+//        sceneView.session.pause()
+//    }
     
 }
 
@@ -39,12 +61,8 @@ extension ARKitViewController{
     //MARK: - setSceneView
     func setSceneView(){
         sceneView.delegate = self
-        sceneView.showsStatistics = true
-        sceneView.debugOptions = ARSCNDebugOptions.showFeaturePoints
-        sceneView.session = augmentedRealitySession
-        configuration.planeDetection = .vertical
-        augmentedRealitySession.run(configuration, options: [.resetTracking, .removeExistingAnchors])
-
+        imagePok = getSavedImage(named: "fileName")
+        sceneView.session.run(configuration)
     }
     
     
@@ -56,12 +74,22 @@ extension ARKitViewController{
                 return nil
             }
     }
-    
 }
 
 
 //MARK: - ARSCNViewDelegate methods
 extension ARKitViewController: ARSCNViewDelegate, ARKitViewDelegate{
-    func renderer(_ renderer: SCNSceneRenderer, didAdd node: SCNNode, for anchor: ARAnchor) { }
+    func make2dNode(image: UIImage, width: CGFloat = 0.1, height: CGFloat = 0.1) -> SCNNode {
+           let plane = SCNPlane(width: width, height: height)
+           plane.firstMaterial!.diffuse.contents = image
+           let node = SCNNode(geometry: plane)
+           node.constraints = [SCNBillboardConstraint()]
+           return node
+       }
+    func renderer(_ renderer: SCNSceneRenderer, didAdd node: SCNNode, for anchor: ARAnchor) {
+        guard let imagePok = imagePok else {return}
+        node.addChildNode(make2dNode(image: imagePok))
+    }
+    
 }
 
