@@ -24,6 +24,8 @@ class LoginOrSignUpViewController: UIViewController {
         toLoginMenuView.layer.cornerRadius = 10
         toSignUpMenuView.layer.cornerRadius = 10
         crashlyticsErrorSending()
+        navigationItem.title = "POKE-TEST"
+        navigationItem.backButtonTitle = NSLocalizedString("Back", comment: "")
     }
    
 }

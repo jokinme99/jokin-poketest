@@ -50,6 +50,7 @@
 "Favourites" = "Favourites";
 "list" = "List";
 "collection" = "Collection";
+"Back" = "Back";
 
 //Labels||TextFields||SearchBar
 "Height" = "Height: ";

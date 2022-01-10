@@ -34,6 +34,7 @@ class LoginViewController: UIViewController {
         enterButton.setTitle(NSLocalizedString("Enter", comment: ""), for: .normal)
         crashlyticsErrorSending()
         loadKeyboard()
+        navigationItem.backButtonTitle = NSLocalizedString("Back", comment: "")
     }
 }
 
