@@ -10,6 +10,7 @@ import FirebaseAuth
 class AppDelegate: UIResponder{
     //Swift package dependencies don't work
     //PIN iPhone: 281106
+    //Minimum iphone to work with ARKit is iphone 6s
     var window: UIWindow?
     var state = UIApplication.shared.applicationState
 }
@@ -20,6 +21,7 @@ extension AppDelegate: UIApplicationDelegate{
     
     //MARK: - didFinishLaunchingWithOptions
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        //print(NSHomeDirectory()) To see the document directory (Application supports iTunes file sharing = YES, in order to be able to see the archives the APP has)
         FirebaseApp.configure()
         Messaging.messaging().delegate = self
         application.applicationIconBadgeNumber = 0
