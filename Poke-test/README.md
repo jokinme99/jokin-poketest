@@ -1,8 +1,6 @@
 POKEDEX
 ====================
 
-#Description
-
 Aplicación mediante la cual se hace una llamada a una [API][link] de pokemons 
 
 
