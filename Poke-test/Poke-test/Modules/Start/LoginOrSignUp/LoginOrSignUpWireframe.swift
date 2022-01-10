@@ -31,17 +31,17 @@ extension LoginOrSignUpWireframe: LoginOrSignUpWireframeDelegate{
 
     
     //MARK: - openLoginWindow
-    func openLoginWindow() {
-        let loginModule = LoginWireframe.createLoginModule()
-        viewController?.navigationController?.pushViewController(loginModule, animated: true)
-    }
-    
-    
-    //MARK: - openSignUpWindow
-    func openSignUpWindow() {
-        let signUpModule = SignUpWireframe.createSignUpModule()
-        viewController?.navigationController?.pushViewController(signUpModule, animated: true)
-    }
+        func openLoginWindow() {
+            let loginModule = LoginWireframe.createLoginModule()
+            viewController?.present(loginModule, animated: true, completion: nil)
+        }
+        
+        
+        //MARK: - openSignUpWindow
+        func openSignUpWindow() {
+            let signUpModule = SignUpWireframe.createSignUpModule()
+            viewController?.present(signUpModule, animated: true, completion: nil)
+        }
     
     
     //MARK: - openPokemonListWindow
