@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina3_5" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -11,308 +11,299 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PokemonCollectionViewController" customModule="Poke_test" customModuleProvider="target">
             <connections>
-                <outlet property="collectionView" destination="xHz-mJ-fQx" id="AH2-Io-fbM"/>
-                <outlet property="orderByButton" destination="YZy-QL-9x0" id="DJi-eT-eIi"/>
-                <outlet property="orderBySearchView" destination="Fcj-XF-U5t" id="9bV-wz-7Fn"/>
-                <outlet property="searchBar" destination="fFe-ct-vJr" id="r9u-fF-QMn"/>
+                <outlet property="collectionView" destination="A72-La-Lf2" id="sR9-Fm-ith"/>
+                <outlet property="orderByButton" destination="znT-Ly-tdf" id="Rel-DZ-ALe"/>
+                <outlet property="orderBySearchView" destination="PZB-lK-XCW" id="FV8-M9-Pw7"/>
+                <outlet property="scrollView" destination="fyu-69-6su" id="n7h-m7-TUm"/>
+                <outlet property="searchBar" destination="hWD-k5-lMP" id="ogA-59-UoD"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
-                <outletCollection property="buttonList" destination="lqT-JI-v4p" collectionClass="NSMutableArray" id="uso-LJ-qrl"/>
-                <outletCollection property="buttonList" destination="WRG-eh-AFC" collectionClass="NSMutableArray" id="7CA-LK-6u3"/>
-                <outletCollection property="buttonList" destination="0ll-UO-SVe" collectionClass="NSMutableArray" id="TAi-Ol-EBh"/>
-                <outletCollection property="buttonList" destination="JCy-0i-8Bd" collectionClass="NSMutableArray" id="CMj-Ks-Jg8"/>
-                <outletCollection property="buttonList" destination="HqJ-Tx-8VU" collectionClass="NSMutableArray" id="2aQ-8D-wJ1"/>
-                <outletCollection property="buttonList" destination="9yH-Xs-gG9" collectionClass="NSMutableArray" id="YpE-4x-bTH"/>
-                <outletCollection property="buttonList" destination="e87-gx-aMb" collectionClass="NSMutableArray" id="MQt-Lq-Bkc"/>
-                <outletCollection property="buttonList" destination="Pab-ig-h6s" collectionClass="NSMutableArray" id="x7L-tV-k2o"/>
-                <outletCollection property="buttonList" destination="j8S-Ds-4qe" collectionClass="NSMutableArray" id="irM-0z-lEW"/>
-                <outletCollection property="buttonList" destination="ILO-VH-rtM" collectionClass="NSMutableArray" id="ihM-Er-SQs"/>
-                <outletCollection property="buttonList" destination="0Uz-OF-ZAU" collectionClass="NSMutableArray" id="EEI-h0-zxk"/>
-                <outletCollection property="buttonList" destination="GfH-7H-qbf" collectionClass="NSMutableArray" id="uXu-aU-8Ox"/>
-                <outletCollection property="buttonList" destination="q0P-Vh-6On" collectionClass="NSMutableArray" id="3bN-PU-jY9"/>
-                <outletCollection property="buttonList" destination="dnA-pf-oWD" collectionClass="NSMutableArray" id="aGI-lJ-Uxo"/>
-                <outletCollection property="buttonList" destination="CR1-6C-y7W" collectionClass="NSMutableArray" id="gJH-sK-i8l"/>
-                <outletCollection property="buttonList" destination="sDR-ex-omq" collectionClass="NSMutableArray" id="rec-2d-XMZ"/>
-                <outletCollection property="buttonList" destination="NqH-9G-HJb" collectionClass="NSMutableArray" id="ydv-5L-Gdh"/>
-                <outletCollection property="buttonList" destination="eO0-VU-x2b" collectionClass="NSMutableArray" id="555-hg-dkP"/>
-                <outletCollection property="buttonList" destination="PdB-l5-wuk" collectionClass="NSMutableArray" id="1Bk-4W-WZY"/>
-                <outletCollection property="buttonList" destination="Ban-tG-11Q" collectionClass="NSMutableArray" id="b2W-i6-xpc"/>
-                <outletCollection property="buttonList" destination="8KT-U9-YEW" collectionClass="NSMutableArray" id="ekk-hU-vQ2"/>
+                <outletCollection property="buttonList" destination="qcE-Gc-bwa" collectionClass="NSMutableArray" id="3Cw-Cq-wse"/>
+                <outletCollection property="buttonList" destination="4px-fM-m6V" collectionClass="NSMutableArray" id="mON-dl-upb"/>
+                <outletCollection property="buttonList" destination="vEO-9J-XSF" collectionClass="NSMutableArray" id="jNH-SV-Bg2"/>
+                <outletCollection property="buttonList" destination="eoN-2N-R94" collectionClass="NSMutableArray" id="NHg-Ed-RwB"/>
+                <outletCollection property="buttonList" destination="0Ad-gR-KMC" collectionClass="NSMutableArray" id="4CA-q9-fSS"/>
+                <outletCollection property="buttonList" destination="1wi-an-vhI" collectionClass="NSMutableArray" id="Hk2-cv-vKT"/>
+                <outletCollection property="buttonList" destination="8Jz-3H-XUm" collectionClass="NSMutableArray" id="jtC-wn-3IW"/>
+                <outletCollection property="buttonList" destination="NwQ-ch-p5G" collectionClass="NSMutableArray" id="Q0h-6S-cd4"/>
+                <outletCollection property="buttonList" destination="iE8-lg-yFg" collectionClass="NSMutableArray" id="rXS-Uo-H3w"/>
+                <outletCollection property="buttonList" destination="8VK-yq-kQn" collectionClass="NSMutableArray" id="eCM-wA-3zB"/>
+                <outletCollection property="buttonList" destination="Ylf-qu-XGd" collectionClass="NSMutableArray" id="hGA-Mp-CfR"/>
+                <outletCollection property="buttonList" destination="S2m-bj-Kqv" collectionClass="NSMutableArray" id="4Qc-qt-KQs"/>
+                <outletCollection property="buttonList" destination="4n0-sq-D4S" collectionClass="NSMutableArray" id="gUM-8l-QqE"/>
+                <outletCollection property="buttonList" destination="gmr-Ci-XLN" collectionClass="NSMutableArray" id="sHv-ZB-tA6"/>
+                <outletCollection property="buttonList" destination="mKL-Ix-w2N" collectionClass="NSMutableArray" id="rKB-Us-9cU"/>
+                <outletCollection property="buttonList" destination="Vre-cn-6JF" collectionClass="NSMutableArray" id="5fw-ce-Wq6"/>
+                <outletCollection property="buttonList" destination="Yaf-TD-wy2" collectionClass="NSMutableArray" id="ndJ-jf-WbQ"/>
+                <outletCollection property="buttonList" destination="qHX-9h-ryb" collectionClass="NSMutableArray" id="TB8-76-kFn"/>
+                <outletCollection property="buttonList" destination="jiJ-qd-9TI" collectionClass="NSMutableArray" id="Gb3-f8-iW6"/>
+                <outletCollection property="buttonList" destination="jc6-d4-C12" collectionClass="NSMutableArray" id="OKo-jv-IjF"/>
+                <outletCollection property="buttonList" destination="MVG-Ae-FhA" collectionClass="NSMutableArray" id="QdW-Wo-0SS"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT" userLabel="PokemonCollectionViewController">
+        <view contentMode="scaleToFill" id="i5M-Pr-FkT" userLabel="PokemonCollectionViewController">
             <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Fcj-XF-U5t" userLabel="Order By Search View">
-                    <rect key="frame" x="0.0" y="0.0" width="320" height="51"/>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PZB-lK-XCW" userLabel="Order By Search View">
+                    <rect key="frame" x="8" y="8" width="304" height="51"/>
                     <subviews>
-                        <searchBar contentMode="redraw" placeholder="Search for pokemon..." translatesAutoresizingMaskIntoConstraints="NO" id="fFe-ct-vJr">
-                            <rect key="frame" x="4" y="0.0" width="199" height="51"/>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="znT-Ly-tdf" userLabel="Order By Button">
+                            <rect key="frame" x="191" y="0.0" width="105" height="51"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            <constraints>
-                                <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="199" id="DF0-b5-dbH"/>
-                                <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="51" id="bjf-at-gVT"/>
-                            </constraints>
-                            <textInputTraits key="textInputTraits"/>
-                        </searchBar>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YZy-QL-9x0" userLabel="Order By Button">
-                            <rect key="frame" x="207" y="0.0" width="109" height="51"/>
-                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            <constraints>
-                                <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="109" id="TAu-vV-Oqr"/>
-                                <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="51" id="TfV-0a-jLN"/>
-                            </constraints>
                             <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                             <state key="normal" title="Order by Name">
-                                <color key="titleColor" red="0.16078431369999999" green="0.50980392159999999" blue="0.98431372549999996" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="titleColor" red="0.16078431372549018" green="0.50980392156862742" blue="0.98431372549019602" alpha="1" colorSpace="calibratedRGB"/>
                             </state>
                         </button>
+                        <searchBar contentMode="redraw" placeholder="Search for pokemon..." translatesAutoresizingMaskIntoConstraints="NO" id="hWD-k5-lMP">
+                            <rect key="frame" x="8" y="0.0" width="183" height="51"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <textInputTraits key="textInputTraits"/>
+                        </searchBar>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
-                        <constraint firstAttribute="trailing" secondItem="YZy-QL-9x0" secondAttribute="trailing" constant="4" id="2c8-i8-5Tv"/>
-                        <constraint firstAttribute="bottom" secondItem="fFe-ct-vJr" secondAttribute="bottom" id="9KH-uS-jWd"/>
-                        <constraint firstItem="fFe-ct-vJr" firstAttribute="leading" secondItem="Fcj-XF-U5t" secondAttribute="leading" constant="4" id="9Kk-nc-lXb"/>
-                        <constraint firstItem="YZy-QL-9x0" firstAttribute="top" secondItem="Fcj-XF-U5t" secondAttribute="top" id="H1W-8s-r8X"/>
-                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="320" id="MmS-Ll-pKv"/>
-                        <constraint firstItem="YZy-QL-9x0" firstAttribute="leading" secondItem="fFe-ct-vJr" secondAttribute="trailing" constant="4" id="Vuc-Fc-voa"/>
-                        <constraint firstItem="fFe-ct-vJr" firstAttribute="top" secondItem="Fcj-XF-U5t" secondAttribute="top" id="Y9q-Nb-BvW"/>
-                        <constraint firstAttribute="bottom" secondItem="YZy-QL-9x0" secondAttribute="bottom" id="bOT-37-VTk"/>
-                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="51" id="eFL-Cb-uqf"/>
+                        <constraint firstItem="znT-Ly-tdf" firstAttribute="leading" secondItem="hWD-k5-lMP" secondAttribute="trailing" symbolic="YES" id="5iu-tM-Apj"/>
+                        <constraint firstItem="hWD-k5-lMP" firstAttribute="top" secondItem="PZB-lK-XCW" secondAttribute="top" id="Bue-Qr-S8Z"/>
+                        <constraint firstAttribute="trailing" secondItem="znT-Ly-tdf" secondAttribute="trailing" constant="8" id="CyZ-VU-TBN"/>
+                        <constraint firstItem="hWD-k5-lMP" firstAttribute="leading" secondItem="PZB-lK-XCW" secondAttribute="leading" constant="8" id="KQ7-EB-EbQ"/>
+                        <constraint firstItem="znT-Ly-tdf" firstAttribute="top" secondItem="PZB-lK-XCW" secondAttribute="top" id="Lll-Ps-e0D"/>
+                        <constraint firstAttribute="bottom" secondItem="hWD-k5-lMP" secondAttribute="bottom" id="kS6-GL-tkq"/>
+                        <constraint firstAttribute="bottom" secondItem="znT-Ly-tdf" secondAttribute="bottom" id="sD1-Jh-cJN"/>
                     </constraints>
                 </view>
-                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NFT-Aj-9n7">
-                    <rect key="frame" x="0.0" y="51" width="320" height="30"/>
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fyu-69-6su">
+                    <rect key="frame" x="8" y="67" width="304" height="28"/>
                     <subviews>
-                        <stackView opaque="NO" contentMode="scaleToFill" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="g55-2R-NZK">
-                            <rect key="frame" x="0.0" y="0.0" width="1594" height="30"/>
+                        <stackView opaque="NO" contentMode="scaleToFill" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="izh-x1-Qfu">
+                            <rect key="frame" x="0.0" y="0.0" width="1642.5" height="28"/>
                             <subviews>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lqT-JI-v4p">
-                                    <rect key="frame" x="0.0" y="0.0" width="74" height="30"/>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qcE-Gc-bwa">
+                                    <rect key="frame" x="0.0" y="0.0" width="74" height="28"/>
                                     <constraints>
-                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="28" id="0vb-IN-4ZW"/>
-                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="74" id="Uac-wt-BTz"/>
+                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="74" id="XlF-pi-Lfc"/>
+                                        <constraint firstAttribute="height" constant="28" id="u23-R1-IZG"/>
                                     </constraints>
                                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                     <state key="normal" title="All">
                                         <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </state>
                                 </button>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WRG-eh-AFC">
-                                    <rect key="frame" x="76" y="0.0" width="74" height="30"/>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4px-fM-m6V">
+                                    <rect key="frame" x="76" y="0.0" width="74" height="28"/>
                                     <constraints>
-                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="28" id="BFU-O0-Nzq"/>
-                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="74" id="UXL-CC-ESw"/>
+                                        <constraint firstAttribute="height" constant="28" id="IAX-xk-LPu"/>
+                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="74" id="Y1d-cY-rud"/>
                                     </constraints>
                                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                     <state key="normal" title="Normal">
                                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </state>
                                 </button>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0ll-UO-SVe">
-                                    <rect key="frame" x="152" y="0.0" width="74" height="30"/>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vEO-9J-XSF">
+                                    <rect key="frame" x="152" y="0.0" width="74" height="28"/>
                                     <constraints>
-                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="28" id="cZY-8P-1WP"/>
-                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="74" id="igy-Mg-2wQ"/>
+                                        <constraint firstAttribute="height" constant="28" id="9vH-nS-kJj"/>
+                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="74" id="n2g-lP-oaO"/>
                                     </constraints>
                                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                     <state key="normal" title="Fighting">
                                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </state>
                                 </button>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JCy-0i-8Bd">
-                                    <rect key="frame" x="228" y="0.0" width="74" height="30"/>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eoN-2N-R94">
+                                    <rect key="frame" x="228" y="0.0" width="74" height="28"/>
                                     <constraints>
-                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="74" id="eRG-jJ-oMD"/>
-                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="28" id="hAv-vh-NTc"/>
+                                        <constraint firstAttribute="height" constant="28" id="VjK-bI-RHV"/>
+                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="74" id="cYT-7V-nMp"/>
                                     </constraints>
                                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                     <state key="normal" title="Flying">
                                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </state>
                                 </button>
-                                <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HqJ-Tx-8VU">
-                                    <rect key="frame" x="304" y="0.0" width="74" height="30"/>
+                                <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Ad-gR-KMC">
+                                    <rect key="frame" x="304" y="0.0" width="74" height="28"/>
                                     <constraints>
-                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="28" id="dv1-Ot-Jwk"/>
-                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="74" id="hhp-9g-6fE"/>
+                                        <constraint firstAttribute="height" constant="28" id="Nra-Rv-AcJ"/>
+                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="74" id="pRz-TW-rNy"/>
                                     </constraints>
                                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                     <state key="normal" title="Poison">
                                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </state>
                                 </button>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9yH-Xs-gG9">
-                                    <rect key="frame" x="380" y="0.0" width="74" height="30"/>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1wi-an-vhI">
+                                    <rect key="frame" x="380" y="0.0" width="74" height="28"/>
                                     <constraints>
-                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="74" id="VxA-Kd-82t"/>
-                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="28" id="bqA-bL-WNP"/>
+                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="74" id="Gd0-gf-LrP"/>
+                                        <constraint firstAttribute="height" constant="28" id="HRC-e5-hTe"/>
                                     </constraints>
                                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                     <state key="normal" title="Ground">
                                         <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </state>
                                 </button>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e87-gx-aMb">
-                                    <rect key="frame" x="456" y="0.0" width="74" height="30"/>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Jz-3H-XUm">
+                                    <rect key="frame" x="456" y="0.0" width="74" height="28"/>
                                     <constraints>
-                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="74" id="0k0-Ox-ISN"/>
-                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="28" id="9cl-F9-dRE"/>
+                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="74" id="dfk-36-5OA"/>
+                                        <constraint firstAttribute="height" constant="28" id="u41-pN-KdW"/>
                                     </constraints>
                                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                     <state key="normal" title="Rock">
                                         <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </state>
                                 </button>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pab-ig-h6s">
-                                    <rect key="frame" x="532" y="0.0" width="74" height="30"/>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NwQ-ch-p5G">
+                                    <rect key="frame" x="532" y="0.0" width="74" height="28"/>
                                     <constraints>
-                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="28" id="9SS-if-62f"/>
-                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="74" id="gL2-Ta-KMP"/>
+                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="74" id="1pm-jg-nmO"/>
+                                        <constraint firstAttribute="height" constant="28" id="n5j-KF-tgv"/>
                                     </constraints>
                                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                     <state key="normal" title="Bug">
                                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </state>
                                 </button>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="j8S-Ds-4qe">
-                                    <rect key="frame" x="608" y="0.0" width="74" height="30"/>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iE8-lg-yFg">
+                                    <rect key="frame" x="608" y="0.0" width="74" height="28"/>
                                     <constraints>
-                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="28" id="Bbx-7x-gtr"/>
-                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="74" id="MOy-k7-YJo"/>
+                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="74" id="hva-ca-9xp"/>
+                                        <constraint firstAttribute="height" constant="28" id="vcV-tJ-N3s"/>
                                     </constraints>
                                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                     <state key="normal" title="Ghost">
                                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </state>
                                 </button>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ILO-VH-rtM">
-                                    <rect key="frame" x="684" y="0.0" width="74" height="30"/>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8VK-yq-kQn">
+                                    <rect key="frame" x="684" y="0.0" width="74" height="28"/>
                                     <constraints>
-                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="74" id="6lj-7M-9dA"/>
-                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="28" id="k9g-nC-WMp"/>
+                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="74" id="6zS-ak-mM2"/>
+                                        <constraint firstAttribute="height" constant="28" id="efB-Z1-4dH"/>
                                     </constraints>
                                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                     <state key="normal" title="Steel">
                                         <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </state>
                                 </button>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Uz-OF-ZAU">
-                                    <rect key="frame" x="760" y="0.0" width="74" height="30"/>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ylf-qu-XGd">
+                                    <rect key="frame" x="760" y="0.0" width="74" height="28"/>
                                     <constraints>
-                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="28" id="C9j-ck-NfG"/>
-                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="74" id="Mkp-Fh-Fqo"/>
+                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="74" id="9fT-ik-YnC"/>
+                                        <constraint firstAttribute="height" constant="28" id="roU-vu-WW4"/>
                                     </constraints>
                                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                     <state key="normal" title="Fire">
                                         <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </state>
                                 </button>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GfH-7H-qbf">
-                                    <rect key="frame" x="836" y="0.0" width="74" height="30"/>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="S2m-bj-Kqv">
+                                    <rect key="frame" x="836" y="0.0" width="74" height="28"/>
                                     <constraints>
-                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="28" id="StZ-e6-R1D"/>
-                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="74" id="YOu-cb-yGi"/>
+                                        <constraint firstAttribute="height" constant="28" id="Osp-Pa-B8z"/>
+                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="74" id="Y24-oA-sc1"/>
                                     </constraints>
                                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                     <state key="normal" title="Water">
                                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </state>
                                 </button>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q0P-Vh-6On">
-                                    <rect key="frame" x="912" y="0.0" width="74" height="30"/>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4n0-sq-D4S">
+                                    <rect key="frame" x="912" y="0.0" width="74" height="28"/>
                                     <constraints>
-                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="74" id="6yH-zl-G3z"/>
-                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="28" id="9EZ-TQ-BKn"/>
+                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="74" id="PYa-0F-vRG"/>
+                                        <constraint firstAttribute="height" constant="28" id="VSt-CY-x7r"/>
                                     </constraints>
                                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                     <state key="normal" title="Grass">
                                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </state>
                                 </button>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dnA-pf-oWD">
-                                    <rect key="frame" x="988" y="0.0" width="74" height="30"/>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gmr-Ci-XLN">
+                                    <rect key="frame" x="988" y="0.0" width="85" height="28"/>
                                     <constraints>
-                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="74" id="OGe-cj-k19"/>
-                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="28" id="bIQ-w6-zSa"/>
+                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="85" id="L5N-eN-krD"/>
+                                        <constraint firstAttribute="height" constant="28" id="ov6-sR-Hln"/>
                                     </constraints>
                                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                     <state key="normal" title="Electric">
                                         <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </state>
                                 </button>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CR1-6C-y7W">
-                                    <rect key="frame" x="1064" y="0.0" width="74" height="30"/>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mKL-Ix-w2N">
+                                    <rect key="frame" x="1075" y="0.0" width="85" height="28"/>
                                     <constraints>
-                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="74" id="2es-Ej-RKw"/>
-                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="28" id="L9K-7a-dgA"/>
+                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="85" id="wb3-AY-B3W"/>
+                                        <constraint firstAttribute="height" constant="28" id="y3V-hI-z8h"/>
                                     </constraints>
                                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                     <state key="normal" title="Psychic">
                                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </state>
                                 </button>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sDR-ex-omq">
-                                    <rect key="frame" x="1140" y="0.0" width="74" height="30"/>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vre-cn-6JF">
+                                    <rect key="frame" x="1162" y="0.0" width="74" height="28"/>
                                     <constraints>
-                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="28" id="BTL-ee-ruX"/>
-                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="74" id="e2m-FI-ln5"/>
+                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="74" id="LBb-bJ-HGd"/>
+                                        <constraint firstAttribute="height" constant="28" id="Mfh-Dp-gDu"/>
                                     </constraints>
                                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                     <state key="normal" title="Ice">
                                         <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </state>
                                 </button>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NqH-9G-HJb">
-                                    <rect key="frame" x="1216" y="0.0" width="74" height="30"/>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yaf-TD-wy2">
+                                    <rect key="frame" x="1238" y="0.0" width="80" height="28"/>
                                     <constraints>
-                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="28" id="OBD-rP-h3q"/>
-                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="74" id="xNR-Yp-wAs"/>
+                                        <constraint firstAttribute="height" constant="28" id="7Ja-Zu-kVg"/>
+                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="80" id="c5f-HQ-iKw"/>
                                     </constraints>
                                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                     <state key="normal" title="Dragon">
                                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </state>
                                 </button>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eO0-VU-x2b">
-                                    <rect key="frame" x="1292" y="0.0" width="74" height="30"/>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qHX-9h-ryb">
+                                    <rect key="frame" x="1320" y="0.0" width="74" height="28"/>
                                     <constraints>
-                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="74" id="X9x-Vk-Sqd"/>
-                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="28" id="ufi-Te-T6p"/>
+                                        <constraint firstAttribute="height" constant="28" id="8cZ-ax-4Hv"/>
+                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="74" id="vxd-aa-80a"/>
                                     </constraints>
                                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                     <state key="normal" title="Dark">
                                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </state>
                                 </button>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PdB-l5-wuk">
-                                    <rect key="frame" x="1368" y="0.0" width="74" height="30"/>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jiJ-qd-9TI">
+                                    <rect key="frame" x="1396" y="0.0" width="74" height="28"/>
                                     <constraints>
-                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="28" id="2K2-i8-dA0"/>
-                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="74" id="bFm-8B-T2H"/>
+                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="74" id="RKK-dA-mc2"/>
+                                        <constraint firstAttribute="height" constant="28" id="TnW-Su-ayp"/>
                                     </constraints>
                                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                     <state key="normal" title="Fairy">
                                         <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </state>
                                 </button>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ban-tG-11Q">
-                                    <rect key="frame" x="1444" y="0.0" width="74" height="30"/>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jc6-d4-C12">
+                                    <rect key="frame" x="1472" y="0.0" width="84.5" height="28"/>
                                     <constraints>
-                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="28" id="3dx-dI-bwi"/>
-                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="74" id="lBe-TW-nEd"/>
+                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="84.5" id="8cV-f9-ALX"/>
+                                        <constraint firstAttribute="height" constant="28" id="9Gn-8M-rCG"/>
                                     </constraints>
                                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                     <state key="normal" title="Unknown">
                                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </state>
                                 </button>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8KT-U9-YEW">
-                                    <rect key="frame" x="1520" y="0.0" width="74" height="30"/>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MVG-Ae-FhA">
+                                    <rect key="frame" x="1558.5" y="0.0" width="84" height="28"/>
                                     <constraints>
-                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="28" id="RLT-PR-Emu"/>
-                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="74" id="urf-RK-VrC"/>
+                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="84" id="RrT-t2-kED"/>
+                                        <constraint firstAttribute="height" constant="28" id="SWt-VT-IsY"/>
                                     </constraints>
                                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                     <state key="normal" title="Shadow">
@@ -320,26 +311,23 @@
                                     </state>
                                 </button>
                             </subviews>
-                            <constraints>
-                                <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="1567" id="3Hu-Sw-6ik"/>
-                            </constraints>
                         </stackView>
                     </subviews>
                     <color key="backgroundColor" red="0.86274509799999999" green="0.8634538651" blue="0.8634538651" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
-                        <constraint firstItem="g55-2R-NZK" firstAttribute="centerY" secondItem="NFT-Aj-9n7" secondAttribute="centerY" id="BPH-18-ypr"/>
-                        <constraint firstAttribute="bottom" secondItem="g55-2R-NZK" secondAttribute="bottom" id="H1C-sa-Jtl"/>
-                        <constraint firstAttribute="trailing" secondItem="g55-2R-NZK" secondAttribute="trailing" id="Pyc-Xt-Jfl"/>
-                        <constraint firstItem="g55-2R-NZK" firstAttribute="top" secondItem="NFT-Aj-9n7" secondAttribute="top" id="RM9-nm-t32"/>
-                        <constraint firstItem="g55-2R-NZK" firstAttribute="leading" secondItem="NFT-Aj-9n7" secondAttribute="leading" id="h1o-nn-JkT"/>
+                        <constraint firstItem="izh-x1-Qfu" firstAttribute="top" secondItem="eL8-3h-9v4" secondAttribute="top" id="1hU-aa-kAE"/>
+                        <constraint firstAttribute="bottom" secondItem="izh-x1-Qfu" secondAttribute="bottom" id="Tmw-tV-ab1"/>
+                        <constraint firstItem="izh-x1-Qfu" firstAttribute="leading" secondItem="fyu-69-6su" secondAttribute="leading" id="kr1-Kt-fBV"/>
+                        <constraint firstAttribute="trailing" secondItem="izh-x1-Qfu" secondAttribute="trailing" id="pgD-1A-1as"/>
+                        <constraint firstItem="izh-x1-Qfu" firstAttribute="centerY" secondItem="fyu-69-6su" secondAttribute="centerY" id="qaY-sY-pzZ"/>
                     </constraints>
-                    <viewLayoutGuide key="contentLayoutGuide" id="zos-pB-kKx"/>
-                    <viewLayoutGuide key="frameLayoutGuide" id="FfI-AC-9DB"/>
+                    <viewLayoutGuide key="contentLayoutGuide" id="TR5-yT-RBU"/>
+                    <viewLayoutGuide key="frameLayoutGuide" id="eL8-3h-9v4"/>
                 </scrollView>
-                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="xHz-mJ-fQx">
-                    <rect key="frame" x="0.0" y="89" width="320" height="391"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="A9x-aT-AEd">
+                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="A72-La-Lf2">
+                    <rect key="frame" x="8" y="103" width="304" height="369"/>
+                    <color key="backgroundColor" name="grayColor"/>
+                    <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="mvp-MD-6fG">
                         <size key="itemSize" width="128" height="128"/>
                         <size key="headerReferenceSize" width="0.0" height="0.0"/>
                         <size key="footerReferenceSize" width="0.0" height="0.0"/>
@@ -347,21 +335,22 @@
                     </collectionViewFlowLayout>
                 </collectionView>
             </subviews>
-            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <viewLayoutGuide key="safeArea" id="LtH-DL-IHf"/>
             <color key="backgroundColor" name="grayColor"/>
             <constraints>
-                <constraint firstItem="NFT-Aj-9n7" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="Cdb-Ma-s5S"/>
-                <constraint firstItem="Fcj-XF-U5t" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="Fo7-cc-fq8"/>
-                <constraint firstItem="xHz-mJ-fQx" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="Qih-bv-3Od"/>
-                <constraint firstItem="NFT-Aj-9n7" firstAttribute="top" secondItem="Fcj-XF-U5t" secondAttribute="bottom" id="SRj-I1-Scy"/>
-                <constraint firstItem="xHz-mJ-fQx" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="TIu-wN-IqZ"/>
-                <constraint firstItem="xHz-mJ-fQx" firstAttribute="bottom" secondItem="fnl-2z-Ty3" secondAttribute="bottom" id="TqU-Ru-A7V"/>
-                <constraint firstItem="Fcj-XF-U5t" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="U4m-Xs-eit"/>
-                <constraint firstItem="xHz-mJ-fQx" firstAttribute="top" secondItem="NFT-Aj-9n7" secondAttribute="bottom" constant="8" id="ic6-Xg-5ZB"/>
-                <constraint firstItem="Fcj-XF-U5t" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="lES-k4-8H0"/>
-                <constraint firstItem="NFT-Aj-9n7" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="yVt-7L-qGq"/>
+                <constraint firstItem="LtH-DL-IHf" firstAttribute="bottom" secondItem="A72-La-Lf2" secondAttribute="bottom" constant="8" id="LzO-7i-ciQ"/>
+                <constraint firstItem="LtH-DL-IHf" firstAttribute="trailing" secondItem="PZB-lK-XCW" secondAttribute="trailing" constant="8" id="Qgu-Ca-DQa"/>
+                <constraint firstItem="A72-La-Lf2" firstAttribute="leading" secondItem="LtH-DL-IHf" secondAttribute="leading" constant="8" id="R9T-c2-oRW"/>
+                <constraint firstItem="LtH-DL-IHf" firstAttribute="trailing" secondItem="A72-La-Lf2" secondAttribute="trailing" constant="8" id="aUs-Uy-f9Y"/>
+                <constraint firstItem="LtH-DL-IHf" firstAttribute="trailing" secondItem="fyu-69-6su" secondAttribute="trailing" constant="8" id="fWM-L0-0cd"/>
+                <constraint firstItem="fyu-69-6su" firstAttribute="leading" secondItem="LtH-DL-IHf" secondAttribute="leading" constant="8" id="geb-iJ-wld"/>
+                <constraint firstItem="PZB-lK-XCW" firstAttribute="top" secondItem="LtH-DL-IHf" secondAttribute="top" constant="8" id="i4j-HG-utS"/>
+                <constraint firstItem="A72-La-Lf2" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" constant="47.5" id="iO1-y1-xkH"/>
+                <constraint firstItem="PZB-lK-XCW" firstAttribute="leading" secondItem="LtH-DL-IHf" secondAttribute="leading" constant="8" id="iZ3-wJ-q8R"/>
+                <constraint firstItem="fyu-69-6su" firstAttribute="top" secondItem="PZB-lK-XCW" secondAttribute="bottom" constant="8" symbolic="YES" id="lqS-t2-QLR"/>
+                <constraint firstItem="A72-La-Lf2" firstAttribute="top" secondItem="fyu-69-6su" secondAttribute="bottom" constant="8" symbolic="YES" id="zDm-XS-mn5"/>
             </constraints>
-            <point key="canvasLocation" x="138.75" y="92.5"/>
+            <point key="canvasLocation" x="73.125" y="-115"/>
         </view>
     </objects>
     <resources>

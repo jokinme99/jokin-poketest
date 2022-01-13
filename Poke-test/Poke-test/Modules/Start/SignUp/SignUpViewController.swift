@@ -4,16 +4,16 @@ import FirebaseDatabase
 import FirebaseAuth
 import FirebaseCrashlytics
 import IQKeyboardManagerSwift
+//  pod 'Zero', :git => 'https://bitbucket.org/baturamobile/designsystem-ios', :branch =>'develop'
 
 //MARK: - SignUpViewController
 class SignUpViewController: UIViewController {
     @IBOutlet weak var backgroundImageView: UIImageView!
-    @IBOutlet weak var titleView: UIView!
     @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var userView: UIView!
+    @IBOutlet weak var userView: UIStackView!
     @IBOutlet weak var userLabel: UILabel!
     @IBOutlet weak var userTextField: UITextField!
-    @IBOutlet weak var passwordView: UIView!
+    @IBOutlet weak var passwordView: UIStackView!
     @IBOutlet weak var passwordLabel: UILabel!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var enterButton: UIButton!
