@@ -13,6 +13,8 @@ class PokemonCollectionViewController: UIViewController {
     @IBOutlet weak var orderByButton: UIButton!
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet var buttonList: [UIButton]!
+    @IBOutlet weak var scrollView: UIScrollView!
+    
     
     var presenter: PokemonCollectionPresenterDelegate?
     var pokemon: [Results] = []
@@ -38,6 +40,7 @@ class PokemonCollectionViewController: UIViewController {
         presenter?.fetchPokemonList()
         loadButtons()
         loadSearchBar()
+        loadStyle()
         crashlyticsErrorSending()
     }
    
@@ -75,6 +78,18 @@ extension PokemonCollectionViewController{
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
         searchBar.placeholder = NSLocalizedString("search_for_pokemons", comment: "")
+    }
+    
+    
+    //MARK: - loadStyle
+    func loadStyle(){
+        orderBySearchView.layer.cornerRadius = 10
+        searchBar.layer.cornerRadius = 5
+        collectionView.layer.cornerRadius = 5
+        scrollView.layer.cornerRadius = 5
+        for b in buttonList{
+            b.layer.cornerRadius = 1
+        }
     }
     
     
@@ -386,7 +401,7 @@ extension PokemonCollectionViewController{
     func paintButton(_ button: UIButton){
         switch button.titleLabel?.text?.lowercased(){
         case "all":
-            button.titleLabel?.textColor = #colorLiteral(red: 0.8454863429, green: 0.8979230523, blue: 0.9188942909, alpha: 1)
+            button.backgroundColor = .white //.init(red: 0.8454863429, green: 0.8979230523, blue: 0.9188942909, alpha: 1)
             setPokemonTextColor(.black, button)
         case TypeName.normal:
             setFilterButtonsBackground(168, 168, 120, button)

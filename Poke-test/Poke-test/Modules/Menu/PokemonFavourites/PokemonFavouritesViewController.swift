@@ -14,6 +14,7 @@ class PokemonFavouritesViewController: UIViewController {
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet var buttonList: [UIButton]!
     @IBOutlet weak var orderBySearchView: UIView!
+    @IBOutlet weak var scrollView: UIScrollView!
     
     var pokemon : [Results] = []
     var filtered : [Results] = []
@@ -43,12 +44,12 @@ class PokemonFavouritesViewController: UIViewController {
         tableView.rowHeight = 80.0
         pokemonDataList = DDBBManager.shared.get(PokemonData.self)
         crashlyticsErrorSending()
-
+        loadStyle()
         
         
     }
     override func viewWillAppear(_ animated: Bool) {
-        presenter?.fetchFavourites()
+        //presenter?.fetchFavourites()
         for filter in filtered{
             if filter.isInvalidated{
                 filtered.removeAll()
@@ -83,6 +84,19 @@ extension PokemonFavouritesViewController{
         }
         orderByButton.setTitle(NSLocalizedString("Order_by_Name", comment: ""), for: .normal)
         loadFilterButtons()
+    }
+    
+    
+    //MARK: - loadStyle
+    func loadStyle(){
+        tableView.rowHeight = 50.0
+        orderBySearchView.layer.cornerRadius = 10
+        searchBar.layer.cornerRadius = 5
+        tableView.layer.cornerRadius = 5
+        scrollView.layer.cornerRadius = 5
+        for b in buttonList{
+            b.layer.cornerRadius = 1
+        }
     }
     
     
@@ -444,7 +458,7 @@ extension PokemonFavouritesViewController{
     func paintButton(_ button: UIButton){
         switch button.titleLabel?.text?.lowercased(){
         case "all":
-            button.titleLabel?.textColor = #colorLiteral(red: 0.8454863429, green: 0.8979230523, blue: 0.9188942909, alpha: 1)
+            button.backgroundColor = .white //.init(red: 0.8454863429, green: 0.8979230523, blue: 0.9188942909, alpha: 1)
             setPokemonTextColor(.black, button)
         case TypeName.normal:
             setFilterButtonsBackground(168, 168, 120, button)

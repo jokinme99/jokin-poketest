@@ -16,6 +16,7 @@ protocol PokemonDetailsViewDelegate: AnyObject {
 protocol PokemonDetailsWireframeDelegate: AnyObject {
     static func createPokemonDetailsModule(pokemon: Results, nextPokemon: Results, previousPokemon: Results, filtered: [Results]) -> UIViewController
     func openLoginSignUpWindow()
+    func openARKitView()
 }
 
 
@@ -29,6 +30,7 @@ protocol PokemonDetailsPresenterDelegate: AnyObject {
     func addFavourite(pokemon: Results)
     func deleteFavourite(pokemon: Results)
     func openLoginSignUpWindow()
+    func openARKitView()
 }
 
 

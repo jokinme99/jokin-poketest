@@ -22,7 +22,7 @@ target 'Poke-test' do
   pod 'Firebase/Crashlytics'
   pod 'Firebase/Database'
   google_utilites
-  #pod 'IQKeyboardManagerSwift' #Doesn't work with searchbar
+  pod 'IQKeyboardManagerSwift'
 end
 
 target 'NotificationExtension' do

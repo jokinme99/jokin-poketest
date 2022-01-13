@@ -3,18 +3,18 @@ import Firebase
 import FirebaseDatabase
 import FirebaseAuth
 import FirebaseCrashlytics
+import IQKeyboardManagerSwift
 
 
 //MARK: - LoginViewController
 class LoginViewController: UIViewController {
 
     @IBOutlet weak var backgroundImageView: UIImageView!
-    @IBOutlet weak var titleView: UIView!
     @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var userView: UIView!
+    @IBOutlet weak var userView: UIStackView!
     @IBOutlet weak var userLabel: UILabel!
     @IBOutlet weak var userTextField: UITextField!
-    @IBOutlet weak var passwordView: UIView!
+    @IBOutlet weak var passwordView: UIStackView!
     @IBOutlet weak var passwordLabel: UILabel!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var enterButton: UIButton!
@@ -32,6 +32,8 @@ class LoginViewController: UIViewController {
         passwordLabel.text = NSLocalizedString("Password", comment: "")
         enterButton.setTitle(NSLocalizedString("Enter", comment: ""), for: .normal)
         crashlyticsErrorSending()
+        loadKeyboard()
+        navigationItem.backButtonTitle = NSLocalizedString("Back", comment: "")
     }
 }
 
@@ -49,6 +51,13 @@ extension LoginViewController{
         Crashlytics.crashlytics().setCustomValue(email, forKey: "USER")
         //Enviar logs de errores
         Crashlytics.crashlytics().log("Error in LoginViewController")
+    }
+    
+    
+    //MARK: - loadKeyboard()
+    func loadKeyboard(){
+        IQKeyboardManager.shared.enable = true
+        userTextField.keyboardType = .emailAddress
     }
 }
 

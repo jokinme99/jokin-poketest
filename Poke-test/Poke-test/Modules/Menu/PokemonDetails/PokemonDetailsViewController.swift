@@ -60,7 +60,7 @@ class PokemonDetailsViewController: UIViewController {
         guard let selectedPokemon = selectedPokemon else {return}
         row = (filtered.firstIndex(of: selectedPokemon))
         crashlyticsErrorSending()
-
+        loadImageAction()
     }
 }
 
@@ -106,7 +106,7 @@ extension PokemonDetailsViewController{
     //MARK: - loadMethods
     func loadMethods(){
         self.loadButtonsStyle()
-        self.favouritesButton.addTarget(self, action: #selector(pressed), for: .touchUpInside)
+        self.favouritesButton.addTarget(self, action: #selector(addToFavouritesPressed), for: .touchUpInside)
         self.previewButton.addTarget(self, action: #selector(previousPokemonButtonAction), for: .touchUpInside)
         self.nextButton.addTarget(self, action: #selector(nextPokemonButtonAction), for: .touchUpInside)
         if filtered.count < 2{
@@ -115,6 +115,14 @@ extension PokemonDetailsViewController{
         }
         self.nextButton.setTitle(self.nextPokemon?.name?.capitalized, for: .normal)
         self.previewButton.setTitle(self.previousPokemon?.name?.capitalized, for: .normal)
+    }
+    
+    
+    //MARK: - loadImageAction
+    func loadImageAction(){
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(imageTapped(tapGestureRecognizer:)))
+        pokemonImage.isUserInteractionEnabled = true
+        pokemonImage.addGestureRecognizer(tapGestureRecognizer)
     }
     
     
@@ -246,8 +254,8 @@ extension PokemonDetailsViewController: PokemonDetailsViewDelegate {
 extension PokemonDetailsViewController{
     
     
-    //MARK: - pressed
-    @objc func pressed(_ sender: UIButton!) {
+    //MARK: - addToFavouritesPressed
+    @objc func addToFavouritesPressed(_ sender: UIButton!) {
         if user != nil{
             guard let selectedPokemon = selectedPokemon else{return}
             if favouritesButton.titleLabel?.text == NSLocalizedString("add_to_favourites", comment: ""){
@@ -266,6 +274,20 @@ extension PokemonDetailsViewController{
         
     }
     
+    
+    //MARK: - imageTapped
+    @objc func imageTapped(tapGestureRecognizer: UITapGestureRecognizer)
+    {//Pass the image
+        let tappedImage = tapGestureRecognizer.view as! UIImageView
+        guard let imageToSave = tappedImage.image else{return}
+        if self.saveImage(image: imageToSave) == true{
+            self.presenter?.openARKitView()
+        }else{
+            print("Error when saving image!")
+        }
+        
+        
+    }
     
     //MARK: - nextPokemonButtonAction
     @objc func nextPokemonButtonAction(_ sender: UIButton!){
@@ -547,4 +569,26 @@ extension PokemonDetailsViewController{
         to.backgroundColor = from.backgroundColor
     }
     
+}
+
+
+
+//MARK: - Image saving method
+extension PokemonDetailsViewController{
+    //MARK: - saveImage
+    func saveImage(image: UIImage) -> Bool {
+        guard let data = image.pngData() else {
+            return false
+        }
+        guard let directory = try? FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false) as NSURL else {
+            return false
+        }
+        do {
+            try data.write(to: directory.appendingPathComponent("fileName.png")!)
+            return true
+        } catch {
+            print(error.localizedDescription)
+            return false
+        }
+    }
 }
