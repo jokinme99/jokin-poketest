@@ -8,9 +8,7 @@ class LoginOrSignUpViewController: UIViewController {
 
     var presenter: LoginOrSignUpPresenterDelegate?
     @IBOutlet weak var backgroundImageView: UIImageView!
-    @IBOutlet weak var toLoginMenuView: UIView!
     @IBOutlet weak var toLoginMenuButton: UIButton!
-    @IBOutlet weak var toSignUpMenuView: UIView!
     @IBOutlet weak var toSignUpMenuButton: UIButton!
     @IBOutlet weak var notLoginOrSignUpButton: UIButton!
     @IBOutlet weak var titleLabel: UILabel!
@@ -21,8 +19,8 @@ class LoginOrSignUpViewController: UIViewController {
         toSignUpMenuButton.setTitle(NSLocalizedString("Sign_Up", comment: ""), for: .normal)
         notLoginOrSignUpButton.setTitle(NSLocalizedString("Access_without_user", comment: ""), for: .normal)
         titleLabel.text = NSLocalizedString("Welcome", comment: "")
-        toLoginMenuView.layer.cornerRadius = 10
-        toSignUpMenuView.layer.cornerRadius = 10
+        toLoginMenuButton.layer.cornerRadius = 10
+        toSignUpMenuButton.layer.cornerRadius = 10
         crashlyticsErrorSending()
         navigationItem.title = "POKE-TEST"
         navigationItem.backButtonTitle = NSLocalizedString("Back", comment: "")

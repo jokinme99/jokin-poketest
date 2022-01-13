@@ -14,7 +14,8 @@ class PokemonListViewController: UIViewController {
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var orderBySearchView: UIView!
     @IBOutlet var buttonList: [UIButton]!
-   
+    @IBOutlet weak var scrollView: UIScrollView!
+    
     var presenter: PokemonListPresenterDelegate?
     var pokemon : [Results] = []
     var filtered : [Results] = []
@@ -36,7 +37,7 @@ class PokemonListViewController: UIViewController {
         tableView.register(UINib(nibName: "PokemonCell", bundle: nil), forCellReuseIdentifier: "PokemonNameCell")
         loadButtons()
         loadSearchBar()
-        tableView.rowHeight = 50.0
+        loadStyle()
         crashlyticsErrorSending()
     }
     
@@ -76,6 +77,19 @@ extension PokemonListViewController{
         }
         orderByButton.setTitle(NSLocalizedString("Order_by_Name", comment: ""), for: .normal)
         loadFilterButtons()
+    }
+    
+    
+    //MARK: - loadStyle
+    func loadStyle(){
+        tableView.rowHeight = 50.0
+        orderBySearchView.layer.cornerRadius = 10
+        searchBar.layer.cornerRadius = 5
+        tableView.layer.cornerRadius = 5
+        scrollView.layer.cornerRadius = 5
+        for b in buttonList{
+            b.layer.cornerRadius = 1
+        }
     }
     
     
@@ -417,7 +431,7 @@ extension PokemonListViewController{
     func paintButton(_ button: UIButton){
         switch button.titleLabel?.text?.lowercased(){
         case "all":
-            button.titleLabel?.textColor =  .init(red: 0.8454863429, green: 0.8979230523, blue: 0.9188942909, alpha: 1)
+            button.backgroundColor = .white //.init(red: 0.8454863429, green: 0.8979230523, blue: 0.9188942909, alpha: 1)
             setPokemonTextColor(.black, button)
         case TypeName.normal:
             setFilterButtonsBackground(168, 168, 120, button)

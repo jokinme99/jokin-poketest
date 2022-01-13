@@ -29,7 +29,6 @@ class CollectionCell: UICollectionViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        self.collectionCellBackgroundView.layer.borderWidth = 1
         // Initialization code
         nameLabel.adjustsFontSizeToFitWidth = true
     }
