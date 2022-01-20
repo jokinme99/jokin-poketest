@@ -1,5 +1,6 @@
 import UIKit
 import AlamofireImage
+import Zero
 
 //MARK: - PokemonCellDelegate protocol
 protocol PokemonCellDelegate: AnyObject{
@@ -20,6 +21,7 @@ class PokemonCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        loadStyle()
         
     }
     override func prepareForReuse() {
@@ -30,6 +32,15 @@ class PokemonCell: UITableViewCell {
         idLabel.text = nil
     }
     
+}
+
+
+//MARK: - viewDidLoad methods
+extension PokemonCell{
+    func loadStyle(){
+        idLabel.apply(ZeroTheme.Label.body1Bold)
+        pokemonNameLabel.apply(ZeroTheme.Label.body2)
+    }
 }
 
 
@@ -93,7 +104,7 @@ extension PokemonCell{
         case TypeName.normal:
             setPokemonBackgroundColor(168, 168, 120, label)
             setPokemonTextColor(.white)
-        case TypeName.fight:
+        case TypeName.fighting:
             setPokemonBackgroundColor(192, 48, 40, label)
             setPokemonTextColor(.white)
         case TypeName.flying:

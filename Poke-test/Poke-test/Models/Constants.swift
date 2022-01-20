@@ -2,7 +2,7 @@ import Foundation
 //MARK: - Types' constants
 struct TypeName{
     static let normal = "normal"
-    static let fight = "fighting"
+    static let fighting = "fighting"
     static let flying = "flying"
     static let poison = "poison"
     static let ground = "ground"

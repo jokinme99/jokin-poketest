@@ -5,14 +5,15 @@ import Firebase
 import FirebaseAuth
 import FirebaseDatabase
 import FirebaseCrashlytics
+import Zero
 
 //MARK: - PokemonCollectionViewController
 class PokemonCollectionViewController: UIViewController {
     @IBOutlet weak var orderBySearchView: UIView!
     @IBOutlet weak var searchBar: UISearchBar!
-    @IBOutlet weak var orderByButton: UIButton!
+    @IBOutlet weak var orderByButton: ZeroTextButton!
     @IBOutlet weak var collectionView: UICollectionView!
-    @IBOutlet var buttonList: [UIButton]!
+    @IBOutlet var buttonList: [ZeroContainedButton]!
     @IBOutlet weak var scrollView: UIScrollView!
     
     
@@ -90,6 +91,9 @@ extension PokemonCollectionViewController{
         for b in buttonList{
             b.layer.cornerRadius = 1
         }
+        orderByButton.style = .normal
+        searchBar.searchBarStyle = .minimal
+        orderByButton.apply(ZeroTheme.Button.normal)
     }
     
     
@@ -306,7 +310,7 @@ extension PokemonCollectionViewController: UISearchBarDelegate{
 //MARK: - OrderBy Buttons methods
 extension PokemonCollectionViewController{
     
-    @objc func pressedOrderBy(_ sender: UIButton!) {
+    @objc func pressedOrderBy(_ sender: ZeroTextButton!) {
         if orderByButton.titleLabel?.text == NSLocalizedString("Order_by_Name", comment: ""){
             orderByButton.setTitle(NSLocalizedString("Order_by_Id", comment: ""), for: .normal)
             self.filtered = filtered.sorted(by: {$0.name ?? "" < $1.name ?? ""})
@@ -330,14 +334,14 @@ extension PokemonCollectionViewController{
 //MARK: - Filter Buttons methods
 extension PokemonCollectionViewController{
     
-    @objc func pressedFilterButton(_ sender: UIButton!){
+    @objc func pressedFilterButton(_ sender: ZeroContainedButton!){
         switch sender.titleLabel?.text?.lowercased(){
         case all:
             self.presenter?.fetchPokemonList()
         case normal:
             self.presenter?.fetchPokemonType(type: TypeName.normal)
         case fighting:
-            self.presenter?.fetchPokemonType(type: TypeName.fight)
+            self.presenter?.fetchPokemonType(type: TypeName.fighting)
         case flying:
             self.presenter?.fetchPokemonType(type: TypeName.flying)
         case poison:
@@ -392,13 +396,13 @@ extension PokemonCollectionViewController{
 
 //MARK: - Painting Methods
 extension PokemonCollectionViewController{
-    func setPokemonTextColor(_ color: UIColor, _ button: UIButton){
-        button.titleLabel?.textColor = color
+    func setPokemonTextColor(_ color: UIColor, _ button: ZeroContainedButton){
+        button.setTitleColor(color, for: .normal)
     }
-    func setFilterButtonsBackground(_ red: CGFloat, _ green: CGFloat, _ blue: CGFloat, _ button: UIButton){
+    func setFilterButtonsBackground(_ red: CGFloat, _ green: CGFloat, _ blue: CGFloat, _ button: ZeroContainedButton){
         button.backgroundColor = .init(red: red/255, green: green/255, blue: blue/255, alpha: 1)
     }
-    func paintButton(_ button: UIButton){
+    func paintButton(_ button: ZeroContainedButton){
         switch button.titleLabel?.text?.lowercased(){
         case "all":
             button.backgroundColor = .white //.init(red: 0.8454863429, green: 0.8979230523, blue: 0.9188942909, alpha: 1)
@@ -406,7 +410,7 @@ extension PokemonCollectionViewController{
         case TypeName.normal:
             setFilterButtonsBackground(168, 168, 120, button)
             setPokemonTextColor(.white, button)
-        case TypeName.fight:
+        case TypeName.fighting:
             setFilterButtonsBackground(192, 48, 40, button)
             setPokemonTextColor(.white, button)
         case TypeName.flying:

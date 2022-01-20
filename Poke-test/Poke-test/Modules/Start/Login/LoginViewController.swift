@@ -4,29 +4,26 @@ import FirebaseDatabase
 import FirebaseAuth
 import FirebaseCrashlytics
 import IQKeyboardManagerSwift
+import Zero
 
 
 //MARK: - LoginViewController
 class LoginViewController: UIViewController {
-
     @IBOutlet weak var backgroundImageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var userView: UIStackView!
     @IBOutlet weak var userLabel: UILabel!
-    @IBOutlet weak var userTextField: UITextField!
+    @IBOutlet weak var userTextField: ZeroTextField!
     @IBOutlet weak var passwordView: UIStackView!
     @IBOutlet weak var passwordLabel: UILabel!
-    @IBOutlet weak var passwordTextField: UITextField!
-    @IBOutlet weak var enterButton: UIButton!
+    @IBOutlet weak var passwordTextField: ZeroTextField!
+    @IBOutlet weak var enterButton: ZeroContainedButton!
     var presenter: LoginPresenterDelegate?
-    
+    var alert = ZeroDialog()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do view setup here.
-        userView.layer.cornerRadius = 10
-        passwordView.layer.cornerRadius = 10
-        enterButton.layer.cornerRadius = 10
+        loadStyle()
         titleLabel.text = NSLocalizedString("Login", comment: "")
         userLabel.text = NSLocalizedString("Email", comment: "")
         passwordLabel.text = NSLocalizedString("Password", comment: "")
@@ -34,6 +31,15 @@ class LoginViewController: UIViewController {
         crashlyticsErrorSending()
         loadKeyboard()
         navigationItem.backButtonTitle = NSLocalizedString("Back", comment: "")
+    }
+    
+    func loadStyle(){
+        userView.layer.cornerRadius = 4
+        passwordView.layer.cornerRadius = 4
+        //enterButton.layer.cornerRadius = 10
+        titleLabel.apply(ZeroTheme.Label.head2)
+        userLabel.apply(ZeroTheme.Label.caption1)
+        passwordLabel.apply(ZeroTheme.Label.caption1)
     }
 }
 
@@ -103,8 +109,11 @@ extension LoginViewController: LoginViewDelegate {
     
     //MARK: - createAlert
     func createAlert(title: String, message: String){
-        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-        self.present(alert, animated: true, completion: nil)
+        alert.show(
+            title: title,
+            info: message,
+            titleOk: "OK",
+            completionOk: nil
+        )
     }
 }

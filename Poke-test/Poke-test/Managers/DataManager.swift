@@ -87,7 +87,7 @@ extension PokemonManager{
                 }
             })
         }
-        let pokemonTypes =  [TypeName.normal, TypeName.fight, TypeName.flying, TypeName.poison, TypeName.ground, TypeName.rock, TypeName.bug, TypeName.ghost, TypeName.steel, TypeName.fire, TypeName.water, TypeName.grass,TypeName.electric, TypeName.psychic, TypeName.ice, TypeName.dragon, TypeName.dark, TypeName.fairy, TypeName.unknown, TypeName.shadow]
+        let pokemonTypes =  [TypeName.normal, TypeName.fighting, TypeName.flying, TypeName.poison, TypeName.ground, TypeName.rock, TypeName.bug, TypeName.ghost, TypeName.steel, TypeName.fire, TypeName.water, TypeName.grass,TypeName.electric, TypeName.psychic, TypeName.ice, TypeName.dragon, TypeName.dark, TypeName.fairy, TypeName.unknown, TypeName.shadow]
         for type in pokemonTypes {
             PokemonManager.shared.fetchPokemonTypes(pokemonType: type, {pokemonFilterListData, error in
                 if let error = error {

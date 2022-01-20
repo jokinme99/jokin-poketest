@@ -1,20 +1,21 @@
 
 import UIKit
 import FirebaseCrashlytics
-
+import Zero
 
 //MARK: - LoginOrSignUpViewController
 class LoginOrSignUpViewController: UIViewController {
 
     var presenter: LoginOrSignUpPresenterDelegate?
     @IBOutlet weak var backgroundImageView: UIImageView!
-    @IBOutlet weak var toLoginMenuButton: UIButton!
-    @IBOutlet weak var toSignUpMenuButton: UIButton!
-    @IBOutlet weak var notLoginOrSignUpButton: UIButton!
+    @IBOutlet weak var toLoginMenuButton: ZeroOutlineButton!
+    @IBOutlet weak var toSignUpMenuButton: ZeroOutlineButton!
+    @IBOutlet weak var notLoginOrSignUpButton: ZeroTextButton!
     @IBOutlet weak var titleLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        loadStyle()
         toLoginMenuButton.setTitle(NSLocalizedString("Login", comment: ""), for: .normal)
         toSignUpMenuButton.setTitle(NSLocalizedString("Sign_Up", comment: ""), for: .normal)
         notLoginOrSignUpButton.setTitle(NSLocalizedString("Access_without_user", comment: ""), for: .normal)
@@ -24,6 +25,17 @@ class LoginOrSignUpViewController: UIViewController {
         crashlyticsErrorSending()
         navigationItem.title = "POKE-TEST"
         navigationItem.backButtonTitle = NSLocalizedString("Back", comment: "")
+    }
+    
+    func loadStyle(){
+        toSignUpMenuButton.backgroundColor = UIColor(named: "grayColor")
+        toLoginMenuButton.backgroundColor = UIColor(named: "grayColor")
+        toLoginMenuButton.apply(ZeroTheme.Button.outlined)
+        toSignUpMenuButton.apply(ZeroTheme.Button.outlined)
+        toSignUpMenuButton.layer.borderColor = toSignUpMenuButton.backgroundColor?.cgColor
+        toLoginMenuButton.layer.borderColor = toLoginMenuButton.backgroundColor?.cgColor
+        notLoginOrSignUpButton.apply(ZeroTheme.Button.normal)
+        titleLabel.apply(ZeroTheme.Label.head1)
     }
    
 }

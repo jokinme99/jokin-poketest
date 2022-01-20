@@ -4,7 +4,7 @@ import FirebaseDatabase
 import FirebaseAuth
 import FirebaseCrashlytics
 import IQKeyboardManagerSwift
-//  pod 'Zero', :git => 'https://bitbucket.org/baturamobile/designsystem-ios', :branch =>'develop'
+import Zero
 
 //MARK: - SignUpViewController
 class SignUpViewController: UIViewController {
@@ -12,26 +12,34 @@ class SignUpViewController: UIViewController {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var userView: UIStackView!
     @IBOutlet weak var userLabel: UILabel!
-    @IBOutlet weak var userTextField: UITextField!
+    @IBOutlet weak var userTextField: ZeroTextField!
     @IBOutlet weak var passwordView: UIStackView!
     @IBOutlet weak var passwordLabel: UILabel!
-    @IBOutlet weak var passwordTextField: UITextField!
-    @IBOutlet weak var enterButton: UIButton!
+    @IBOutlet weak var passwordTextField: ZeroTextField!
+    @IBOutlet weak var enterButton: ZeroContainedButton!
+    var alert = ZeroDialog()
+    
     var presenter: SignUpPresenterDelegate?
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        userView.layer.cornerRadius = 10
-        passwordView.layer.cornerRadius = 10
-        enterButton.layer.cornerRadius = 10
+        loadStyle()
         titleLabel.text = NSLocalizedString("Sign_Up", comment: "")
-        userLabel.text = NSLocalizedString("Email", comment: "")
-        passwordLabel.text = NSLocalizedString("Password", comment: "")
+        userLabel.text = " " + NSLocalizedString("Email", comment: "")
+        passwordLabel.text = " " + NSLocalizedString("Password", comment: "")
         enterButton.setTitle(NSLocalizedString("Enter", comment: ""), for: .normal)
         crashlyticsErrorSending()
         loadKeyboard()
         navigationItem.backButtonTitle = NSLocalizedString("Back", comment: "")
+    }
+    func loadStyle(){
+        userView.layer.cornerRadius = 4
+        passwordView.layer.cornerRadius = 4
+        //enterButton.layer.cornerRadius = 10
+        titleLabel.apply(ZeroTheme.Label.head2)
+        userLabel.apply(ZeroTheme.Label.caption1)
+        passwordLabel.apply(ZeroTheme.Label.caption1)
     }
 }
 
@@ -101,8 +109,11 @@ extension SignUpViewController: SignUpViewDelegate {
     
     //MARK: - createAlert
     func createAlert(title: String, message: String){
-        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-        self.present(alert, animated: true, completion: nil)
+        alert.show(
+            title: title,
+            info: message,
+            titleOk: "OK",
+            completionOk: nil
+        )
     }
 }

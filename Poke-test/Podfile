@@ -23,6 +23,7 @@ target 'Poke-test' do
   pod 'Firebase/Database'
   google_utilites
   pod 'IQKeyboardManagerSwift'
+  pod 'Zero', :git => 'https://bitbucket.org/baturamobile/designsystem-ios', :branch =>'develop'
 end
 
 target 'NotificationExtension' do

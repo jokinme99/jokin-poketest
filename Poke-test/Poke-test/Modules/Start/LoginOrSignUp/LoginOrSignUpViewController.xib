@@ -33,7 +33,17 @@
                     <color key="textColor" name="AccentColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Uht-0F-xt0" userLabel="To Login Menu Button">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PwI-Wz-AbY" userLabel="To SignUp Button" customClass="ZeroOutlineButton" customModule="Zero">
+                    <rect key="frame" x="32" y="178" width="256" height="38"/>
+                    <color key="backgroundColor" name="grayColor"/>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="21"/>
+                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                    <state key="normal" title="Sign up"/>
+                    <connections>
+                        <action selector="pressedToSignUpMenuButton:" destination="-1" eventType="touchUpInside" id="and-je-tOj"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Uht-0F-xt0" userLabel="To Login Menu Button" customClass="ZeroOutlineButton" customModule="Zero">
                     <rect key="frame" x="32" y="260" width="256" height="38"/>
                     <color key="backgroundColor" name="grayColor"/>
                     <fontDescription key="fontDescription" type="boldSystem" pointSize="21"/>
@@ -43,23 +53,13 @@
                         <action selector="pressedToLoginMenuButton:" destination="-1" eventType="touchUpInside" id="nNW-mi-yA6"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dlr-qS-kME" userLabel="Not Login Or SignUp Button">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dlr-qS-kME" userLabel="Not Login Or SignUp Button" customClass="ZeroTextButton" customModule="Zero">
                     <rect key="frame" x="32" y="416" width="256" height="36"/>
                     <fontDescription key="fontDescription" name="HelveticaNeue-BoldItalic" family="Helvetica Neue" pointSize="20"/>
                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                     <state key="normal" title="Access without user"/>
                     <connections>
                         <action selector="pressedNotLoginOrSignUpButton:" destination="-1" eventType="touchUpInside" id="h7m-99-daP"/>
-                    </connections>
-                </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PwI-Wz-AbY" userLabel="To SignUp Button">
-                    <rect key="frame" x="32" y="178" width="256" height="38"/>
-                    <color key="backgroundColor" name="grayColor"/>
-                    <fontDescription key="fontDescription" type="boldSystem" pointSize="21"/>
-                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                    <state key="normal" title="Sign up"/>
-                    <connections>
-                        <action selector="pressedToSignUpMenuButton:" destination="-1" eventType="touchUpInside" id="and-je-tOj"/>
                     </connections>
                 </button>
             </subviews>
