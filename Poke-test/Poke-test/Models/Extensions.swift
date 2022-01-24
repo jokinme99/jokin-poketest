@@ -1,6 +1,9 @@
 
 
 import UIKit
+import Zero
+
+
 //MARK: - UISearchBar extension
 extension UISearchBar{
     @IBInspectable var doneAccessory: Bool{
@@ -39,3 +42,5 @@ extension UISearchBar{
     }
     
 }
+
+

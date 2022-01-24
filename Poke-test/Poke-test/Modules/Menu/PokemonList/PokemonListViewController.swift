@@ -6,14 +6,15 @@ import Firebase
 import FirebaseAuth
 import FirebaseDatabase
 import FirebaseCrashlytics
+import Zero
 
 //MARK: - PokemonListViewController
 class PokemonListViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var orderByButton: UIButton!
+    @IBOutlet weak var orderByButton: ZeroTextButton!
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var orderBySearchView: UIView!
-    @IBOutlet var buttonList: [UIButton]!
+    @IBOutlet var buttonList: [ZeroContainedButton]!
     @IBOutlet weak var scrollView: UIScrollView!
     
     var presenter: PokemonListPresenterDelegate?
@@ -28,16 +29,17 @@ class PokemonListViewController: UIViewController {
     var favourites: [Favourites] = []
     let user = Auth.auth().currentUser
     var all: String?; var normal: String?; var fighting: String?; var flying: String?; var poison: String?; var ground: String?; var rock: String?; var bug: String?; var ghost: String?; var steel: String?; var fire: String?; var water: String?; var grass: String?; var electric: String?; var psychic: String?; var ice: String?; var dragon: String?; var dark: String?; var fairy: String?; var unknown: String?; var shadow: String?
+    var alert = ZeroDialog()
     
     override func viewDidLoad() {
         print(Realm.Configuration.defaultConfiguration.fileURL!)
         super.viewDidLoad()
         loadDelegates()
+        loadStyle()
         presenter?.fetchPokemonList()
         tableView.register(UINib(nibName: "PokemonCell", bundle: nil), forCellReuseIdentifier: "PokemonNameCell")
         loadButtons()
         loadSearchBar()
-        loadStyle()
         crashlyticsErrorSending()
     }
     
@@ -90,6 +92,9 @@ extension PokemonListViewController{
         for b in buttonList{
             b.layer.cornerRadius = 1
         }
+        orderByButton.style = .normal
+        searchBar.searchBarStyle = .minimal
+        orderByButton.apply(ZeroTheme.Button.normal)
     }
     
     
@@ -250,25 +255,40 @@ extension PokemonListViewController:UITableViewDelegate, UITableViewDataSource{
                 arrayOfFavouritesNames.append(favs.name!)
             }
             if arrayOfFavouritesNames.contains(self.filtered[indexPath.row].name!){
-                self.createBasicAlert(NSLocalizedString("Pokemon_already_added_to_favourites", comment: ""))
+                alert.show(
+                    title: NSLocalizedString("Pokemon_already_added_to_favourites", comment: ""),
+                    info: "",
+                    titleOk: "OK",
+                    completionOk: nil
+                )
                 return nil
             }else{
                 let action = UIContextualAction(style: .normal, title: NSLocalizedString("Add", comment: ""), handler: { (ac:UIContextualAction, view:UIView, success:(Bool) -> Void) in
                     self.presenter?.addFavourite(pokemon: self.filtered[indexPath.row])
                     self.favourites.append(Favourites(name: self.filtered[indexPath.row].name!))
-                    self.createBasicAlert(NSLocalizedString("Pokemon_added_to_favourites", comment: ""))
+                    self.alert.show(
+                        title: NSLocalizedString("Pokemon_added_to_favourites", comment: ""),
+                        info: "",
+                        titleOk: "OK",
+                        completionOk: nil
+                        
+                    )
                     success(true)
                 })
                 action.backgroundColor = .init(red: 41/255, green: 130/255, blue: 251/255, alpha: 1)
                 return UISwipeActionsConfiguration(actions: [action])
             }
         }else{
-            let alert = UIAlertController(title: NSLocalizedString("Favourites", comment: ""), message: NSLocalizedString("You_will_not_be_able_to_add_any_pokemons_to_favourites_until_you_login_or_sign_up_Would_you_like_to_login_or_sign_up", comment: ""), preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: NSLocalizedString("Yes", comment: ""), style: .default, handler: {(action) in
-                self.presenter?.openLoginSignUpWindow()
-            }))
-            alert.addAction(UIAlertAction(title: NSLocalizedString("No", comment: ""), style: .destructive, handler: nil))
-            self.present(alert, animated: true, completion: nil)
+            alert.show(
+                title: NSLocalizedString("Favourites", comment: ""),
+                info: NSLocalizedString("You_will_not_be_able_to_add_any_pokemons_to_favourites_until_you_login_or_sign_up_Would_you_like_to_login_or_sign_up", comment: ""),
+                titleOk: NSLocalizedString("Yes", comment: ""),
+                titleCancel: NSLocalizedString("No", comment: ""),
+                completionOk: {
+                    self.presenter?.openLoginSignUpWindow()
+                },
+                completionCancel: nil
+            )
             return nil
         }
     }
@@ -278,17 +298,6 @@ extension PokemonListViewController:UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
         return .none
     }
-}
-
-
-
-//MARK: - Alert method
-extension PokemonListViewController{
-func createBasicAlert(_ title: String){
-    let alert = UIAlertController(title: title, message: nil, preferredStyle: .alert)
-    alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-    self.present(alert, animated: true, completion: nil)
-}
 }
 
 //MARK: - UISearchBarDelegate methods
@@ -336,7 +345,7 @@ extension PokemonListViewController:UISearchBarDelegate{
 //MARK: - OrderBy Buttons methods
 extension PokemonListViewController{
     
-    @objc func pressedOrderBy(_ sender: UIButton!) {
+    @objc func pressedOrderBy(_ sender: ZeroTextButton!) {
         if orderByButton.titleLabel?.text == NSLocalizedString("Order_by_Name", comment: ""){
             orderByButton.setTitle(NSLocalizedString("Order_by_Id", comment: ""), for: .normal)
             self.filtered = filtered.sorted(by: {$0.name ?? "" < $1.name ?? ""})
@@ -360,14 +369,14 @@ extension PokemonListViewController{
 //MARK: - Filter Buttons methods
 extension PokemonListViewController{
     
-    @objc func pressedFilterButton(_ sender: UIButton!){
+    @objc func pressedFilterButton(_ sender: ZeroContainedButton!){
         switch sender.titleLabel?.text?.lowercased(){
         case all:
             self.presenter?.fetchPokemonList()
         case normal:
             self.presenter?.fetchPokemonType(type: TypeName.normal)
         case fighting:
-            self.presenter?.fetchPokemonType(type: TypeName.fight)
+            self.presenter?.fetchPokemonType(type: TypeName.fighting)
         case flying:
             self.presenter?.fetchPokemonType(type: TypeName.flying)
         case poison:
@@ -422,21 +431,21 @@ extension PokemonListViewController{
 
 //MARK: - Painting Methods
 extension PokemonListViewController{
-    func setPokemonTextColor(_ color: UIColor, _ button: UIButton){
-        button.titleLabel?.textColor = color
+    func setPokemonTextColor(_ color: UIColor, _ button: ZeroContainedButton){
+        button.setTitleColor(color, for: .normal)
     }
-    func setFilterButtonsBackground(_ red: CGFloat, _ green: CGFloat, _ blue: CGFloat, _ button: UIButton){
+    func setFilterButtonsBackground(_ red: CGFloat, _ green: CGFloat, _ blue: CGFloat, _ button: ZeroContainedButton){
         button.backgroundColor = .init(red: red/255, green: green/255, blue: blue/255, alpha: 1)
     }
-    func paintButton(_ button: UIButton){
+    func paintButton(_ button: ZeroContainedButton){
         switch button.titleLabel?.text?.lowercased(){
         case "all":
-            button.backgroundColor = .white //.init(red: 0.8454863429, green: 0.8979230523, blue: 0.9188942909, alpha: 1)
+            button.backgroundColor = .white//.init(red: 0.8454863429, green: 0.8979230523, blue: 0.9188942909, alpha: 1)
             setPokemonTextColor(.black, button)
         case TypeName.normal:
             setFilterButtonsBackground(168, 168, 120, button)
             setPokemonTextColor(.white, button)
-        case TypeName.fight:
+        case TypeName.fighting:
             setFilterButtonsBackground(192, 48, 40, button)
             setPokemonTextColor(.white, button)
         case TypeName.flying:

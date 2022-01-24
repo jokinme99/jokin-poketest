@@ -137,6 +137,77 @@ PODS:
   - GTMSessionFetcher/Core (1.7.0)
   - IQKeyboardManagerSwift (6.5.9)
   - leveldb-library (1.22.1)
+  - MaterialComponents/AnimationTiming (124.2.0)
+  - MaterialComponents/Availability (124.2.0)
+  - MaterialComponents/Buttons (124.2.0):
+    - MaterialComponents/Elevation
+    - MaterialComponents/Ink
+    - MaterialComponents/private/Math
+    - MaterialComponents/Ripple
+    - MaterialComponents/Shadow
+    - MaterialComponents/ShadowElevations
+    - MaterialComponents/ShadowLayer
+    - MaterialComponents/ShapeLibrary
+    - MaterialComponents/Shapes
+    - MaterialComponents/Typography
+    - MDFInternationalization
+    - MDFTextAccessibility
+  - MaterialComponents/Chips (124.2.0):
+    - MaterialComponents/Elevation
+    - MaterialComponents/Ink
+    - MaterialComponents/private/Math
+    - MaterialComponents/Ripple
+    - MaterialComponents/ShadowElevations
+    - MaterialComponents/ShadowLayer
+    - MaterialComponents/ShapeLibrary
+    - MaterialComponents/Shapes
+    - MaterialComponents/TextFields
+    - MaterialComponents/Typography
+    - MDFInternationalization
+  - MaterialComponents/Elevation (124.2.0):
+    - MaterialComponents/Availability
+    - MaterialComponents/private/Color
+    - MaterialComponents/private/Math
+  - MaterialComponents/Ink (124.2.0):
+    - MaterialComponents/Availability
+    - MaterialComponents/private/Color
+    - MaterialComponents/private/Math
+  - MaterialComponents/Palettes (124.2.0)
+  - MaterialComponents/private/Application (124.2.0)
+  - MaterialComponents/private/Color (124.2.0):
+    - MaterialComponents/Availability
+  - MaterialComponents/private/Math (124.2.0)
+  - MaterialComponents/Ripple (124.2.0):
+    - MaterialComponents/AnimationTiming
+    - MaterialComponents/Availability
+    - MaterialComponents/private/Color
+    - MaterialComponents/private/Math
+  - MaterialComponents/Shadow (124.2.0):
+    - MaterialComponents/Availability
+  - MaterialComponents/ShadowElevations (124.2.0)
+  - MaterialComponents/ShadowLayer (124.2.0):
+    - MaterialComponents/ShadowElevations
+  - MaterialComponents/ShapeLibrary (124.2.0):
+    - MaterialComponents/private/Math
+    - MaterialComponents/Shapes
+  - MaterialComponents/Shapes (124.2.0):
+    - MaterialComponents/private/Color
+    - MaterialComponents/private/Math
+    - MaterialComponents/ShadowLayer
+  - MaterialComponents/TextFields (124.2.0):
+    - MaterialComponents/AnimationTiming
+    - MaterialComponents/Buttons
+    - MaterialComponents/Elevation
+    - MaterialComponents/Palettes
+    - MaterialComponents/private/Math
+    - MaterialComponents/Typography
+    - MDFInternationalization
+  - MaterialComponents/Typography (124.2.0):
+    - MaterialComponents/private/Application
+    - MaterialComponents/private/Math
+    - MDFTextAccessibility
+  - MDFInternationalization (3.0.0)
+  - MDFTextAccessibility (2.0.1)
   - nanopb (2.30908.0):
     - nanopb/decode (= 2.30908.0)
     - nanopb/encode (= 2.30908.0)
@@ -148,6 +219,11 @@ PODS:
   - Realm/Headers (10.20.0)
   - RealmSwift (10.20.0):
     - Realm (= 10.20.0)
+  - XLPagerTabStrip (9.0.0)
+  - Zero (1.2.0):
+    - MaterialComponents/Chips
+    - MaterialComponents/TextFields
+    - XLPagerTabStrip
 
 DEPENDENCIES:
   - Alamofire
@@ -161,6 +237,7 @@ DEPENDENCIES:
   - GoogleUtilities
   - IQKeyboardManagerSwift
   - RealmSwift
+  - Zero (from `https://bitbucket.org/baturamobile/designsystem-ios`, branch `develop`)
 
 SPEC REPOS:
   trunk:
@@ -181,10 +258,24 @@ SPEC REPOS:
     - GTMSessionFetcher
     - IQKeyboardManagerSwift
     - leveldb-library
+    - MaterialComponents
+    - MDFInternationalization
+    - MDFTextAccessibility
     - nanopb
     - PromisesObjC
     - Realm
     - RealmSwift
+    - XLPagerTabStrip
+
+EXTERNAL SOURCES:
+  Zero:
+    :branch: develop
+    :git: https://bitbucket.org/baturamobile/designsystem-ios
+
+CHECKOUT OPTIONS:
+  Zero:
+    :commit: 4b397beb05fba9d610e626d91f4a771ac647885d
+    :git: https://bitbucket.org/baturamobile/designsystem-ios
 
 SPEC CHECKSUMS:
   Alamofire: f3b09a368f1582ab751b3fff5460276e0d2cf5c9
@@ -204,11 +295,16 @@ SPEC CHECKSUMS:
   GTMSessionFetcher: 43748f93435c2aa068b1cbe39655aaf600652e91
   IQKeyboardManagerSwift: 6e839c575c4aa1078d58a596e41244e77abe918f
   leveldb-library: 50c7b45cbd7bf543c81a468fe557a16ae3db8729
+  MaterialComponents: 1a9b2d9d45b1601ae544de85089adc4c464306d4
+  MDFInternationalization: d697c55307816222a55685c4ccb1044ffb030c12
+  MDFTextAccessibility: f4bb4cc2194286651b59a215fdeaa0e05dc90ba5
   nanopb: a0ba3315591a9ae0a16a309ee504766e90db0c96
   PromisesObjC: 68159ce6952d93e17b2dfe273b8c40907db5ba58
   Realm: ae32bdc1da7d19c7617e0400201a77acd4a211b9
   RealmSwift: c95eec6a712924870b2e36c4c081d63ec07e5414
+  XLPagerTabStrip: 61c57fd61f611ee5f01ff1495ad6fbee8bf496c5
+  Zero: c61f45539e4c31900030eb601ff5f999afbffc72
 
-PODFILE CHECKSUM: f6c14cfdf2ba4029bd89926066afd78f881d1f9f
+PODFILE CHECKSUM: b65d51f3d31f6e7037f706c01288f08d2e79fec7
 
 COCOAPODS: 1.11.2

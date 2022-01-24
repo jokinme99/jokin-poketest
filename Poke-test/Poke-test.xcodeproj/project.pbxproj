@@ -50,13 +50,16 @@
 		FD7F8F74276C780000EB3FFF /* PokemonCollectionWireframe.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD7F8F6E276C780000EB3FFF /* PokemonCollectionWireframe.swift */; };
 		FD7F8F80276CA45D00EB3FFF /* CollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD7F8F7E276CA45D00EB3FFF /* CollectionCell.swift */; };
 		FD7F8F81276CA45D00EB3FFF /* CollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FD7F8F7F276CA45D00EB3FFF /* CollectionCell.xib */; };
-		FD7F8F84276CC47B00EB3FFF /* SearchBarExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD7F8F83276CC47B00EB3FFF /* SearchBarExtension.swift */; };
+		FD7F8F84276CC47B00EB3FFF /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD7F8F83276CC47B00EB3FFF /* Extensions.swift */; };
 		FD806D97273BFC5500331C74 /* MainTabBarPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD806D91273BFC5500331C74 /* MainTabBarPresenter.swift */; };
 		FD806D98273BFC5500331C74 /* MainTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD806D92273BFC5500331C74 /* MainTabBarViewController.swift */; };
 		FD806D99273BFC5500331C74 /* MainTabBarProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD806D93273BFC5500331C74 /* MainTabBarProtocols.swift */; };
 		FD806D9A273BFC5500331C74 /* MainTabBarInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD806D94273BFC5500331C74 /* MainTabBarInteractor.swift */; };
 		FD806D9B273BFC5500331C74 /* MainTabBarViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FD806D95273BFC5500331C74 /* MainTabBarViewController.xib */; };
 		FD806D9C273BFC5500331C74 /* MainTabBarWireframe.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD806D96273BFC5500331C74 /* MainTabBarWireframe.swift */; };
+		FD816A1127957C1400055EDC /* CircularStd-Book.otf in Resources */ = {isa = PBXBuildFile; fileRef = FD816A0E27957C1400055EDC /* CircularStd-Book.otf */; };
+		FD816A1227957C1400055EDC /* CircularStd-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = FD816A0F27957C1400055EDC /* CircularStd-Bold.otf */; };
+		FD816A1327957C1400055EDC /* CircularStd-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = FD816A1027957C1400055EDC /* CircularStd-Medium.otf */; };
 		FD82B9A4278C176300B9F31C /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = FD82B9A3278C176300B9F31C /* README.md */; };
 		FD85C3A82696EAFC00EAF99F /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD85C3A72696EAFC00EAF99F /* Data.swift */; };
 		FD85C3AC2696EB1E00EAF99F /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD85C3AB2696EB1E00EAF99F /* DataManager.swift */; };
@@ -173,13 +176,16 @@
 		FD7F8F6E276C780000EB3FFF /* PokemonCollectionWireframe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonCollectionWireframe.swift; sourceTree = "<group>"; };
 		FD7F8F7E276CA45D00EB3FFF /* CollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionCell.swift; sourceTree = "<group>"; };
 		FD7F8F7F276CA45D00EB3FFF /* CollectionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CollectionCell.xib; sourceTree = "<group>"; };
-		FD7F8F83276CC47B00EB3FFF /* SearchBarExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarExtension.swift; sourceTree = "<group>"; };
+		FD7F8F83276CC47B00EB3FFF /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		FD806D91273BFC5500331C74 /* MainTabBarPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarPresenter.swift; sourceTree = "<group>"; };
 		FD806D92273BFC5500331C74 /* MainTabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarViewController.swift; sourceTree = "<group>"; };
 		FD806D93273BFC5500331C74 /* MainTabBarProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarProtocols.swift; sourceTree = "<group>"; };
 		FD806D94273BFC5500331C74 /* MainTabBarInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarInteractor.swift; sourceTree = "<group>"; };
 		FD806D95273BFC5500331C74 /* MainTabBarViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainTabBarViewController.xib; sourceTree = "<group>"; };
 		FD806D96273BFC5500331C74 /* MainTabBarWireframe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarWireframe.swift; sourceTree = "<group>"; };
+		FD816A0E27957C1400055EDC /* CircularStd-Book.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "CircularStd-Book.otf"; sourceTree = "<group>"; };
+		FD816A0F27957C1400055EDC /* CircularStd-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "CircularStd-Bold.otf"; sourceTree = "<group>"; };
+		FD816A1027957C1400055EDC /* CircularStd-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "CircularStd-Medium.otf"; sourceTree = "<group>"; };
 		FD82B9A3278C176300B9F31C /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		FD85C3A72696EAFC00EAF99F /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
 		FD85C3AB2696EB1E00EAF99F /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
@@ -279,6 +285,7 @@
 				FDA34F0226E8957400AE2143 /* Managers */,
 				FDA34F0426E8A2DF00AE2143 /* Models */,
 				FD806D90273BFC3100331C74 /* Modules */,
+				FD816A14279589F500055EDC /* Styling */,
 				FDF25E8126B1724F002474BB /* Info.plist */,
 				FD7B1C64274E46C3004DBB0B /* Localizable.strings */,
 				FD7D316D27198B100031AB92 /* LaunchScreen.storyboard */,
@@ -426,6 +433,24 @@
 			path = MainTabBar;
 			sourceTree = "<group>";
 		};
+		FD816A0D27957C1400055EDC /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				FD816A0E27957C1400055EDC /* CircularStd-Book.otf */,
+				FD816A0F27957C1400055EDC /* CircularStd-Bold.otf */,
+				FD816A1027957C1400055EDC /* CircularStd-Medium.otf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
+		FD816A14279589F500055EDC /* Styling */ = {
+			isa = PBXGroup;
+			children = (
+				FD816A0D27957C1400055EDC /* Fonts */,
+			);
+			path = Styling;
+			sourceTree = "<group>";
+		};
 		FDA34F0126E8955B00AE2143 /* PokemonDetails */ = {
 			isa = PBXGroup;
 			children = (
@@ -468,7 +493,7 @@
 			children = (
 				FD85C3A72696EAFC00EAF99F /* Data.swift */,
 				FD61B42226B4046800EDBF8C /* Constants.swift */,
-				FD7F8F83276CC47B00EB3FFF /* SearchBarExtension.swift */,
+				FD7F8F83276CC47B00EB3FFF /* Extensions.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -578,6 +603,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FD7CC05B27451023006D1CD5 /* LoginViewController.xib in Resources */,
+				FD816A1227957C1400055EDC /* CircularStd-Bold.otf in Resources */,
 				FD7B1C68274E46C3004DBB0B /* Localizable.strings in Resources */,
 				FDA34EFF26E8954D00AE2143 /* PokemonDetailsViewController.xib in Resources */,
 				FD86C1522701A33C00DB4B8F /* Assets.xcassets in Resources */,
@@ -589,7 +615,9 @@
 				FD7B9B07273E4B2A006B7610 /* PokemonFavouritesViewController.xib in Resources */,
 				FD7F8F73276C780000EB3FFF /* PokemonCollectionViewController.xib in Resources */,
 				FDA34EF226E8952900AE2143 /* PokemonListViewController.xib in Resources */,
+				FD816A1327957C1400055EDC /* CircularStd-Medium.otf in Resources */,
 				FD7A6003274BB4A00073C2EC /* GoogleService-Info.plist in Resources */,
+				FD816A1127957C1400055EDC /* CircularStd-Book.otf in Resources */,
 				FD806D9B273BFC5500331C74 /* MainTabBarViewController.xib in Resources */,
 				FD7CC04E27450FFF006D1CD5 /* LoginOrSignUpViewController.xib in Resources */,
 				FDD3AF7D2779F2D300C0E473 /* ARKitViewController.xib in Resources */,
@@ -739,7 +767,7 @@
 				FD7F8F74276C780000EB3FFF /* PokemonCollectionWireframe.swift in Sources */,
 				FD806D97273BFC5500331C74 /* MainTabBarPresenter.swift in Sources */,
 				FDD3AF7E2779F2D300C0E473 /* ARKitWireframe.swift in Sources */,
-				FD7F8F84276CC47B00EB3FFF /* SearchBarExtension.swift in Sources */,
+				FD7F8F84276CC47B00EB3FFF /* Extensions.swift in Sources */,
 				FDD3AF7A2779F2D300C0E473 /* ARKitViewController.swift in Sources */,
 				FDD3AF792779F2D300C0E473 /* ARKitPresenter.swift in Sources */,
 				FD7CC05827451023006D1CD5 /* LoginViewController.swift in Sources */,
@@ -916,7 +944,7 @@
 				DEVELOPMENT_TEAM = WV4ELQGDQE;
 				INFOPLIST_FILE = "Poke-test/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited)";
-				MARKETING_VERSION = 1.2.4;
+				MARKETING_VERSION = 1.2.5;
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.baturamobile.jokin-poketest";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -937,7 +965,7 @@
 				DEVELOPMENT_TEAM = WV4ELQGDQE;
 				INFOPLIST_FILE = "Poke-test/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited)";
-				MARKETING_VERSION = 1.2.4;
+				MARKETING_VERSION = 1.2.5;
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.baturamobile.jokin-poketest";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -963,7 +991,7 @@
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited)";
-				MARKETING_VERSION = 1.2.3;
+				MARKETING_VERSION = 1.2.5;
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.baturamobile.jokin-poketest.NotificationExtension";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -991,7 +1019,7 @@
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited)";
-				MARKETING_VERSION = 1.2.3;
+				MARKETING_VERSION = 1.2.5;
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.baturamobile.jokin-poketest.NotificationExtension";
 				PRODUCT_NAME = "$(TARGET_NAME)";

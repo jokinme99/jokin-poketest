@@ -4,23 +4,23 @@ import Firebase
 import FirebaseDatabase
 import FirebaseAuth
 import FirebaseCrashlytics
+import Zero
 
 //MARK: - MainTabBarViewController
 
-class MainTabBarViewController: UITabBarController {
+class MainTabBarViewController: ZeroTabBarViewController {
     
     var presenter: MainTabBarPresenterDelegate?
     var list: UIViewController!
     var favourites: UIViewController!
     var collection: UIViewController!
     var titleLog: String?
-    var image: UIImage?
-    var imageSelect: UIImage?
     var isLogged: Bool?
     let user = Auth.auth().currentUser
+    var alert = ZeroDialog()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        delegate = self
         setTabBar()
         crashlyticsErrorSending()
     }
@@ -34,12 +34,8 @@ extension MainTabBarViewController{
     func setLoggingSettings(){
         if user != nil{
             titleLog = NSLocalizedString("Log_out", comment: "")
-            image = UIImage(named: "logOut")
-            imageSelect = UIImage(named: "logInSelected")
         }else{
             titleLog = NSLocalizedString("Log_in", comment: "")
-            image = UIImage(named:"logInNotSelected")
-            imageSelect = UIImage(named:"logInSelected")
         }
     }
     
@@ -56,6 +52,7 @@ extension MainTabBarViewController{
         setViewControllers([list, collection, favourites], animated: true)
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: titleLog, style: .plain, target: self, action: #selector(logMethod))
         navigationItem.title = "Pokedex"
+        navigationItem.titleView?.apply(ZeroTheme.Label.head1)
         
     }
     
@@ -70,14 +67,7 @@ extension MainTabBarViewController{
 
 
 //MARK: - UITabBarControllerDelegate methods
-extension MainTabBarViewController: MainTabBarViewDelegate, UITabBarControllerDelegate{
-    override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
-        if item.title == NSLocalizedString("FAVS", comment: ""){
-            navigationItem.title = NSLocalizedString("Favourites", comment: "")
-        }else if item.title == NSLocalizedString("all", comment: ""){
-            navigationItem.title = "Pokedex"
-        }
-    }
+extension MainTabBarViewController: MainTabBarViewDelegate{
 }
 
 
@@ -87,16 +77,19 @@ extension MainTabBarViewController{
     
     //MARK: - logMethod
     @objc func logMethod(){
-        if self.titleLog == NSLocalizedString("Log_out", comment: ""){//\(user?.email ?? "")
-            //alerta si esta seguro
-            let alert = UIAlertController(title: NSLocalizedString("Logging_out", comment: "") + " \(user?.email ?? "default@default")", message: NSLocalizedString("You_are_going_to_close_this account_Are_you_sure", comment: ""), preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: NSLocalizedString("Yes", comment: ""), style: .destructive, handler: {(action) in
-                self.titleLog = NSLocalizedString("Log_in", comment: "")
-                self.logOut()
-                self.presenter?.openLoginSignUpWindow()
-            }))
-            alert.addAction(UIAlertAction(title: NSLocalizedString("No", comment: ""), style: .cancel, handler: nil))
-            self.present(alert, animated: true, completion: nil)
+        if self.titleLog == NSLocalizedString("Log_out", comment: ""){
+            alert.show(
+                title: NSLocalizedString("Logging_out", comment: "") + " \(user?.email ?? "default@default")",
+                info: NSLocalizedString("You_are_going_to_close_this account_Are_you_sure", comment: ""),
+                titleOk: NSLocalizedString("Yes", comment: ""),
+                titleCancel: NSLocalizedString("No", comment: ""),
+                completionOk: {
+                    self.titleLog = NSLocalizedString("Log_in", comment: "")
+                    self.logOut()
+                    self.presenter?.openLoginSignUpWindow()
+                },
+                completionCancel: nil
+            )
         }else{//log in
             self.presenter?.openLoginSignUpWindow()
         }
