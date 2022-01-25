@@ -61,6 +61,6 @@
 "Special_defense"="Defentsa-berezia: ";
 "Speed"="Abiadura: ";
 "Welcome" = "Ongi etorri";
-"Email" = "Emaila: ";
-"Password" = "Pasahitza: ";
+"Email" = "Emaila";
+"Password" = "Pasahitza";
 "search_for_pokemons" = "Pokemonak bilatu...";

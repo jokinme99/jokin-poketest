@@ -10,36 +10,44 @@ import Zero
 class SignUpViewController: UIViewController {
     @IBOutlet weak var backgroundImageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var userView: UIStackView!
-    @IBOutlet weak var userLabel: UILabel!
     @IBOutlet weak var userTextField: ZeroTextField!
-    @IBOutlet weak var passwordView: UIStackView!
-    @IBOutlet weak var passwordLabel: UILabel!
     @IBOutlet weak var passwordTextField: ZeroTextField!
     @IBOutlet weak var enterButton: ZeroContainedButton!
+    @IBOutlet weak var userView: UIStackView!
+    @IBOutlet weak var passwordView: UIStackView!
     var alert = ZeroDialog()
+    var userTextFieldController: ZeroTextFieldControllerFilled?
+    var passwordTextFieldController: ZeroTextFieldControllerFilled?
     
     var presenter: SignUpPresenterDelegate?
     
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
         loadStyle()
         titleLabel.text = NSLocalizedString("Sign_Up", comment: "")
-        userLabel.text = " " + NSLocalizedString("Email", comment: "")
-        passwordLabel.text = " " + NSLocalizedString("Password", comment: "")
         enterButton.setTitle(NSLocalizedString("Enter", comment: ""), for: .normal)
         crashlyticsErrorSending()
         loadKeyboard()
         navigationItem.backButtonTitle = NSLocalizedString("Back", comment: "")
     }
+    
     func loadStyle(){
-        userView.layer.cornerRadius = 4
-        passwordView.layer.cornerRadius = 4
-        //enterButton.layer.cornerRadius = 10
+        
+        userTextFieldController = ZeroTextFieldControllerFilled(textInput: userTextField)
+        userTextFieldController?.placeholderText = NSLocalizedString("Email", comment: "")
+        userTextField.delegate = self
+        passwordTextFieldController = ZeroTextFieldControllerFilled(textInput: passwordTextField)
+        passwordTextFieldController?.placeholderText = NSLocalizedString("Password", comment: "")
+        passwordTextField.isSecureTextEntry = true
+        passwordTextField.delegate = self
+        
         titleLabel.apply(ZeroTheme.Label.head2)
-        userLabel.apply(ZeroTheme.Label.caption1)
-        passwordLabel.apply(ZeroTheme.Label.caption1)
+        userTextField.layer.cornerRadius = 5
+        passwordTextField.layer.cornerRadius = 5
+        userView.layer.cornerRadius = 3
+        passwordView.layer.cornerRadius = 3
     }
 }
 
@@ -115,5 +123,14 @@ extension SignUpViewController: SignUpViewDelegate {
             titleOk: "OK",
             completionOk: nil
         )
+    }
+}
+
+
+
+//MARK: - SignUpViewDelegate methods
+extension SignUpViewController: UITextFieldDelegate{
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        return textField.endEditing(true)
     }
 }
