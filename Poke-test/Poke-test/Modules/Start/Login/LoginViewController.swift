@@ -16,6 +16,7 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var passwordView: UIStackView!
     @IBOutlet weak var passwordTextField: ZeroTextField!
     @IBOutlet weak var enterButton: ZeroContainedButton!
+    
     var presenter: LoginPresenterDelegate?
     var alert = ZeroDialog()
     var userTextFieldController: ZeroTextFieldControllerFilled?
@@ -43,6 +44,8 @@ class LoginViewController: UIViewController {
         titleLabel.apply(ZeroTheme.Label.head2)
         userTextField.layer.cornerRadius = 5
         passwordTextField.layer.cornerRadius = 5
+        userView.layer.cornerRadius = 3
+        passwordView.layer.cornerRadius = 3
     }
 }
 

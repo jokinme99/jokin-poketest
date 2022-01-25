@@ -14,8 +14,10 @@
                 <outlet property="backgroundImageView" destination="0DD-LF-w5C" id="3Jc-7g-vv8"/>
                 <outlet property="enterButton" destination="eHU-ly-SB1" id="2dS-R4-Cne"/>
                 <outlet property="passwordTextField" destination="QJI-An-V1r" id="OOQ-fu-4QA"/>
+                <outlet property="passwordView" destination="b2r-cX-5PR" id="Rh6-bA-f7q"/>
                 <outlet property="titleLabel" destination="Wb8-e5-wrW" id="Hzl-NM-fwR"/>
                 <outlet property="userTextField" destination="duJ-5P-rzI" id="4Qv-MF-Exi"/>
+                <outlet property="userView" destination="qb1-A8-5Vg" id="ZSE-eM-GOM"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -36,18 +38,28 @@
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="53" translatesAutoresizingMaskIntoConstraints="NO" id="PKx-42-sXp" userLabel="Data Enter View">
                     <rect key="frame" x="32" y="179.5" width="256" height="121"/>
                     <subviews>
-                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="duJ-5P-rzI" userLabel="User Text Field" customClass="ZeroTextField" customModule="Zero">
+                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="qb1-A8-5Vg" userLabel="User View">
                             <rect key="frame" x="0.0" y="0.0" width="256" height="34"/>
+                            <subviews>
+                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="duJ-5P-rzI" userLabel="User Text Field" customClass="ZeroTextField" customModule="Zero">
+                                    <rect key="frame" x="0.0" y="0.0" width="256" height="34"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <textInputTraits key="textInputTraits"/>
+                                </textField>
+                            </subviews>
                             <color key="backgroundColor" name="grayColor"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                            <textInputTraits key="textInputTraits"/>
-                        </textField>
-                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="QJI-An-V1r" userLabel="Password Text Field" customClass="ZeroTextField" customModule="Zero">
+                        </stackView>
+                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="b2r-cX-5PR" userLabel="Password View">
                             <rect key="frame" x="0.0" y="87" width="256" height="34"/>
+                            <subviews>
+                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="QJI-An-V1r" userLabel="Password Text Field" customClass="ZeroTextField" customModule="Zero">
+                                    <rect key="frame" x="0.0" y="0.0" width="256" height="34"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                                </textField>
+                            </subviews>
                             <color key="backgroundColor" name="grayColor"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                            <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
-                        </textField>
+                        </stackView>
                     </subviews>
                 </stackView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eHU-ly-SB1" userLabel="Enter Button" customClass="ZeroContainedButton" customModule="Zero">
