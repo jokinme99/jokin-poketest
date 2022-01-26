@@ -92,7 +92,7 @@ extension PokemonListInteractor: PokemonListInteractorDelegate{
     
     //MARK: - addFavourite
     func addFavourite(pokemon: Results) {
-        if user != nil{ //Si está logeado
+        if user != nil{ //Si estÃ¡ logeado
             guard let user = user else {return}
             let allData = DDBBManager.shared.get(PokemonData.self)
             for pok in allData{
@@ -132,4 +132,3 @@ extension PokemonListInteractor: PokemonListInteractorDelegate{
         
     }
 }
-
