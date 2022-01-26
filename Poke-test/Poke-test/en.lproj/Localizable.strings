@@ -61,6 +61,6 @@
 "Special_defense" = "Special-defense: ";
 "Speed" ="Speed: ";
 "Welcome" = "Welcome";
-"Email" = "Email: ";
-"Password" = "Password: ";
+"Email" = "Email";
+"Password" = "Password";
 "search_for_pokemons" = "Search for pokemons...";

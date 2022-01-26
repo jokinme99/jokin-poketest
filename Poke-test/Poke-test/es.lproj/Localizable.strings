@@ -61,6 +61,6 @@
 "Special_defense"="Defensa-especial: ";
 "Speed"="Velocidad: ";
 "Welcome" = "Bienvenido/a";
-"Email" = "Email: ";
-"Password" = "Contraseña: ";
+"Email" = "Correo";
+"Password" = "Contraseña";
 "search_for_pokemons" = "Buscar pokemons...";

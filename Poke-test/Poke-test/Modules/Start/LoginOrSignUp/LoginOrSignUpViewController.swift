@@ -36,6 +36,7 @@ class LoginOrSignUpViewController: UIViewController {
         toLoginMenuButton.layer.borderColor = toLoginMenuButton.backgroundColor?.cgColor
         notLoginOrSignUpButton.apply(ZeroTheme.Button.normal)
         titleLabel.apply(ZeroTheme.Label.head1)
+        titleLabel.textColor = ZeroColor.primary
     }
    
 }
