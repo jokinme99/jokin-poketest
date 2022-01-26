@@ -184,16 +184,16 @@ extension PokemonFavouritesViewController: PokemonFavouritesViewDelegate {
         cleanSearchBar()
         if user != nil{
             if favourites.isEmpty{
-                alert.show(
-                    title:NSLocalizedString("Favourites", comment: ""),
-                    info: NSLocalizedString("You_have_noy_added_any_favourites_yet_Would_you_like_to_see_all_the_available_Pokemon_in_order_to_add_any_of_them", comment: ""),
-                    titleOk: NSLocalizedString("Yes", comment: ""),
-                    titleCancel: NSLocalizedString("No", comment: ""),
-                    completionOk: {
-                        self.presenter?.openPokemonListWindow()
-                    },
-                    completionCancel: nil
-                )
+//                alert.show(
+//                    title:NSLocalizedString("Favourites", comment: ""),
+//                    info: NSLocalizedString("You_have_noy_added_any_favourites_yet_Would_you_like_to_see_all_the_available_Pokemon_in_order_to_add_any_of_them", comment: ""),
+//                    titleOk: NSLocalizedString("Yes", comment: ""),
+//                    titleCancel: NSLocalizedString("No", comment: ""),
+//                    completionOk: {
+//                        self.presenter?.openPokemonListWindow()
+//                    },
+//                    completionCancel: nil
+//                )
             }
             if filtered.isEmpty && pokemon.isEmpty{
                 for favourite in favourites {
