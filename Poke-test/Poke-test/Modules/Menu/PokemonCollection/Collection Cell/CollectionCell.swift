@@ -90,64 +90,64 @@ extension CollectionCell: CollectionCellDelegate{
     }
     func setBackgroundColor(_ type: String, _ label: UILabel){
         switch type{
-        case TypeName.normal:
+        case TypeName.normal.rawValue:
             setColor(168, 168, 120, label)
             setTextColor(.white, label)
-        case TypeName.fighting:
+        case TypeName.fighting.rawValue:
             setColor(192, 48, 40, label)
             setTextColor(.white, label)
-        case TypeName.flying:
+        case TypeName.flying.rawValue:
             setColor(168, 144, 240, label)
             setTextColor(.white, label)
-        case TypeName.poison:
+        case TypeName.poison.rawValue:
             setColor(160, 64, 160, label)
             setTextColor(.white, label)
-        case TypeName.ground:
+        case TypeName.ground.rawValue:
             setColor(224, 192, 104, label)
             setTextColor(.black, label)
-        case TypeName.rock:
+        case TypeName.rock.rawValue:
             setColor(184, 160, 56, label)
             setTextColor(.black, label)
-        case TypeName.bug:
+        case TypeName.bug.rawValue:
             setColor(168, 184, 32, label)
             setTextColor(.white, label)
-        case TypeName.ghost:
+        case TypeName.ghost.rawValue:
             setColor(112, 88, 152, label)
             setTextColor(.white, label)
-        case TypeName.steel:
+        case TypeName.steel.rawValue:
             setColor(184, 184, 208, label)
             setTextColor(.black, label)
-        case TypeName.fire:
+        case TypeName.fire.rawValue:
             setColor(240, 128, 48, label)
             setTextColor(.black, label)
-        case TypeName.water:
+        case TypeName.water.rawValue:
             setColor(104, 144, 240, label)
             setTextColor(.white, label)
-        case TypeName.grass:
+        case TypeName.grass.rawValue:
             setColor(120, 200, 80, label)
             setTextColor(.white, label)
-        case TypeName.electric:
+        case TypeName.electric.rawValue:
             setColor(248, 208, 48, label)
             setTextColor(.black, label)
-        case TypeName.psychic:
+        case TypeName.psychic.rawValue:
             setColor(248, 88, 136, label)
             setTextColor(.white, label)
-        case TypeName.ice:
+        case TypeName.ice.rawValue:
             setColor(152, 216, 216, label)
             setTextColor(.black, label)
-        case TypeName.dragon:
+        case TypeName.dragon.rawValue:
             setColor(112, 56, 248, label)
             setTextColor(.white, label)
-        case TypeName.dark:
+        case TypeName.dark.rawValue:
             setColor(112, 88, 72, label)
             setTextColor(.white, label)
-        case TypeName.fairy:
+        case TypeName.fairy.rawValue:
             setColor(238, 153, 172, label)
             setTextColor(.black, label)
-        case TypeName.unknown:
+        case TypeName.unknown.rawValue:
             setColor(0, 0, 0, label)
             setTextColor(.white, label)
-        case TypeName.shadow:
+        case TypeName.shadow.rawValue:
             setColor(124, 110, 187, label)
             setTextColor(.white, label)
         default:

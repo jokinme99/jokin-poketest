@@ -19,9 +19,9 @@ extension PokemonFavouritesInteractor: PokemonFavouritesInteractorDelegate {
     func fetchFavouritePokemons() {
         if user != nil{
             guard let user = user else{return}
-            self.ref.child("users").child(user.uid).observe(.value, with: {snapshot in
-                self.ref.child("users").child(user.uid).removeAllObservers()
-                if snapshot.exists(){//is not empty
+            self.ref.child("users").child("\(user.uid)").observe(.value, with: {snapshot in
+                self.ref.child("users").child("\(user.uid)").removeAllObservers()
+                if snapshot.exists(){
                     let favouritesList = snapshot.value as![String:Any]
                     var favourites: [Favourites] = []
                     for fav in favouritesList{
@@ -37,6 +37,7 @@ extension PokemonFavouritesInteractor: PokemonFavouritesInteractorDelegate {
             let favourites: [Favourites] = []
             self.presenter?.didFetchFavourites(favourites: favourites)
         }
+        
     }
     
     
@@ -68,7 +69,7 @@ extension PokemonFavouritesInteractor: PokemonFavouritesInteractorDelegate {
         if user != nil{
             guard let user = user else {return}
             guard let name = pokemon.name else{return}
-            self.ref.child("users").child(user.uid).child(name).removeValue()
+            self.ref.child("users").child("\(user.uid)").child(name.capitalized).removeValue()
             self.presenter?.didDeleteFavourite(pokemon: pokemon)
         }else{
             let favourites: [Favourites] = []

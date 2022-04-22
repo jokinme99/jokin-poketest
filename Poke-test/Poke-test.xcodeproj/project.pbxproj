@@ -960,7 +960,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "Poke-test/Poke-test.entitlements";
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = WV4ELQGDQE;
 				INFOPLIST_FILE = "Poke-test/Info.plist";
@@ -993,9 +993,9 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited)";
 				MARKETING_VERSION = 1.2.5;
 				OTHER_LDFLAGS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.baturamobile.jokin-poketest.NotificationExtension";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.baturamobile.jokin-poketest.notificationExtension";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "Jokin Poketest NotificationExtension-Debug";
+				PROVISIONING_PROFILE_SPECIFIER = "Poke Test Notification Extension Jokin - Debug";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -1009,7 +1009,7 @@
 			buildSettings = {
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
 				CODE_SIGN_ENTITLEMENTS = NotificationExtension/NotificationExtension.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = WV4ELQGDQE;
@@ -1021,9 +1021,9 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited)";
 				MARKETING_VERSION = 1.2.5;
 				OTHER_LDFLAGS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.baturamobile.jokin-poketest.NotificationExtension";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.baturamobile.jokin-poketest.notificationExtension";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "Jokin Poketest NotificationExtension-Release";
+				PROVISIONING_PROFILE_SPECIFIER = "Poke Test Notification Extension Jokin - Release";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;

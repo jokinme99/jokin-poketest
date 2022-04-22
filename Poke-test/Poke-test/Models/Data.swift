@@ -67,7 +67,7 @@ class Favourites{
      
      
  }
-class Types: EmbeddedObject, Codable{
+ class Types: EmbeddedObject, Codable{
     @objc dynamic var type: Type?
 
 }

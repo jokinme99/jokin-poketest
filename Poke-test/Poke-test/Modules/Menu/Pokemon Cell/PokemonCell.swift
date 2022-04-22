@@ -101,64 +101,64 @@ extension PokemonCell{
     }
     func setColor(_ type: String, _ label: UILabel){
         switch type {
-        case TypeName.normal:
+        case TypeName.normal.rawValue:
             setPokemonBackgroundColor(168, 168, 120, label)
             setPokemonTextColor(.white)
-        case TypeName.fighting:
+        case TypeName.fighting.rawValue:
             setPokemonBackgroundColor(192, 48, 40, label)
             setPokemonTextColor(.white)
-        case TypeName.flying:
+        case TypeName.flying.rawValue:
             setPokemonBackgroundColor(168, 144, 240, label)
             setPokemonTextColor(.white)
-        case TypeName.poison:
+        case TypeName.poison.rawValue:
             setPokemonBackgroundColor(160, 64, 160, label)
             setPokemonTextColor(.white)
-        case TypeName.ground:
+        case TypeName.ground.rawValue:
             setPokemonBackgroundColor(224, 192, 104, label)
             setPokemonTextColor(.black)
-        case TypeName.rock:
+        case TypeName.rock.rawValue:
             setPokemonBackgroundColor(184, 160, 56, label)
             setPokemonTextColor(.black)
-        case TypeName.bug:
+        case TypeName.bug.rawValue:
             setPokemonBackgroundColor(168, 184, 32, label)
             setPokemonTextColor(.white)
-        case TypeName.ghost:
+        case TypeName.ghost.rawValue:
             setPokemonBackgroundColor(112, 88, 152, label)
             setPokemonTextColor(.white)
-        case TypeName.steel:
+        case TypeName.steel.rawValue:
             setPokemonBackgroundColor(184, 184, 208, label)
             setPokemonTextColor(.black)
-        case TypeName.fire:
+        case TypeName.fire.rawValue:
             setPokemonBackgroundColor(240, 128, 48, label)
             setPokemonTextColor(.black)
-        case TypeName.water:
+        case TypeName.water.rawValue:
             setPokemonBackgroundColor(104, 144, 240, label)
             setPokemonTextColor(.white)
-        case TypeName.grass:
+        case TypeName.grass.rawValue:
             setPokemonBackgroundColor(120, 200, 80, label)
             setPokemonTextColor(.white)
-        case TypeName.electric:
+        case TypeName.electric.rawValue:
             setPokemonBackgroundColor(248, 208, 48, label)
             setPokemonTextColor(.black)
-        case TypeName.psychic:
+        case TypeName.psychic.rawValue:
             setPokemonBackgroundColor(248, 88, 136, label)
             setPokemonTextColor(.white)
-        case TypeName.ice:
+        case TypeName.ice.rawValue:
             setPokemonBackgroundColor(152, 216, 216, label)
             setPokemonTextColor(.black)
-        case TypeName.dragon:
+        case TypeName.dragon.rawValue:
             setPokemonBackgroundColor(112, 56, 248, label)
             setPokemonTextColor(.white)
-        case TypeName.dark:
+        case TypeName.dark.rawValue:
             setPokemonBackgroundColor(112, 88, 72, label)
             setPokemonTextColor(.white)
-        case TypeName.fairy:
+        case TypeName.fairy.rawValue:
             setPokemonBackgroundColor(238, 153, 172, label)
             setPokemonTextColor(.black)
-        case TypeName.unknown:
+        case TypeName.unknown.rawValue:
             setPokemonBackgroundColor(0, 0, 0, label)
             setPokemonTextColor(.white)
-        case TypeName.shadow:
+        case TypeName.shadow.rawValue:
             setPokemonBackgroundColor(124, 110, 187, label)
             setPokemonTextColor(.white)
         default:

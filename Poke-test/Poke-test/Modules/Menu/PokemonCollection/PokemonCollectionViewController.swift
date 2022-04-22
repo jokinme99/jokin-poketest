@@ -28,7 +28,6 @@ class PokemonCollectionViewController: UIViewController {
     var previousPokemon: Results?
     var favourites: [Favourites] = []
     let user = Auth.auth().currentUser
-    var all: String?; var normal: String?; var fighting: String?; var flying: String?; var poison: String?; var ground: String?; var rock: String?; var bug: String?; var ghost: String?; var steel: String?; var fire: String?; var water: String?; var grass: String?; var electric: String?; var psychic: String?; var ice: String?; var dragon: String?; var dark: String?; var fairy: String?; var unknown: String?; var shadow: String?
     let inset: CGFloat = 10
     let minimumLineSpacing: CGFloat = 10
     let minimumInteritemSpacing: CGFloat = 10
@@ -99,21 +98,13 @@ extension PokemonCollectionViewController{
     
     //MARK: - loadFilterButtons
     func loadFilterButtons(){
-        all = NSLocalizedString("all", comment: "").lowercased(); normal = NSLocalizedString("normal", comment: "").lowercased(); fighting = NSLocalizedString("fighting", comment: "").lowercased()
-        flying = NSLocalizedString("flying", comment: "").lowercased(); poison = NSLocalizedString("poison", comment: "").lowercased(); ground = NSLocalizedString("ground", comment: "").lowercased()
-        rock = NSLocalizedString("rock", comment: "").lowercased(); bug = NSLocalizedString("bug", comment: "").lowercased(); ghost = NSLocalizedString("ghost", comment: "").lowercased()
-        steel = NSLocalizedString("steel", comment: "").lowercased(); fire = NSLocalizedString("fire", comment: "").lowercased(); water = NSLocalizedString("water", comment: "").lowercased()
-        grass = NSLocalizedString("grass", comment: "").lowercased(); electric = NSLocalizedString("electric", comment: "").lowercased(); psychic = NSLocalizedString("psychic", comment: "").lowercased()
-        ice = NSLocalizedString("ice", comment: "").lowercased(); dragon = NSLocalizedString("dragon", comment: "").lowercased(); dark = NSLocalizedString("dark", comment: "").lowercased()
-        fairy = NSLocalizedString("fairy", comment: "").lowercased(); unknown = NSLocalizedString("unknown", comment: "").lowercased(); shadow = NSLocalizedString("shadow", comment: "").lowercased()
-        
-        buttonList[0].setTitle(all?.capitalized, for: .normal); buttonList[1].setTitle(normal?.capitalized, for: .normal); buttonList[2].setTitle(fighting?.capitalized, for: .normal)
-        buttonList[3].setTitle(flying?.capitalized, for: .normal); buttonList[4].setTitle(poison?.capitalized, for: .normal); buttonList[5].setTitle(ground?.capitalized, for: .normal)
-        buttonList[6].setTitle(rock?.capitalized, for: .normal); buttonList[07].setTitle(bug?.capitalized, for: .normal); buttonList[8].setTitle(ghost?.capitalized, for: .normal)
-        buttonList[9].setTitle(steel?.capitalized, for: .normal); buttonList[10].setTitle(fire?.capitalized, for: .normal); buttonList[11].setTitle(water?.capitalized, for: .normal)
-        buttonList[12].setTitle(grass?.capitalized, for: .normal); buttonList[13].setTitle(electric?.capitalized, for: .normal); buttonList[14].setTitle(psychic?.capitalized, for: .normal)
-        buttonList[15].setTitle(ice?.capitalized, for: .normal); buttonList[16].setTitle(dragon?.capitalized, for: .normal); buttonList[17].setTitle(dark?.capitalized, for: .normal)
-        buttonList[18].setTitle(fairy?.capitalized, for: .normal); buttonList[19].setTitle(unknown?.capitalized, for: .normal); buttonList[20].setTitle(shadow?.capitalized, for: .normal)
+        buttonList[0].setTitle(TypeName.all.localized.capitalized, for: .normal); buttonList[1].setTitle(TypeName.normal.localized.capitalized, for: .normal); buttonList[2].setTitle(TypeName.fighting.localized.capitalized, for: .normal)
+        buttonList[3].setTitle(TypeName.flying.localized.capitalized, for: .normal); buttonList[4].setTitle(TypeName.poison.localized.capitalized, for: .normal); buttonList[5].setTitle(TypeName.ground.localized.capitalized, for: .normal)
+        buttonList[6].setTitle(TypeName.rock.localized.capitalized, for: .normal); buttonList[07].setTitle(TypeName.bug.localized.capitalized, for: .normal); buttonList[8].setTitle(TypeName.ghost.localized.capitalized, for: .normal)
+        buttonList[9].setTitle(TypeName.steel.localized.capitalized, for: .normal); buttonList[10].setTitle(TypeName.fire.localized.capitalized, for: .normal); buttonList[11].setTitle(TypeName.water.localized.capitalized, for: .normal)
+        buttonList[12].setTitle(TypeName.grass.localized.capitalized, for: .normal); buttonList[13].setTitle(TypeName.electric.localized.capitalized, for: .normal); buttonList[14].setTitle(TypeName.psychic.localized.capitalized, for: .normal)
+        buttonList[15].setTitle(TypeName.ice.localized.capitalized, for: .normal); buttonList[16].setTitle(TypeName.dragon.localized.capitalized, for: .normal); buttonList[17].setTitle(TypeName.dark.localized.capitalized, for: .normal)
+        buttonList[18].setTitle(TypeName.fairy.localized.capitalized, for: .normal); buttonList[19].setTitle(TypeName.unknown.localized.capitalized, for: .normal); buttonList[20].setTitle(TypeName.shadow.localized.capitalized, for: .normal)
     }
     
     
@@ -336,48 +327,48 @@ extension PokemonCollectionViewController{
     
     @objc func pressedFilterButton(_ sender: ZeroContainedButton!){
         switch sender.titleLabel?.text?.lowercased(){
-        case all:
-            self.presenter?.fetchPokemonList()
-        case normal:
-            self.presenter?.fetchPokemonType(type: TypeName.normal)
-        case fighting:
-            self.presenter?.fetchPokemonType(type: TypeName.fighting)
-        case flying:
-            self.presenter?.fetchPokemonType(type: TypeName.flying)
-        case poison:
-            self.presenter?.fetchPokemonType(type: TypeName.poison)
-        case ground:
-            self.presenter?.fetchPokemonType(type: TypeName.ground)
-        case rock:
-            self.presenter?.fetchPokemonType(type: TypeName.rock)
-        case bug:
-            self.presenter?.fetchPokemonType(type: TypeName.bug)
-        case ghost:
-            self.presenter?.fetchPokemonType(type: TypeName.ghost)
-        case steel:
-            self.presenter?.fetchPokemonType(type: TypeName.steel)
-        case fire:
-            self.presenter?.fetchPokemonType(type: TypeName.fire)
-        case water:
-            self.presenter?.fetchPokemonType(type: TypeName.water)
-        case grass:
-            self.presenter?.fetchPokemonType(type: TypeName.grass)
-        case electric:
-            self.presenter?.fetchPokemonType(type: TypeName.electric)
-        case psychic:
-            self.presenter?.fetchPokemonType(type: TypeName.psychic)
-        case ice:
-            self.presenter?.fetchPokemonType(type: TypeName.ice)
-        case dragon:
-            self.presenter?.fetchPokemonType(type: TypeName.dragon)
-        case dark:
-            self.presenter?.fetchPokemonType(type: TypeName.dark)
-        case fairy:
-            self.presenter?.fetchPokemonType(type: TypeName.fairy)
-        case unknown:
-            self.presenter?.fetchPokemonType(type: TypeName.unknown)
-        case shadow:
-            self.presenter?.fetchPokemonType(type: TypeName.shadow)
+        case TypeName.all.localized:
+            self.presenter?.fetchFavourites()
+        case TypeName.normal.localized:
+            self.presenter?.fetchPokemonType(type: TypeName.normal.rawValue)
+        case TypeName.fighting.localized:
+            self.presenter?.fetchPokemonType(type: TypeName.fighting.rawValue)
+        case TypeName.flying.localized:
+            self.presenter?.fetchPokemonType(type: TypeName.flying.rawValue)
+        case TypeName.poison.localized:
+            self.presenter?.fetchPokemonType(type: TypeName.poison.rawValue)
+        case TypeName.ground.localized:
+            self.presenter?.fetchPokemonType(type: TypeName.ground.rawValue)
+        case TypeName.rock.localized:
+            self.presenter?.fetchPokemonType(type: TypeName.rock.rawValue)
+        case TypeName.bug.localized:
+            self.presenter?.fetchPokemonType(type: TypeName.bug.rawValue)
+        case TypeName.ghost.localized:
+            self.presenter?.fetchPokemonType(type: TypeName.ghost.rawValue)
+        case TypeName.steel.localized:
+            self.presenter?.fetchPokemonType(type: TypeName.steel.rawValue)
+        case TypeName.fire.localized:
+            self.presenter?.fetchPokemonType(type: TypeName.fire.rawValue)
+        case TypeName.water.localized:
+            self.presenter?.fetchPokemonType(type: TypeName.water.rawValue)
+        case TypeName.grass.localized:
+            self.presenter?.fetchPokemonType(type: TypeName.grass.rawValue)
+        case TypeName.electric.localized:
+            self.presenter?.fetchPokemonType(type: TypeName.electric.rawValue)
+        case TypeName.psychic.localized:
+            self.presenter?.fetchPokemonType(type: TypeName.psychic.rawValue)
+        case TypeName.ice.localized:
+            self.presenter?.fetchPokemonType(type: TypeName.ice.rawValue)
+        case TypeName.dragon.localized:
+            self.presenter?.fetchPokemonType(type: TypeName.dragon.rawValue)
+        case TypeName.dark.localized:
+            self.presenter?.fetchPokemonType(type: TypeName.dark.rawValue)
+        case TypeName.fairy.localized:
+            self.presenter?.fetchPokemonType(type: TypeName.fairy.rawValue)
+        case TypeName.unknown.localized:
+            self.presenter?.fetchPokemonType(type: TypeName.unknown.rawValue)
+        case TypeName.shadow.localized:
+            self.presenter?.fetchPokemonType(type: TypeName.shadow.rawValue)
         case .none:
             print("Error: .none")
         case .some(_):
@@ -404,67 +395,67 @@ extension PokemonCollectionViewController{
     }
     func paintButton(_ button: ZeroContainedButton){
         switch button.titleLabel?.text?.lowercased(){
-        case "all":
+        case TypeName.all.rawValue:
             button.backgroundColor = .white //.init(red: 0.8454863429, green: 0.8979230523, blue: 0.9188942909, alpha: 1)
             setPokemonTextColor(.black, button)
-        case TypeName.normal:
+        case TypeName.normal.rawValue:
             setFilterButtonsBackground(168, 168, 120, button)
             setPokemonTextColor(.white, button)
-        case TypeName.fighting:
+        case TypeName.fighting.rawValue:
             setFilterButtonsBackground(192, 48, 40, button)
             setPokemonTextColor(.white, button)
-        case TypeName.flying:
+        case TypeName.flying.rawValue:
             setFilterButtonsBackground(168, 144, 240, button)
             setPokemonTextColor(.white, button)
-        case TypeName.poison:
+        case TypeName.poison.rawValue:
             setFilterButtonsBackground(160, 64, 160, button)
             setPokemonTextColor(.white, button)
-        case TypeName.ground:
+        case TypeName.ground.rawValue:
             setFilterButtonsBackground(224, 192, 104, button)
             setPokemonTextColor(.black, button)
-        case TypeName.rock:
+        case TypeName.rock.rawValue:
             setFilterButtonsBackground(184, 160, 56, button)
             setPokemonTextColor(.black, button)
-        case TypeName.bug:
+        case TypeName.bug.rawValue:
             setFilterButtonsBackground(168, 184, 32, button)
             setPokemonTextColor(.white, button)
-        case TypeName.ghost:
+        case TypeName.ghost.rawValue:
             setFilterButtonsBackground(112, 88, 152, button)
             setPokemonTextColor(.white, button)
-        case TypeName.steel:
+        case TypeName.steel.rawValue:
             setFilterButtonsBackground(184, 184, 208, button)
             setPokemonTextColor(.black, button)
-        case TypeName.fire:
+        case TypeName.fire.rawValue:
             setFilterButtonsBackground(240, 128, 48, button)
             setPokemonTextColor(.black, button)
-        case TypeName.water:
+        case TypeName.water.rawValue:
             setFilterButtonsBackground(104, 144, 240, button)
             setPokemonTextColor(.white, button)
-        case TypeName.grass:
+        case TypeName.grass.rawValue:
             setFilterButtonsBackground(120, 200, 80, button)
             setPokemonTextColor(.white, button)
-        case TypeName.electric:
+        case TypeName.electric.rawValue:
             setFilterButtonsBackground(248, 208, 48, button)
             setPokemonTextColor(.black, button)
-        case TypeName.psychic:
+        case TypeName.psychic.rawValue:
             setFilterButtonsBackground(248, 88, 136, button)
             setPokemonTextColor(.white, button)
-        case TypeName.ice:
+        case TypeName.ice.rawValue:
             setFilterButtonsBackground(152, 216, 216, button)
             setPokemonTextColor(.black, button)
-        case TypeName.dragon:
+        case TypeName.dragon.rawValue:
             setFilterButtonsBackground(112, 56, 248, button)
             setPokemonTextColor(.white, button)
-        case TypeName.dark:
+        case TypeName.dark.rawValue:
             setFilterButtonsBackground(112, 88, 72, button)
             setPokemonTextColor(.white, button)
-        case TypeName.fairy:
+        case TypeName.fairy.rawValue:
             setFilterButtonsBackground(238, 153, 172, button)
             setPokemonTextColor(.black, button)
-        case TypeName.unknown: //There exits 0 pokemon with this type
+        case TypeName.unknown.rawValue: //There exits 0 pokemon with this type
             setFilterButtonsBackground(0, 0, 0, button)
             setPokemonTextColor(.white, button)
-        case TypeName.shadow:
+        case TypeName.shadow.rawValue:
             setFilterButtonsBackground(124, 110, 187, button)
             setPokemonTextColor(.white, button)
             

@@ -392,46 +392,46 @@ extension PokemonDetailsViewController{
 extension PokemonDetailsViewController{
     func setName(type: String, to label : UILabel){
         switch type {
-        case TypeName.normal:
-            label.text = NSLocalizedString("normal", comment: "")
-        case TypeName.fighting:
-            label.text = NSLocalizedString("fighting", comment: "")
-        case TypeName.flying:
-            label.text = NSLocalizedString("flying", comment: "")
-        case TypeName.poison:
-            label.text = NSLocalizedString("poison", comment: "")
-        case TypeName.ground:
-            label.text = NSLocalizedString("ground", comment: "")
-        case TypeName.rock:
-            label.text = NSLocalizedString("rock", comment: "")
-        case TypeName.bug:
-            label.text = NSLocalizedString("bug", comment: "")
-        case TypeName.ghost:
-            label.text = NSLocalizedString("ghost", comment: "")
-        case TypeName.steel:
-            label.text = NSLocalizedString("steel", comment: "")
-        case TypeName.fire:
-            label.text = NSLocalizedString("fire", comment: "")
-        case TypeName.water:
-            label.text = NSLocalizedString("water", comment: "")
-        case TypeName.grass:
-            label.text = NSLocalizedString("grass", comment: "")
-        case TypeName.electric:
-            label.text = NSLocalizedString("electric", comment: "")
-        case TypeName.psychic:
-            label.text = NSLocalizedString("psychic", comment: "")
-        case TypeName.ice:
-            label.text = NSLocalizedString("ice", comment: "")
-        case TypeName.dragon:
-            label.text = NSLocalizedString("dragon", comment: "")
-        case TypeName.dark:
-            label.text = NSLocalizedString("dark", comment: "")
-        case TypeName.fairy:
-            label.text = NSLocalizedString("fairy", comment: "")
-        case TypeName.unknown:
-            label.text = NSLocalizedString("unknown", comment: "")
-        case TypeName.shadow:
-            label.text = NSLocalizedString("shadow", comment: "")
+        case TypeName.normal.rawValue:
+            label.text = TypeName.normal.localized
+        case TypeName.fighting.rawValue:
+            label.text = TypeName.fighting.localized
+        case TypeName.flying.rawValue:
+            label.text = TypeName.flying.localized
+        case TypeName.poison.rawValue:
+            label.text = TypeName.poison.localized
+        case TypeName.ground.rawValue:
+            label.text = TypeName.ground.localized
+        case TypeName.rock.rawValue:
+            label.text = TypeName.rock.localized
+        case TypeName.bug.rawValue:
+            label.text = TypeName.bug.localized
+        case TypeName.ghost.rawValue:
+            label.text = TypeName.ghost.localized
+        case TypeName.steel.rawValue:
+            label.text = TypeName.steel.localized
+        case TypeName.fire.rawValue:
+            label.text = TypeName.fire.localized
+        case TypeName.water.rawValue:
+            label.text = TypeName.water.localized
+        case TypeName.grass.rawValue:
+            label.text = TypeName.grass.localized
+        case TypeName.electric.rawValue:
+            label.text = TypeName.electric.localized
+        case TypeName.psychic.rawValue:
+            label.text = TypeName.psychic.localized
+        case TypeName.ice.rawValue:
+            label.text = TypeName.ice.localized
+        case TypeName.dragon.rawValue:
+            label.text = TypeName.dragon.localized
+        case TypeName.dark.rawValue:
+            label.text = TypeName.dark.localized
+        case TypeName.fairy.rawValue:
+            label.text = TypeName.fairy.localized
+        case TypeName.unknown.rawValue:
+            label.text = TypeName.unknown.localized
+        case TypeName.shadow.rawValue:
+            label.text = TypeName.shadow.localized
         default:
             print("DEFAULT ERROR")
         }
@@ -576,84 +576,84 @@ extension PokemonDetailsViewController{
     }
     func paintType(label: UILabel){
         switch label.text?.lowercased() {
-        case TypeName.normal:
+        case TypeName.normal.rawValue:
             setPokemonBackgroundColor(168, 168, 120, label)
             favouriteConfirmationImage.image = UIImage(named: "fullStar")
             setPokemonTextColor(.white, label)
-        case TypeName.fighting:
+        case TypeName.fighting.rawValue:
             setPokemonBackgroundColor(192, 48, 40, label)
             setPokemonTextColor(.white, label)
             favouriteConfirmationImage.image = UIImage(named: "fullStar")
-        case TypeName.flying:
+        case TypeName.flying.rawValue:
             setPokemonBackgroundColor(168, 144, 240, label)
             setPokemonTextColor(.white, label)
             favouriteConfirmationImage.image = UIImage(named: "fullStar")
-        case TypeName.poison:
+        case TypeName.poison.rawValue:
             setPokemonBackgroundColor(160, 64, 160, label)
             setPokemonTextColor(.white, label)
             favouriteConfirmationImage.image = UIImage(named: "fullStar")
-        case TypeName.ground:
+        case TypeName.ground.rawValue:
             setPokemonBackgroundColor(224, 192, 104, label)
             setPokemonTextColor(.black, label)
             favouriteConfirmationImage.image = UIImage(named: "fullStar")
-        case TypeName.rock:
+        case TypeName.rock.rawValue:
             setPokemonBackgroundColor(184, 160, 56, label)
             setPokemonTextColor(.black, label)
             favouriteConfirmationImage.image = UIImage(named: "fullStar")
-        case TypeName.bug:
+        case TypeName.bug.rawValue:
             setPokemonBackgroundColor(168, 184, 32, label)
             setPokemonTextColor(.white, label)
             favouriteConfirmationImage.image = UIImage(named: "fullStar")
-        case TypeName.ghost:
+        case TypeName.ghost.rawValue:
             setPokemonBackgroundColor(112, 88, 152, label)
             setPokemonTextColor(.white, label)
             favouriteConfirmationImage.image = UIImage(named: "fullStar")
-        case TypeName.steel:
+        case TypeName.steel.rawValue:
             setPokemonBackgroundColor(184, 184, 208, label)
             setPokemonTextColor(.black, label)
             favouriteConfirmationImage.image = UIImage(named: "fullStar")
-        case TypeName.fire:
+        case TypeName.fire.rawValue:
             setPokemonBackgroundColor(240, 128, 48, label)
             setPokemonTextColor(.black, label)
             favouriteConfirmationImage.image = UIImage(named: "fullStar")
-        case TypeName.water:
+        case TypeName.water.rawValue:
             setPokemonBackgroundColor(104, 144, 240, label)
             setPokemonTextColor(.white, label)
             favouriteConfirmationImage.image = UIImage(named: "fullStar")
-        case TypeName.grass:
+        case TypeName.grass.rawValue:
             setPokemonBackgroundColor(120, 200, 80, label)
             setPokemonTextColor(.white, label)
             favouriteConfirmationImage.image = UIImage(named: "fullStar")
-        case TypeName.electric:
+        case TypeName.electric.rawValue:
             setPokemonBackgroundColor(248, 208, 48, label)
             setPokemonTextColor(.black, label)
             favouriteConfirmationImage.image = UIImage(named: "fullStar")
-        case TypeName.psychic:
+        case TypeName.psychic.rawValue:
             setPokemonBackgroundColor(248, 88, 136, label)
             setPokemonTextColor(.white, label)
             favouriteConfirmationImage.image = UIImage(named: "fullStar")
-        case TypeName.ice:
+        case TypeName.ice.rawValue:
             setPokemonBackgroundColor(152, 216, 216, label)
             setPokemonTextColor(.black, label)
             favouriteConfirmationImage.image = UIImage(named: "fullStar")
             break
-        case TypeName.dragon:
+        case TypeName.dragon.rawValue:
             setPokemonBackgroundColor(112, 56, 248, label)
             setPokemonTextColor(.white, label)
             favouriteConfirmationImage.image = UIImage(named: "fullStar")
-        case TypeName.dark:
+        case TypeName.dark.rawValue:
             setPokemonBackgroundColor(112, 88, 72, label)
             setPokemonTextColor(.white, label)
             favouriteConfirmationImage.image = UIImage(named: "fullStar")
-        case TypeName.fairy:
+        case TypeName.fairy.rawValue:
             setPokemonBackgroundColor(238, 153, 172, label)
             setPokemonTextColor(.black, label)
             favouriteConfirmationImage.image = UIImage(named: "fullStar")
-        case TypeName.unknown:
+        case TypeName.unknown.rawValue:
             setPokemonBackgroundColor(0, 0, 0, label)
             setPokemonTextColor(.white, label)
             favouriteConfirmationImage.image = UIImage(named: "fullStar")
-        case TypeName.shadow:
+        case TypeName.shadow.rawValue:
             setPokemonBackgroundColor(124, 110, 187, label)
             setPokemonTextColor(.white, label)
             favouriteConfirmationImage.image = UIImage(named: "fullStar")

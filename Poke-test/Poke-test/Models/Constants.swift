@@ -1,27 +1,34 @@
 import Foundation
 //MARK: - Types' constants
-struct TypeName{
-    static let normal = "normal"
-    static let fighting = "fighting"
-    static let flying = "flying"
-    static let poison = "poison"
-    static let ground = "ground"
-    static let rock = "rock"
-    static let bug = "bug"
-    static let ghost = "ghost"
-    static let steel = "steel"
-    static let fire = "fire"
-    static let water = "water"
-    static let grass = "grass"
-    static let electric = "electric"
-    static let psychic = "psychic"
-    static let ice = "ice"
-    static let dragon = "dragon"
-    static let dark = "dark"
-    static let fairy = "fairy"
-    static let unknown = "unknown"
-    static let shadow = "shadow"
+enum TypeName: String{
+    case all = "all"
+    case normal = "normal"
+    case fighting = "fighting"
+    case flying = "flying"
+    case poison = "poison"
+    case ground = "ground"
+    case rock = "rock"
+    case bug = "bug"
+    case ghost = "ghost"
+    case steel = "steel"
+    case fire = "fire"
+    case water = "water"
+    case grass = "grass"
+    case electric = "electric"
+    case psychic = "psychic"
+    case ice = "ice"
+    case dragon = "dragon"
+    case dark = "dark"
+    case fairy = "fairy"
+    case unknown = "unknown"
+    case shadow = "shadow"
+    
+    var localized:String{
+        return NSLocalizedString(self.rawValue, comment: "")
+    }
 }
+
+
 
 
 //MARK: - FirebaseErrors's constants

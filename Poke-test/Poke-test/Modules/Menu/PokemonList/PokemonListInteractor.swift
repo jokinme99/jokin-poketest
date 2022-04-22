@@ -68,8 +68,8 @@ extension PokemonListInteractor: PokemonListInteractorDelegate{
     func fetchFavourites() {
         if user != nil{
             guard let user = user else{return}
-            self.ref.child("users").child(user.uid).observe(.value, with: {snapshot in
-                self.ref.child("users").child(user.uid).removeAllObservers()
+            self.ref.child("users").child("\(user.uid)").observe(.value, with: {snapshot in
+                self.ref.child("users").child("\(user.uid)").removeAllObservers()
                 if snapshot.exists(){
                     let favouritesList = snapshot.value as![String:Any]
                     var favourites: [Favourites] = []
@@ -98,26 +98,25 @@ extension PokemonListInteractor: PokemonListInteractorDelegate{
             for pok in allData{
                 if pok.name == pokemon.name{
                     guard let name = pok.name else{return}
-                    if pok.types.count > 1{//FAVS IF NO INTERNET CONNECTION
+                    //users.uid[0].name = "Bulbasaur" LO QUE QUIERO
+                    //users.uid.Bulbasaur.name = "Bulbasaur" LO QUE HAY
+                    self.ref.child("users").child("\(user.uid)").child("\(name.capitalized)").setValue(["name" : "\(name)", "id": pok.id, "url": "https://pokeapi.co/api/v2/pokemon/\(name)", "height": pok.height, "weight": pok.weight])
+                    self.ref.child("users").child("\(user.uid)").child("\(name.capitalized)").child("stats").setValue(["hp": pok.stats[0].base_stat, "attack": pok.stats[1].base_stat, "defense":pok.stats[2].base_stat, "specialAttack": pok.stats[3].base_stat, "specialDefense": pok.stats[4].base_stat, "speed": pok.stats[5].base_stat])
+                    if pok.types.count > 1{
+                        self.ref.child("users").child("\(user.uid)").child("\(name.capitalized)").child("types").setValue(["type_1": (pok.types[0].type?.name ?? "default"), "type_2": (pok.types[1].type?.name ?? "default")])
                         if pok.abilities.count > 1{
-                            self.ref.child("users").child(user.uid).child(name).setValue(["0) Id": pok.id, "1) Types": "\(pok.types[0].type?.name ?? "default"), \(pok.types[1].type?.name ?? "default")", "2) Abilities":"\(pok.abilities[0].ability?.name ?? "default"), \(pok.abilities[1].ability?.name ?? "default")", "5) Url": "https://pokeapi.co/api/v2/pokemon/\(name)"])
-                            self.ref.child("users").child(user.uid).child(name).child("3) Height & Weight").setValue(["1) Height":pok.height, "2) Weight": pok.weight])
-                            self.ref.child("users").child(user.uid).child(name).child("4) Stats").setValue(["1) HP": pok.stats[0].base_stat, "2) ATTACK": pok.stats[1].base_stat, "3) DEFENSE":pok.stats[2].base_stat, "4) SPECIAL ATTACK": pok.stats[3].base_stat, "5) SPECIAL DEFENSE": pok.stats[4].base_stat, "6) SPEED": pok.stats[5].base_stat])
-                        }else{
-                            self.ref.child("users").child(user.uid).child(name).setValue(["0) Id": pok.id, "1) Types": "\(pok.types[0].type?.name ?? "default"), \(pok.types[1].type?.name ?? "default")", "2) Ability":"\(pok.abilities[0].ability?.name ?? "default")", "5) Url": "https://pokeapi.co/api/v2/pokemon/\(name)"])
-                            self.ref.child("users").child(user.uid).child(name).child("3) Height & Weight").setValue(["1) Height":pok.height, "2) Weight": pok.weight])
-                            self.ref.child("users").child(user.uid).child(name).child("4) Stats").setValue(["1) HP": pok.stats[0].base_stat, "2) ATTACK": pok.stats[1].base_stat, "3) DEFENSE":pok.stats[2].base_stat, "4) SPECIAL ATTACK": pok.stats[3].base_stat, "5) SPECIAL DEFENSE": pok.stats[4].base_stat, "6) SPEED": pok.stats[5].base_stat])
+                            self.ref.child("users").child("\(user.uid)").child("\(name.capitalized)").child("abilities").setValue(["ability_1": (pok.abilities[0].ability?.name ?? "default"), "ability_2": (pok.abilities[1].ability?.name ?? "default")])
                         }
-                        
-                    }else{//Solo 1
+                        else{
+                            self.ref.child("users").child("\(user.uid)").child("\(name.capitalized)").child("abilities").setValue(["ability_1": (pok.abilities[0].ability?.name ?? "default")])
+                        }
+                    }
+                    else{
+                        self.ref.child("users").child("\(user.uid)").child("\(name.capitalized)").child("types").setValue(["type_1": (pok.types[0].type?.name ?? "default")])
                         if pok.abilities.count > 1{
-                            self.ref.child("users").child(user.uid).child(name).setValue(["0) Id": pok.id, "1) Type": pok.types[0].type?.name ?? "default", "2) Abilities":"\(pok.abilities[0].ability?.name ?? "default"), \(pok.abilities[1].ability?.name ?? "default")", "5) Url": "https://pokeapi.co/api/v2/pokemon/\(name)"])
-                            self.ref.child("users").child(user.uid).child(name).child("3) Height & Weight").setValue(["1) Height":pok.height, "2) Weight": pok.weight])
-                            self.ref.child("users").child(user.uid).child(name).child("4) Stats").setValue(["1) HP": pok.stats[0].base_stat, "2) ATTACK": pok.stats[1].base_stat, "3) DEFENSE":pok.stats[2].base_stat, "4) SPECIAL ATTACK": pok.stats[3].base_stat, "5) SPECIAL DEFENSE": pok.stats[4].base_stat, "6) SPEED": pok.stats[5].base_stat])
+                            self.ref.child("users").child("\(user.uid)").child("\(name.capitalized)").child("abilities").setValue(["ability_1": (pok.abilities[0].ability?.name ?? "default"), "ability_2": (pok.abilities[1].ability?.name ?? "default")])
                         }else{
-                            self.ref.child("users").child(user.uid).child(name).setValue(["0) Id": pok.id, "1) Types": "\(pok.types[0].type?.name ?? "default")", "2) Ability":"\(pok.abilities[0].ability?.name ?? "default")", "5) Url": "https://pokeapi.co/api/v2/pokemon/\(name)"])
-                            self.ref.child("users").child(user.uid).child(name).child("3) Height & Weight").setValue(["1) Height":pok.height, "2) Weight": pok.weight])
-                            self.ref.child("users").child(user.uid).child(name).child("4) Stats").setValue(["1) HP": pok.stats[0].base_stat, "2) ATTACK": pok.stats[1].base_stat, "3) DEFENSE":pok.stats[2].base_stat, "4) SPECIAL ATTACK": pok.stats[3].base_stat, "5) SPECIAL DEFENSE": pok.stats[4].base_stat, "6) SPEED": pok.stats[5].base_stat])
+                            self.ref.child("users").child("\(user.uid)").child("\(name.capitalized)").child("abilities").setValue(["ability_1": (pok.abilities[0].ability?.name ?? "default")])
                         }
                     }
                     
@@ -129,6 +128,9 @@ extension PokemonListInteractor: PokemonListInteractorDelegate{
             self.presenter?.didFetchFavourites(favourites: favourites)
         }
         
+        
+    }
+    func setInitialValues(){
         
     }
 }
