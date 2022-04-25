@@ -36,6 +36,7 @@ class PokemonListViewController: UIViewController {
         loadDelegates()
         loadStyle()
         presenter?.fetchPokemonList()
+        presenter?.fetchFavourites()
         tableView.register(UINib(nibName: "PokemonCell", bundle: nil), forCellReuseIdentifier: "PokemonNameCell")
         loadButtons()
         loadSearchBar()
@@ -43,7 +44,6 @@ class PokemonListViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        presenter?.fetchFavourites()
         for filter in filtered {
             if filter.isInvalidated{
                 filtered.removeAll()
@@ -243,7 +243,7 @@ extension PokemonListViewController:UITableViewDelegate, UITableViewDataSource{
             var arrayOfFavouritesNames: [String] = []
             for favs in favourites{
                 //doesn't update
-                arrayOfFavouritesNames.append(favs.name!)
+                arrayOfFavouritesNames.append((favs.name?.lowercased())!)
             }
             if arrayOfFavouritesNames.contains(self.filtered[indexPath.row].name!){
                 alert.show(

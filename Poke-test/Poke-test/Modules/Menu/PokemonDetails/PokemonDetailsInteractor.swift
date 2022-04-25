@@ -45,7 +45,6 @@ extension PokemonDetailsInteractor: PokemonDetailsInteractorDelegate{
         if user != nil{
             guard let user = user else{return}
             self.ref.child("users").child("\(user.uid)").observe(.value, with: {snapshot in
-                self.ref.child("users").child("\(user.uid)").removeAllObservers()
                 if snapshot.exists(){
                     let favouritesList = snapshot.value as![String:Any]
                     var favourites: [Favourites] = []
@@ -68,7 +67,7 @@ extension PokemonDetailsInteractor: PokemonDetailsInteractorDelegate{
     
     //MARK: - addFavourite
     func addFavourite(pokemon: Results) {
-        if user != nil{ //Si estÃ¡ logeado
+        if user != nil{ //Si esta logeado
             guard let user = user else {return}
             let allData = DDBBManager.shared.get(PokemonData.self)
             for pok in allData{
@@ -110,7 +109,7 @@ extension PokemonDetailsInteractor: PokemonDetailsInteractorDelegate{
         if user != nil{
             guard let user = user else {return}
             guard let name = pokemon.name else{return}
-            self.ref.child("users").child(user.uid).child(name.capitalized).removeValue()
+            self.ref.child("users").child("\(user.uid)").child(name.capitalized).removeValue()
             self.presenter?.didDeleteFavourite(pokemon: pokemon)
         }else{
             let favourites: [Favourites] = []

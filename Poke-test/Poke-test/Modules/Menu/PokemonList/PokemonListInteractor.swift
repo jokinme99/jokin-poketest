@@ -69,14 +69,15 @@ extension PokemonListInteractor: PokemonListInteractorDelegate{
         if user != nil{
             guard let user = user else{return}
             self.ref.child("users").child("\(user.uid)").observe(.value, with: {snapshot in
-                self.ref.child("users").child("\(user.uid)").removeAllObservers()
                 if snapshot.exists(){
-                    let favouritesList = snapshot.value as![String:Any]
                     var favourites: [Favourites] = []
-                    for fav in favouritesList{
-                        favourites.append(Favourites(name: fav.key))
+                    if snapshot.childrenCount > 0{
+                        let favouritesList = snapshot.value as? [String:Any]
+                        for fav in favouritesList ?? [:]{
+                            favourites.append(Favourites(name: fav.key))
+                        }
+                        self.presenter?.didFetchFavourites(favourites: favourites)
                     }
-                    self.presenter?.didFetchFavourites(favourites: favourites)
                 }else{
                     let favourites: [Favourites] = []
                     self.presenter?.didFetchFavourites(favourites: favourites)

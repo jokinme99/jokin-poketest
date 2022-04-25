@@ -16,55 +16,23 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "49"
             endingLineNumber = "49"
-            landmarkName = "didFetchFavourites(favourites:)"
-            landmarkType = "7">
+            landmarkName = "PokemonFavouritesInteractorOutputDelegate"
+            landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "DD5DEA91-5E7C-4E50-A25C-9B71AFBE0AD9"
+            uuid = "42A14442-B116-451D-B884-20FE6B39B0C5"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Poke-test/Modules/Menu/PokemonDetails/PokemonDetailsViewController.swift"
+            filePath = "Poke-test/Modules/Menu/PokemonList/PokemonListViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "95"
-            endingLineNumber = "95"
-            landmarkName = "isFavourite()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "281B410B-31B8-436E-9BAC-B3403F84C471"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Poke-test/Modules/Menu/PokemonDetails/PokemonDetailsInteractor.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "113"
-            endingLineNumber = "113"
-            landmarkName = "deleteFavourite(pokemon:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "4720F81D-D6A2-4802-AE8E-1A21ED7F6994"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Poke-test/Modules/Menu/PokemonDetails/PokemonDetailsInteractor.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "114"
-            endingLineNumber = "114"
-            landmarkName = "deleteFavourite(pokemon:)"
+            startingLineNumber = "248"
+            endingLineNumber = "248"
+            landmarkName = "tableView(_:leadingSwipeActionsConfigurationForRowAt:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

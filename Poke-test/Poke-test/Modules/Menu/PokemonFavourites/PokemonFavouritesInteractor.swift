@@ -20,7 +20,6 @@ extension PokemonFavouritesInteractor: PokemonFavouritesInteractorDelegate {
         if user != nil{
             guard let user = user else{return}
             self.ref.child("users").child("\(user.uid)").observe(.value, with: {snapshot in
-                self.ref.child("users").child("\(user.uid)").removeAllObservers()
                 if snapshot.exists(){
                     let favouritesList = snapshot.value as![String:Any]
                     var favourites: [Favourites] = []

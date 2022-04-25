@@ -21,7 +21,7 @@
 
 //Alerten testua
 "You_are_going_to_close_this account_Are_you_sure" = "Hasitako saio hau itxiko duzu. Ziur zaude?";
-"You_have_noy_added_any_favourites_yet_Would_you_like_to_see_all_the_available_Pokemon_in_order_to_add_any_of_them" = "Oraindik ez duzu Pokemonik gehitu gustokoetara. Gustatuko litzaizu pokemon guztiak ikustea, gustokoetara edozein gehitzeko?";
+"You_have_not_added_any_favourites_yet_Would_you_like_to_see_all_the_available_Pokemon_in_order_to_add_any_of_them" = "Oraindik ez duzu Pokemonik gehitu gustokoetara. Gustatuko litzaizu pokemon guztiak ikustea, gustokoetara edozein gehitzeko?";
 "Pokemon_already_added_to_favourites"="Pokemon hau badago gustokoetan.";
 "You_will_not_be_able_to_add_any_pokemons_to_favourites_until_you_login_or_sign_up_Would_you_like_to_login_or_sign_up" ="Ezingo duzu pokemonik gehitu gustokoenetara, saioa hasi edo saio berri bat sortzen duzun arte. Gustatuko litzaizuke saioa hastea edo saio bat sotzea?";
 "Access_without_user" = "Saiorik gabe sartu";
@@ -34,6 +34,7 @@
 "Pokemon_added_to_favourites"="Pokemon-a gustokoetara gehituta";
 "Pokemon_deleted_from_favourites"="Pokemon-a gustokoetatik ezabatuta";
 "Yes" = "Bai";"No" = "Ez";
+"home" = "Hasiera";
 
 //Botoiak
 "Order_by_Name" = "Izenagatik ordenatu ";

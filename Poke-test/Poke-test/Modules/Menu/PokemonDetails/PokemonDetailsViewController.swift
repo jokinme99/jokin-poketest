@@ -82,30 +82,6 @@ extension PokemonDetailsViewController{
     }
     
     
-    //MARK: - isFavourite
-    func isFavourite(){
-        for fav in favouritesList{
-            guard let name = fav.name else {return}
-            if arrayOfNames.contains(name) == false{
-                arrayOfNames.append(name.lowercased())
-            }
-            
-        }
-        guard let name = selectedPokemon?.name else{return}
-        if arrayOfNames.contains(name){
-            favouritesButton.setTitle(NSLocalizedString("delete_from_favourites", comment: ""), for: .normal)
-          favouritesImage.image = UIImage(named: "emptyStar")
-          favouriteConfirmationImage.isHidden = false
-
-        }else{
-            favouritesButton.setTitle(NSLocalizedString("add_to_favourites", comment: ""), for: .normal)
-            favouritesImage.image = UIImage(named: "fullStar")
-            favouriteConfirmationImage.isHidden = true
-            
-        }
-    }
-    
-    
     //MARK: - loadMethods
     func loadMethods(){
         self.loadStyle()
@@ -208,6 +184,7 @@ extension PokemonDetailsViewController: PokemonDetailsViewDelegate {
                 self.nextButton.isHidden = true
             }
         }else{//Si añades y luego eliminas Error
+            arrayOfNames.removeDuplicates()
             if arrayOfNames.isEmpty == false{
                 let indexName = arrayOfNames.firstIndex(of: pokemon.name ?? "default")
                 arrayOfNames.remove(at: indexName ?? 0)
@@ -230,8 +207,24 @@ extension PokemonDetailsViewController: PokemonDetailsViewDelegate {
     
     //MARK: - updateDetailsViewFavourites
     func updateDetailsViewFavourites(favourites: [Favourites]) {
-        self.favouritesList = favourites
-        isFavourite()
+        arrayOfNames.removeAll()
+        for fav in favourites{
+            guard let name = fav.name else {return}
+            arrayOfNames.append(name.lowercased())
+        }
+        arrayOfNames.removeDuplicates()
+        guard let name = selectedPokemon?.name else{return}
+        if arrayOfNames.contains(name){
+            favouritesButton.setTitle(NSLocalizedString("delete_from_favourites", comment: ""), for: .normal)
+          favouritesImage.image = UIImage(named: "emptyStar")
+          favouriteConfirmationImage.isHidden = false
+
+        }else{
+            favouritesButton.setTitle(NSLocalizedString("add_to_favourites", comment: ""), for: .normal)
+            favouritesImage.image = UIImage(named: "fullStar")
+            favouriteConfirmationImage.isHidden = true
+            
+        }
     }
     
     
@@ -289,10 +282,8 @@ extension PokemonDetailsViewController{
             guard let selectedPokemon = selectedPokemon else{return}
             if favouritesButton.titleLabel?.text == NSLocalizedString("add_to_favourites", comment: ""){
                     presenter?.addFavourite(pokemon: selectedPokemon)
-                    //change text and button
             } else if favouritesButton.titleLabel?.text == NSLocalizedString("delete_from_favourites", comment: ""){
                     presenter?.deleteFavourite(pokemon: selectedPokemon)
-                    //change text and button
             }
         }else{
             alert.show(
@@ -331,7 +322,7 @@ extension PokemonDetailsViewController{
         if row == filtered.count - 1{ // if we're in the last row, and we press next actualRow will be the first
             row = 0
         }else{
-            row = row! + 1 // if we do guard let row = row or row ?? 0 doesn't work
+            row = row! + 1
         }
         nextOrPrevious()
     }
@@ -344,7 +335,7 @@ extension PokemonDetailsViewController{
         if row == 0{ // if we're in the first row, and we press previous actualRow will be the last
             row = filtered.count - 1
         }else{
-            row = row!  - 1 // if we do guard let row = row or row ?? 0 doesn't work
+            row = row!  - 1
         }
         nextOrPrevious()
         

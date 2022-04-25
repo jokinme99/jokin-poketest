@@ -33,6 +33,7 @@ class PokemonFavouritesViewController: UIViewController {
     let user = Auth.auth().currentUser
     var saveFiltered: [String] = []
     var alert = ZeroDialog()
+    var empty = ZeroEmpty()
     
     override func viewDidLoad() {
         //print(Realm.Configuration.defaultConfiguration.fileURL!)
@@ -47,16 +48,13 @@ class PokemonFavouritesViewController: UIViewController {
         crashlyticsErrorSending()
         loadStyle()
         
-        
     }
     override func viewWillAppear(_ animated: Bool) {
-        presenter?.fetchFavourites()
         for filter in filtered{
             if filter.isInvalidated{
                 filtered.removeAll()
                 pokemon.removeAll()
                 savefilteredOrder.removeAll()
-                presenter?.fetchFavourites()
             }
         }
     }
@@ -176,16 +174,12 @@ extension PokemonFavouritesViewController: PokemonFavouritesViewDelegate {
         cleanSearchBar()
         if user != nil{
             if favourites.isEmpty{
-//                alert.show(
-//                    title:NSLocalizedString("Favourites", comment: ""),
-//                    info: NSLocalizedString("You_have_noy_added_any_favourites_yet_Would_you_like_to_see_all_the_available_Pokemon_in_order_to_add_any_of_them", comment: ""),
-//                    titleOk: NSLocalizedString("Yes", comment: ""),
-//                    titleCancel: NSLocalizedString("No", comment: ""),
-//                    completionOk: {
-//                        self.presenter?.openPokemonListWindow()
-//                    },
-//                    completionCancel: nil
-//                )
+                empty.title = NSLocalizedString("You_have_not_added_any_favourites_yet_Would_you_like_to_see_all_the_available_Pokemon_in_order_to_add_any_of_them", comment: "")
+                empty.buttonText = NSLocalizedString("list", comment: "")
+                empty.buttonAction = {
+                    self.presenter?.openPokemonListWindow()
+                }
+                empty.show(inView: self.tableView)
             }
             if filtered.isEmpty && pokemon.isEmpty{
                 for favourite in favourites {
@@ -210,17 +204,12 @@ extension PokemonFavouritesViewController: PokemonFavouritesViewDelegate {
                 self.tableView.reloadData()
             }
         }else{
-            //Presenting error
-//           alert.show(
-//                title:NSLocalizedString("Favourites", comment: ""),
-//                info:NSLocalizedString("You_will_not_be_able_to_add_any_pokemons_to_favourites_until_you_login_or_sign_up_Would_you_like_to_login_or_sign_up", comment: ""),
-//                titleOk: NSLocalizedString("Yes", comment: ""),
-//                titleCancel: NSLocalizedString("No", comment: ""),
-//                completionOk: {
-//                    self.presenter?.openLoginSignUpWindow()
-//                },
-//                completionCancel: nil
-//            )
+            empty.desc = NSLocalizedString("You_will_not_be_able_to_add_any_pokemons_to_favourites_until_you_login_or_sign_up_Would_you_like_to_login_or_sign_up", comment: "")
+            empty.buttonText = NSLocalizedString("home", comment: "")
+            empty.buttonAction = {
+                self.presenter?.openLoginSignUpWindow()
+            }
+            empty.show(inView: self.tableView)
             
             
         }

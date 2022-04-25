@@ -21,7 +21,7 @@
 
 //Alerts text
 "You_are_going_to_close_this account_Are_you_sure" = "Vas a cerrar esta sesión. ¿Estás seguro?";
-"You_have_noy_added_any_favourites_yet_Would_you_like_to_see_all_the_available_Pokemon_in_order_to_add_any_of_them" = "Todavía no has añadido ningún favorito. ¿Te gustaría ver toda la lista de Pokemons disponibles para añadir alguno?";
+"You_have_not_added_any_favourites_yet_Would_you_like_to_see_all_the_available_Pokemon_in_order_to_add_any_of_them" = "Todavía no has añadido ningún favorito. ¿Te gustaría ver toda la lista de Pokemons disponibles para añadir alguno?";
 "Pokemon_already_added_to_favourites"="Este pokemon ya está en los favoritos.";
 "You_will_not_be_able_to_add_any_pokemons_to_favourites_until_you_login_or_sign_up_Would_you_like_to_login_or_sign_up" ="No podrás añadir ningún pokemon a la lista de favoritos hasta que te registres o inicies sesión. ¿Te gustaría iniciar sesión o registrarte?";
 "Access_without_user" = "Acceder sin usuario";
@@ -34,6 +34,7 @@
 "Pokemon_added_to_favourites"="Pokemon añadido a favoritos";
 "Pokemon_deleted_from_favourites"="Pokemon eliminado de favoritos";
 "Yes" = "Sí";"No" = "No";
+"home" = "Inicio";
 
 //Buttons
 "Order_by_Name" = "Ordenar por Nombre";
