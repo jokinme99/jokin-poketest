@@ -1,6 +1,19 @@
-//CASTELLANO
 
-//Errores de Firebase
+//MARK: - HOME
+"login" = "Iniciar sesión";
+"sign_Up" = "Registrarse";
+"access_no_user" = "Acceder sin usuario";
+"welcome" = "Bienvenido/a";
+"app_title" = "POKE-TEST";
+"back" = "Atrás";
+"no_internet" = "Sin conexión a Internet!";
+"no_internet_login" = "Si quieres iniciar sesión necesitaras conexión a Internet.";
+"no_internet_sign_up" = "Si quieres crear una cuenta necesitarás conexión a Internet.";
+"open_settings" = "Abrir ajustes";
+"later" = "Más tarde";
+"enter" = "Introducir";
+"email" = "Correo electrónico";
+"password" = "Contraseña";
 "email_and_password_empty_error"="Introduce una dirección de correo y una contraseña por favor.";
 "email_empty_error"="Introduce una dirección de correo por favor.";
 "password_empty_error"="Introduce una contraseña por favor.";
@@ -8,7 +21,26 @@
 "already_in_use_email_error"="La dirección de correo introducida ya ha iniciado sesión en este dispositivo";
 "user_not_found_error"="La dirección de correo introducida no existe.";
 "wrong_password_error"="La contraseña introducida no es correcta.";
+"ok" = "OK";
 "weak_password_error"="La contraseña introducida es muy débil. Tiene que tener al menos 6 caracteres.";
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//Errores de Firebase
+
+
 
 //Tipos de pokemons
 "all"="TODOS";"normal"="NORMAL";"fighting"="LUCHA";
@@ -24,10 +56,10 @@
 "You_have_not_added_any_favourites_yet_Would_you_like_to_see_all_the_available_Pokemon_in_order_to_add_any_of_them" = "Todavía no has añadido ningún favorito. ¿Te gustaría ver toda la lista de Pokemons disponibles para añadir alguno?";
 "Pokemon_already_added_to_favourites"="Este pokemon ya está en los favoritos.";
 "You_will_not_be_able_to_add_any_pokemons_to_favourites_until_you_login_or_sign_up_Would_you_like_to_login_or_sign_up" ="No podrás añadir ningún pokemon a la lista de favoritos hasta que te registres o inicies sesión. ¿Te gustaría iniciar sesión o registrarte?";
-"Access_without_user" = "Acceder sin usuario";
-"No_internet_connection" = "Sin conexión a Internet!";
-"If_you_want_to_login_into_your_account_you_will_need_internet_connection" = "Si quieres iniciar sesión necesitaras conexión a Internet.";
-"If_you_want_to_signUp_into_your_account_you_will_need_internet_connection" = "Si quieres crear una cuenta necesitarás conexión a Internet.";
+"access_no_user" = "Acceder sin usuario";
+"no_internet" = "Sin conexión a Internet!";
+"no_internet_login" = "Si quieres iniciar sesión necesitaras conexión a Internet.";
+"no_internet_sign_up" = "Si quieres crear una cuenta necesitarás conexión a Internet.";
 "email_and_password_error" = "Error en el email y en la contraseña!";
 "email_error" = "Error en el email!";
 "password_error" = "Error en la contraseña!";
@@ -35,6 +67,8 @@
 "Pokemon_deleted_from_favourites"="Pokemon eliminado de favoritos";
 "Yes" = "Sí";"No" = "No";
 "home" = "Inicio";
+"poketest" = "POKE-TEST";
+
 
 //Buttons
 "Order_by_Name" = "Ordenar por Nombre";
@@ -62,6 +96,6 @@
 "Special_defense"="Defensa-especial: ";
 "Speed"="Velocidad: ";
 "Welcome" = "Bienvenido/a";
-"Email" = "Correo";
-"Password" = "Contraseña";
+
+
 "search_for_pokemons" = "Buscar pokemons...";

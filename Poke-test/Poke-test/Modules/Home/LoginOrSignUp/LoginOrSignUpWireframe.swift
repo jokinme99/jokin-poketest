@@ -1,17 +1,13 @@
 import UIKit
 
-
-//MARK: - LoginOrSignUpWireframe
 class LoginOrSignUpWireframe{
+    
     var viewController: UIViewController?
+    
 }
 
-
-//MARK: - LoginOrSignUpWireframeDelegate
 extension LoginOrSignUpWireframe: LoginOrSignUpWireframeDelegate{
     
-    
-    //MARK: - createLoginOrSignUpModule
     static func createLoginOrSignUpModule() -> UIViewController {
         let presenter = LoginOrSignUpPresenter()
         let view = LoginOrSignUpViewController()
@@ -27,25 +23,18 @@ extension LoginOrSignUpWireframe: LoginOrSignUpWireframeDelegate{
         wireframe.viewController = view
 
         return view
+        
     }
-
+    func openLoginWindow() {
+        let loginModule = LoginWireframe.createLoginModule()
+        viewController?.navigationController?.pushViewController(loginModule, animated: true)
+    }
     
-    //MARK: - openLoginWindow
-        func openLoginWindow() {
-            let loginModule = LoginWireframe.createLoginModule()
-            viewController?.navigationController?.pushViewController(loginModule, animated: true)
-            //viewController?.present(loginModule, animated: true, completion: nil)
-        }
-        
-        
-        //MARK: - openSignUpWindow
-        func openSignUpWindow() {
-            let signUpModule = SignUpWireframe.createSignUpModule()
-            viewController?.navigationController?.pushViewController(signUpModule, animated: true)
-        }
+    func openSignUpWindow() {
+        let signUpModule = SignUpWireframe.createSignUpModule()
+        viewController?.navigationController?.pushViewController(signUpModule, animated: true)
+    }
     
-    
-    //MARK: - openPokemonListWindow
     func openPokemonListWindow() {
         let listModule = MainTabBarWireframe.createMainTabBarModule()
         viewController?.navigationController?.setViewControllers([listModule], animated: true)

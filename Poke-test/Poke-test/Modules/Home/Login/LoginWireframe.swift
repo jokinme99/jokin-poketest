@@ -1,18 +1,14 @@
+
 import UIKit
 
-
-//MARK: - LoginWireframe
 class LoginWireframe{
 
     var viewController: UIViewController?
+    
 }
 
-
-//MARK: - LoginWireframeDelegate
 extension LoginWireframe: LoginWireframeDelegate{
     
-    
-    //MARK: - createLoginModule
     static func createLoginModule() -> UIViewController {
         let presenter = LoginPresenter()
         let view = LoginViewController()
@@ -28,10 +24,9 @@ extension LoginWireframe: LoginWireframeDelegate{
         wireframe.viewController = view
 
         return view
+        
     }
     
-    
-    //MARK: - Section heading
     func openMainTabBar() {
         let listModule = MainTabBarWireframe.createMainTabBarModule()
         let navigation = UINavigationController(rootViewController: listModule)

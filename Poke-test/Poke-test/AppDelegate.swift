@@ -8,8 +8,6 @@ import FirebaseAuth
 //MARK: - AppDelegate class
 @main
 class AppDelegate: UIResponder{
-    
-    //PIN iPhone: 281106
     //Minimum iphone to work with ARKit is iphone 6s
     var window: UIWindow?
     var state = UIApplication.shared.applicationState
@@ -68,7 +66,7 @@ extension AppDelegate: MessagingDelegate, UNUserNotificationCenterDelegate{
             if let error = error {
                 print(error)
             } else {
-                print(token ?? "") //This token must go when sending test message in fcm registration token
+                print(token ?? "")
             }
         }
     }

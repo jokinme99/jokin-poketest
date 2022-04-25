@@ -1,4 +1,3 @@
-//MARK: - LoginOrSignUpInteractor
 
 class LoginOrSignUpInteractor : LoginOrSignUpInteractorDelegate {
 

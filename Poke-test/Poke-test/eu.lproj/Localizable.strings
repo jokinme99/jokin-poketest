@@ -1,6 +1,19 @@
-//EUSKERA
 
-//Firebase akatzak
+//MARK: - HOME
+"login" = "Saioa hasi";
+"sign_Up" = "Kontu bat sortu";
+"access_no_user" = "Saiorik gabe sartu";
+"Welcome" = "Ongi etorri";
+"app_title" = "POKE-TEST";
+"back" = "Atzera";
+"no_internet" = "Internet konexiorik gabe!";
+"no_internet_login" = "Saio hasi nahi baduzu, interneterako konexioa beharko duzu.";
+"no_internet_sign_up"="Kontu berri bat sortu nahi baduzu, interneterako konexioa beharko duzu.";
+"open_settings" = "Dohikuntzak zabaldu";
+"later" = "Geroago";
+"enter" = "Sartu";
+"email" = "Emaila";
+"password" = "Pasahitza";
 "email_and_password_empty_error"="Email eta pasahitz bat sartu mesedez.";
 "email_empty_error"="Email bat sartu mesedez.";
 "password_empty_error"="Pasahitza sartu mesedez.";
@@ -8,7 +21,30 @@
 "already_in_use_email_error"="Email hau saioa daegoeneko hastuta dago.";
 "user_not_found_error"="Sartutako emaila ez da existitzen.";
 "wrong_password_error"="Sartutako emaila ez da zuzena.";
+"ok" = "OK";
 "weak_password_error"="Sartutako pasahitza ahula da. Gutxienez 6 karakter izan behar ditu.";
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//Firebase akatzak
+
+
 
 //Pokemon motak
 "all"="GUZTIAK";"normal"="NORMALA";"fighting"="BORROKA";
@@ -24,10 +60,8 @@
 "You_have_not_added_any_favourites_yet_Would_you_like_to_see_all_the_available_Pokemon_in_order_to_add_any_of_them" = "Oraindik ez duzu Pokemonik gehitu gustokoetara. Gustatuko litzaizu pokemon guztiak ikustea, gustokoetara edozein gehitzeko?";
 "Pokemon_already_added_to_favourites"="Pokemon hau badago gustokoetan.";
 "You_will_not_be_able_to_add_any_pokemons_to_favourites_until_you_login_or_sign_up_Would_you_like_to_login_or_sign_up" ="Ezingo duzu pokemonik gehitu gustokoenetara, saioa hasi edo saio berri bat sortzen duzun arte. Gustatuko litzaizuke saioa hastea edo saio bat sotzea?";
-"Access_without_user" = "Saiorik gabe sartu";
-"No_internet_connection" = "Internet konexiorik gabe!";
-"If_you_want_to_login_into_your_account_you_will_need_internet_connection" = "Saio hasi nahi baduzu, interneterako konexioa beharko duzu.";
-"If_you_want_to_signUp_into_your_account_you_will_need_internet_connection"="Kontu berri bat sortu nahi baduzu, interneterako konexioa beharko duzu.";
+"access_no_user" = "Saiorik gabe sartu";
+
 "email_and_password_error" = "Emailean eta pasahitzan akatsa!";
 "email_error" = "Emailean akatsa!!";
 "password_error" = "Pasahitzan akatsa!";
@@ -35,6 +69,7 @@
 "Pokemon_deleted_from_favourites"="Pokemon-a gustokoetatik ezabatuta";
 "Yes" = "Bai";"No" = "Ez";
 "home" = "Hasiera";
+
 
 //Botoiak
 "Order_by_Name" = "Izenagatik ordenatu ";
@@ -52,6 +87,8 @@
 "list" = "Zerrenda";
 "collection" = "Bilduma";
 "Back" = "Atzera";
+"poketest" = "POKE-TEST";
+"later" = "Geroago";
 
 //Testuak || bilaketa barra
 "Height" = "Altuera: ";
@@ -61,7 +98,7 @@
 "Special_attack"="Eraso-berezia: ";
 "Special_defense"="Defentsa-berezia: ";
 "Speed"="Abiadura: ";
-"Welcome" = "Ongi etorri";
+
 "Email" = "Emaila";
 "Password" = "Pasahitza";
 "search_for_pokemons" = "Pokemonak bilatu...";
