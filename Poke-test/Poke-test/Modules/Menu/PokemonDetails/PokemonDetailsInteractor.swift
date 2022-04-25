@@ -93,10 +93,9 @@ extension PokemonDetailsInteractor: PokemonDetailsInteractorDelegate{
                             self.ref.child("users").child("\(user.uid)").child("\(name.capitalized)").child("abilities").setValue(["ability_1": (pok.abilities[0].ability?.name ?? "default")])
                         }
                     }
-                    
                 }
             }
-            
+            self.presenter?.didAddFavourite(pokemon: pokemon)
         }else{
             let favourites: [Favourites] = []
             self.presenter?.didFetchFavourites(favourites)
@@ -111,7 +110,7 @@ extension PokemonDetailsInteractor: PokemonDetailsInteractorDelegate{
         if user != nil{
             guard let user = user else {return}
             guard let name = pokemon.name else{return}
-            self.ref.child("users").child(user.uid).child(name).removeValue()
+            self.ref.child("users").child(user.uid).child(name.capitalized).removeValue()
             self.presenter?.didDeleteFavourite(pokemon: pokemon)
         }else{
             let favourites: [Favourites] = []

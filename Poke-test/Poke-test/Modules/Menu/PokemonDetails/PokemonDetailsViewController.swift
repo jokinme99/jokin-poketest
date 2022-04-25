@@ -87,7 +87,7 @@ extension PokemonDetailsViewController{
         for fav in favouritesList{
             guard let name = fav.name else {return}
             if arrayOfNames.contains(name) == false{
-                arrayOfNames.append(name)
+                arrayOfNames.append(name.lowercased())
             }
             
         }
@@ -289,8 +289,10 @@ extension PokemonDetailsViewController{
             guard let selectedPokemon = selectedPokemon else{return}
             if favouritesButton.titleLabel?.text == NSLocalizedString("add_to_favourites", comment: ""){
                     presenter?.addFavourite(pokemon: selectedPokemon)
+                    //change text and button
             } else if favouritesButton.titleLabel?.text == NSLocalizedString("delete_from_favourites", comment: ""){
                     presenter?.deleteFavourite(pokemon: selectedPokemon)
+                    //change text and button
             }
         }else{
             alert.show(
@@ -541,8 +543,6 @@ extension PokemonDetailsViewController{
             
         }
     }
-    
-    
     func addBorder(_ label: UILabel){
         label.layer.borderColor = label.textColor.cgColor
         label.layer.borderWidth = 2
