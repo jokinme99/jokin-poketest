@@ -36,7 +36,6 @@ class PokemonListViewController: UIViewController {
     var alert = ZeroDialog()
     
     override func viewDidLoad() {
-        print(Realm.Configuration.defaultConfiguration.fileURL!)
         super.viewDidLoad()
         loadDelegates()
         loadStyle()
@@ -239,7 +238,7 @@ extension PokemonListViewController:UITableViewDelegate, UITableViewDataSource{
         }else{
             alert.show(
                 title: MenuConstants.favsListBar,
-                info: MenuConstants.alreadyInFavourites,
+                info: MenuConstants.notAbleToAddFavourites,
                 titleOk: MenuConstants.yesTitle,
                 titleCancel: MenuConstants.noTitle,
                 completionOk: {

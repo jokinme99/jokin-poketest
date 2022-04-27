@@ -21,6 +21,18 @@ class LoginOrSignUpViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        if UIApplication.isFirstLaunch(){
+            alert.show(
+                title: MenuConstants.saveDataTitle,
+                info: MenuConstants.saveDataInfo,
+                titleOk: MenuConstants.yesTitle,
+                titleCancel: MenuConstants.noTitle,
+                completionOk: {
+                    PokemonManager.shared.saveDataOffline = true
+                },
+                completionCancel: nil
+            )
+        }
         loadButtonsStyle()
         loadNavItemStyle()
         crashlyticsErrorSending()

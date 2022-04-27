@@ -9,19 +9,19 @@ import Firebase
 import FirebaseMessaging
 import UserNotifications
 import FirebaseAuth
+import Zero
 
 @main
 class AppDelegate: UIResponder{
     
     var window: UIWindow?
     var state = UIApplication.shared.applicationState
-    
+    var alert = ZeroDialog()
 }
 
 extension AppDelegate: UIApplicationDelegate{
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        //print(NSHomeDirectory()) To see the document directory (Application supports iTunes file sharing = YES, in order to be able to see the archives the APP has)
         FirebaseApp.configure()
         Messaging.messaging().delegate = self
         application.applicationIconBadgeNumber = 0
@@ -49,6 +49,7 @@ extension AppDelegate: UIApplicationDelegate{
             self.window?.rootViewController = navController
             self.window?.makeKeyAndVisible()
         }
+        
     }
     
 }

@@ -79,6 +79,7 @@
 		FDA34F0026E8954D00AE2143 /* PokemonDetailsWireframe.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDA34EFA26E8954D00AE2143 /* PokemonDetailsWireframe.swift */; };
 		FDA582972817CCA700BCBE33 /* UIImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDA582962817CCA700BCBE33 /* UIImageExtension.swift */; };
 		FDA582992817CFBB00BCBE33 /* UINibExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDA582982817CFBB00BCBE33 /* UINibExtension.swift */; };
+		FDA83FBD28195CB4003566AD /* UIApplicationExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDA83FBC28195CB4003566AD /* UIApplicationExtension.swift */; };
 		FDD3AF7A2779F2D300C0E473 /* ARKitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDD3AF742779F2D300C0E473 /* ARKitViewController.swift */; };
 		FDD3AF7D2779F2D300C0E473 /* ARKitViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FDD3AF772779F2D300C0E473 /* ARKitViewController.xib */; };
 		FDD3AF7E2779F2D300C0E473 /* ARKitWireframe.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDD3AF782779F2D300C0E473 /* ARKitWireframe.swift */; };
@@ -204,6 +205,7 @@
 		FDA34EFA26E8954D00AE2143 /* PokemonDetailsWireframe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonDetailsWireframe.swift; sourceTree = "<group>"; };
 		FDA582962817CCA700BCBE33 /* UIImageExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageExtension.swift; sourceTree = "<group>"; };
 		FDA582982817CFBB00BCBE33 /* UINibExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UINibExtension.swift; sourceTree = "<group>"; };
+		FDA83FBC28195CB4003566AD /* UIApplicationExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIApplicationExtension.swift; sourceTree = "<group>"; };
 		FDD3AF742779F2D300C0E473 /* ARKitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARKitViewController.swift; sourceTree = "<group>"; };
 		FDD3AF772779F2D300C0E473 /* ARKitViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ARKitViewController.xib; sourceTree = "<group>"; };
 		FDD3AF782779F2D300C0E473 /* ARKitWireframe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARKitWireframe.swift; sourceTree = "<group>"; };
@@ -456,6 +458,7 @@
 				FD9CBEC52816AFE100155BAA /* UIColorExtension.swift */,
 				FDA582962817CCA700BCBE33 /* UIImageExtension.swift */,
 				FDA582982817CFBB00BCBE33 /* UINibExtension.swift */,
+				FDA83FBC28195CB4003566AD /* UIApplicationExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -733,6 +736,7 @@
 				FD85C3AC2696EB1E00EAF99F /* DataManager.swift in Sources */,
 				FDA34EFB26E8954D00AE2143 /* PokemonDetailsPresenter.swift in Sources */,
 				FDA34EEE26E8952900AE2143 /* PokemonListPresenter.swift in Sources */,
+				FDA83FBD28195CB4003566AD /* UIApplicationExtension.swift in Sources */,
 				FD7CC07827452200006D1CD5 /* SignUpWireframe.swift in Sources */,
 				FD7CC07327452200006D1CD5 /* SignUpPresenter.swift in Sources */,
 				FD9CBEC42816A48900155BAA /* ArrayExtension.swift in Sources */,

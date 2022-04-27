@@ -104,6 +104,8 @@ struct MenuConstants{
     static let specialDefenseTitle = NSLocalizedString("special_defense", comment: "")
     static let speedTitle = NSLocalizedString("speed", comment: "")
     static let customCell2Name = "CollectionCell"
+    static let saveDataTitle = NSLocalizedString("save_data_title", comment: "")
+    static let saveDataInfo = NSLocalizedString("save_data_info", comment: "")
 }
 
 
