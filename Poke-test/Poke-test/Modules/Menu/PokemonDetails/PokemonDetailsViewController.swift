@@ -479,7 +479,7 @@ extension PokemonDetailsViewController{
             //MARK: - Buttons' background
             self.setBackgroundColor(from: statsView, to: favouritesView)
             self.setBackgroundColor(from: statsView, to: favouritesButton)
-            self.favouritesButton.setTitleColor(.white, for: .normal)
+            self.favouritesButton.setTitleColor(hpLabel.textColor, for: .normal)
             self.nextButton.backgroundColor = pokemonDescriptionView.backgroundColor
             self.previewButton.backgroundColor = pokemonDescriptionView.backgroundColor
             
@@ -522,7 +522,7 @@ extension PokemonDetailsViewController{
         case TypeName.normal.rawValue:
             setPokemonBackgroundColor(168, 168, 120, label)
             favouriteConfirmationImage.image = .customTabBarImage2
-            setPokemonTextColor(.white, label)
+            setPokemonTextColor(.black, label)
         case TypeName.fighting.rawValue:
             setPokemonBackgroundColor(192, 48, 40, label)
             setPokemonTextColor(.white, label)

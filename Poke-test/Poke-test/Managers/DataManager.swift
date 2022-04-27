@@ -10,6 +10,7 @@ import RealmSwift
 class PokemonManager{
     
     static var shared = PokemonManager()
+    var saveDataOffline = true
     
     func fetchList( _ completion:  @escaping  (PokemonListData?, Error?) -> Void){
         let pokemonListURL = "https://pokeapi.co/api/v2/pokemon/?limit=1118"
@@ -21,9 +22,12 @@ class PokemonManager{
             .responseDecodable { (response: DataResponse<PokemonListData, AFError>) in
                 switch response.result {
                 case .success(let data):
-                    if DDBBManager.shared.get(PokemonListData.self).isEmpty{
-                        self.addOfflineData(data)
+                    if !self.saveDataOffline{
+                        if DDBBManager.shared.get(PokemonListData.self).isEmpty{
+                            self.addOfflineData(data)
+                        }
                     }
+
                     completion(data, nil)
                 case .failure(let error):
                     completion(nil, error)

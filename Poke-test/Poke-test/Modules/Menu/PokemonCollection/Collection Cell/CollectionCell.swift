@@ -76,6 +76,8 @@ extension CollectionCell: CollectionCellDelegate{
                 //There's no way to save all the images offline
                 return self.imageView.af.setImage(withURL: downloadURL)
             }
+        }else{
+            
         }
     }
     func setBackgroundColor(_ type: String, _ label: UILabel){

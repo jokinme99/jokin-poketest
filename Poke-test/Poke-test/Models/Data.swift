@@ -6,7 +6,7 @@
 //
 import UIKit
 import RealmSwift
-//SOLID: S(Solo una responsabilidad) O(Permitir modificar/añadir valores sin tocar código) L(Una clase hija debe ser sustituible por la clase madre) I(Las clases no deben estar forzadas a usar interfaces que no necesitan) D(Las dependencias tienen que estar en las abstracciones)
+
 //MARK: - Pokemons
 class Results: Object, Codable{
     @objc dynamic var name: String?
@@ -67,8 +67,9 @@ class Favourites{
          return "name"
      }
  }
- class Sprites: EmbeddedObject, Codable{ //Not working
-     @objc dynamic var front_default: String
+ class Sprites: EmbeddedObject, Codable{
+     @objc dynamic var front_default: String?
+     
      
      
  }
@@ -79,7 +80,6 @@ class Favourites{
  class Type: EmbeddedObject, Codable{ //Not working
      @objc dynamic var name: String? //el tipo no es unico
  }
-
  class Stats: EmbeddedObject, Codable{
      @objc dynamic var base_stat: Int = 0 //las estadisticas no son unicas
      convenience init(base_stat: Int) {
