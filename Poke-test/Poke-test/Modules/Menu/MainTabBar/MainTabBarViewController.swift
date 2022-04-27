@@ -1,12 +1,15 @@
-
+//
+//  MainTabBarViewController.swift
+//  Poke-test
+//
+//  Created by Jokin Egia on 10/11/21.
+//
 import UIKit
 import Firebase
 import FirebaseDatabase
 import FirebaseAuth
 import FirebaseCrashlytics
 import Zero
-
-//MARK: - MainTabBarViewController
 
 class MainTabBarViewController: ZeroTabBarViewController {
     
@@ -24,79 +27,62 @@ class MainTabBarViewController: ZeroTabBarViewController {
         setTabBar()
         crashlyticsErrorSending()
     }
+    
 }
 
-//MARK: - ViewDidLoad methods
 extension MainTabBarViewController{
     
-    
-    //MARK: - setLoggingSettings
     func setLoggingSettings(){
         if user != nil{
-            titleLog = NSLocalizedString("Log_out", comment: "")
+            titleLog = MenuConstants.titleLogOut
         }else{
-            titleLog = NSLocalizedString("Log_in", comment: "")
+            titleLog = MenuConstants.titleLogIn
         }
     }
     
-    
-    //MARK: - setTabBar
     func setTabBar(){
         list = PokemonListWireframe.createPokemonListModule()
-        list.tabBarItem = UITabBarItem(title: NSLocalizedString("list", comment: ""), image: UIImage(named: "listNotSelected"), selectedImage: UIImage(named: "listSelected"))
+        list.tabBarItem = UITabBarItem(title: MenuConstants.listTabBar, image: .customTabBarImage1, selectedImage: .customTabBarImageSelected1)
         favourites = PokemonFavouritesWireframe.createPokemonFavouritesModule()
-        favourites.tabBarItem = UITabBarItem(title: NSLocalizedString("FAVS", comment: ""), image: UIImage(named: "fullStar"), selectedImage: UIImage(named: "emptyStar"))
+        favourites.tabBarItem = UITabBarItem(title: MenuConstants.favsListBar, image: .customTabBarImage2, selectedImage: .customTabBarImageSelected2)
         setLoggingSettings()
         collection = PokemonCollectionWireframe.createPokemonCollectionModule()
-        collection.tabBarItem = UITabBarItem(title: NSLocalizedString("collection", comment: ""), image: UIImage(named: "collectionNotSelected"), selectedImage: UIImage(named: "collectionSelected"))
+        collection.tabBarItem = UITabBarItem(title: MenuConstants.collectionTabBar, image: .customTabBarImage3, selectedImage: .customTabBarImageSelected3)
         setViewControllers([list, collection, favourites], animated: true)
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: titleLog, style: .plain, target: self, action: #selector(logMethod))
-        navigationItem.title = "Pokedex"
+        navigationItem.title = MenuConstants.navigationItemTitle
         navigationItem.titleView?.apply(ZeroTheme.Label.head1)
         
     }
-    
-    
-    //MARK: - crashlyticsErrorSending
+ 
     func crashlyticsErrorSending(){
         guard let email = user?.email else {return}
         Crashlytics.crashlytics().setUserID(email)
-        Crashlytics.crashlytics().setCustomValue(email, forKey: "USER")
-        Crashlytics.crashlytics().log("Error in MainTabBarViewController")
+        Crashlytics.crashlytics().setCustomValue(email, forKey: CrashlyticsConstants.key)
+        Crashlytics.crashlytics().log(CrashlyticsConstants.TabBar.log)
     }}
 
-
-//MARK: - UITabBarControllerDelegate methods
-extension MainTabBarViewController: MainTabBarViewDelegate{
-}
-
-
-//MARK: - LogIn/LogOut method
 extension MainTabBarViewController{
     
-    
-    //MARK: - logMethod
     @objc func logMethod(){
-        if self.titleLog == NSLocalizedString("Log_out", comment: ""){
+        if self.titleLog == MenuConstants.titleLogOut{
             alert.show(
-                title: NSLocalizedString("Logging_out", comment: "") + " \(user?.email ?? "default@default")",
-                info: NSLocalizedString("You_are_going_to_close_this account_Are_you_sure", comment: ""),
-                titleOk: NSLocalizedString("Yes", comment: ""),
-                titleCancel: NSLocalizedString("No", comment: ""),
+                title: MenuConstants.loggingOutTitle + " \(user?.email ?? "")",
+                info: MenuConstants.loggingOutMessage,
+                titleOk: MenuConstants.yesTitle,
+                titleCancel: MenuConstants.noTitle,
                 completionOk: {
-                    self.titleLog = NSLocalizedString("Log_in", comment: "")
+                    self.titleLog = MenuConstants.titleLogIn
                     self.logOut()
                     self.presenter?.openLoginSignUpWindow()
                 },
                 completionCancel: nil
             )
-        }else{//log in
+        }else{
             self.presenter?.openLoginSignUpWindow()
         }
     }
     
-    
-    //MARK: - logOut
     func logOut(){
         let firebaseAuth = Auth.auth()
         do {
@@ -105,5 +91,9 @@ extension MainTabBarViewController{
             print("Error signing out: %@", signOutError)
         }
     }
+    
+}
+
+extension MainTabBarViewController: MainTabBarViewDelegate{
     
 }

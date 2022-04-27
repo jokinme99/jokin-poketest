@@ -1,21 +1,23 @@
-
+//
+//  PokemonFavouritesInteractor.swift
+//  Poke-test
+//
+//  Created by Jokin Egia on 15/11/21.
+//
 import Firebase
 import FirebaseAuth
 import FirebaseDatabase
 
-//MARK: - PokemonFavouritesInteractor
 class PokemonFavouritesInteractor{
+    
     var presenter: PokemonFavouritesInteractorOutputDelegate?
     let ref = Database.database().reference()
     let user = Auth.auth().currentUser
+    
 }
 
-
-//MARK: - PokemonFavouritesInteractorDelegate methods
 extension PokemonFavouritesInteractor: PokemonFavouritesInteractorDelegate {
-    
-    
-    //MARK: - fetchFavouritePokemons
+
     func fetchFavouritePokemons() {
         if user != nil{
             guard let user = user else{return}
@@ -38,9 +40,7 @@ extension PokemonFavouritesInteractor: PokemonFavouritesInteractorDelegate {
         }
         
     }
-    
-    
-    //MARK: - fetchPokemonType
+
     func fetchPokemonType(type: String) {
         if Reachability.isConnectedToNetwork(){
             PokemonManager.shared.fetchPokemonTypes(pokemonType: type, { pokemonFilterListData, error in
@@ -61,9 +61,7 @@ extension PokemonFavouritesInteractor: PokemonFavouritesInteractorDelegate {
             }
         }
     }
-    
-    
-    //MARK: - deleteFavourite
+
     func deleteFavourite(pokemon: Results) {
         if user != nil{
             guard let user = user else {return}

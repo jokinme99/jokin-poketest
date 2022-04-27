@@ -1,37 +1,31 @@
+//
+//  SignUpWireframe.swift
+//  Poke-test
+//
+//  Created by Jokin Egia on 19/11/21.
+//
 import UIKit
 
-
-//MARK: - LoginWireframe
-class LoginWireframe{
-
+class SignUpWireframe{
+    
     var viewController: UIViewController?
+    
 }
 
-
-//MARK: - LoginWireframeDelegate
-extension LoginWireframe: LoginWireframeDelegate{
+extension SignUpWireframe: SignUpWireframeDelegate{
     
-    
-    //MARK: - createLoginModule
-    static func createLoginModule() -> UIViewController {
-        let presenter = LoginPresenter()
-        let view = LoginViewController()
-        let wireframe = LoginWireframe()
-        let interactor = LoginInteractor()
+    static func createSignUpModule() -> UIViewController {
+        let presenter = SignUpPresenter()
+        let view = SignUpViewController()
+        let wireframe = SignUpWireframe()
 
         view.presenter = presenter
-        presenter.view = view
         presenter.wireframe = wireframe
-        presenter.interactor = interactor
-        interactor.presenter = presenter
-
         wireframe.viewController = view
 
         return view
     }
     
-    
-    //MARK: - Section heading
     func openMainTabBar() {
         let listModule = MainTabBarWireframe.createMainTabBarModule()
         let navigation = UINavigationController(rootViewController: listModule)

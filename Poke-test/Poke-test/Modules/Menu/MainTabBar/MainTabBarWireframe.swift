@@ -1,7 +1,11 @@
-
+//
+//  MainTabBarWireframe.swift
+//  Poke-test
+//
+//  Created by Jokin Egia on 10/11/21.
+//
 import UIKit
 
-//MARK: - MainTabBarWireframe
 class MainTabBarWireframe{
 
     var viewController: UIViewController?
@@ -24,8 +28,6 @@ class MainTabBarWireframe{
     }
 }
 
-
-//MARK: - MainTabBarWireframeDelegate method
 extension MainTabBarWireframe: MainTabBarWireframeDelegate{
     func openLoginSignUpWindow(){
         let loginSignUpModule = LoginOrSignUpWireframe.createLoginOrSignUpModule()

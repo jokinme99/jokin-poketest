@@ -1,6 +1,11 @@
+//
+//  PokemonFavouritesProtocols.swift
+//  Poke-test
+//
+//  Created by Jokin Egia on 15/11/21.
+//
 import UIKit
 
-//MARK: - PokemonFavouritesViewDelegate
 protocol PokemonFavouritesViewDelegate: AnyObject {
     var presenter: PokemonFavouritesPresenterDelegate? {get set}
     func updateTableViewFavourites()
@@ -9,8 +14,6 @@ protocol PokemonFavouritesViewDelegate: AnyObject {
     func deleteFavourite(pokemon: Results)
 }
 
-
-//MARK: - PokemonFavouritesWireframeDelegate
 protocol PokemonFavouritesWireframeDelegate: AnyObject {
     static func createPokemonFavouritesModule() -> UIViewController
     func openPokemonDetailsWindow(pokemon: Results, nextPokemon: Results, previousPokemon: Results, filtered: [Results])
@@ -18,8 +21,6 @@ protocol PokemonFavouritesWireframeDelegate: AnyObject {
     func openPokemonListWindow()
 }
 
-
-//MARK: - PokemonFavouritesPresenterDelegate
 protocol PokemonFavouritesPresenterDelegate: AnyObject {
     var cell: PokemonCellDelegate? {get set}
     var view: PokemonFavouritesViewDelegate? {get set}
@@ -33,8 +34,6 @@ protocol PokemonFavouritesPresenterDelegate: AnyObject {
     func deleteFavourite(pokemon: Results)
 }
 
-
-//MARK: - PokemonFavouritesInteractorDelegate
 protocol PokemonFavouritesInteractorDelegate: AnyObject {
     var presenter: PokemonFavouritesInteractorOutputDelegate? {get set}
     func fetchFavouritePokemons()
@@ -42,8 +41,6 @@ protocol PokemonFavouritesInteractorDelegate: AnyObject {
     func deleteFavourite(pokemon: Results)
 }
 
-
-//MARK: - PokemonFavouritesInteractorOutputDelegate
 protocol PokemonFavouritesInteractorOutputDelegate: AnyObject {
     func didFailWith(error: Error)
     func didFetchFavourites(favourites: [Favourites])

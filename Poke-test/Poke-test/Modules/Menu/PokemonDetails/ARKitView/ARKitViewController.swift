@@ -1,22 +1,26 @@
+//
+//  ARKitViewController.swift
+//  Poke-test
+//
+//  Created by Jokin Egia on 4/1/22.
+//
 import UIKit
 import ARKit
 
-
-//MARK: - ARKitViewController
 class ARKitViewController: UIViewController {
+    
     @IBOutlet weak var sceneView: ARSCNView!
-    var presenter: ARKitPresenterDelegate?
+    
     let configuration = ARWorldTrackingConfiguration()
     var imagePok: UIImage?
     var anchors: [ARAnchor] = []
-    
-    //MARK: - viewDidLoad
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setSceneView()
     }
+    
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        
         if let currentFrame = sceneView.session.currentFrame {
             var translation = matrix_identity_float4x4
             translation.columns.3.z = -0.3
@@ -34,39 +38,17 @@ class ARKitViewController: UIViewController {
             }
         }
     }
-
-    
-    
-//    //MARK: - viewWillAppear
-//    override func viewWillAppear(_ animated: Bool) {
-//        super.viewWillAppear(animated)
-//        configuration.planeDetection = .vertical
-//        sceneView.session.run(configuration)
-//    }
-//
-//
-//    //MARK: - viewWillDisappear
-//    override func viewWillDisappear(_ animated: Bool) {
-//        super.viewWillDisappear(animated)
-//        sceneView.session.pause()
-//    }
     
 }
 
-
-//MARK: - viewDidLoad methods
 extension ARKitViewController{
-    
-    
-    //MARK: - setSceneView
+
     func setSceneView(){
         sceneView.delegate = self
         imagePok = getSavedImage(named: "fileName")
         sceneView.session.run(configuration)
     }
-    
-    
-    //MARK: - getSavedImage
+
     func getSavedImage(named: String) -> UIImage? {
             if let dir = try? FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false) {
                 return UIImage(contentsOfFile: URL(fileURLWithPath: dir.absoluteString).appendingPathComponent(named).path)
@@ -76,9 +58,8 @@ extension ARKitViewController{
     }
 }
 
-
-//MARK: - ARSCNViewDelegate methods
-extension ARKitViewController: ARSCNViewDelegate, ARKitViewDelegate{
+extension ARKitViewController: ARSCNViewDelegate{
+    
     func make2dNode(image: UIImage, width: CGFloat = 0.1, height: CGFloat = 0.1) -> SCNNode {
            let plane = SCNPlane(width: width, height: height)
            plane.firstMaterial!.diffuse.contents = image
@@ -86,10 +67,9 @@ extension ARKitViewController: ARSCNViewDelegate, ARKitViewDelegate{
            node.constraints = [SCNBillboardConstraint()]
            return node
        }
+    
     func renderer(_ renderer: SCNSceneRenderer, didAdd node: SCNNode, for anchor: ARAnchor) {
         guard let imagePok = imagePok else {return}
         node.addChildNode(make2dNode(image: imagePok))
     }
-    
 }
-

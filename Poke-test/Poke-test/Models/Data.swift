@@ -1,4 +1,9 @@
-
+//
+//  Data.swift
+//  Poke-test
+//
+//  Created by Jokin Egia on 29/7/21.
+//
 import UIKit
 import RealmSwift
 //SOLID: S(Solo una responsabilidad) O(Permitir modificar/añadir valores sin tocar código) L(Una clase hija debe ser sustituible por la clase madre) I(Las clases no deben estar forzadas a usar interfaces que no necesitan) D(Las dependencias tienen que estar en las abstracciones)

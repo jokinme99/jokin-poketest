@@ -1,22 +1,25 @@
+//
+//  PokemonListInteractor.swift
+//  Poke-test
+//
+//  Created by Jokin Egia on 15/9/21.
+//
 import RealmSwift
 import Firebase
 import FirebaseAuth
 import FirebaseDatabase
 
-//MARK: - PokemonListInteractor
 class PokemonListInteractor{
+    
     var presenter: PokemonListInteractorOutputDelegate?
     var view: PokemonListViewDelegate?
     let ref = Database.database().reference()
     let user = Auth.auth().currentUser
+    
 }
 
-
-//MARK: - PokemonListInteractorDelegate
 extension PokemonListInteractor: PokemonListInteractorDelegate{
-    
-    
-    //MARK: - fetchPokemonList
+
     func fetchPokemonList() {
         if Reachability.isConnectedToNetwork(){
             PokemonManager.shared.fetchList { pokemonList, error in
@@ -38,9 +41,7 @@ extension PokemonListInteractor: PokemonListInteractorDelegate{
         }
         
     }
-    
-    
-    //MARK: - fetchPokemonType
+
     func fetchPokemonType(type: String) {
         if Reachability.isConnectedToNetwork(){
             PokemonManager.shared.fetchPokemonTypes(pokemonType: type, { pokemonFilterListData, error in
@@ -63,8 +64,6 @@ extension PokemonListInteractor: PokemonListInteractorDelegate{
         
     }
     
-    
-    //MARK: - fetchFavourites
     func fetchFavourites() {
         if user != nil{
             guard let user = user else{return}
@@ -90,8 +89,6 @@ extension PokemonListInteractor: PokemonListInteractorDelegate{
         
     }
     
-    
-    //MARK: - addFavourite
     func addFavourite(pokemon: Results) {
         if user != nil{ //Si estÃ¡ logeado
             guard let user = user else {return}
@@ -131,7 +128,5 @@ extension PokemonListInteractor: PokemonListInteractorDelegate{
         
         
     }
-    func setInitialValues(){
-        
-    }
+    
 }

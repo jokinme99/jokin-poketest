@@ -1,7 +1,11 @@
+//
+//  PokemonListProtocols.swift
+//  Poke-test
+//
+//  Created by Jokin Egia on 15/9/21.
+//
 import UIKit
 
-
-//MARK: - ViewControllerDelegate methods
 protocol PokemonListViewDelegate: AnyObject {
     var presenter: PokemonListPresenterDelegate? {get set}
     func updateTableView(pokemons: PokemonListData)
@@ -10,16 +14,12 @@ protocol PokemonListViewDelegate: AnyObject {
     func updateFavourites(favourites: [Favourites])
 }
 
-
-//MARK: - SceneController methods
 protocol PokemonListWireframeDelegate: AnyObject {
     static func createPokemonListModule() -> UIViewController
     func openPokemonDetailsWindow(pokemon: Results, nextPokemon: Results, previousPokemon: Results, filtered: [Results])
     func openLoginSignUpWindow()
 }
 
-
-//MARK: - PresenterDelegate methods
 protocol PokemonListPresenterDelegate: AnyObject {
     var cell: PokemonCellDelegate? {get set}
     var view: PokemonListViewDelegate? {get set}
@@ -33,8 +33,6 @@ protocol PokemonListPresenterDelegate: AnyObject {
     func openLoginSignUpWindow()
 }
 
-
-//MARK: - InteractorDelegate methods
 protocol PokemonListInteractorDelegate: AnyObject {
     var presenter: PokemonListInteractorOutputDelegate? {get set}
     func fetchPokemonList()
@@ -43,8 +41,6 @@ protocol PokemonListInteractorDelegate: AnyObject {
     func fetchFavourites()
 }
 
-
-//MARK: - InteractorOutPutDelegate methods
 protocol PokemonListInteractorOutputDelegate: AnyObject {
     func didFetchPokemonList(pokemon: PokemonListData)
     func didFailWith(error: Error)

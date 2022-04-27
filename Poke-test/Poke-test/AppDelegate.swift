@@ -1,25 +1,25 @@
-
+//
+//  AppDelegate.swift
+//  Poke-test
+//
+//  Created by Jokin Egia on 8/7/21.
+//
 import UIKit
 import Firebase
 import FirebaseMessaging
 import UserNotifications
 import FirebaseAuth
 
-//MARK: - AppDelegate class
 @main
 class AppDelegate: UIResponder{
     
-    //PIN iPhone: 281106
-    //Minimum iphone to work with ARKit is iphone 6s
     var window: UIWindow?
     var state = UIApplication.shared.applicationState
+    
 }
 
-//MARK: - UIApplicationDelegate methods
 extension AppDelegate: UIApplicationDelegate{
     
-    
-    //MARK: - didFinishLaunchingWithOptions
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         //print(NSHomeDirectory()) To see the document directory (Application supports iTunes file sharing = YES, in order to be able to see the archives the APP has)
         FirebaseApp.configure()
@@ -35,8 +35,6 @@ extension AppDelegate: UIApplicationDelegate{
         return true
     }
 
-    
-    //MARK: - setWindow
     func setWindow(){
         let frame = UIScreen.main.bounds
         self.window = UIWindow(frame: frame)
@@ -55,12 +53,8 @@ extension AppDelegate: UIApplicationDelegate{
     
 }
 
-
-//MARK: - UNUserNotificationCenterDelegate and MessagingDelegate methods
 extension AppDelegate: MessagingDelegate, UNUserNotificationCenterDelegate{
     
-    
-    //MARK: - didRegisterForRemoteNotificationsWithDeviceToken
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
         //It takes two minutes to receive notification
         Messaging.messaging().apnsToken = deviceToken
@@ -68,18 +62,13 @@ extension AppDelegate: MessagingDelegate, UNUserNotificationCenterDelegate{
             if let error = error {
                 print(error)
             } else {
-                print(token ?? "") //This token must go when sending test message in fcm registration token
+                print(token ?? "")
             }
         }
     }
     
-    
-    //MARK: - willPresent
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
-        //CALLED ONLY WHEN IN APP-> UIAPPLICATIONSTATE = BACKGROUND
-        //IF ANOTHER NOTIFICATION IS CALLED(A NEW ONE) MUST UPDATE BADGE NUMBER
-        completionHandler([.sound, .badge, .alert]) //what will show(sound yes or no badge or alert)
-        //When we're in the app state is background
+        completionHandler([.sound, .badge, .alert])
         if state == .active{
             UIApplication.shared.applicationIconBadgeNumber += 1
         }else if state == .background{
@@ -90,8 +79,6 @@ extension AppDelegate: MessagingDelegate, UNUserNotificationCenterDelegate{
         }
     }
     
-    
-    //MARK: - didReceive
     func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
         if state == .active{
             UIApplication.shared.applicationIconBadgeNumber += 1
@@ -105,8 +92,6 @@ extension AppDelegate: MessagingDelegate, UNUserNotificationCenterDelegate{
         completionHandler()
     }
     
-    
-    //MARK: - didReceiveRegistrationToken
     func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String?) {
         messaging.token { token, _ in
             guard let token = token else{return}
@@ -115,33 +100,19 @@ extension AppDelegate: MessagingDelegate, UNUserNotificationCenterDelegate{
     }
 }
 
-
-//MARK: - Application states
 extension AppDelegate{
     
-    
-    //MARK: - applicationWillEnterForeground
     func applicationWillEnterForeground(_ application: UIApplication) {
-        print("willEnterForeground")//active
     }
     
-    
-    //MARK: - applicationDidBecomeActive
     func applicationDidBecomeActive(_ application: UIApplication) {
-         print ("didEnterForeground")
     }
     
-    
-    //MARK: - applicationWillResignActive
     func applicationWillResignActive(_ application: UIApplication) {
-        //if method willpresent is called badgenumber + 1
-        print("willEnterBackground")
     }
     
-    
-    //MARK: - applicationDidEnterBackground
     func applicationDidEnterBackground(_ application: UIApplication) {
-        print("didEnterBackground")
     }
+    
 }
 

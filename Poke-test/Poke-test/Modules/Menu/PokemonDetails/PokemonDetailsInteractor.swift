@@ -1,22 +1,23 @@
+//
+//  PokemonDetailsInteractor.swift
+//  Poke-test
+//
+//  Created by Jokin Egia on 15/9/21.
+//
 import Firebase
 import FirebaseDatabase
 import FirebaseAuth
 
-
-//MARK: - PokemonDetailsInteractor
 class PokemonDetailsInteractor{
+    
     var presenter: PokemonDetailsInteractorOutputDelegate?
     let ref = Database.database().reference()
     let user = Auth.auth().currentUser
+    
 }
 
-
-//MARK: - PokemonDetailsInteractorDelegate methods
 extension PokemonDetailsInteractor: PokemonDetailsInteractorDelegate{
 
-
-
-    //MARK: - fetchPokemon
     func fetchPokemon(pokemon: Results) {
         if Reachability.isConnectedToNetwork(){
             guard let name = pokemon.name else{return}
@@ -36,11 +37,8 @@ extension PokemonDetailsInteractor: PokemonDetailsInteractorDelegate{
                 }
             }
         }
-       
     }
-    
-    
-    //MARK: - fetchFavouritePokemons
+
     func fetchFavouritePokemons() {
         if user != nil{
             guard let user = user else{return}
@@ -61,13 +59,10 @@ extension PokemonDetailsInteractor: PokemonDetailsInteractorDelegate{
             let favourites: [Favourites] = []
             self.presenter?.didFetchFavourites(favourites)
         }
-        
     }
-    
-    
-    //MARK: - addFavourite
+
     func addFavourite(pokemon: Results) {
-        if user != nil{ //Si esta logeado
+        if user != nil{
             guard let user = user else {return}
             let allData = DDBBManager.shared.get(PokemonData.self)
             for pok in allData{
@@ -99,12 +94,8 @@ extension PokemonDetailsInteractor: PokemonDetailsInteractorDelegate{
             let favourites: [Favourites] = []
             self.presenter?.didFetchFavourites(favourites)
         }
-        
-        
     }
     
-    
-    //MARK: - deleteFavourite
     func deleteFavourite(pokemon: Results) {
         if user != nil{
             guard let user = user else {return}

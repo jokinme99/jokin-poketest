@@ -1,18 +1,19 @@
-
+//
+//  PokemonDetailsWireframe.swift
+//  Poke-test
+//
+//  Created by Jokin Egia on 15/9/21.
+//
 import UIKit
 
-
-//MARK: - PokemonDetailsWireframe
 class PokemonDetailsWireframe{
+    
     var viewController: UIViewController?
+    
 }
 
-
-//MARK: - PokemonDetailsWireframeDelegate methods
 extension PokemonDetailsWireframe: PokemonDetailsWireframeDelegate{
-    
-    
-    //MARK: - createPokemonDetailsModule
+
     static func createPokemonDetailsModule(pokemon: Results, nextPokemon: Results, previousPokemon: Results, filtered: [Results]) -> UIViewController {
         let presenter = PokemonDetailsPresenter()
         let view = PokemonDetailsViewController()
@@ -33,9 +34,7 @@ extension PokemonDetailsWireframe: PokemonDetailsWireframeDelegate{
 
         return view
     }
-    
-    
-    //MARK: - openLoginSignUpWindow
+
     func openLoginSignUpWindow(){
         let loginSignUpModule = LoginOrSignUpWireframe.createLoginOrSignUpModule()
         let navigation = UINavigationController(rootViewController: loginSignUpModule)
@@ -43,10 +42,8 @@ extension PokemonDetailsWireframe: PokemonDetailsWireframeDelegate{
         window?.rootViewController = navigation
         window?.makeKeyAndVisible()
     }
-    
-    
-    //MARK: - openARKitViewController
-    func openARKitView(){//Pass the image
+
+    func openARKitView(){
         let arkitModule = ARKitWireframe.createARKitModule()
         viewController?.navigationController?.pushViewController(arkitModule, animated: true)
     }

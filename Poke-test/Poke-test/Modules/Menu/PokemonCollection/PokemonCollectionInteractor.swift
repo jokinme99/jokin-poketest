@@ -1,22 +1,25 @@
+//
+//  PokemonCollectionInteractor.swift
+//  Poke-test
+//
+//  Created by Jokin Egia on 15/9/21.
+//
 import RealmSwift
 import Firebase
 import FirebaseAuth
 import FirebaseDatabase
 
-//MARK: - PokemonCollectionInteractor
 class PokemonCollectionInteractor{
+    
     var presenter: PokemonCollectionInteractorOutputDelegate?
     var view: PokemonCollectionViewDelegate?
     let ref = Database.database().reference()
     let user = Auth.auth().currentUser
+    
 }
 
-
-//MARK: - PokemonCollectionInteractorDelegate
 extension PokemonCollectionInteractor: PokemonCollectionInteractorDelegate{
-    
-    
-    //MARK: - fetchPokemonList
+
     func fetchPokemonList() {
         if Reachability.isConnectedToNetwork(){
             PokemonManager.shared.fetchList { pokemonList, error in
@@ -37,9 +40,7 @@ extension PokemonCollectionInteractor: PokemonCollectionInteractorDelegate{
             self.presenter?.didFetchPokemonList(pokemon: pokemonList)
         }
     }
-    
-    
-    //MARK: - fetchFavourites
+
     func fetchFavourites() {
         if user != nil{
             guard let user = user else{return}
@@ -61,11 +62,8 @@ extension PokemonCollectionInteractor: PokemonCollectionInteractorDelegate{
             let favourites: [Favourites] = []
             self.presenter?.didFetchFavourites(favourites: favourites)
         }
-        
     }
-    
-    
-    //MARK: - fetchPokemonType
+
     func fetchPokemonType(type: String) {
         if Reachability.isConnectedToNetwork(){
             PokemonManager.shared.fetchPokemonTypes(pokemonType: type, { pokemonFilterListData, error in
@@ -75,7 +73,6 @@ extension PokemonCollectionInteractor: PokemonCollectionInteractorDelegate{
                     guard let pokemonFilterListData = pokemonFilterListData else {return}
                     self.presenter?.didFetchType(pokemons: pokemonFilterListData)
                 }
-                
             })
         }else{
             let pokemons = DDBBManager.shared.get(PokemonFilterListData.self)
@@ -85,11 +82,8 @@ extension PokemonCollectionInteractor: PokemonCollectionInteractorDelegate{
                 }
             }
         }
-        
     }
-    
-    
-    //MARK: - addFavourite
+
     func addFavourite(pokemon: Results) {
         if user != nil{ //Si estÃ¡ logeado
             guard let user = user else {return}
@@ -115,17 +109,12 @@ extension PokemonCollectionInteractor: PokemonCollectionInteractorDelegate{
                         }else{
                             self.ref.child("users").child("\(user.uid)").child("\(name.capitalized)").child("abilities").setValue(["ability_1": (pok.abilities[0].ability?.name ?? "default")])
                         }
-                    }
-                    
+                    }                    
                 }
             }
-            
         }else{
             let favourites: [Favourites] = []
             self.presenter?.didFetchFavourites(favourites: favourites)
         }
-        
-        
     }
-    
 }

@@ -1,8 +1,14 @@
-
+//
+//  DDBBManager.swift
+//  Poke-test
+//
+//  Created by Jokin Egia on 1/9/21.
+//
 import UIKit
 import RealmSwift
-//MARK: - DDBBManager Class
+
 class DDBBManager {
+    
     static let shared = DDBBManager()
     private let configuration: Realm.Configuration!
     private init() {

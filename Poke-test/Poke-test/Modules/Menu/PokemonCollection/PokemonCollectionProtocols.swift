@@ -1,7 +1,11 @@
+//
+//  PokemonCollectionProtocols.swift
+//  Poke-test
+//
+//  Created by Jokin Egia on 15/9/21.
+//
 import UIKit
 
-
-//MARK: - PokemonCollectionViewDelegate methods
 protocol PokemonCollectionViewDelegate: AnyObject {
     var presenter: PokemonCollectionPresenterDelegate? {get set}
     func updateListCollectionView(pokemons: PokemonListData)
@@ -10,16 +14,12 @@ protocol PokemonCollectionViewDelegate: AnyObject {
     func updateCollectionView()
 }
 
-
-//MARK: - PokemonCollectionWireframeDelegate methods
 protocol PokemonCollectionWireframeDelegate: AnyObject {
     static func createPokemonCollectionModule() -> UIViewController
     func openPokemonDetailsWindow(pokemon: Results, nextPokemon: Results, previousPokemon: Results, filtered: [Results])
     func openLoginSignUpWindow()
 }
 
-
-//MARK: - PokemonCollectionPresenterDelegate methods
 protocol PokemonCollectionPresenterDelegate: AnyObject {
     var view: PokemonCollectionViewDelegate? {get set}
     var interactor: PokemonCollectionInteractorDelegate? {get set}
@@ -32,8 +32,6 @@ protocol PokemonCollectionPresenterDelegate: AnyObject {
     func openLoginSignUpWindow()
 }
 
-
-//MARK: - PokemonCollectionInteractorDelegate methods
 protocol PokemonCollectionInteractorDelegate: AnyObject {
     var presenter: PokemonCollectionInteractorOutputDelegate? {get set}
     func fetchPokemonList()
@@ -42,8 +40,6 @@ protocol PokemonCollectionInteractorDelegate: AnyObject {
     func addFavourite(pokemon: Results)
 }
 
-
-//MARK: - PokemonCollectionInteractorOutputDelegate methods
 protocol PokemonCollectionInteractorOutputDelegate: AnyObject {
     func didFetchPokemonList(pokemon: PokemonListData)
     func didFetchFavourites(favourites: [Favourites])

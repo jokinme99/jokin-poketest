@@ -26,13 +26,11 @@
 		FD7CC04A27450FFF006D1CD5 /* LoginOrSignUpPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD7CC04427450FFF006D1CD5 /* LoginOrSignUpPresenter.swift */; };
 		FD7CC04B27450FFF006D1CD5 /* LoginOrSignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD7CC04527450FFF006D1CD5 /* LoginOrSignUpViewController.swift */; };
 		FD7CC04C27450FFF006D1CD5 /* LoginOrSignUpProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD7CC04627450FFF006D1CD5 /* LoginOrSignUpProtocols.swift */; };
-		FD7CC04D27450FFF006D1CD5 /* LoginOrSignUpInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD7CC04727450FFF006D1CD5 /* LoginOrSignUpInteractor.swift */; };
 		FD7CC04E27450FFF006D1CD5 /* LoginOrSignUpViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FD7CC04827450FFF006D1CD5 /* LoginOrSignUpViewController.xib */; };
 		FD7CC04F27450FFF006D1CD5 /* LoginOrSignUpWireframe.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD7CC04927450FFF006D1CD5 /* LoginOrSignUpWireframe.swift */; };
 		FD7CC05727451023006D1CD5 /* LoginPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD7CC05127451023006D1CD5 /* LoginPresenter.swift */; };
 		FD7CC05827451023006D1CD5 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD7CC05227451023006D1CD5 /* LoginViewController.swift */; };
 		FD7CC05927451023006D1CD5 /* LoginProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD7CC05327451023006D1CD5 /* LoginProtocols.swift */; };
-		FD7CC05A27451023006D1CD5 /* LoginInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD7CC05427451023006D1CD5 /* LoginInteractor.swift */; };
 		FD7CC05B27451023006D1CD5 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FD7CC05527451023006D1CD5 /* LoginViewController.xib */; };
 		FD7CC05C27451023006D1CD5 /* LoginWireframe.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD7CC05627451023006D1CD5 /* LoginWireframe.swift */; };
 		FD7CC07327452200006D1CD5 /* SignUpPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD7CC06D27452200006D1CD5 /* SignUpPresenter.swift */; };
@@ -66,6 +64,7 @@
 		FD86C1522701A33C00DB4B8F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FD86C1512701A33C00DB4B8F /* Assets.xcassets */; };
 		FD88DF3F26DE076E0094858B /* DDBBManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD88DF3E26DE076E0094858B /* DDBBManager.swift */; };
 		FD9CBEC42816A48900155BAA /* ArrayExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD9CBEC32816A48900155BAA /* ArrayExtension.swift */; };
+		FD9CBEC62816AFE100155BAA /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD9CBEC52816AFE100155BAA /* UIColorExtension.swift */; };
 		FDA34EEE26E8952900AE2143 /* PokemonListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDA34EE826E8952900AE2143 /* PokemonListPresenter.swift */; };
 		FDA34EEF26E8952900AE2143 /* PokemonListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDA34EE926E8952900AE2143 /* PokemonListViewController.swift */; };
 		FDA34EF026E8952900AE2143 /* PokemonListProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDA34EEA26E8952900AE2143 /* PokemonListProtocols.swift */; };
@@ -78,10 +77,9 @@
 		FDA34EFE26E8954D00AE2143 /* PokemonDetailsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDA34EF826E8954D00AE2143 /* PokemonDetailsInteractor.swift */; };
 		FDA34EFF26E8954D00AE2143 /* PokemonDetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FDA34EF926E8954D00AE2143 /* PokemonDetailsViewController.xib */; };
 		FDA34F0026E8954D00AE2143 /* PokemonDetailsWireframe.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDA34EFA26E8954D00AE2143 /* PokemonDetailsWireframe.swift */; };
-		FDD3AF792779F2D300C0E473 /* ARKitPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDD3AF732779F2D300C0E473 /* ARKitPresenter.swift */; };
+		FDA582972817CCA700BCBE33 /* UIImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDA582962817CCA700BCBE33 /* UIImageExtension.swift */; };
+		FDA582992817CFBB00BCBE33 /* UINibExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDA582982817CFBB00BCBE33 /* UINibExtension.swift */; };
 		FDD3AF7A2779F2D300C0E473 /* ARKitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDD3AF742779F2D300C0E473 /* ARKitViewController.swift */; };
-		FDD3AF7B2779F2D300C0E473 /* ARKitProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDD3AF752779F2D300C0E473 /* ARKitProtocols.swift */; };
-		FDD3AF7C2779F2D300C0E473 /* ARKitInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDD3AF762779F2D300C0E473 /* ARKitInteractor.swift */; };
 		FDD3AF7D2779F2D300C0E473 /* ARKitViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FDD3AF772779F2D300C0E473 /* ARKitViewController.xib */; };
 		FDD3AF7E2779F2D300C0E473 /* ARKitWireframe.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDD3AF782779F2D300C0E473 /* ARKitWireframe.swift */; };
 		FDF25E8426B17600002474BB /* PokemonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDF25E8226B17600002474BB /* PokemonCell.swift */; };
@@ -153,13 +151,11 @@
 		FD7CC04427450FFF006D1CD5 /* LoginOrSignUpPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginOrSignUpPresenter.swift; sourceTree = "<group>"; };
 		FD7CC04527450FFF006D1CD5 /* LoginOrSignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginOrSignUpViewController.swift; sourceTree = "<group>"; };
 		FD7CC04627450FFF006D1CD5 /* LoginOrSignUpProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginOrSignUpProtocols.swift; sourceTree = "<group>"; };
-		FD7CC04727450FFF006D1CD5 /* LoginOrSignUpInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginOrSignUpInteractor.swift; sourceTree = "<group>"; };
 		FD7CC04827450FFF006D1CD5 /* LoginOrSignUpViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoginOrSignUpViewController.xib; sourceTree = "<group>"; };
 		FD7CC04927450FFF006D1CD5 /* LoginOrSignUpWireframe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginOrSignUpWireframe.swift; sourceTree = "<group>"; };
 		FD7CC05127451023006D1CD5 /* LoginPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginPresenter.swift; sourceTree = "<group>"; };
 		FD7CC05227451023006D1CD5 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		FD7CC05327451023006D1CD5 /* LoginProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginProtocols.swift; sourceTree = "<group>"; };
-		FD7CC05427451023006D1CD5 /* LoginInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginInteractor.swift; sourceTree = "<group>"; };
 		FD7CC05527451023006D1CD5 /* LoginViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
 		FD7CC05627451023006D1CD5 /* LoginWireframe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginWireframe.swift; sourceTree = "<group>"; };
 		FD7CC06D27452200006D1CD5 /* SignUpPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpPresenter.swift; sourceTree = "<group>"; };
@@ -193,6 +189,7 @@
 		FD86C1512701A33C00DB4B8F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FD88DF3E26DE076E0094858B /* DDBBManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DDBBManager.swift; sourceTree = "<group>"; };
 		FD9CBEC32816A48900155BAA /* ArrayExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrayExtension.swift; sourceTree = "<group>"; };
+		FD9CBEC52816AFE100155BAA /* UIColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
 		FDA34EE826E8952900AE2143 /* PokemonListPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonListPresenter.swift; sourceTree = "<group>"; };
 		FDA34EE926E8952900AE2143 /* PokemonListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonListViewController.swift; sourceTree = "<group>"; };
 		FDA34EEA26E8952900AE2143 /* PokemonListProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonListProtocols.swift; sourceTree = "<group>"; };
@@ -205,10 +202,9 @@
 		FDA34EF826E8954D00AE2143 /* PokemonDetailsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonDetailsInteractor.swift; sourceTree = "<group>"; };
 		FDA34EF926E8954D00AE2143 /* PokemonDetailsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PokemonDetailsViewController.xib; sourceTree = "<group>"; };
 		FDA34EFA26E8954D00AE2143 /* PokemonDetailsWireframe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonDetailsWireframe.swift; sourceTree = "<group>"; };
-		FDD3AF732779F2D300C0E473 /* ARKitPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARKitPresenter.swift; sourceTree = "<group>"; };
+		FDA582962817CCA700BCBE33 /* UIImageExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageExtension.swift; sourceTree = "<group>"; };
+		FDA582982817CFBB00BCBE33 /* UINibExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UINibExtension.swift; sourceTree = "<group>"; };
 		FDD3AF742779F2D300C0E473 /* ARKitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARKitViewController.swift; sourceTree = "<group>"; };
-		FDD3AF752779F2D300C0E473 /* ARKitProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARKitProtocols.swift; sourceTree = "<group>"; };
-		FDD3AF762779F2D300C0E473 /* ARKitInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARKitInteractor.swift; sourceTree = "<group>"; };
 		FDD3AF772779F2D300C0E473 /* ARKitViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ARKitViewController.xib; sourceTree = "<group>"; };
 		FDD3AF782779F2D300C0E473 /* ARKitWireframe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARKitWireframe.swift; sourceTree = "<group>"; };
 		FDF25E8126B1724F002474BB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -326,7 +322,6 @@
 				FD7CC04427450FFF006D1CD5 /* LoginOrSignUpPresenter.swift */,
 				FD7CC04527450FFF006D1CD5 /* LoginOrSignUpViewController.swift */,
 				FD7CC04627450FFF006D1CD5 /* LoginOrSignUpProtocols.swift */,
-				FD7CC04727450FFF006D1CD5 /* LoginOrSignUpInteractor.swift */,
 				FD7CC04827450FFF006D1CD5 /* LoginOrSignUpViewController.xib */,
 				FD7CC04927450FFF006D1CD5 /* LoginOrSignUpWireframe.swift */,
 			);
@@ -339,7 +334,6 @@
 				FD7CC05127451023006D1CD5 /* LoginPresenter.swift */,
 				FD7CC05227451023006D1CD5 /* LoginViewController.swift */,
 				FD7CC05327451023006D1CD5 /* LoginProtocols.swift */,
-				FD7CC05427451023006D1CD5 /* LoginInteractor.swift */,
 				FD7CC05527451023006D1CD5 /* LoginViewController.xib */,
 				FD7CC05627451023006D1CD5 /* LoginWireframe.swift */,
 			);
@@ -359,14 +353,14 @@
 			path = Menu;
 			sourceTree = "<group>";
 		};
-		FD7CC06C274519D8006D1CD5 /* Start */ = {
+		FD7CC06C274519D8006D1CD5 /* Home */ = {
 			isa = PBXGroup;
 			children = (
 				FD7CC05027451004006D1CD5 /* LoginOrSignUp */,
 				FD7CC05D27451027006D1CD5 /* Login */,
 				FD7CC07A2745220F006D1CD5 /* SignUp */,
 			);
-			path = Start;
+			path = Home;
 			sourceTree = "<group>";
 		};
 		FD7CC07A2745220F006D1CD5 /* SignUp */ = {
@@ -418,7 +412,7 @@
 			isa = PBXGroup;
 			children = (
 				FD7CC06B27451984006D1CD5 /* Menu */,
-				FD7CC06C274519D8006D1CD5 /* Start */,
+				FD7CC06C274519D8006D1CD5 /* Home */,
 			);
 			path = Modules;
 			sourceTree = "<group>";
@@ -459,6 +453,9 @@
 			children = (
 				FD7F8F83276CC47B00EB3FFF /* UISearchBarExtension.swift */,
 				FD9CBEC32816A48900155BAA /* ArrayExtension.swift */,
+				FD9CBEC52816AFE100155BAA /* UIColorExtension.swift */,
+				FDA582962817CCA700BCBE33 /* UIImageExtension.swift */,
+				FDA582982817CFBB00BCBE33 /* UINibExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -512,10 +509,7 @@
 		FDD3AF622779DF2C00C0E473 /* ARKitView */ = {
 			isa = PBXGroup;
 			children = (
-				FDD3AF732779F2D300C0E473 /* ARKitPresenter.swift */,
 				FDD3AF742779F2D300C0E473 /* ARKitViewController.swift */,
-				FDD3AF752779F2D300C0E473 /* ARKitProtocols.swift */,
-				FDD3AF762779F2D300C0E473 /* ARKitInteractor.swift */,
 				FDD3AF772779F2D300C0E473 /* ARKitViewController.xib */,
 				FDD3AF782779F2D300C0E473 /* ARKitWireframe.swift */,
 			);
@@ -737,8 +731,6 @@
 				FD7CC05927451023006D1CD5 /* LoginProtocols.swift in Sources */,
 				FD7F8F6F276C780000EB3FFF /* PokemonCollectionPresenter.swift in Sources */,
 				FD85C3AC2696EB1E00EAF99F /* DataManager.swift in Sources */,
-				FD7CC04D27450FFF006D1CD5 /* LoginOrSignUpInteractor.swift in Sources */,
-				FDD3AF7C2779F2D300C0E473 /* ARKitInteractor.swift in Sources */,
 				FDA34EFB26E8954D00AE2143 /* PokemonDetailsPresenter.swift in Sources */,
 				FDA34EEE26E8952900AE2143 /* PokemonListPresenter.swift in Sources */,
 				FD7CC07827452200006D1CD5 /* SignUpWireframe.swift in Sources */,
@@ -747,11 +739,11 @@
 				FDA34EF026E8952900AE2143 /* PokemonListProtocols.swift in Sources */,
 				FDA34EF126E8952900AE2143 /* PokemonListInteractor.swift in Sources */,
 				FD7F8F80276CA45D00EB3FFF /* CollectionCell.swift in Sources */,
-				FD7CC05A27451023006D1CD5 /* LoginInteractor.swift in Sources */,
 				FDA34EFC26E8954D00AE2143 /* PokemonDetailsViewController.swift in Sources */,
 				FD6B780F27392C2E0055A0AE /* Reachability.swift in Sources */,
 				FD7CC04F27450FFF006D1CD5 /* LoginOrSignUpWireframe.swift in Sources */,
 				FD7B9B05273E4B2A006B7610 /* PokemonFavouritesProtocols.swift in Sources */,
+				FD9CBEC62816AFE100155BAA /* UIColorExtension.swift in Sources */,
 				FD3172D02695CF90006810CA /* AppDelegate.swift in Sources */,
 				FD7B9B03273E4B2A006B7610 /* PokemonFavouritesPresenter.swift in Sources */,
 				FD806D9A273BFC5500331C74 /* MainTabBarInteractor.swift in Sources */,
@@ -763,7 +755,9 @@
 				FD7F8F70276C780000EB3FFF /* PokemonCollectionViewController.swift in Sources */,
 				FD85C3A82696EAFC00EAF99F /* Data.swift in Sources */,
 				FD7F8F72276C780000EB3FFF /* PokemonCollectionInteractor.swift in Sources */,
+				FDA582992817CFBB00BCBE33 /* UINibExtension.swift in Sources */,
 				FD806D98273BFC5500331C74 /* MainTabBarViewController.swift in Sources */,
+				FDA582972817CCA700BCBE33 /* UIImageExtension.swift in Sources */,
 				FD7CC07427452200006D1CD5 /* SignUpViewController.swift in Sources */,
 				FD7CC05C27451023006D1CD5 /* LoginWireframe.swift in Sources */,
 				FD7CC04C27450FFF006D1CD5 /* LoginOrSignUpProtocols.swift in Sources */,
@@ -781,9 +775,7 @@
 				FDD3AF7E2779F2D300C0E473 /* ARKitWireframe.swift in Sources */,
 				FD7F8F84276CC47B00EB3FFF /* UISearchBarExtension.swift in Sources */,
 				FDD3AF7A2779F2D300C0E473 /* ARKitViewController.swift in Sources */,
-				FDD3AF792779F2D300C0E473 /* ARKitPresenter.swift in Sources */,
 				FD7CC05827451023006D1CD5 /* LoginViewController.swift in Sources */,
-				FDD3AF7B2779F2D300C0E473 /* ARKitProtocols.swift in Sources */,
 				FD7B9B08273E4B2A006B7610 /* PokemonFavouritesWireframe.swift in Sources */,
 				FD7CC07627452200006D1CD5 /* SignUpInteractor.swift in Sources */,
 				FD7CC04B27450FFF006D1CD5 /* LoginOrSignUpViewController.swift in Sources */,
