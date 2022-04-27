@@ -57,10 +57,10 @@
 "speed" ="Speed";
 
 //MARK: - TYPES
-"all"="ALL";"normal"="NORMAL";"fighting"="FIGHTING";
-"flying"="FLYING";"poison"="POISON";"ground"="GROUND";
-"rock"="ROCK";"bug"="BUG";"ghost"="GHOST";
-"steel"="STEEL";"fire"="FIRE";"water"="WATER";
-"grass"="GRASS";"electric"="ELECTRIC";"psychic"="PSYCHIC";
-"ice"="ICE";"dragon"="DRAGON";"dark"="DARK";
-"fairy"="FAIRY";"unknown"="UNKNOWN";"shadow"="SHADOW";
+"all"="all";"normal"="normal";"fighting"="fighting";
+"flying"="flying";"poison"="poison";"ground"="ground";
+"rock"="rock";"bug"="bug";"ghost"="ghost";
+"steel"="steel";"fire"="fire";"water"="water";
+"grass"="grass";"electric"="electric";"psychic"="psychic";
+"ice"="ice";"dragon"="dragon";"dark"="dark";
+"fairy"="fairy";"unknown"="unknown";"shadow"="shadow";

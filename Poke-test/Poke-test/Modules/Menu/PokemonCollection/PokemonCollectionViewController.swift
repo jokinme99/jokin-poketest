@@ -277,7 +277,7 @@ extension PokemonCollectionViewController{
     @objc func pressedFilterButton(_ sender: ZeroContainedButton!){
         switch sender.titleLabel?.text?.lowercased(){
         case TypeName.all.localized:
-            self.presenter?.fetchFavourites()
+            self.presenter?.fetchPokemonList()
         case TypeName.normal.localized:
             self.presenter?.fetchPokemonType(type: TypeName.normal.rawValue)
         case TypeName.fighting.localized:

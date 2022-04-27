@@ -56,10 +56,24 @@
 "speed"="Abiadura";
 
 //MARK: - TYPES
-"all"="GUZTIAK";"normal"="NORMALA";"fighting"="BORROKA";
-"flying"="HEGAN";"poison"="POZOIA";"ground"="LURRA";
-"rock"="HARRIA";"bug"="ZOMORROA";"ghost"="MAMUA";
-"steel"="ALTZAIRUA";"fire"="SUA";"water"="URA";
-"grass"="BELARRA";"electric"="ELEKTRIKOA";"psychic"="PSIKIKOA";
-"ice"="IZOTZA";"dragon"="DRAGOIA";"dark"="MALTZURRA";
-"fairy"="MAITAGARRIA";"unknown"="EZEZAGUNA";"shadow"="ITZALA";
+"all"="guztiak";
+"normal"="normala";
+"fighting"="borroka";
+"flying"="hegan";
+"poison"="pozoia";
+"ground"="lurra";
+"rock"="harria";
+"bug"="zomorroa";
+"ghost"="mamua";
+"steel"="altzairua";
+"fire"="sua";
+"water"="ura";
+"grass"="belarra";
+"electric"="elektrikoa";
+"psychic"="psikikoa";
+"ice"="iziotza";
+"dragon"="dragoia";
+"dark"="maltzurra";
+"fairy"="maitagarria";
+"unknown"="ezezaguna";
+"shadow"="itzala";
