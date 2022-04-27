@@ -1,8 +1,11 @@
-
+//
+//  LoginOrSignUpPresenter.swift
+//  Poke-test
+//
+//  Created by Jokin Egia on 19/11/21.
+//
 class LoginOrSignUpPresenter{
     
-    var view: LoginOrSignUpViewDelegate?
-    var interactor: LoginOrSignUpInteractorDelegate?
     var wireframe: LoginOrSignUpWireframeDelegate?
     
 }
@@ -22,6 +25,3 @@ extension LoginOrSignUpPresenter: LoginOrSignUpPresenterDelegate{
     }
 }
 
-extension LoginOrSignUpPresenter: LoginOrSignUpInteractorOutputDelegate {
-
-}

@@ -1,8 +1,11 @@
-
+//
+//  SignUpPresenter.swift
+//  Poke-test
+//
+//  Created by Jokin Egia on 19/11/21.
+//
 class SignUpPresenter{
     
-    var view: SignUpViewDelegate?
-    var interactor: SignUpInteractorDelegate?
     var wireframe: SignUpWireframeDelegate?
     
 }
@@ -14,6 +17,3 @@ extension SignUpPresenter: SignUpPresenterDelegate{
     }
 }
 
-extension SignUpPresenter: SignUpInteractorOutputDelegate {
-    
-}

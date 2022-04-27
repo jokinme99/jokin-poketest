@@ -1,4 +1,9 @@
-
+//
+//  SignUpViewController.swift
+//  Poke-test
+//
+//  Created by Jokin Egia on 19/11/21.
+//
 import UIKit
 import Firebase
 import FirebaseDatabase
@@ -38,7 +43,7 @@ extension SignUpViewController{
         guard let email = userTextField.text else {return}
         Crashlytics.crashlytics().setUserID(email)
         Crashlytics.crashlytics().setCustomValue(email, forKey: CrashlyticsConstants.key)
-        Crashlytics.crashlytics().log(CrashlyticsConstants.SignUpWIndow.log)
+        Crashlytics.crashlytics().log(CrashlyticsConstants.SignUp.log)
     }
     
     func loadTextFieldsStyle(){
@@ -70,7 +75,7 @@ extension SignUpViewController{
 
 
 //MARK: - SignUpViewDelegate methods
-extension SignUpViewController: SignUpViewDelegate {
+extension SignUpViewController{
     
     @IBAction func pressedEnterButton(_ sender: Any) {
         guard let email = userTextField.text, let password = passwordTextField.text else{return}

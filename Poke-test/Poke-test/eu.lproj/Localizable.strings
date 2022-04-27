@@ -1,9 +1,9 @@
 
 //MARK: - HOME
 "login" = "Saioa hasi";
-"sign_Up" = "Kontu bat sortu";
+"sign_up" = "Kontu bat sortu";
 "access_no_user" = "Saiorik gabe sartu";
-"Welcome" = "Ongi etorri";
+"welcome" = "Ongi etorri";
 "app_title" = "POKE-TEST";
 "back" = "Atzera";
 "no_internet" = "Internet konexiorik gabe!";
@@ -24,81 +24,42 @@
 "ok" = "OK";
 "weak_password_error"="Sartutako pasahitza ahula da. Gutxienez 6 karakter izan behar ditu.";
 
+//MARK: - MENU
+"log_out" = "Saioa itxi";
+"log_in" = "Saioa hasi";
+"list" = "Zerrenda";
+"favs" = "Gustokoak";
+"collection" = "Bilduma";
+"logging_out_title" = "Saioa ixten";
+"logging_out_message" = "Hasitako saio hau itxiko duzu. Ziur zaude?";
+"yes" = "Bai";
+"no" = "Ez";
+"order_by_name" = "Izenagatik ordenatu ";
+"order_by_id" = "Id-egatik ordenatu";
+"search_for_pokemons" = "Pokemonak bilatu...";
+"already_in_favourites" = "Pokemon hau badago gustokoetan.";
+"not_able_to_add" = "Ezingo duzu pokemonik gehitu gustokoenetara, saioa hasi edo saio berri bat sortzen duzun arte. Gustatuko litzaizuke saioa hastea edo saio bat sotzea?";
+"added_to_favourites" = "Pokemon gustokoetara gehituta";
+"add" = "Gehitu";
+"no_favourites_added" = "Oraindik ez duzu Pokemonik gehitu gustokoetara. Gustatuko litzaizu pokemon guztiak ikustea, gustokoetara edozein gehitzeko?";
+"home" = "Hasiera";
+"deleted_from_favourites"="Pokemon-a gustokoetatik ezabatuta";
+"delete_from_favourites" = "Gustokoetatik kendu";
+"add_to_favourites"="Gustokoetara gehitu";
+"height" = "Altuera";
+"weight" = "Pisua";
+"hp" = "Hp";
+"attack"="Erasoa";
+"defense"="Defentsa";
+"special_attack"="Eraso-berezia";
+"special_defense"="Defentsa-berezia";
+"speed"="Abiadura";
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//Firebase akatzak
-
-
-
-//Pokemon motak
+//MARK: - TYPES
 "all"="GUZTIAK";"normal"="NORMALA";"fighting"="BORROKA";
 "flying"="HEGAN";"poison"="POZOIA";"ground"="LURRA";
 "rock"="HARRIA";"bug"="ZOMORROA";"ghost"="MAMUA";
 "steel"="ALTZAIRUA";"fire"="SUA";"water"="URA";
 "grass"="BELARRA";"electric"="ELEKTRIKOA";"psychic"="PSIKIKOA";
-"ice"="IZOTZA";"dragon"="DRAGOIA";"dark"="MALTZURRA";//txarto
+"ice"="IZOTZA";"dragon"="DRAGOIA";"dark"="MALTZURRA";
 "fairy"="MAITAGARRIA";"unknown"="EZEZAGUNA";"shadow"="ITZALA";
-
-//Alerten testua
-"You_are_going_to_close_this account_Are_you_sure" = "Hasitako saio hau itxiko duzu. Ziur zaude?";
-"You_have_not_added_any_favourites_yet_Would_you_like_to_see_all_the_available_Pokemon_in_order_to_add_any_of_them" = "Oraindik ez duzu Pokemonik gehitu gustokoetara. Gustatuko litzaizu pokemon guztiak ikustea, gustokoetara edozein gehitzeko?";
-"Pokemon_already_added_to_favourites"="Pokemon hau badago gustokoetan.";
-"You_will_not_be_able_to_add_any_pokemons_to_favourites_until_you_login_or_sign_up_Would_you_like_to_login_or_sign_up" ="Ezingo duzu pokemonik gehitu gustokoenetara, saioa hasi edo saio berri bat sortzen duzun arte. Gustatuko litzaizuke saioa hastea edo saio bat sotzea?";
-"access_no_user" = "Saiorik gabe sartu";
-
-"email_and_password_error" = "Emailean eta pasahitzan akatsa!";
-"email_error" = "Emailean akatsa!!";
-"password_error" = "Pasahitzan akatsa!";
-"Pokemon_added_to_favourites"="Pokemon-a gustokoetara gehituta";
-"Pokemon_deleted_from_favourites"="Pokemon-a gustokoetatik ezabatuta";
-"Yes" = "Bai";"No" = "Ez";
-"home" = "Hasiera";
-
-
-//Botoiak
-"Order_by_Name" = "Izenagatik ordenatu ";
-"Order_by_Id" = "Idegatik ordenatu";
-"Add" = "Gehitu";
-"delete_from_favourites" = "Gustokoetatik kendu";
-"add_to_favourites"="Gustokoetara gehitu";
-"Enter" = "Sartu";
-"delete"="Ezabatu";
-"Log_out" = "Saioa itxi";"Logging_out" = "Saioa ixten";
-"Log_in" = "Sartu";"Login" = "Saioa hasi";
-"Sign_Up" = "Kontu bat sortu";
-"FAVS" = "FAVS";
-"Favourites" = "Gustokoak";
-"list" = "Zerrenda";
-"collection" = "Bilduma";
-"Back" = "Atzera";
-"poketest" = "POKE-TEST";
-"later" = "Geroago";
-
-//Testuak || bilaketa barra
-"Height" = "Altuera: ";
-"Weight" = "Pisua: ";
-"Attack"="Erasoa: ";
-"Defense"="Defentsa: ";
-"Special_attack"="Eraso-berezia: ";
-"Special_defense"="Defentsa-berezia: ";
-"Speed"="Abiadura: ";
-
-"Email" = "Emaila";
-"Password" = "Pasahitza";
-"search_for_pokemons" = "Pokemonak bilatu...";

@@ -1,4 +1,9 @@
-
+//
+//  LoginViewController.swift
+//  Poke-test
+//
+//  Created by Jokin Egia on 19/11/21.
+//
 import UIKit
 import Firebase
 import FirebaseDatabase
@@ -38,7 +43,7 @@ extension LoginViewController{
         guard let email = userTextField.text else {return}
         Crashlytics.crashlytics().setUserID(email)
         Crashlytics.crashlytics().setCustomValue(email, forKey: CrashlyticsConstants.key)
-        Crashlytics.crashlytics().log(CrashlyticsConstants.LoginWindow.log)
+        Crashlytics.crashlytics().log(CrashlyticsConstants.Login.log)
     }
     
     func loadTextFieldsStyle(){
@@ -68,7 +73,7 @@ extension LoginViewController{
     }
 }
 
-extension LoginViewController: LoginViewDelegate {
+extension LoginViewController{
     
     @IBAction func pressedEnterButton(_ sender: Any) {
         guard let email = userTextField.text, let password = passwordTextField.text else{return}

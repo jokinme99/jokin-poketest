@@ -1,3 +1,9 @@
+//
+//  LoginOrSignUpWireframe.swift
+//  Poke-test
+//
+//  Created by Jokin Egia on 19/11/21.
+//
 import UIKit
 
 class LoginOrSignUpWireframe{
@@ -12,16 +18,10 @@ extension LoginOrSignUpWireframe: LoginOrSignUpWireframeDelegate{
         let presenter = LoginOrSignUpPresenter()
         let view = LoginOrSignUpViewController()
         let wireframe = LoginOrSignUpWireframe()
-        let interactor = LoginOrSignUpInteractor()
 
         view.presenter = presenter
-        presenter.view = view
         presenter.wireframe = wireframe
-        presenter.interactor = interactor
-        interactor.presenter = presenter
-
         wireframe.viewController = view
-
         return view
         
     }

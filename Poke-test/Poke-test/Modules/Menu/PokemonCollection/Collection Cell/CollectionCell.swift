@@ -8,7 +8,6 @@
 import UIKit
 import Zero
 
-//MARK: - CollectionCellDelegate protocol
 protocol CollectionCellDelegate: AnyObject{
     var presenter: PokemonCollectionPresenterDelegate? {get set}
     func updatePokemonCollection(pokemonToUpdate: Results)
@@ -27,7 +26,6 @@ class CollectionCell: UICollectionViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
         nameLabel.adjustsFontSizeToFitWidth = true
         nameLabel.apply(ZeroTheme.Label.body2)
         layer.cornerRadius = 5
@@ -40,8 +38,6 @@ class CollectionCell: UICollectionViewCell {
     }
 }
 
-
-//MARK: - CollectionCellDelegate methods
 extension CollectionCell: CollectionCellDelegate{
     func updatePokemonCollection(pokemonToUpdate: Results) {
         self.pokemon = pokemonToUpdate
@@ -54,9 +50,9 @@ extension CollectionCell: CollectionCellDelegate{
                 }else{
                     guard let pokemonData = pokemonData else {return}
                     //self.idLabel.text = "Id: \(pokemonData.id)"
-                    self.nameLabel.text = "\(pokemonData.name?.capitalized ?? "default name")"
+                    self.nameLabel.text = "\(pokemonData.name?.capitalized ?? "")"
                     self.transformUrlToImage(url: pokemonData.sprites?.front_default ?? "")
-                    self.setBackgroundColor(pokemonData.types[0].type?.name ?? "default", self.nameLabel)
+                    self.setBackgroundColor(pokemonData.types[0].type?.name ?? "", self.nameLabel)
                     self.backgroundColor = self.nameLabel.backgroundColor
                 }
                 self.viewDelegate?.updateCollectionView()
@@ -65,27 +61,21 @@ extension CollectionCell: CollectionCellDelegate{
             let pokemonDataList = DDBBManager.shared.get(PokemonData.self)
             for pokemonData in pokemonDataList{
                 if pokemonData.name == pokemonToUpdate.name{
-                    self.setBackgroundColor(pokemonData.types[0].type?.name ?? "default", self.nameLabel)
-                    //self.idLabel.text = "Id: \(pokemonData.id)"
-                    self.nameLabel.text = "\(pokemonData.name?.capitalized ?? "default name")"
+                    self.setBackgroundColor(pokemonData.types[0].type?.name ?? "", self.nameLabel)
+                    self.nameLabel.text = "\(pokemonData.name?.capitalized ?? "")"
                 }
             }
         }
     }
     
-    
-    //MARK: - transformUrlToImage
     func transformUrlToImage(url: String){
         if let downloadURL = URL(string: url){
             if Reachability.isConnectedToNetwork(){
                 return self.imageView.af.setImage(withURL: downloadURL)
             }else{
-                return self.imageView.af.setImage(withURL: downloadURL) // get data from DB
-                //return DDBBManager(Image.self) // [Image](with all images) -> get the one that references(with the url)
+                //There's no way to save all the images offline
+                return self.imageView.af.setImage(withURL: downloadURL)
             }
-            
-        }else {
-            return
         }
     }
     func setBackgroundColor(_ type: String, _ label: UILabel){

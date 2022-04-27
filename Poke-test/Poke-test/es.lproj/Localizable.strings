@@ -1,7 +1,7 @@
 
 //MARK: - HOME
 "login" = "Iniciar sesión";
-"sign_Up" = "Registrarse";
+"sign_up" = "Registrarse";
 "access_no_user" = "Acceder sin usuario";
 "welcome" = "Bienvenido/a";
 "app_title" = "POKE-TEST";
@@ -24,25 +24,38 @@
 "ok" = "OK";
 "weak_password_error"="La contraseña introducida es muy débil. Tiene que tener al menos 6 caracteres.";
 
+//MARK: - MENU
+"log_out" = "Cerrar sesión";
+"log_in" = "Iniciar sesión";
+"list" = "Lista";
+"favs" = "Favoritos";
+"collection" = "Colección";
+"logging_out_title" = "Cerrando sesión";
+"logging_out_message" = "Vas a cerrar esta sesión. ¿Estás seguro?";
+"yes" = "Si";
+"no" = "No";
+"order_by_name" = "Ordenar por Nombre";
+"order_by_id" = "Ordenar por Id";
+"search_for_pokemons" = "Buscar pokemons...";
+"already_in_favourites" = "Este pokemon ya está en los favoritos.";
+"not_able_to_add" = "No podrás añadir ningún pokemon a la lista de favoritos hasta que te registres o inicies sesión. ¿Te gustaría iniciar sesión o registrarte?";
+"added_to_favourites" = "Pokemon añadido a favoritos";
+"add" = "Añadir";
+"no_favourites_added" = "Todavía no has añadido ningún favorito. ¿Te gustaría ver toda la lista de Pokemons disponibles para añadir alguno?";
+"home" = "Inicio";
+"deleted_from_favourites"="Pokemon eliminado de favoritos";
+"delete_from_favourites" = "Eliminar de favoritos";
+"add_to_favourites"="Añadir a favoritos";
+"height" = "Altura";
+"weight" = "Peso";
+"hp" = "Hp";
+"attack"="Ataque";
+"defense"="Defensa";
+"special_attack"="Ataque-especial";
+"special_defense"="Defensa-especial";
+"speed"="Velocidad";
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-//Errores de Firebase
-
-
-
-//Tipos de pokemons
+//MARK: - TYPES
 "all"="TODOS";"normal"="NORMAL";"fighting"="LUCHA";
 "flying"="VUELO";"poison"="VENENO";"ground"="TIERRA";
 "rock"="ROCA";"bug"="BICHO";"ghost"="FANTASMA";
@@ -50,52 +63,3 @@
 "grass"="PLANTA";"electric"="ELECTRICO";"psychic"="PSIQUICO";
 "ice"="HIELO";"dragon"="DRAGON";"dark"="SINIESTRO";
 "fairy"="HADA";"unknown"="DESCONOCIDO";"shadow"="SOMBRA";
-
-//Alerts text
-"You_are_going_to_close_this account_Are_you_sure" = "Vas a cerrar esta sesión. ¿Estás seguro?";
-"You_have_not_added_any_favourites_yet_Would_you_like_to_see_all_the_available_Pokemon_in_order_to_add_any_of_them" = "Todavía no has añadido ningún favorito. ¿Te gustaría ver toda la lista de Pokemons disponibles para añadir alguno?";
-"Pokemon_already_added_to_favourites"="Este pokemon ya está en los favoritos.";
-"You_will_not_be_able_to_add_any_pokemons_to_favourites_until_you_login_or_sign_up_Would_you_like_to_login_or_sign_up" ="No podrás añadir ningún pokemon a la lista de favoritos hasta que te registres o inicies sesión. ¿Te gustaría iniciar sesión o registrarte?";
-"access_no_user" = "Acceder sin usuario";
-"no_internet" = "Sin conexión a Internet!";
-"no_internet_login" = "Si quieres iniciar sesión necesitaras conexión a Internet.";
-"no_internet_sign_up" = "Si quieres crear una cuenta necesitarás conexión a Internet.";
-"email_and_password_error" = "Error en el email y en la contraseña!";
-"email_error" = "Error en el email!";
-"password_error" = "Error en la contraseña!";
-"Pokemon_added_to_favourites"="Pokemon añadido a favoritos";
-"Pokemon_deleted_from_favourites"="Pokemon eliminado de favoritos";
-"Yes" = "Sí";"No" = "No";
-"home" = "Inicio";
-"poketest" = "POKE-TEST";
-
-
-//Buttons
-"Order_by_Name" = "Ordenar por Nombre";
-"Order_by_Id" = "Ordenar por Id";
-"Add" = "Añadir";
-"delete_from_favourites" = "Eliminar de favoritos";
-"add_to_favourites"="Añadir a favoritos";
-"Enter" = "Acceder";
-"delete"="Eliminar";
-"Log_out" = "Cerrar sesión";"Logging_out" = "Cerrando sesión";
-"Log_in" = "Identificarse";"Login" = "Iniciar sesión";
-"Sign_Up" = "Registrarse";
-"FAVS" = "FAVS";
-"Favourites" = "Favoritos";
-"list" = "Lista";
-"collection" = "Colección";
-"Back" = "Atrás";
-
-//Textos||Barra de búsqueda
-"Height" = "Altura: ";
-"Weight" = "Peso: ";
-"Attack"="Ataque: ";
-"Defense"="Defensa: ";
-"Special_attack"="Ataque-especial: ";
-"Special_defense"="Defensa-especial: ";
-"Speed"="Velocidad: ";
-"Welcome" = "Bienvenido/a";
-
-
-"search_for_pokemons" = "Buscar pokemons...";

@@ -1,3 +1,9 @@
+//
+//  PokemonCollectionViewController.swift
+//  Poke-test
+//
+//  Created by Jokin Egia on 15/9/21.
+//
 import UIKit
 import NotificationCenter
 import RealmSwift
@@ -7,8 +13,8 @@ import FirebaseDatabase
 import FirebaseCrashlytics
 import Zero
 
-//MARK: - PokemonCollectionViewController
 class PokemonCollectionViewController: UIViewController {
+    
     @IBOutlet weak var orderBySearchView: UIView!
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var orderByButton: ZeroTextButton!
@@ -46,42 +52,31 @@ class PokemonCollectionViewController: UIViewController {
    
 }
 
-
-
-//MARK: - ViewDidLoad methods
 extension PokemonCollectionViewController{
-    
-    
-    //MARK: - loadDelegates
+
     func loadDelegates(){
         searchBar.delegate = self
         collectionView.delegate = self
         collectionView.dataSource = self
     }
-    
-    
-    //MARK: - loadButtons
+
     func loadButtons(){
         orderByButton.addTarget(self, action: #selector(pressedOrderBy), for: .touchUpInside)
         for button in buttonList{
             button.addTarget(self, action: #selector(pressedFilterButton), for: .touchUpInside)
             paintButton(button)
         }
-        orderByButton.setTitle(NSLocalizedString("Order_by_Name", comment: ""), for: .normal)
+        orderByButton.setTitle(MenuConstants.orderByNameButtonTitle, for: .normal)
         loadFilterButtons()
     }
-    
-    
-    //MARK: - loadSearchBar
+  
     func loadSearchBar(){
         self.searchBar.addDoneButtonOnKeyboard()
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
-        searchBar.placeholder = NSLocalizedString("search_for_pokemons", comment: "")
+        searchBar.placeholder = MenuConstants.searchBarPlaceholder
     }
-    
-    
-    //MARK: - loadStyle
+
     func loadStyle(){
         orderBySearchView.layer.cornerRadius = 10
         searchBar.layer.cornerRadius = 5
@@ -94,9 +89,7 @@ extension PokemonCollectionViewController{
         searchBar.searchBarStyle = .minimal
         orderByButton.apply(ZeroTheme.Button.normal)
     }
-    
-    
-    //MARK: - loadFilterButtons
+
     func loadFilterButtons(){
         buttonList[0].setTitle(TypeName.all.localized.capitalized, for: .normal); buttonList[1].setTitle(TypeName.normal.localized.capitalized, for: .normal); buttonList[2].setTitle(TypeName.fighting.localized.capitalized, for: .normal)
         buttonList[3].setTitle(TypeName.flying.localized.capitalized, for: .normal); buttonList[4].setTitle(TypeName.poison.localized.capitalized, for: .normal); buttonList[5].setTitle(TypeName.ground.localized.capitalized, for: .normal)
@@ -106,33 +99,24 @@ extension PokemonCollectionViewController{
         buttonList[15].setTitle(TypeName.ice.localized.capitalized, for: .normal); buttonList[16].setTitle(TypeName.dragon.localized.capitalized, for: .normal); buttonList[17].setTitle(TypeName.dark.localized.capitalized, for: .normal)
         buttonList[18].setTitle(TypeName.fairy.localized.capitalized, for: .normal); buttonList[19].setTitle(TypeName.unknown.localized.capitalized, for: .normal); buttonList[20].setTitle(TypeName.shadow.localized.capitalized, for: .normal)
     }
-    
-    
-    //MARK: - crashlyticsErrorSending
+
     func crashlyticsErrorSending(){
-        //Enviar email del usuario
         guard let email = user?.email else {return}
         Crashlytics.crashlytics().setUserID(email)
-        //Enviar claves personalizadas
-        Crashlytics.crashlytics().setCustomValue(email, forKey: "USER")
-        //Enviar logs de errores
-        Crashlytics.crashlytics().log("Error in PokemonListViewController")
+        Crashlytics.crashlytics().setCustomValue(email, forKey: CrashlyticsConstants.key)
+        Crashlytics.crashlytics().log(CrashlyticsConstants.Collection.log)
     }
     
-    
-    //MARK: - loadCollectionView
     func loadCollectionView(){
         collectionView?.contentInsetAdjustmentBehavior = .always
-        collectionView.register(UINib(nibName: "CollectionCell", bundle: nil), forCellWithReuseIdentifier: "CollectionCell")
+        collectionView.register(.customCell2, forCellWithReuseIdentifier: MenuConstants.customCell2Name)
     }
 }
 
-
-//MARK: - PokemonCollectionViewDelegate methods
 extension PokemonCollectionViewController: PokemonCollectionViewDelegate {
     
     func updateListCollectionView(pokemons: PokemonListData) {
-        orderByButton.setTitle(NSLocalizedString("Order_by_Name", comment: ""), for: .normal)
+        orderByButton.setTitle(MenuConstants.orderByNameButtonTitle, for: .normal)
         cleanSearchBar()
         if filtered.isEmpty && pokemon.isEmpty{
             self.pokemon = Array(pokemons.results)
@@ -153,11 +137,9 @@ extension PokemonCollectionViewController: PokemonCollectionViewDelegate {
     func updateFavouritesCollectionView(favourites: [Favourites]) {
         self.favourites = favourites
     }
-    
-    
-    //MARK: - updateFiltersCollectionView
+
     func updateFiltersCollectionView(pokemons: PokemonFilterListData) {
-        orderByButton.setTitle(NSLocalizedString("Order_by_Name", comment: ""), for: .normal)
+        orderByButton.setTitle(MenuConstants.orderByNameButtonTitle, for: .normal)
         cleanSearchBar()
         self.pokemon.removeAll()
         self.filtered.removeAll()
@@ -174,27 +156,19 @@ extension PokemonCollectionViewController: PokemonCollectionViewDelegate {
     }
 }
 
-
-//MARK: - UICollectionViewDelegate and UICollectionViewDataSource methods
 extension PokemonCollectionViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout{
-    
-    
-    //MARK: - cellForItemAt
+
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CollectionCell", for: indexPath) as! CollectionCell
+        cell = collectionView.dequeueReusableCell(withReuseIdentifier: MenuConstants.customCell2Name, for: indexPath) as! CollectionCell
         pokemonInCell = filtered[indexPath.row]
         cell.updatePokemonCollection(pokemonToUpdate: pokemonInCell ?? Results())
         return cell
     }
-    
-    
-    //MARK: - numberOfItemsInSection
+
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return filtered.count
     }
     
-    
-    //MARK: - didSelectItemAt
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let row = indexPath.row
         let previousRow = row - 1
@@ -221,47 +195,33 @@ extension PokemonCollectionViewController: UICollectionViewDelegate, UICollectio
         guard let pokemonSelected = pokemonSelected, let nextPokemon = nextPokemon, let previousPokemon = previousPokemon else{return}
         presenter?.openPokemonDetail(pokemon: pokemonSelected, nextPokemon: nextPokemon, previousPokemon: previousPokemon, filtered: filtered)
     }
-    
-    
-    //MARK: - insetForSectionAt
+ 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
            return UIEdgeInsets(top: inset, left: inset, bottom: inset, right: inset)
     }
-    
-    
-    //MARK: - minimumLineSpacingForSectionAt
+
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
             return minimumLineSpacing
     }
-    
-    
-    //MARK: - minimumInteritemSpacingForSectionAt
+
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         return minimumInteritemSpacing
     }
-    
-    
-    //MARK: - sizeForItemAt
+
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let marginsAndInsets = inset * 2 + collectionView.safeAreaInsets.left + collectionView.safeAreaInsets.right + minimumInteritemSpacing * CGFloat(cellsPerRow - 1)
         let itemWidth = ((collectionView.bounds.size.width - marginsAndInsets) / CGFloat(cellsPerRow)).rounded(.down)
         return CGSize(width: itemWidth, height: itemWidth)
     }
-    
-    
-    //MARK: - viewWillTransition
+
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
            collectionView?.collectionViewLayout.invalidateLayout()
            super.viewWillTransition(to: size, with: coordinator)
        }
 }
 
-
-//MARK: - UISearchBarDelegate methods
 extension PokemonCollectionViewController: UISearchBarDelegate{
-    
-    
-    //MARK: - textDidChange
+
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         if searchText.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines).isEmpty {
             self.filtered = self.pokemon
@@ -279,17 +239,12 @@ extension PokemonCollectionViewController: UISearchBarDelegate{
         self.collectionView.reloadData()
     }
 
-    
-    //MARK: - keyboardWillShow
     @objc private func keyboardWillShow(notification: NSNotification) {
         if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
             collectionView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: keyboardSize.height, right: 0)
-            
         }
     }
-    
-    
-    //MARK: - keyboardWillHide
+
     @objc private func keyboardWillHide(notification: NSNotification) {
         if ((notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue) != nil {//If it has value
             collectionView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
@@ -297,32 +252,26 @@ extension PokemonCollectionViewController: UISearchBarDelegate{
     }
 }
 
-
-//MARK: - OrderBy Buttons methods
 extension PokemonCollectionViewController{
     
     @objc func pressedOrderBy(_ sender: ZeroTextButton!) {
-        if orderByButton.titleLabel?.text == NSLocalizedString("Order_by_Name", comment: ""){
-            orderByButton.setTitle(NSLocalizedString("Order_by_Id", comment: ""), for: .normal)
+        if orderByButton.titleLabel?.text == MenuConstants.orderByNameButtonTitle{
+            orderByButton.setTitle(MenuConstants.orderByIdButtonTitle, for: .normal)
             self.filtered = filtered.sorted(by: {$0.name ?? "" < $1.name ?? ""})
             self.collectionView.reloadData()
         }
         else{
-            orderByButton.setTitle(NSLocalizedString("Order_by_Name", comment: ""), for: .normal)
+            orderByButton.setTitle(MenuConstants.orderByNameButtonTitle, for: .normal)
             if searchBar.text?.isEmpty == true{
                 self.filtered = self.pokemon
             }else{
                 self.filtered = self.saveFilteredOrder
             }
-            
             self.collectionView.reloadData()
         }
-        
     }
 }
 
-
-//MARK: - Filter Buttons methods
 extension PokemonCollectionViewController{
     
     @objc func pressedFilterButton(_ sender: ZeroContainedButton!){
@@ -375,24 +324,24 @@ extension PokemonCollectionViewController{
             print("Error: .some(_)")
         }
     }
+    
     func cleanSearchBar(){
         if searchBar.text?.isEmpty == false{
             searchBar.text?.removeAll()
         }
     }
-    
-    
 }
 
-
-//MARK: - Painting Methods
 extension PokemonCollectionViewController{
+    
     func setPokemonTextColor(_ color: UIColor, _ button: ZeroContainedButton){
         button.setTitleColor(color, for: .normal)
     }
+    
     func setFilterButtonsBackground(_ red: CGFloat, _ green: CGFloat, _ blue: CGFloat, _ button: ZeroContainedButton){
         button.backgroundColor = .init(red: red/255, green: green/255, blue: blue/255, alpha: 1)
     }
+    
     func paintButton(_ button: ZeroContainedButton){
         switch button.titleLabel?.text?.lowercased(){
         case TypeName.all.rawValue:
@@ -452,18 +401,16 @@ extension PokemonCollectionViewController{
         case TypeName.fairy.rawValue:
             setFilterButtonsBackground(238, 153, 172, button)
             setPokemonTextColor(.black, button)
-        case TypeName.unknown.rawValue: //There exits 0 pokemon with this type
+        case TypeName.unknown.rawValue:
             setFilterButtonsBackground(0, 0, 0, button)
             setPokemonTextColor(.white, button)
         case TypeName.shadow.rawValue:
             setFilterButtonsBackground(124, 110, 187, button)
             setPokemonTextColor(.white, button)
-            
         case .none:
             print("There aren't any buttons")
         case .some(_):
             print("Error in some(_)")
-            
         }
     }
 }

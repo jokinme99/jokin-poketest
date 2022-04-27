@@ -1,4 +1,9 @@
-
+//
+//  LoginOrSignUpViewController.swift
+//  Poke-test
+//
+//  Created by Jokin Egia on 19/11/21.
+//
 import UIKit
 import FirebaseCrashlytics
 import Zero
@@ -25,8 +30,8 @@ class LoginOrSignUpViewController: UIViewController {
 extension LoginOrSignUpViewController{
     
     func crashlyticsErrorSending(){
-        Crashlytics.crashlytics().setCustomValue(CrashlyticsConstants.LoginOrSignUpWindow.message, forKey: CrashlyticsConstants.key)
-        Crashlytics.crashlytics().log(CrashlyticsConstants.LoginOrSignUpWindow.log)
+        Crashlytics.crashlytics().setCustomValue(CrashlyticsConstants.LoginOrSignUp.message, forKey: CrashlyticsConstants.key)
+        Crashlytics.crashlytics().log(CrashlyticsConstants.LoginOrSignUp.log)
     }
     
     func loadButtonsStyle(){
@@ -53,7 +58,7 @@ extension LoginOrSignUpViewController{
     }
 }
 
-extension LoginOrSignUpViewController: LoginOrSignUpViewDelegate{
+extension LoginOrSignUpViewController{
     
     @IBAction func pressedToLoginMenuButton(_ sender: Any) {
         if Reachability.isConnectedToNetwork(){

@@ -1,16 +1,20 @@
+//
+//  PokemonCell.swift
+//  Poke-test
+//
+//  Created by Jokin Egia on 28/7/21.
+//
 import UIKit
 import AlamofireImage
 import Zero
 
-//MARK: - PokemonCellDelegate protocol
 protocol PokemonCellDelegate: AnyObject{
     var presenter: PokemonListPresenterDelegate? {get set}
     func updatePokemonInCell(pokemonToFetch: Results)
 }
 
-
-//MARK: - PokemonCell
 class PokemonCell: UITableViewCell {
+    
     @IBOutlet weak var pokemonBubble: UIView!
     @IBOutlet weak var pokemonNameLabel: UILabel!
     @IBOutlet weak var idLabel: UILabel!
@@ -25,7 +29,6 @@ class PokemonCell: UITableViewCell {
         
     }
     override func prepareForReuse() {
-        //Every time a cell is called with this method it will be a blank white cell
         super.prepareForReuse()
         backgroundColor = .white
         pokemonNameLabel.text = nil
@@ -34,21 +37,16 @@ class PokemonCell: UITableViewCell {
     
 }
 
-
-//MARK: - viewDidLoad methods
 extension PokemonCell{
+    
     func loadStyle(){
         idLabel.apply(ZeroTheme.Label.body1Bold)
         pokemonNameLabel.apply(ZeroTheme.Label.body2)
     }
 }
 
-
-//MARK: - PokemonCellDelegate methods
 extension PokemonCell: PokemonCellDelegate{
-    
-    
-    //MARK: - updatePokemonInCell
+
     func updatePokemonInCell(pokemonToFetch: Results) {
         self.pokemon = pokemonToFetch
         if Reachability.isConnectedToNetwork(){
@@ -58,9 +56,9 @@ extension PokemonCell: PokemonCellDelegate{
                     print(error)
                 }else{
                     guard let pokemonData = pokemonData else {return}
-                    self.setColor((pokemonData.types[0].type?.name ?? "default"), self.pokemonNameLabel)
+                    self.setColor((pokemonData.types[0].type?.name ?? ""), self.pokemonNameLabel)
                     self.idLabel.text = "#\(pokemonData.id)"
-                    self.setColor((pokemonData.types[0].type?.name ?? "default"), self.idLabel)
+                    self.setColor((pokemonData.types[0].type?.name ?? ""), self.idLabel)
                 }
                 self.view?.updateTableView()
             })
@@ -68,29 +66,17 @@ extension PokemonCell: PokemonCellDelegate{
             let pokemonDataList = DDBBManager.shared.get(PokemonData.self)
             for pokemonData in pokemonDataList {
                 if pokemonData.name == pokemonToFetch.name {
-                    self.setColor((pokemonData.types[0].type?.name ?? "default"), self.pokemonNameLabel)
+                    self.setColor((pokemonData.types[0].type?.name ?? ""), self.pokemonNameLabel)
                     self.idLabel.text = "#\(pokemonData.id)"
-                    self.setColor((pokemonData.types[0].type?.name ?? "default"), self.idLabel)
-                    
+                    self.setColor((pokemonData.types[0].type?.name ?? ""), self.idLabel)
                 }
-                
             }
         }
-      
         self.pokemonNameLabel.text = pokemonToFetch.name?.capitalized
     }
 }
 
-
-//MARK: - Painting methods
 extension PokemonCell{
-    func imageWithImage(image: UIImage, scaledToSize newSize: CGSize) -> UIImage {
-        UIGraphicsBeginImageContext(newSize)
-        image.draw(in: CGRect(x: 0 ,y: 0 ,width: newSize.width ,height: newSize.height))
-        let newImage = UIGraphicsGetImageFromCurrentImageContext()
-        UIGraphicsEndImageContext()
-        return newImage!.withRenderingMode(.alwaysOriginal)
-    }
     
     func setPokemonBackgroundColor(_ red: CGFloat, _ green: CGFloat, _ blue: CGFloat, _ label: UILabel){
         label.backgroundColor = .init(red: red/255, green: green/255, blue: blue/255, alpha: 1)

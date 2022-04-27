@@ -1,17 +1,19 @@
+//
+//  PokemonCollectionWireframe.swift
+//  Poke-test
+//
+//  Created by Jokin Egia on 15/9/21.
+//
 import UIKit
 
-
-//MARK: - PokemonCollectionWireframe
 class PokemonCollectionWireframe{
+    
     var viewController: UIViewController?
+    
 }
 
-
-//MARK: - PokemonCollectionWireframeDelegate methods
 extension PokemonCollectionWireframe: PokemonCollectionWireframeDelegate{
-    
-    
-    //MARK: - createPokemonCollectionModule
+
     static func createPokemonCollectionModule() -> UIViewController {
         let presenter = PokemonCollectionPresenter()
         let view = PokemonCollectionViewController()
@@ -28,16 +30,12 @@ extension PokemonCollectionWireframe: PokemonCollectionWireframeDelegate{
         
         return view
     }
-    
-    
-    //MARK: - openPokemonDetailsWindow
+
     func openPokemonDetailsWindow(pokemon: Results, nextPokemon: Results, previousPokemon: Results, filtered: [Results]) {
         let detailModule = PokemonDetailsWireframe.createPokemonDetailsModule(pokemon: pokemon, nextPokemon: nextPokemon, previousPokemon: previousPokemon, filtered: filtered)
         viewController?.navigationController?.pushViewController(detailModule, animated: true)
     }
-    
-    
-    //MARK: - openLoginSignUpWindow
+
     func openLoginSignUpWindow(){
         let loginSignUpModule = LoginOrSignUpWireframe.createLoginOrSignUpModule()
         let navigation = UINavigationController(rootViewController: loginSignUpModule)

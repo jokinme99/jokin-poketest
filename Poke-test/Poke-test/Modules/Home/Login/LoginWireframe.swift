@@ -1,4 +1,9 @@
-
+//
+//  LoginWireframe.swift
+//  Poke-test
+//
+//  Created by Jokin Egia on 19/11/21.
+//
 import UIKit
 
 class LoginWireframe{
@@ -13,13 +18,9 @@ extension LoginWireframe: LoginWireframeDelegate{
         let presenter = LoginPresenter()
         let view = LoginViewController()
         let wireframe = LoginWireframe()
-        let interactor = LoginInteractor()
 
         view.presenter = presenter
-        presenter.view = view
         presenter.wireframe = wireframe
-        presenter.interactor = interactor
-        interactor.presenter = presenter
 
         wireframe.viewController = view
 
