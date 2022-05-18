@@ -28,7 +28,7 @@ Aplicación iOS que permite la visualización de todos los *Pokémons* existente
 :heavy_check_mark: Visualización de las características de todos los diferentes Pokémons así como mostrar la imagen (siempre que exista) con realidad aumentada.\
 :heavy_check_mark: Posibilidad de recibir notificaciones externas.
 
-## :rocket: Tecnolog�as ##
+## :rocket: Tecnologías ##
 
 Tecnologias utilizadas:
 - [Bitbucket](https://bitbucket.org/)
