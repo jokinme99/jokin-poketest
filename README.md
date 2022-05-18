@@ -23,9 +23,9 @@ Aplicación iOS que permite la visualización de todos los *Pokémons* existente
 
 ## :sparkles: Características ##
 
-:heavy_check_mark: Opción de filtrar, ordenar, buscar y mostrar una lista de *Pokémons* obtenida del [link](https://pokeapi.co/).\
-:heavy_check_mark: Posibilidad de guardar los *Pokémons* favoritos del usuario en la plataforma web [**Firebase**](https://firebase.google.com/) mediante un inicio de sesión o registro para poder acceder a ellos desde cualquier otro dispositivo.\
-:heavy_check_mark: Visualización de las características de todos los diferentes Pokémons así como mostrar la imagen (siempre que exista) con realidad aumentada.\
+:heavy_check_mark: Opción de filtrar, ordenar, buscar y mostrar una lista de *Pokémons* obtenida del [link](https://pokeapi.co/) .\
+:heavy_check_mark: Posibilidad de guardar los *Pokémons* favoritos del usuario en la plataforma web [**Firebase**](https://firebase.google.com/) mediante un inicio de sesión o registro para poder acceder a ellos desde cualquier otro dispositivo .\
+:heavy_check_mark: Visualización de las características de todos los diferentes Pokémons así como mostrar la imagen (siempre que exista) con realidad aumentada  .\
 :heavy_check_mark: Posibilidad de recibir notificaciones externas.
 
 ## :rocket: Tecnologías ##
