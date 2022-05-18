@@ -9,10 +9,9 @@
 <h1 align="center">Poke-test</h1>
 
 <p align="center">
-  <a href="#dart-about">Información general</a> &#xa0; | &#xa0; 
-  <a href="#sparkles-features">Características</a> &#xa0; | &#xa0;
-  <a href="#rocket-technologies">Tecnologías</a> &#xa0; | &#xa0;
-  <a href="#white_check_mark-requirements">Requisitos</a>
+  <a href="#dart--informacion-general">Información general</a> &#xa0; | &#xa0; 
+  <a href="#sparkles-caracteristicas">Características</a> &#xa0; | &#xa0;
+  <a href="#rocket-tecnologias">Tecnologías</a>
 </p>
 
 <br>
@@ -23,9 +22,12 @@ Aplicación iOS que permite la visualización de todos los *Pokémons* existente
 
 ## :sparkles: Características ##
 
-:heavy_check_mark: Opción de filtrar, ordenar, buscar y mostrar una lista de *Pokémons* obtenida del [link](https://pokeapi.co/) .\
-:heavy_check_mark: Posibilidad de guardar los *Pokémons* favoritos del usuario en la plataforma web [**Firebase**](https://firebase.google.com/) mediante un inicio de sesión o registro para poder acceder a ellos desde cualquier otro dispositivo .\
-:heavy_check_mark: Visualización de las características de todos los diferentes Pokémons así como mostrar la imagen (siempre que exista) con realidad aumentada  .\
+:heavy_check_mark: Opción de filtrar, ordenar, buscar y mostrar una lista de *Pokémons* obtenida del [link](https://pokeapi.co/).  
+
+:heavy_check_mark: Posibilidad de guardar los *Pokémons* favoritos del usuario en la plataforma web [**Firebase**](https://firebase.google.com/) mediante un inicio de sesión o registro para poder acceder a ellos desde cualquier otro dispositivo.   
+
+:heavy_check_mark: Visualización de las características de todos los diferentes Pokémons así como mostrar la imagen (siempre que exista) con realidad aumentada.  
+
 :heavy_check_mark: Posibilidad de recibir notificaciones externas.
 
 ## :rocket: Tecnologías ##
