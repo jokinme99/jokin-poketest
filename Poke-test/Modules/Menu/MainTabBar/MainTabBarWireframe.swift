@@ -6,7 +6,7 @@
 //
 import UIKit
 
-class MainTabBarWireframe{
+class MainTabBarWireframe {
 
     var viewController: UIViewController?
 
@@ -28,8 +28,8 @@ class MainTabBarWireframe{
     }
 }
 
-extension MainTabBarWireframe: MainTabBarWireframeDelegate{
-    func openLoginSignUpWindow(){
+extension MainTabBarWireframe: MainTabBarWireframeDelegate {
+    func openLoginSignUpWindow() {
         let loginSignUpModule = LoginOrSignUpWireframe.createLoginOrSignUpModule()
         let navigation = UINavigationController(rootViewController: loginSignUpModule)
         let window = (UIApplication.shared.delegate as? AppDelegate)?.window

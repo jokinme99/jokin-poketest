@@ -37,7 +37,7 @@ protocol PokemonFavouritesPresenterDelegate: AnyObject {
 protocol PokemonFavouritesInteractorDelegate: AnyObject {
     var presenter: PokemonFavouritesInteractorOutputDelegate? {get set}
     func fetchFavouritePokemons()
-    func fetchPokemonType(type:String)
+    func fetchPokemonType(type: String)
     func deleteFavourite(pokemon: Results)
 }
 

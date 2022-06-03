@@ -36,7 +36,6 @@
 		FD7CC07327452200006D1CD5 /* SignUpPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD7CC06D27452200006D1CD5 /* SignUpPresenter.swift */; };
 		FD7CC07427452200006D1CD5 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD7CC06E27452200006D1CD5 /* SignUpViewController.swift */; };
 		FD7CC07527452200006D1CD5 /* SignUpProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD7CC06F27452200006D1CD5 /* SignUpProtocols.swift */; };
-		FD7CC07627452200006D1CD5 /* SignUpInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD7CC07027452200006D1CD5 /* SignUpInteractor.swift */; };
 		FD7CC07727452200006D1CD5 /* SignUpViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FD7CC07127452200006D1CD5 /* SignUpViewController.xib */; };
 		FD7CC07827452200006D1CD5 /* SignUpWireframe.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD7CC07227452200006D1CD5 /* SignUpWireframe.swift */; };
 		FD7D316E27198B110031AB92 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FD7D316D27198B100031AB92 /* LaunchScreen.storyboard */; };
@@ -162,7 +161,6 @@
 		FD7CC06D27452200006D1CD5 /* SignUpPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpPresenter.swift; sourceTree = "<group>"; };
 		FD7CC06E27452200006D1CD5 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		FD7CC06F27452200006D1CD5 /* SignUpProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpProtocols.swift; sourceTree = "<group>"; };
-		FD7CC07027452200006D1CD5 /* SignUpInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpInteractor.swift; sourceTree = "<group>"; };
 		FD7CC07127452200006D1CD5 /* SignUpViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SignUpViewController.xib; sourceTree = "<group>"; };
 		FD7CC07227452200006D1CD5 /* SignUpWireframe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpWireframe.swift; sourceTree = "<group>"; };
 		FD7D316D27198B100031AB92 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -371,7 +369,6 @@
 				FD7CC06D27452200006D1CD5 /* SignUpPresenter.swift */,
 				FD7CC06E27452200006D1CD5 /* SignUpViewController.swift */,
 				FD7CC06F27452200006D1CD5 /* SignUpProtocols.swift */,
-				FD7CC07027452200006D1CD5 /* SignUpInteractor.swift */,
 				FD7CC07127452200006D1CD5 /* SignUpViewController.xib */,
 				FD7CC07227452200006D1CD5 /* SignUpWireframe.swift */,
 			);
@@ -533,6 +530,7 @@
 				FD676B4127269A7200318834 /* Embed App Extensions */,
 				B3A0225CF01F3E0A78A6D01E /* [CP] Embed Pods Frameworks */,
 				FD8CE3052768AF8F00924721 /* Firebase Crashlytics */,
+				FDC1BD65284A002800622F39 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -723,6 +721,23 @@
 			shellPath = /bin/sh;
 			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n\"${PODS_ROOT}/FirebaseCrashlytics/run\"\n";
 		};
+		FDC1BD65284A002800622F39 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nif which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -781,7 +796,6 @@
 				FDD3AF7A2779F2D300C0E473 /* ARKitViewController.swift in Sources */,
 				FD7CC05827451023006D1CD5 /* LoginViewController.swift in Sources */,
 				FD7B9B08273E4B2A006B7610 /* PokemonFavouritesWireframe.swift in Sources */,
-				FD7CC07627452200006D1CD5 /* SignUpInteractor.swift in Sources */,
 				FD7CC04B27450FFF006D1CD5 /* LoginOrSignUpViewController.swift in Sources */,
 				FD7CC04A27450FFF006D1CD5 /* LoginOrSignUpPresenter.swift in Sources */,
 			);

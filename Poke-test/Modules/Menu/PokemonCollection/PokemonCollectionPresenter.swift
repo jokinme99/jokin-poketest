@@ -4,15 +4,13 @@
 //
 //  Created by Jokin Egia on 15/9/21.
 //
-class PokemonCollectionPresenter{
-    
+class PokemonCollectionPresenter {
     var view: PokemonCollectionViewDelegate?
     var interactor: PokemonCollectionInteractorDelegate?
     var wireframe: PokemonCollectionWireframeDelegate?
-    
 }
 
-extension PokemonCollectionPresenter: PokemonCollectionPresenterDelegate{
+extension PokemonCollectionPresenter: PokemonCollectionPresenterDelegate {
 
     func fetchPokemonList() {
         self.interactor?.fetchPokemonList()
@@ -31,7 +29,8 @@ extension PokemonCollectionPresenter: PokemonCollectionPresenterDelegate{
     }
 
     func openPokemonDetail(pokemon: Results, nextPokemon: Results, previousPokemon: Results, filtered: [Results]) {
-        self.wireframe?.openPokemonDetailsWindow(pokemon: pokemon, nextPokemon: nextPokemon, previousPokemon: previousPokemon, filtered: filtered)
+        self.wireframe?.openPokemonDetailsWindow(
+            pokemon: pokemon, nextPokemon: nextPokemon, previousPokemon: previousPokemon, filtered: filtered)
     }
 
     func openLoginSignUpWindow() {
@@ -40,7 +39,6 @@ extension PokemonCollectionPresenter: PokemonCollectionPresenterDelegate{
 }
 
 extension PokemonCollectionPresenter: PokemonCollectionInteractorOutputDelegate {
- 
     func didFetchPokemonList(pokemon: PokemonListData) {
         self.view?.updateListCollectionView(pokemons: pokemon)
     }

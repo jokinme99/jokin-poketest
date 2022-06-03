@@ -14,7 +14,6 @@ import FirebaseCrashlytics
 import Zero
 
 class PokemonDetailsViewController: UIViewController {
-    
     @IBOutlet weak var backgroundView: UIView!
     @IBOutlet weak var typesView: UIView!
     @IBOutlet weak var pokemonType1Label: UILabel!
@@ -43,20 +42,18 @@ class PokemonDetailsViewController: UIViewController {
     @IBOutlet weak var favouritesImage: UIImageView!
     @IBOutlet weak var favouritesView: UIView!
     @IBOutlet weak var favouriteConfirmationImage: UIImageView!
-
     var presenter: PokemonDetailsPresenterDelegate?
     var listPresenter: PokemonListPresenterDelegate?
-    var selectedPokemon : Results?
+    var selectedPokemon: Results?
     var previousPokemon: Results?
     var nextPokemon: Results?
     var favouritesList: [Favourites] = []
     var cell: PokemonCellDelegate?
     var filtered: [Results] = []
-    var row : Int?
+    var row: Int?
     let user = Auth.auth().currentUser
     var arrayOfNames: [String] = []
     var alert = ZeroDialog()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         presenter?.fetchFavourites()
@@ -67,39 +64,35 @@ class PokemonDetailsViewController: UIViewController {
         crashlyticsErrorSending()
         loadImageAction()
     }
-    
 }
 
-extension PokemonDetailsViewController{
-    
-    func loadSelectedPokemon(){
-        if let pokemonToFetch = selectedPokemon{
+extension PokemonDetailsViewController {
+    func loadSelectedPokemon() {
+        if let pokemonToFetch = selectedPokemon {
             presenter?.fetchPokemon(pokemon: pokemonToFetch)
-        }else{
+        } else {
             return
         }
     }
-
-    func loadMethods(){
+    func loadMethods() {
         self.loadStyle()
         self.favouritesButton.addTarget(self, action: #selector(addToFavouritesPressed), for: .touchUpInside)
         self.previewButton.addTarget(self, action: #selector(previousPokemonButtonAction), for: .touchUpInside)
         self.nextButton.addTarget(self, action: #selector(nextPokemonButtonAction), for: .touchUpInside)
-        if filtered.count < 2{
+        if filtered.count < 2 {
             nextButton.isHidden = true
             previewButton.isHidden = true
         }
         self.nextButton.setTitle(self.nextPokemon?.name?.capitalized, for: .normal)
         self.previewButton.setTitle(self.previousPokemon?.name?.capitalized, for: .normal)
     }
-    
-    func loadImageAction(){
-        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(imageTapped(tapGestureRecognizer:)))
+    func loadImageAction() {
+        let tapGestureRecognizer = UITapGestureRecognizer(
+            target: self, action: #selector(imageTapped(tapGestureRecognizer:)))
         pokemonImage.isUserInteractionEnabled = true
         pokemonImage.addGestureRecognizer(tapGestureRecognizer)
     }
-
-    func loadStyle(){
+    func loadStyle() {
         self.previewButton.layer.cornerRadius = 5
         self.previewButton.layer.borderWidth = 2
         self.previewButton.layer.borderColor = UIColor.black.cgColor
@@ -130,8 +123,7 @@ extension PokemonDetailsViewController{
         self.speedLabel.apply(ZeroTheme.Label.body2)
         self.favouritesButton.apply(ZeroTheme.Button.outlined)
     }
-
-    func crashlyticsErrorSending(){
+    func crashlyticsErrorSending() {
         guard let email = user?.email else {return}
         Crashlytics.crashlytics().setUserID(email)
         Crashlytics.crashlytics().setCustomValue(email, forKey: CrashlyticsConstants.key)
@@ -140,17 +132,15 @@ extension PokemonDetailsViewController{
 }
 
 extension PokemonDetailsViewController: PokemonDetailsViewDelegate {
- 
     func addFavourite(pokemon: Results) {
         favouritesButton.setTitle(MenuConstants.deleteFavouriteButtonTitle, for: .normal)
         favouritesImage.image = .customTabBarImageSelected2
         favouriteConfirmationImage.isHidden = false
     }
-
     func deleteFavourite(pokemon: Results) {
-        let filt = filtered.map{$0.name}
-        let fav = favouritesList.map{$0.name}
-        if filt == fav{
+        let filt = filtered.map {$0.name}
+        let fav = favouritesList.map {$0.name}
+        if filt == fav {
             favouritesButton.setTitle(MenuConstants.addFavouriteButtonTitle, for: .normal)
             favouritesImage.image = .customTabBarImage2
             favouriteConfirmationImage.isHidden = true
@@ -158,13 +148,13 @@ extension PokemonDetailsViewController: PokemonDetailsViewDelegate {
             guard let index = index else {return}
             filtered.remove(at: index)
             presenter?.fetchFavourites()
-            if filtered.count == 1{
+            if filtered.count == 1 {
                 self.previewButton.isHidden = true
                 self.nextButton.isHidden = true
             }
-        }else{
+        } else {
             arrayOfNames.removeDuplicates()
-            if arrayOfNames.isEmpty == false{
+            if arrayOfNames.isEmpty == false {
                 let indexName = arrayOfNames.firstIndex(of: pokemon.name ?? "")
                 arrayOfNames.remove(at: indexName ?? 0)
             }
@@ -172,83 +162,70 @@ extension PokemonDetailsViewController: PokemonDetailsViewDelegate {
             favouritesImage.image = .customTabBarImage2
             favouriteConfirmationImage.isHidden = true
             presenter?.fetchFavourites()
-            
         }
-        
     }
-
     func getSelectedPokemon(with pokemon: Results) {
         selectedPokemon = pokemon
     }
-    
     func updateDetailsViewFavourites(favourites: [Favourites]) {
         arrayOfNames.removeAll()
-        for fav in favourites{
+        for fav in favourites {
             guard let name = fav.name else {return}
             arrayOfNames.append(name.lowercased())
         }
         arrayOfNames.removeDuplicates()
-        guard let name = selectedPokemon?.name else{return}
-        if arrayOfNames.contains(name){
+        guard let name = selectedPokemon?.name else {return}
+        if arrayOfNames.contains(name) {
             favouritesButton.setTitle(MenuConstants.deleteFavouriteButtonTitle, for: .normal)
             favouritesImage.image = .customTabBarImageSelected2
           favouriteConfirmationImage.isHidden = false
 
-        }else{
+        } else {
             favouritesButton.setTitle(MenuConstants.addFavouriteButtonTitle, for: .normal)
             favouritesImage.image = .customTabBarImage2
             favouriteConfirmationImage.isHidden = true
-            
         }
     }
-
     func updateDetailsView(pokemon: PokemonData) {
         paintWindow(pokemon)
     }
-
-    func paintWindow(_ pokemon: PokemonData){
+    func paintWindow(_ pokemon: PokemonData) {
         let type = pokemon.types[0]
         self.pokemonNameLabel.text = pokemon.name?.uppercased()
         self.pokemonType1Label.text = type.type?.name?.uppercased()
         self.pokemonIdLabel.text = "# \(pokemon.id)"
         self.heightLabel.text = "\(MenuConstants.heightTitle) : \(pokemon.height) m"
         self.weightLabel.text = "\(MenuConstants.weightTitle) : \(pokemon.weight) kg"
-        guard let abilityName = pokemon.abilities[0].ability?.name else{return}
+        guard let abilityName = pokemon.abilities[0].ability?.name else {return}
         self.statsLabel.text = MenuConstants.statsLabelTitle
         self.ability1Label.text = abilityName.capitalized.uppercased()
-        self.hpLabel.text = "\(MenuConstants.hpTitle) :\(pokemon.stats[0].base_stat)"
-        self.attackLabel.text = "\(MenuConstants.attackTitle) :\(pokemon.stats[1].base_stat)"
-        self.defenseLabel.text = "\(MenuConstants.defenseTitle) :\(pokemon.stats[2].base_stat)"
-        self.specialAttackLabel.text = "\(MenuConstants.specialAttackTitle) :\(pokemon.stats[3].base_stat)"
-        self.specialDefenseLabel.text = "\(MenuConstants.specialDefenseTitle) :\(pokemon.stats[4].base_stat)"
-        self.speedLabel.text = "\(MenuConstants.speedTitle) :\(pokemon.stats[5].base_stat)"
+        self.hpLabel.text = "\(MenuConstants.hpTitle) :\(pokemon.stats[0].baseStat)"
+        self.attackLabel.text = "\(MenuConstants.attackTitle) :\(pokemon.stats[1].baseStat)"
+        self.defenseLabel.text = "\(MenuConstants.defenseTitle) :\(pokemon.stats[2].baseStat)"
+        self.specialAttackLabel.text = "\(MenuConstants.specialAttackTitle) :\(pokemon.stats[3].baseStat)"
+        self.specialDefenseLabel.text = "\(MenuConstants.specialDefenseTitle) :\(pokemon.stats[4].baseStat)"
+        self.speedLabel.text = "\(MenuConstants.speedTitle) :\(pokemon.stats[5].baseStat)"
         self.paintLabel(pokemon: pokemon)
-        self.transformUrlToImage(url: pokemon.sprites?.front_default ?? "")
+        self.transformUrlToImage(url: pokemon.sprites?.frontDefault ?? "")
     }
-
-    func transformUrlToImage(url: String){
-        if let downloadURL = URL(string: url){
-            if Reachability.isConnectedToNetwork(){
-                return self.pokemonImage.af.setImage(withURL: downloadURL)
-            }else{
-                //No way to save all the images
-                return self.pokemonImage.af.setImage(withURL: downloadURL)
-            }
+    func transformUrlToImage(url: String) {
+        if let downloadURL = URL(string: url) {
+            // No way to save all the images
+            return self.pokemonImage.af.setImage(withURL: downloadURL)
         }
     }
 }
 
-extension PokemonDetailsViewController{
-
+extension PokemonDetailsViewController {
     @objc func addToFavouritesPressed(_ sender: ZeroOutlineButton!) {
-        if user != nil{
-            guard let selectedPokemon = selectedPokemon else{return}
-            if favouritesButton.titleLabel?.text == MenuConstants.addFavouriteButtonTitle{
+        if user != nil {
+            guard let selectedPokemon = selectedPokemon else {return}
+            if favouritesButton.titleLabel?.text == MenuConstants.addFavouriteButtonTitle {
                     presenter?.addFavourite(pokemon: selectedPokemon)
-            } else if favouritesButton.titleLabel?.text == MenuConstants.deleteFavouriteButtonTitle{
+            } else if favouritesButton.titleLabel?.text == MenuConstants.deleteFavouriteButtonTitle {
                     presenter?.deleteFavourite(pokemon: selectedPokemon)
             }
-        }else{
+        } else {
             alert.show(
                 title: MenuConstants.favsListBar,
                 info: MenuConstants.notAbleToAddFavourites,
@@ -260,70 +237,62 @@ extension PokemonDetailsViewController{
                 completionCancel: nil
             )
         }
-        
     }
-
-    @objc func imageTapped(tapGestureRecognizer: UITapGestureRecognizer){
-        let tappedImage = tapGestureRecognizer.view as! UIImageView
-        guard let imageToSave = tappedImage.image else{return}
-        if self.saveImage(image: imageToSave) == true{
+    @objc func imageTapped(tapGestureRecognizer: UITapGestureRecognizer) {
+        let tappedImage = tapGestureRecognizer.view as? UIImageView
+        guard let tappedImage = tappedImage else {return}
+        guard let imageToSave = tappedImage.image else {return}
+        if self.saveImage(image: imageToSave) {
             self.presenter?.openARKitView()
-        }else{
+        } else {
             print("Error when saving image!")
         }
-        
-        
     }
-
-    @objc func nextPokemonButtonAction(_ sender: ZeroContainedButton!){
-        guard let nextPokemon = nextPokemon else{return}
+    @objc func nextPokemonButtonAction(_ sender: ZeroContainedButton!) {
+        guard let nextPokemon = nextPokemon else {return}
         presenter?.fetchPokemon(pokemon: nextPokemon)
-        if row == filtered.count - 1{
+        if row == filtered.count - 1 {
             row = 0
-        }else{
+        } else {
             row = row! + 1
         }
         nextOrPrevious()
     }
-    
-    @objc func previousPokemonButtonAction(_ sender: ZeroContainedButton!){
-        guard let previousPokemon = previousPokemon else{return}
+    @objc func previousPokemonButtonAction(_ sender: ZeroContainedButton!) {
+        guard let previousPokemon = previousPokemon else {return}
         presenter?.fetchPokemon(pokemon: previousPokemon)
-        if row == 0{
+        if row == 0 {
             row = filtered.count - 1
-        }else{
+        } else {
             row = row!  - 1
         }
         nextOrPrevious()
-        
     }
-    
-    func nextOrPrevious(){
-        guard let row = row else{return}
-        if filtered.count < 3{
-            if row == 0{
+    func nextOrPrevious() {
+        guard let row = row else {return}
+        if filtered.count < 3 {
+            if row == 0 {
                 self.selectedPokemon = filtered[row]
                 self.previousPokemon = filtered.last
                 self.nextPokemon = previousPokemon
-            }else{
+            } else {
                 self.selectedPokemon = filtered[row]
                 self.nextPokemon = filtered.first
                 self.previousPokemon = nextPokemon
             }
-        }else if filtered.count == 1{
-            
+        } else if filtered.count == 1 {
             self.previewButton.isHidden = true
             self.nextButton.isHidden = true
-        }else{
-            if row == 0{
+        } else {
+            if row == 0 {
                 self.selectedPokemon = filtered[row]
                 self.nextPokemon = filtered[row + 1]
                 self.previousPokemon = filtered.last
-            }else if row == filtered.count - 1{
+            } else if row == filtered.count - 1 {
                 self.selectedPokemon = filtered[row]
                 self.previousPokemon = filtered[row - 1]
                 self.nextPokemon = filtered.first
-            }else{
+            } else {
                 self.nextPokemon = filtered[row  + 1]
                 self.selectedPokemon = filtered[row]
                 self.previousPokemon = filtered[row - 1]
@@ -335,8 +304,8 @@ extension PokemonDetailsViewController{
     }
 }
 
-extension PokemonDetailsViewController{
-    func setName(type: String, to label : UILabel){
+extension PokemonDetailsViewController {
+    func setName(type: String, to label: UILabel) {
         switch type {
         case TypeName.normal.rawValue:
             label.text = TypeName.normal.localized
@@ -382,39 +351,33 @@ extension PokemonDetailsViewController{
             print("DEFAULT ERROR")
         }
     }
-    func paintLabel(pokemon: PokemonData){
-        if pokemon.types.count >= 2{
+    func paintLabel(pokemon: PokemonData) {
+        if pokemon.types.count >= 2 {
             self.pokemonType2Label.isHidden = false
             self.pokemonDescriptionView.backgroundColor = .customButtonBackgroundColor
-            guard let typeName_1 = pokemon.types[1].type?.name else{return}
-            guard let typeName_0 = pokemon.types[0].type?.name else{return}
-            self.pokemonType2Label.text = typeName_1
+            guard let typeName1 = pokemon.types[1].type?.name else {return}
+            guard let typeName0 = pokemon.types[0].type?.name else {return}
+            self.pokemonType2Label.text = typeName1
             self.paintType(label: self.pokemonType1Label)
             self.paintType(label: self.pokemonType2Label)
-            self.setName(type: typeName_1, to: pokemonType2Label)
-            self.setName(type: typeName_0, to: pokemonType1Label)
-            
-            //MARK: - Views' background
-            self.setBackgroundColor(from: self.pokemonDescriptionView, to: self.typesView)
-            self.setBackgroundColor(from: self.pokemonDescriptionView, to: self.backgroundView)
-            self.setBackgroundColor(from: self.pokemonDescriptionView, to: self.nextOrPreviewView)
-            self.setBackgroundColor(from: self.pokemonType2Label, to: self.statsView)
-            self.setBackgroundColor(from: self.pokemonType2Label, to: self.heightAndWeightView)
-            
-            
-            
-            //MARK: - Label's background
-            self.setBackgroundColor(from: self.pokemonDescriptionView, to: self.pokemonIdLabel)
-            self.setBackgroundColor(from: self.pokemonDescriptionView, to: self.pokemonNameLabel)
-            self.setBackgroundColor(from: self.pokemonType2Label, to: self.heightLabel)
-            self.setBackgroundColor(from: self.pokemonType2Label, to: self.weightLabel)
-            self.setBackgroundColor(from: self.pokemonType2Label, to: self.statsLabel)
-            self.setBackgroundColor(from: self.pokemonType2Label, to: self.hpLabel)
-            self.setBackgroundColor(from: self.pokemonType2Label, to: self.attackLabel)
-            self.setBackgroundColor(from: self.pokemonType2Label, to: self.defenseLabel)
-            self.setBackgroundColor(from: self.pokemonType2Label, to: self.specialAttackLabel)
-            self.setBackgroundColor(from: self.pokemonType2Label, to: self.specialDefenseLabel)
-            self.setBackgroundColor(from: self.pokemonType2Label, to: self.speedLabel)
+            self.setName(type: typeName1, to: pokemonType2Label)
+            self.setName(type: typeName0, to: pokemonType1Label)
+            self.setBackgroundColor(origin: self.pokemonDescriptionView, destiny: self.typesView)
+            self.setBackgroundColor(origin: self.pokemonDescriptionView, destiny: self.backgroundView)
+            self.setBackgroundColor(origin: self.pokemonDescriptionView, destiny: self.nextOrPreviewView)
+            self.setBackgroundColor(origin: self.pokemonType2Label, destiny: self.statsView)
+            self.setBackgroundColor(origin: self.pokemonType2Label, destiny: self.heightAndWeightView)
+            self.setBackgroundColor(origin: self.pokemonDescriptionView, destiny: self.pokemonIdLabel)
+            self.setBackgroundColor(origin: self.pokemonDescriptionView, destiny: self.pokemonNameLabel)
+            self.setBackgroundColor(origin: self.pokemonType2Label, destiny: self.heightLabel)
+            self.setBackgroundColor(origin: self.pokemonType2Label, destiny: self.weightLabel)
+            self.setBackgroundColor(origin: self.pokemonType2Label, destiny: self.statsLabel)
+            self.setBackgroundColor(origin: self.pokemonType2Label, destiny: self.hpLabel)
+            self.setBackgroundColor(origin: self.pokemonType2Label, destiny: self.attackLabel)
+            self.setBackgroundColor(origin: self.pokemonType2Label, destiny: self.defenseLabel)
+            self.setBackgroundColor(origin: self.pokemonType2Label, destiny: self.specialAttackLabel)
+            self.setBackgroundColor(origin: self.pokemonType2Label, destiny: self.specialDefenseLabel)
+            self.setBackgroundColor(origin: self.pokemonType2Label, destiny: self.speedLabel)
             self.pokemonIdLabel.textColor = .black
             self.pokemonNameLabel.textColor = .black
             self.heightLabel.textColor = pokemonType2Label.textColor
@@ -429,96 +392,84 @@ extension PokemonDetailsViewController{
             self.speedLabel.textColor = pokemonType2Label.textColor
             self.paintIfAbility(pokemon: pokemon)
             self.addBorder(statsLabel)
-            
-            
-            //MARK: - Buttons' background
-            self.setBackgroundColor(from: pokemonType1Label, to: favouritesView)
-            self.setBackgroundColor(from: pokemonType1Label, to: favouritesButton)
+            self.setBackgroundColor(origin: pokemonType1Label, destiny: favouritesView)
+            self.setBackgroundColor(origin: pokemonType1Label, destiny: favouritesButton)
             self.favouritesButton.setTitleColor(pokemonType1Label.textColor, for: .normal)
             self.nextButton.backgroundColor = pokemonDescriptionView.backgroundColor
             self.previewButton.backgroundColor = pokemonDescriptionView.backgroundColor
-
-            
-        } else{
+        } else {
             self.paintType(label: self.pokemonType1Label)
-            guard let typeName = pokemon.types[0].type?.name else{return}
+            guard let typeName = pokemon.types[0].type?.name else {return}
             self.setName(type: typeName, to: pokemonType1Label)
             self.pokemonType2Label.isHidden = true
-            self.setBackgroundColor(from: self.pokemonType1Label, to: self.pokemonDescriptionView)
-            self.setBackgroundColor(from: self.pokemonType1Label, to: self.typesView)
-            self.setBackgroundColor(from: self.pokemonType1Label, to: self.backgroundView)
-            self.setBackgroundColor(from: self.pokemonType1Label, to: self.nextOrPreviewView)
-            self.setBackgroundColor(from: self.pokemonType1Label, to: self.nextButton)
-            self.setBackgroundColor(from: self.pokemonType1Label, to: self.previewButton)
-            self.setBackgroundColor(from: self.pokemonType1Label, to: self.pokemonIdLabel)
-            self.setBackgroundColor(from: self.pokemonType1Label, to: self.pokemonNameLabel)
-            
+            self.setBackgroundColor(origin: self.pokemonType1Label, destiny: self.pokemonDescriptionView)
+            self.setBackgroundColor(origin: self.pokemonType1Label, destiny: self.typesView)
+            self.setBackgroundColor(origin: self.pokemonType1Label, destiny: self.backgroundView)
+            self.setBackgroundColor(origin: self.pokemonType1Label, destiny: self.nextOrPreviewView)
+            self.setBackgroundColor(origin: self.pokemonType1Label, destiny: self.nextButton)
+            self.setBackgroundColor(origin: self.pokemonType1Label, destiny: self.previewButton)
+            self.setBackgroundColor(origin: self.pokemonType1Label, destiny: self.pokemonIdLabel)
+            self.setBackgroundColor(origin: self.pokemonType1Label, destiny: self.pokemonNameLabel)
             self.statsView.backgroundColor = .customButtonBackgroundColor
-            self.setBackgroundColor(from: self.statsView, to: self.hpLabel)
+            self.setBackgroundColor(origin: self.statsView, destiny: self.hpLabel)
             self.hpLabel.textColor = .black
-            self.setBackgroundColor(from: self.statsView, to: self.attackLabel)
+            self.setBackgroundColor(origin: self.statsView, destiny: self.attackLabel)
             self.attackLabel.textColor = .black
-            self.setBackgroundColor(from: self.statsView, to: self.defenseLabel)
+            self.setBackgroundColor(origin: self.statsView, destiny: self.defenseLabel)
             self.defenseLabel.textColor = .black
-            self.setBackgroundColor(from: self.statsView, to: self.specialAttackLabel)
+            self.setBackgroundColor(origin: self.statsView, destiny: self.specialAttackLabel)
             self.specialAttackLabel.textColor = .black
-            self.setBackgroundColor(from: self.statsView, to: self.specialDefenseLabel)
+            self.setBackgroundColor(origin: self.statsView, destiny: self.specialDefenseLabel)
             self.specialDefenseLabel.textColor = .black
-            self.setBackgroundColor(from: self.statsView, to: self.speedLabel)
+            self.setBackgroundColor(origin: self.statsView, destiny: self.speedLabel)
             self.speedLabel.textColor = .black
-            self.setBackgroundColor(from: self.statsView, to: self.statsLabel)
+            self.setBackgroundColor(origin: self.statsView, destiny: self.statsLabel)
             self.statsLabel.textColor = .black
-            self.setBackgroundColor(from: self.statsView, to: self.weightLabel)
+            self.setBackgroundColor(origin: self.statsView, destiny: self.weightLabel)
             self.weightLabel.textColor = .black
-            self.setBackgroundColor(from: self.statsView, to: self.heightLabel)
+            self.setBackgroundColor(origin: self.statsView, destiny: self.heightLabel)
             self.heightLabel.textColor = .black
-            self.setBackgroundColor(from: self.statsView, to: self.heightAndWeightView)
+            self.setBackgroundColor(origin: self.statsView, destiny: self.heightAndWeightView)
             self.paintIfAbility(pokemon: pokemon)
             self.addBorder(statsLabel)
-            
-            
-            //MARK: - Buttons' background
-            self.setBackgroundColor(from: statsView, to: favouritesView)
-            self.setBackgroundColor(from: statsView, to: favouritesButton)
+            self.setBackgroundColor(origin: statsView, destiny: favouritesView)
+            self.setBackgroundColor(origin: statsView, destiny: favouritesButton)
             self.favouritesButton.setTitleColor(hpLabel.textColor, for: .normal)
             self.nextButton.backgroundColor = pokemonDescriptionView.backgroundColor
             self.previewButton.backgroundColor = pokemonDescriptionView.backgroundColor
-            
-            
         }
     }
-    func addBorder(_ label: UILabel){
+    func addBorder(_ label: UILabel) {
         label.layer.borderColor = label.textColor.cgColor
         label.layer.borderWidth = 2
         label.layer.cornerRadius = 5
     }
-    func paintIfAbility(pokemon: PokemonData){
-        if pokemon.types.count >= 2{
-            if pokemon.abilities.count >= 2{
-                guard let abilityName = pokemon.abilities[1].ability?.name else{return}
-                self.setBackgroundColor(from: self.pokemonType2Label, to: self.ability1Label)
-                self.setBackgroundColor(from: self.pokemonType2Label, to: self.ability2Label)
+    func paintIfAbility(pokemon: PokemonData) {
+        if pokemon.types.count >= 2 {
+            if pokemon.abilities.count >= 2 {
+                guard let abilityName = pokemon.abilities[1].ability?.name else {return}
+                self.setBackgroundColor(origin: self.pokemonType2Label, destiny: self.ability1Label)
+                self.setBackgroundColor(origin: self.pokemonType2Label, destiny: self.ability2Label)
                 self.ability1Label.textColor = pokemonType2Label.textColor
                 self.ability2Label.textColor = pokemonType2Label.textColor
                 self.ability2Label.text = abilityName.uppercased()
-            }else{
+            } else {
                 self.ability2Label.isHidden = true
             }
-        }else{
-            if pokemon.abilities.count >= 2{
-                guard let abilityName = pokemon.abilities[1].ability?.name else{return}
-                self.setBackgroundColor(from: self.statsView, to: self.ability1Label)
-                self.setBackgroundColor(from: self.statsView, to: self.ability2Label)
+        } else {
+            if pokemon.abilities.count >= 2 {
+                guard let abilityName = pokemon.abilities[1].ability?.name else {return}
+                self.setBackgroundColor(origin: self.statsView, destiny: self.ability1Label)
+                self.setBackgroundColor(origin: self.statsView, destiny: self.ability2Label)
                 self.ability1Label.textColor = .black
                 self.ability2Label.textColor = .black
                 self.ability2Label.text = abilityName.uppercased()
-            }else{
+            } else {
                 self.ability2Label.isHidden = true
             }
         }
-
     }
-    func paintType(label: UILabel){
+    func paintType(label: UILabel) {
         switch label.text?.lowercased() {
         case TypeName.normal.rawValue:
             setPokemonBackgroundColor(168, 168, 120, label)
@@ -605,28 +556,24 @@ extension PokemonDetailsViewController{
             setPokemonTextColor(.black, label)
         }
     }
-    func setPokemonBackgroundColor(_ red: CGFloat, _ green: CGFloat, _ blue: CGFloat, _ label: UILabel){
+    func setPokemonBackgroundColor(_ red: CGFloat, _ green: CGFloat, _ blue: CGFloat, _ label: UILabel) {
         label.backgroundColor = .init(red: red/255, green: green/255, blue: blue/255, alpha: 1)
     }
-    func setPokemonTextColor(_ color: UIColor, _ label: UILabel){
+    func setPokemonTextColor(_ color: UIColor, _ label: UILabel) {
         label.textColor = color
     }
-    func setBackgroundColor(from: UIView, to: UIView){
-        to.backgroundColor = from.backgroundColor
+    func setBackgroundColor(origin: UIView, destiny: UIView) {
+        destiny.backgroundColor = origin.backgroundColor
     }
-    
 }
 
-
-
-//MARK: - Image saving method
-extension PokemonDetailsViewController{
-    //MARK: - saveImage
+extension PokemonDetailsViewController {
     func saveImage(image: UIImage) -> Bool {
         guard let data = image.pngData() else {
             return false
         }
-        guard let directory = try? FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false) as NSURL else {
+        guard let directory = try? FileManager.default.url(
+            for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false) as NSURL else {
             return false
         }
         do {

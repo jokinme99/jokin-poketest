@@ -8,25 +8,21 @@ import UIKit
 import AlamofireImage
 import Zero
 
-protocol PokemonCellDelegate: AnyObject{
+protocol PokemonCellDelegate: AnyObject {
     var presenter: PokemonListPresenterDelegate? {get set}
     func updatePokemonInCell(pokemonToFetch: Results)
 }
 
 class PokemonCell: UITableViewCell {
-    
     @IBOutlet weak var pokemonBubble: UIView!
     @IBOutlet weak var pokemonNameLabel: UILabel!
     @IBOutlet weak var idLabel: UILabel!
-    
     var pokemon: Results?
     var view: PokemonListViewDelegate?
     var presenter: PokemonListPresenterDelegate?
-    
     override func awakeFromNib() {
         super.awakeFromNib()
         loadStyle()
-        
     }
     override func prepareForReuse() {
         super.prepareForReuse()
@@ -34,27 +30,25 @@ class PokemonCell: UITableViewCell {
         pokemonNameLabel.text = nil
         idLabel.text = nil
     }
-    
 }
 
-extension PokemonCell{
-    
-    func loadStyle(){
+extension PokemonCell {
+    func loadStyle() {
         idLabel.apply(ZeroTheme.Label.body1Bold)
         pokemonNameLabel.apply(ZeroTheme.Label.body2)
     }
 }
 
-extension PokemonCell: PokemonCellDelegate{
+extension PokemonCell: PokemonCellDelegate {
 
     func updatePokemonInCell(pokemonToFetch: Results) {
         self.pokemon = pokemonToFetch
-        if Reachability.isConnectedToNetwork(){
-            guard let name = pokemonToFetch.name else{return}
-            PokemonManager.shared.fetchPokemon(pokemonSelectedName: name,{ pokemonData, error in
+        if Reachability.isConnectedToNetwork() {
+            guard let name = pokemonToFetch.name else { return }
+            PokemonManager.shared.fetchPokemon(pokemonSelectedName: name, { pokemonData, error in
                 if let error = error {
                     print(error)
-                }else{
+                } else {
                     guard let pokemonData = pokemonData else {return}
                     self.setColor((pokemonData.types[0].type?.name ?? ""), self.pokemonNameLabel)
                     self.idLabel.text = "#\(pokemonData.id)"
@@ -62,30 +56,26 @@ extension PokemonCell: PokemonCellDelegate{
                 }
                 self.view?.updateTableView()
             })
-        }else{
+        } else {
             let pokemonDataList = DDBBManager.shared.get(PokemonData.self)
-            for pokemonData in pokemonDataList {
-                if pokemonData.name == pokemonToFetch.name {
-                    self.setColor((pokemonData.types[0].type?.name ?? ""), self.pokemonNameLabel)
-                    self.idLabel.text = "#\(pokemonData.id)"
-                    self.setColor((pokemonData.types[0].type?.name ?? ""), self.idLabel)
-                }
+            for pokemonData in pokemonDataList where pokemonData.name == pokemonToFetch.name {
+                self.setColor((pokemonData.types[0].type?.name ?? ""), self.pokemonNameLabel)
+                self.idLabel.text = "#\(pokemonData.id)"
+                self.setColor((pokemonData.types[0].type?.name ?? ""), self.idLabel)
             }
         }
         self.pokemonNameLabel.text = pokemonToFetch.name?.capitalized
     }
 }
 
-extension PokemonCell{
-    
-    func setPokemonBackgroundColor(_ red: CGFloat, _ green: CGFloat, _ blue: CGFloat, _ label: UILabel){
+extension PokemonCell {
+    func setPokemonBackgroundColor(_ red: CGFloat, _ green: CGFloat, _ blue: CGFloat, _ label: UILabel) {
         label.backgroundColor = .init(red: red/255, green: green/255, blue: blue/255, alpha: 1)
     }
-  
-    func setPokemonTextColor(_ color: UIColor){
+    func setPokemonTextColor(_ color: UIColor) {
         pokemonNameLabel.textColor = color
     }
-    func setColor(_ type: String, _ label: UILabel){
+    func setColor(_ type: String, _ label: UILabel) {
         switch type {
         case TypeName.normal.rawValue:
             setPokemonBackgroundColor(168, 168, 120, label)
@@ -153,4 +143,3 @@ extension PokemonCell{
         }
     }
 }
-

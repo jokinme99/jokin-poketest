@@ -4,7 +4,7 @@
 //
 //  Created by Jokin Egia on 10/11/21.
 //
-class MainTabBarInteractor : MainTabBarInteractorDelegate {
+class MainTabBarInteractor: MainTabBarInteractorDelegate {
 
     var presenter: MainTabBarInteractorOutputDelegate?
 

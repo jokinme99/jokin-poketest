@@ -4,15 +4,12 @@
 //
 //  Created by Jokin Egia on 19/11/21.
 //
-class LoginPresenter{
+class LoginPresenter {
     var wireframe: LoginWireframeDelegate?
-    
 }
 
-extension LoginPresenter: LoginPresenterDelegate{
+extension LoginPresenter: LoginPresenterDelegate {
     func openMainTabBar() {
         wireframe?.openMainTabBar()
     }
 }
-
-

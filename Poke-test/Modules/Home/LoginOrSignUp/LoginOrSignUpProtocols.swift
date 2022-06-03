@@ -6,7 +6,6 @@
 //
 import UIKit
 
-
 protocol LoginOrSignUpWireframeDelegate: AnyObject {
     static func createLoginOrSignUpModule() -> UIViewController
     func openLoginWindow()
@@ -20,4 +19,3 @@ protocol LoginOrSignUpPresenterDelegate: AnyObject {
     func openSignUpWindow()
     func openPokemonListWindow()
 }
-

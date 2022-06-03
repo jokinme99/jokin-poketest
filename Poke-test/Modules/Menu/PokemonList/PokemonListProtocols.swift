@@ -36,7 +36,7 @@ protocol PokemonListPresenterDelegate: AnyObject {
 protocol PokemonListInteractorDelegate: AnyObject {
     var presenter: PokemonListInteractorOutputDelegate? {get set}
     func fetchPokemonList()
-    func fetchPokemonType(type:String)
+    func fetchPokemonType(type: String)
     func addFavourite(pokemon: Results)
     func fetchFavourites()
 }
@@ -49,4 +49,3 @@ protocol PokemonListInteractorOutputDelegate: AnyObject {
     func didIsSaved(saved: Bool)
     func didFetchFavourites(favourites: [Favourites])
 }
-

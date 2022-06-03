@@ -7,7 +7,7 @@
 
 import UIKit
 
-extension UINib{
+extension UINib {
     static let customCell1 = UINib(nibName: "PokemonCell", bundle: nil)
     static let customCell2 = UINib(nibName: "CollectionCell", bundle: nil)
 }

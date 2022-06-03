@@ -6,7 +6,6 @@
 //
 import UIKit
 
-
 protocol SignUpWireframeDelegate: AnyObject {
     static func createSignUpModule() -> UIViewController
     func openMainTabBar()
@@ -16,4 +15,3 @@ protocol SignUpPresenterDelegate: AnyObject {
     var wireframe: SignUpWireframeDelegate? {get set}
     func openMainTabBar()
 }
-

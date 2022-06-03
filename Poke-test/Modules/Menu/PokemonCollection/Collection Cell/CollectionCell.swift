@@ -8,22 +8,17 @@
 import UIKit
 import Zero
 
-protocol CollectionCellDelegate: AnyObject{
+protocol CollectionCellDelegate: AnyObject {
     var presenter: PokemonCollectionPresenterDelegate? {get set}
     func updatePokemonCollection(pokemonToUpdate: Results)
 }
 
-
-//MARK: - CollectionCell
 class CollectionCell: UICollectionViewCell {
-    
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
-    
     var pokemon: Results?
     var viewDelegate: PokemonCollectionViewDelegate?
     var presenter: PokemonCollectionPresenterDelegate?
-    
     override func awakeFromNib() {
         super.awakeFromNib()
         nameLabel.adjustsFontSizeToFitWidth = true
@@ -38,50 +33,39 @@ class CollectionCell: UICollectionViewCell {
     }
 }
 
-extension CollectionCell: CollectionCellDelegate{
+extension CollectionCell: CollectionCellDelegate {
     func updatePokemonCollection(pokemonToUpdate: Results) {
         self.pokemon = pokemonToUpdate
-        if Reachability.isConnectedToNetwork(){
-            guard let name = pokemonToUpdate.name else{return}
-            PokemonManager.shared.fetchPokemon(pokemonSelectedName: name, {
-                pokemonData, error in
+        if Reachability.isConnectedToNetwork() {
+            guard let name = pokemonToUpdate.name else {return}
+            PokemonManager.shared.fetchPokemon(pokemonSelectedName: name, { pokemonData, error in
                 if let error = error {
                     print(error)
-                }else{
+                } else {
                     guard let pokemonData = pokemonData else {return}
-                    //self.idLabel.text = "Id: \(pokemonData.id)"
                     self.nameLabel.text = "\(pokemonData.name?.capitalized ?? "")"
-                    self.transformUrlToImage(url: pokemonData.sprites?.front_default ?? "")
+                    self.transformUrlToImage(url: pokemonData.sprites?.frontDefault ?? "")
                     self.setBackgroundColor(pokemonData.types[0].type?.name ?? "", self.nameLabel)
                     self.backgroundColor = self.nameLabel.backgroundColor
                 }
                 self.viewDelegate?.updateCollectionView()
             })
-        }else{
+        } else {
             let pokemonDataList = DDBBManager.shared.get(PokemonData.self)
-            for pokemonData in pokemonDataList{
-                if pokemonData.name == pokemonToUpdate.name{
-                    self.setBackgroundColor(pokemonData.types[0].type?.name ?? "", self.nameLabel)
-                    self.nameLabel.text = "\(pokemonData.name?.capitalized ?? "")"
-                }
+            for pokemonData in pokemonDataList where pokemonData.name == pokemonToUpdate.name {
+                self.setBackgroundColor(pokemonData.types[0].type?.name ?? "", self.nameLabel)
+                self.nameLabel.text = "\(pokemonData.name?.capitalized ?? "")"
             }
         }
     }
-    
-    func transformUrlToImage(url: String){
-        if let downloadURL = URL(string: url){
-            if Reachability.isConnectedToNetwork(){
-                return self.imageView.af.setImage(withURL: downloadURL)
-            }else{
-                //There's no way to save all the images offline
-                return self.imageView.af.setImage(withURL: downloadURL)
-            }
-        }else{
-            
+    func transformUrlToImage(url: String) {
+        if let downloadURL = URL(string: url) {
+            // There's no way to save all the images offline
+            return self.imageView.af.setImage(withURL: downloadURL)
         }
     }
-    func setBackgroundColor(_ type: String, _ label: UILabel){
-        switch type{
+    func setBackgroundColor(_ type: String, _ label: UILabel) {
+        switch type {
         case TypeName.normal.rawValue:
             setColor(168, 168, 120, label)
             setTextColor(.white, label)
@@ -147,11 +131,10 @@ extension CollectionCell: CollectionCellDelegate{
             setTextColor(.black, label)
         }
     }
-    func setColor(_ red: CGFloat, _ green: CGFloat, _ blue: CGFloat, _ label: UILabel){
+    func setColor(_ red: CGFloat, _ green: CGFloat, _ blue: CGFloat, _ label: UILabel) {
         label.backgroundColor = .init(red: red/255, green: green/255, blue: blue/255, alpha: 1)
-        
     }
-    func setTextColor(_ color : UIColor, _ label: UILabel){
+    func setTextColor(_ color: UIColor, _ label: UILabel) {
         label.textColor = color
     }
 }

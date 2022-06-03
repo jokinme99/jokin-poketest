@@ -8,7 +8,6 @@ import UIKit
 import RealmSwift
 
 class DDBBManager {
-    
     static let shared = DDBBManager()
     private let configuration: Realm.Configuration!
     private init() {
@@ -16,7 +15,6 @@ class DDBBManager {
                                               in: .userDomainMask)
             .last?
             .appendingPathComponent("pokedexapp_v1.realm")
-        
         configuration = Realm.Configuration(fileURL: url,
                                             inMemoryIdentifier: nil,
                                             syncConfiguration: nil,
@@ -28,78 +26,68 @@ class DDBBManager {
                                             shouldCompactOnLaunch: nil,
                                             objectTypes: nil)
     }
-    
-    //MARK: - Removes all data in Realm's DB
-    func removeAll(){
-        do{
+
+    func removeAll() {
+        do {
             let realm = try Realm(configuration: self.configuration)
-            try realm.write{
+            try realm.write {
                 realm.deleteAll()
             }
-            
-        }catch{
+        } catch {
             print("DDBBManager", error)
-            
         }
     }
-    
-    //MARK: - Writes data into Realm's DB
-    func write(_ block:()-> Void, finish: ((Error?)-> Void)? = nil){
-        do{
+
+    func write(_ block:() -> Void, finish: ((Error?) -> Void)? = nil) {
+        do {
             let realm = try Realm(configuration: self.configuration)
             try realm.write(block)
             finish?(nil)
-        }catch{
+        } catch {
             print("DDBBManager", error)
             finish?(error)
         }
     }
-    
-    //MARK: - Saves data into Realm's DB (ADD)
+
     func save <T: Object>(_ object: T, _ block: ((Error?) -> Void)?) {
-        do{
+        do {
             let realm = try Realm(configuration: self.configuration)
             try realm.write {
                 realm.add(object, update: .error)
                 block?(nil)
             }
-        }catch{
+        } catch {
             print(error)
             block?(error)
-            
         }
     }
-    
-    //MARK: - Deletes data from Realms's DB
-    func delete <T: Object>(_ object: T, _ block: ((Error?)-> Void)?){
-        do{
+
+    func delete <T: Object>(_ object: T, _ block: ((Error?) -> Void)?) {
+        do {
             let realm = try Realm(configuration: self.configuration)
-            try realm.write{
+            try realm.write {
                 realm.delete(object)
                 block?(nil)
             }
-        }catch{
+        } catch {
             print(error)
             block?(error)
         }
     }
-    
-    //MARK: - Gets data from Realm's DB
-    func get <T: Object>(_ object: T.Type, filter: String? = nil)-> [T]{
+
+    func get <T: Object>(_ object: T.Type, filter: String? = nil) -> [T] {
         var result: [T] = [T]()
-        do{
+        do {
             let realm = try Realm(configuration: self.configuration)
             let objects = realm.objects(object)
-            if let filter = filter{
+            if let filter = filter {
                 result = Array(objects.filter(filter))
-                
-            }else{
+            } else {
                 result = Array(objects)
             }
-        }catch{
+        } catch {
             print(error)
         }
         return result
     }
 }
-
