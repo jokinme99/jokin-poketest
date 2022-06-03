@@ -7,8 +7,7 @@
 import UIKit
 import RealmSwift
 
-//MARK: - Pokemons
-class Results: Object, Codable{
+class Results: Object, Codable {
     @objc dynamic var name: String?
     override static func primaryKey() -> String? {
         return "name"
@@ -18,23 +17,24 @@ class Results: Object, Codable{
         self.name = name
     }
 }
-class PokemonListData:Object, Codable{
+class PokemonListData: Object, Codable {
     var results = List<Results>()
-    public required convenience init(from decoder: Decoder) throws { //Needed to set the array in realm Array[] -> List<>
+    public required convenience init(from decoder: Decoder) throws {
         self.init()
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        let favouritePokemonsList = try container.decodeIfPresent([Results].self, forKey: .results) ?? [Results()]
+        let favouritePokemonsList = try container.decodeIfPresent(
+            [Results].self, forKey: .results) ?? [Results()]
         results.append(objectsIn: favouritePokemonsList)
     }
 }
-class Favourites{
+class Favourites {
     var name: String?
     convenience init(name: String) {
         self.init()
         self.name = name
     }
 }
- //MARK: - Pokemons' details
+
  class PokemonData: Object, Codable {
      @objc dynamic var name: String?
      @objc dynamic var sprites: Sprites?
@@ -44,7 +44,9 @@ class Favourites{
      @objc dynamic var weight: Int = 0
      var stats = List<Stats>()
      var abilities = List<Abilities>()
-     public required convenience init(from decoder: Decoder, name:String, sprites: Sprites, types: List<Types>, id: Int, height: Int, weight: Int, stats: List<Stats>, abilities: List<Abilities>) throws {
+     public required convenience init(from decoder: Decoder, name: String, sprites: Sprites,
+                                      types: List<Types>, id: Int, height: Int, weight: Int,
+                                      stats: List<Stats>, abilities: List<Abilities>) throws {
          self.init()
          let container = try decoder.container(keyedBy: CodingKeys.self)
          self.name = name
@@ -67,38 +69,43 @@ class Favourites{
          return "name"
      }
  }
- class Sprites: EmbeddedObject, Codable{
-     @objc dynamic var front_default: String?
-     
-     
-     
+ class Sprites: EmbeddedObject, Codable {
+     @objc dynamic var frontDefault: String?
+     enum CodingKeys: String, CodingKey {
+         case frontDefault = "front_default"
+     }
+
  }
- class Types: EmbeddedObject, Codable{
+ class Types: EmbeddedObject, Codable {
     @objc dynamic var type: Type?
 
 }
- class Type: EmbeddedObject, Codable{ //Not working
-     @objc dynamic var name: String? //el tipo no es unico
+ class Type: EmbeddedObject, Codable {
+     @objc dynamic var name: String?
  }
- class Stats: EmbeddedObject, Codable{
-     @objc dynamic var base_stat: Int = 0 //las estadisticas no son unicas
-     convenience init(base_stat: Int) {
+ class Stats: EmbeddedObject, Codable {
+     @objc dynamic var baseStat: Int = 0
+     enum CodingKeys: String, CodingKey {
+         case baseStat = "base_stat"
+     }
+     convenience init(baseStat: Int) {
          self.init()
-         self.base_stat = base_stat
+         self.baseStat = baseStat
      }
  }
- class Abilities: EmbeddedObject, Codable{
+ class Abilities: EmbeddedObject, Codable {
      @objc dynamic var ability: Ability?
  }
- class Ability: EmbeddedObject, Codable{//Not working
-     @objc dynamic var name: String? //las habilidades no son unicas
+ class Ability: EmbeddedObject, Codable {
+     @objc dynamic var name: String?
 
  }
-//MARK: - Pokemons' types
-class PokemonFilterListData: Object, Codable{//Do the DDBBManager in DataManager
+
+class PokemonFilterListData: Object, Codable {
     @objc dynamic var name: String?
     var pokemon = List<Pokemons>()
-    public required convenience init(from decoder: Decoder, name: String) throws { //Needed to set the array in realm Array[] -> List<>
+    public required convenience init(
+        from decoder: Decoder, name: String) throws {
         self.init()
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.name = name
@@ -109,19 +116,18 @@ class PokemonFilterListData: Object, Codable{//Do the DDBBManager in DataManager
         return "name"
     }
 }
-class Pokemons: Object, Codable{
+class Pokemons: Object, Codable {
     @objc dynamic var pokemon: Pokemon?
 }
-class Pokemon: EmbeddedObject, Codable{ //Not working
+class Pokemon: EmbeddedObject, Codable {
     @objc dynamic var name: String?
 
 }
 
-//MARK: - DictionaryPokemon
-class PokemonDictionary{
+class PokemonDictionary {
     var pokemonInDict: Results?
     var pokemonId: Int?
-    init(pokemonInDict: Results, pokemonId: Int){
+    init(pokemonInDict: Results, pokemonId: Int) {
         self.pokemonInDict = pokemonInDict
         self.pokemonId = pokemonId
     }

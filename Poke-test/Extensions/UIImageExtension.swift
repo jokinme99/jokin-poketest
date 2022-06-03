@@ -7,7 +7,7 @@
 
 import UIKit
 
-extension UIImage{
+extension UIImage {
     static let customTabBarImage1 = UIImage(named: "listNotSelected")
     static let customTabBarImageSelected1 = UIImage(named: "listSelected")
     static let customTabBarImage2 = UIImage(named: "fullStar")

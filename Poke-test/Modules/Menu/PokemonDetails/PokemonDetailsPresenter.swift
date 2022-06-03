@@ -6,26 +6,22 @@
 //
 import UIKit
 
-class PokemonDetailsPresenter{
-    
+class PokemonDetailsPresenter {
     var view: PokemonDetailsViewDelegate?
     var interactor: PokemonDetailsInteractorDelegate?
     var wireframe: PokemonDetailsWireframeDelegate?
     var cell: PokemonCellDelegate?
     var tableView: PokemonListViewDelegate?
-    
 }
 
-extension PokemonDetailsPresenter: PokemonDetailsPresenterDelegate{
+extension PokemonDetailsPresenter: PokemonDetailsPresenterDelegate {
 
     func fetchPokemon(pokemon: Results) {
         interactor?.fetchPokemon(pokemon: pokemon)
     }
-    
-    func fetchFavourites(){
+    func fetchFavourites() {
         interactor?.fetchFavouritePokemons()
     }
-    
     func addFavourite(pokemon: Results) {
         interactor?.addFavourite(pokemon: pokemon)
     }
@@ -34,11 +30,10 @@ extension PokemonDetailsPresenter: PokemonDetailsPresenterDelegate{
         interactor?.deleteFavourite(pokemon: pokemon)
     }
 
-    func openLoginSignUpWindow(){
+    func openLoginSignUpWindow() {
         wireframe?.openLoginSignUpWindow()
     }
-    
-    func openARKitView(){
+    func openARKitView() {
         wireframe?.openARKitView()
     }
 }

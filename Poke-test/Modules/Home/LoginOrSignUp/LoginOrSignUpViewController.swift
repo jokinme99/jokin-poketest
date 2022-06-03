@@ -15,13 +15,11 @@ class LoginOrSignUpViewController: UIViewController {
     @IBOutlet weak var toSignUpMenuButton: ZeroOutlineButton!
     @IBOutlet weak var notLoginOrSignUpButton: ZeroTextButton!
     @IBOutlet weak var titleLabel: UILabel!
-    
     var presenter: LoginOrSignUpPresenterDelegate?
     var alert = ZeroDialog()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        if UIApplication.isFirstLaunch(){
+        if UIApplication.isFirstLaunch() {
             alert.show(
                 title: MenuConstants.saveDataTitle,
                 info: MenuConstants.saveDataInfo,
@@ -39,14 +37,13 @@ class LoginOrSignUpViewController: UIViewController {
     }
 }
 
-extension LoginOrSignUpViewController{
-    
-    func crashlyticsErrorSending(){
-        Crashlytics.crashlytics().setCustomValue(CrashlyticsConstants.LoginOrSignUp.message, forKey: CrashlyticsConstants.key)
+extension LoginOrSignUpViewController {
+    func crashlyticsErrorSending() {
+        Crashlytics.crashlytics().setCustomValue(
+            CrashlyticsConstants.LoginOrSignUp.message, forKey: CrashlyticsConstants.key)
         Crashlytics.crashlytics().log(CrashlyticsConstants.LoginOrSignUp.log)
     }
-    
-    func loadButtonsStyle(){
+    func loadButtonsStyle() {
         toLoginMenuButton.setTitle(HomeConstants.loginButtonTitle, for: .normal)
         toSignUpMenuButton.setTitle(HomeConstants.signUpButtonTitle, for: .normal)
         notLoginOrSignUpButton.setTitle(HomeConstants.noUserButtonTitle, for: .normal)
@@ -60,8 +57,7 @@ extension LoginOrSignUpViewController{
         toLoginMenuButton.layer.borderColor = UIColor.customButtonBackgroundColor?.cgColor
         notLoginOrSignUpButton.apply(ZeroTheme.Button.normal)
     }
-    
-    func loadNavItemStyle(){
+    func loadNavItemStyle() {
         titleLabel.text = HomeConstants.welcomeTitle
         navigationItem.backButtonTitle = HomeConstants.backButtonTitle
         titleLabel.apply(ZeroTheme.Label.head1)
@@ -70,10 +66,9 @@ extension LoginOrSignUpViewController{
     }
 }
 
-extension LoginOrSignUpViewController{
-    
+extension LoginOrSignUpViewController {
     @IBAction func pressedToLoginMenuButton(_ sender: Any) {
-        if Reachability.isConnectedToNetwork(){
+        if Reachability.isConnectedToNetwork() {
             presenter?.openLoginWindow()
         } else {
             alert.show(
@@ -88,9 +83,8 @@ extension LoginOrSignUpViewController{
             )
         }
     }
-    
     @IBAction func pressedToSignUpMenuButton(_ sender: Any) {
-        if Reachability.isConnectedToNetwork(){
+        if Reachability.isConnectedToNetwork() {
             presenter?.openSignUpWindow()
         } else {
             alert.show(
@@ -104,17 +98,13 @@ extension LoginOrSignUpViewController{
                 completionCancel: nil
             )
         }
-        
     }
-    
     @IBAction func pressedNotLoginOrSignUpButton(_ sender: Any) {
         presenter?.openPokemonListWindow()
     }
-    
-    func openSettings(){
-        if let url = URL(string: UIApplication.openSettingsURLString){
+    func openSettings() {
+        if let url = URL(string: UIApplication.openSettingsURLString) {
             UIApplication.shared.open(url)
         }
     }
-    
 }

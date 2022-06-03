@@ -6,14 +6,11 @@
 //
 import UIKit
 
-class SignUpWireframe{
-    
+class SignUpWireframe {
     var viewController: UIViewController?
-    
 }
 
-extension SignUpWireframe: SignUpWireframeDelegate{
-    
+extension SignUpWireframe: SignUpWireframeDelegate {
     static func createSignUpModule() -> UIViewController {
         let presenter = SignUpPresenter()
         let view = SignUpViewController()
@@ -25,7 +22,6 @@ extension SignUpWireframe: SignUpWireframeDelegate{
 
         return view
     }
-    
     func openMainTabBar() {
         let listModule = MainTabBarWireframe.createMainTabBarModule()
         let navigation = UINavigationController(rootViewController: listModule)

@@ -6,35 +6,34 @@
 //
 import Foundation
 
-enum TypeName: String{
-    case all = "all"
-    case normal = "normal"
-    case fighting = "fighting"
-    case flying = "flying"
-    case poison = "poison"
-    case ground = "ground"
-    case rock = "rock"
-    case bug = "bug"
-    case ghost = "ghost"
-    case steel = "steel"
-    case fire = "fire"
-    case water = "water"
-    case grass = "grass"
-    case electric = "electric"
-    case psychic = "psychic"
-    case ice = "ice"
-    case dragon = "dragon"
-    case dark = "dark"
-    case fairy = "fairy"
-    case unknown = "unknown"
-    case shadow = "shadow"
-    
-    var localized:String{
+enum TypeName: String {
+    case all
+    case normal
+    case fighting
+    case flying
+    case poison
+    case ground
+    case rock
+    case bug
+    case ghost
+    case steel
+    case fire
+    case water
+    case grass
+    case electric
+    case psychic
+    case ice
+    case dragon
+    case dark
+    case fairy
+    case unknown
+    case shadow
+    var localized: String {
         return NSLocalizedString(self.rawValue, comment: "")
     }
 }
 
-struct FirebaseErrors{
+struct FirebaseErrors {
     static let errorEmailAlreadyInUse = 17007
     static let errorCodeInvalidEmail = 17008
     static let errorCodeWrongPassword = 17009
@@ -42,7 +41,7 @@ struct FirebaseErrors{
     static let errorCodeWeakPassword = 17026
 }
 
-struct HomeConstants{
+struct HomeConstants {
     static let loginButtonTitle = NSLocalizedString("login", comment: "")
     static let signUpButtonTitle = NSLocalizedString("sign_up", comment: "")
     static let noUserButtonTitle = NSLocalizedString("access_no_user", comment: "")
@@ -71,7 +70,7 @@ struct HomeConstants{
     static let weakPasswordError = NSLocalizedString("weak_password_error", comment: "")
 }
 
-struct MenuConstants{
+struct MenuConstants {
     static let titleLogIn = NSLocalizedString("log_in", comment: "")
     static let titleLogOut = NSLocalizedString("log_out", comment: "")
     static let listTabBar = NSLocalizedString("list", comment: "")
@@ -110,38 +109,31 @@ struct MenuConstants{
     static let statsLabelTitle = NSLocalizedString("stats_label_title", comment: "")
 }
 
-
-
-
-
-struct CrashlyticsConstants{
+struct CrashlyticsConstants {
     static let key = "USER"
     struct LoginOrSignUp {
         static let message = "Not logged"
         static let log = "Error in MainTabBarViewController"
     }
-    struct Login{
+    struct Login {
         static let log = "Error in LoginViewController"
     }
-    struct SignUp{
+    struct SignUp {
         static let log = "Error in SignUpViewController"
     }
-    struct TabBar{
+    struct TabBar {
         static let log = "Error in MainTabBarViewController"
     }
-    struct List{
+    struct List {
         static let log = "Error in PokemonListViewController"
     }
-    struct Favourites{
+    struct Favourites {
         static let log = "Error in PokemonFavouritesViewController"
     }
-    struct Details{
+    struct Details {
         static let log = "Error in PokemonDetailsViewController"
     }
-    struct Collection{
+    struct Collection {
         static let log = "Error in PokemonCollectionView"
     }
 }
-
-
-

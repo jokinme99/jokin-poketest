@@ -6,13 +6,11 @@
 //
 import UIKit
 
-class PokemonFavouritesWireframe{
-    
+class PokemonFavouritesWireframe {
     var viewController: UIViewController?
-    
 }
 
-extension PokemonFavouritesWireframe: PokemonFavouritesWireframeDelegate{
+extension PokemonFavouritesWireframe: PokemonFavouritesWireframeDelegate {
 
     static func createPokemonFavouritesModule() -> UIViewController {
         let presenter = PokemonFavouritesPresenter()
@@ -30,13 +28,14 @@ extension PokemonFavouritesWireframe: PokemonFavouritesWireframeDelegate{
 
         return view
     }
-    
-    func openPokemonDetailsWindow(pokemon: Results, nextPokemon: Results, previousPokemon: Results, filtered: [Results]) {
-        let detailModule = PokemonDetailsWireframe.createPokemonDetailsModule(pokemon: pokemon, nextPokemon: nextPokemon, previousPokemon: previousPokemon, filtered: filtered)
+    func openPokemonDetailsWindow(
+        pokemon: Results, nextPokemon: Results, previousPokemon: Results, filtered: [Results]) {
+        let detailModule = PokemonDetailsWireframe.createPokemonDetailsModule(
+            pokemon: pokemon, nextPokemon: nextPokemon, previousPokemon: previousPokemon, filtered: filtered)
         viewController?.navigationController?.pushViewController(detailModule, animated: true)
     }
 
-    func openLoginSignUpWindow(){
+    func openLoginSignUpWindow() {
         let loginSignUpModule = LoginOrSignUpWireframe.createLoginOrSignUpModule()
         let navigation = UINavigationController(rootViewController: loginSignUpModule)
         let window = (UIApplication.shared.delegate as? AppDelegate)?.window
@@ -44,7 +43,7 @@ extension PokemonFavouritesWireframe: PokemonFavouritesWireframeDelegate{
         window?.makeKeyAndVisible()
     }
 
-    func openPokemonListWindow(){
+    func openPokemonListWindow() {
         let mainTabBarModule = MainTabBarWireframe.createMainTabBarModule()
         let navigation = UINavigationController(rootViewController: mainTabBarModule)
         let window = (UIApplication.shared.delegate as? AppDelegate)?.window

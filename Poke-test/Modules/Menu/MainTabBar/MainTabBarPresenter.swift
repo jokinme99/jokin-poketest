@@ -4,15 +4,13 @@
 //
 //  Created by Jokin Egia on 10/11/21.
 //
-class MainTabBarPresenter : MainTabBarPresenterDelegate {
-    
+class MainTabBarPresenter: MainTabBarPresenterDelegate {
     var view: MainTabBarViewDelegate?
     var interactor: MainTabBarInteractorDelegate?
     var wireframe: MainTabBarWireframeDelegate?
     func openLoginSignUpWindow() {
         wireframe?.openLoginSignUpWindow()
     }
-    
 }
 
 extension MainTabBarPresenter: MainTabBarInteractorOutputDelegate {

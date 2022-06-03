@@ -4,16 +4,13 @@
 //
 //  Created by Jokin Egia on 19/11/21.
 //
-class SignUpPresenter{
-    
+class SignUpPresenter {
     var wireframe: SignUpWireframeDelegate?
-    
 }
 
-extension SignUpPresenter: SignUpPresenterDelegate{
+extension SignUpPresenter: SignUpPresenterDelegate {
 
-    func openMainTabBar(){
+    func openMainTabBar() {
         wireframe?.openMainTabBar()
     }
 }
-

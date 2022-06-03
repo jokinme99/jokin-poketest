@@ -12,21 +12,22 @@ import FirebaseAuth
 import Zero
 
 @main
-class AppDelegate: UIResponder{
-    
+class AppDelegate: UIResponder {
     var window: UIWindow?
     var state = UIApplication.shared.applicationState
     var alert = ZeroDialog()
 }
 
-extension AppDelegate: UIApplicationDelegate{
-    
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+extension AppDelegate: UIApplicationDelegate {
+    func application(
+        _ application: UIApplication,
+        didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?)
+        -> Bool {
         FirebaseApp.configure()
         Messaging.messaging().delegate = self
         application.applicationIconBadgeNumber = 0
         UNUserNotificationCenter.current().delegate = self
-        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) { success , _ in
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) { success, _ in
             guard success else {return}
             print("Success in APN registry")
             DispatchQueue.main.async { application.registerForRemoteNotifications() }
@@ -35,7 +36,7 @@ extension AppDelegate: UIApplicationDelegate{
         return true
     }
 
-    func setWindow(){
+    func setWindow() {
         let frame = UIScreen.main.bounds
         self.window = UIWindow(frame: frame)
         if Auth.auth().currentUser != nil {
@@ -49,15 +50,12 @@ extension AppDelegate: UIApplicationDelegate{
             self.window?.rootViewController = navController
             self.window?.makeKeyAndVisible()
         }
-        
     }
-    
 }
 
-extension AppDelegate: MessagingDelegate, UNUserNotificationCenterDelegate{
-    
+extension AppDelegate: MessagingDelegate, UNUserNotificationCenterDelegate {
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
-        //It takes two minutes to receive notification
+        // It takes two minutes to receive notification
         Messaging.messaging().apnsToken = deviceToken
         Messaging.messaging().token { token, error in
             if let error = error {
@@ -67,53 +65,46 @@ extension AppDelegate: MessagingDelegate, UNUserNotificationCenterDelegate{
             }
         }
     }
-    
-    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+    func userNotificationCenter(
+        _ center: UNUserNotificationCenter, willPresent notification: UNNotification,
+        withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
         completionHandler([.sound, .badge, .alert])
-        if state == .active{
+        if state == .active {
             UIApplication.shared.applicationIconBadgeNumber += 1
-        }else if state == .background{
+        } else if state == .background {
             UIApplication.shared.applicationIconBadgeNumber += 1
-            
-        }else if state == .inactive{
+        } else if state == .inactive {
             UIApplication.shared.applicationIconBadgeNumber += 1
         }
     }
-    
-    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
-        if state == .active{
+    func userNotificationCenter(
+        _ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse,
+        withCompletionHandler completionHandler: @escaping () -> Void) {
+        if state == .active {
             UIApplication.shared.applicationIconBadgeNumber += 1
-        }else if state == .background{
+        } else if state == .background {
             UIApplication.shared.applicationIconBadgeNumber += 1
-            
-        }else if state == .inactive{
+        } else if state == .inactive {
             UIApplication.shared.applicationIconBadgeNumber += 1
         }
         print(response)
         completionHandler()
     }
-    
     func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String?) {
         messaging.token { token, _ in
-            guard let token = token else{return}
+            guard let token = token else { return }
             print("Token: \(token)")
         }
     }
 }
 
-extension AppDelegate{
-    
+extension AppDelegate {
     func applicationWillEnterForeground(_ application: UIApplication) {
     }
-    
     func applicationDidBecomeActive(_ application: UIApplication) {
     }
-    
     func applicationWillResignActive(_ application: UIApplication) {
     }
-    
     func applicationDidEnterBackground(_ application: UIApplication) {
     }
-    
 }
-

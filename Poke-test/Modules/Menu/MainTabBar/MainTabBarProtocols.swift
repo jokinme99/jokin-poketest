@@ -15,7 +15,6 @@ protocol MainTabBarWireframeDelegate: AnyObject {
     func openLoginSignUpWindow()
 }
 
-
 protocol MainTabBarPresenterDelegate: AnyObject {
     var view: MainTabBarViewDelegate? {get set}
     var interactor: MainTabBarInteractorDelegate? {get set}

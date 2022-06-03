@@ -4,23 +4,22 @@
 //
 //  Created by Jokin Egia on 15/11/21.
 //
-class PokemonFavouritesPresenter{
-    
+class PokemonFavouritesPresenter {
     var view: PokemonFavouritesViewDelegate?
     var interactor: PokemonFavouritesInteractorDelegate?
     var wireframe: PokemonFavouritesWireframeDelegate?
     var cell: PokemonCellDelegate?
-    
 }
 
-extension PokemonFavouritesPresenter: PokemonFavouritesPresenterDelegate{
+extension PokemonFavouritesPresenter: PokemonFavouritesPresenterDelegate {
 
     func fetchFavourites() {
         interactor?.fetchFavouritePokemons()
     }
 
     func openPokemonDetail(pokemon: Results, nextPokemon: Results, previousPokemon: Results, filtered: [Results]) {
-        wireframe?.openPokemonDetailsWindow(pokemon: pokemon, nextPokemon: nextPokemon, previousPokemon: previousPokemon, filtered: filtered)
+        wireframe?.openPokemonDetailsWindow(
+            pokemon: pokemon, nextPokemon: nextPokemon, previousPokemon: previousPokemon, filtered: filtered)
     }
 
     func fetchPokemonType(type: String) {
@@ -31,17 +30,16 @@ extension PokemonFavouritesPresenter: PokemonFavouritesPresenterDelegate{
         interactor?.deleteFavourite(pokemon: pokemon)
     }
 
-    func openLoginSignUpWindow(){
+    func openLoginSignUpWindow() {
         wireframe?.openLoginSignUpWindow()
     }
 
-    func openPokemonListWindow(){
+    func openPokemonListWindow() {
         wireframe?.openPokemonListWindow()
     }
 }
 
-extension PokemonFavouritesPresenter:
-    PokemonFavouritesInteractorOutputDelegate {
+extension PokemonFavouritesPresenter: PokemonFavouritesInteractorOutputDelegate {
 
     func didFailWith(error: Error) {
         print(error)
