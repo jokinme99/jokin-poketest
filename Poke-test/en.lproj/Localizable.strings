@@ -1,0 +1,76 @@
+
+//MARK: - HOME
+"login" = "Login";
+"sign_up" = "Sign Up";
+"access_no_user" = "Access without user";
+"welcome" = "Welcome";
+"app_title" = "POKE-TEST";
+"back" = "Back";
+"no_internet" = "No internet connection!";
+"no_internet_login" = "If you want to login into your account you'll need internet connection";
+"no_internet_sign_up" = "If you want to sign up you'll need internet connection";
+"open_settings" = "Open settings";
+"later" = "Later";
+"enter" = "Enter";
+"email" = "Email";
+"password" = "Password";
+"email_and_password_empty_error"="Insert an email and password please";
+"email_empty_error"="Insert an email please";
+"password_empty_error"="Insert a password please";
+"email_error"= "Email error";
+"password_error" = "Password error";
+"invalid_email_error"="Insert a valid email please";
+"already_in_use_email_error"="Inserted email is already in use";
+"user_not_found_error"="Inserted email does not exist";
+"wrong_password_error"="Inserted password is wrong";
+"ok" = "OK";
+"weak_password_error"="Inserted password is too weak It must have at least 6 characters";
+
+
+//MARK: - MENU
+"log_out" = "Log out";
+"log_in" = "Log in";
+"list" = "List";
+"favs" = "Favourites";
+"collection" = "Collection";
+"logging_out_title" = "Logging out";
+"logging_out_message" = "You are going to close this account Are you sure?";
+"yes" = "Yes";
+"no" = "No";
+"order_by_name" = "Order by Name";
+"order_by_id" = "Order by id";
+"search_for_pokemons" = "Search for pokemons";
+"already_in_favourites" = "Pokemon already added to favourites";
+"not_able_to_add" = "You will not be able to add any pokemons to favourites until you login or sign up. Would you like to login or sign up?";
+"no_favs_not_signed" = "You will not be able to add any pokemons to favourites until you login or sign up";
+"no_favs_not_signed_button" = "Go to home";
+"added_to_favourites" = "Pokemon added to favourites";
+"add" = "Add";
+"no_favourites_added" = "You haven't added any favourites yet. Would you like to see all the available Pokemon, in order to add any of them?";
+"home" = "Home";
+"deleted_from_favourites"="Pokemon deleted from favourites";
+"delete_from_favourites" = "Delete from favourites";
+"delete" = "Delete";
+"add_to_favourites" = "Add to favourites";
+"hp" = "Hp";
+"height" = "Height";
+"weight" = "Weight";
+"attack" = "Attack";
+"defense" = "Defense";
+"special_attack" = "Special-attack";
+"special_defense" = "Special-defense";
+"speed" ="Speed";
+"save_data_title" = "Pokémon data";
+"save_data_info" = "Would you like to save all pokémon data (except images) in your device in order to be able to access it when no internet connection? It will take little time and your answer will be definitive";
+"stats_label_title" = "Stats";
+"toolbar_title" = "Search for pokémon";
+"done_button_title" = "Done";
+
+//MARK: - TYPES
+"all"="all";"normal"="normal";"fighting"="fighting";
+"flying"="flying";"poison"="poison";"ground"="ground";
+"rock"="rock";"bug"="bug";"ghost"="ghost";
+"steel"="steel";"fire"="fire";"water"="water";
+"grass"="grass";"electric"="electric";"psychic"="psychic";
+"ice"="ice";"dragon"="dragon";"dark"="dark";
+"fairy"="fairy";"unknown"="unknown";"shadow"="shadow";
